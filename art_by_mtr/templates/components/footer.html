@@ -1,0 +1,138 @@
+{% load static %}
+
+<footer class="bg-black opacity-90 py-8 mt-8">
+  <div class="container mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="col-span-1 md:col-span-1 lg:col-span-1">
+        <div class="footer-box about-widget">
+          <div class="mb-4 relative">
+            <h2 class="text-white">Qui sommes nous ?</h2>
+            <div
+              class="block absolute bottom-0 left-0 bg-red-600 h-2 w-30%"
+            ></div>
+          </div>
+          <p class="text-white">
+            Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit
+            voluptatem accusantium doloremque laudantium, totam rem aperiam,
+            eaque ipsa quae.
+          </p>
+        </div>
+      </div>
+      <div class="col-span-1 md:col-span-1 lg:col-span-1">
+        <div class="footer-box get-in-touch">
+          <div class="relative mb-4">
+            <h2 class="text-white">Nous retrouver</h2>
+            <div
+              class="block absolute bottom-0 left-0 bg-red-600 h-2 w-30%"
+            ></div>
+          </div>
+
+          <ul class="text-white">
+            <li>Loandjili, Pointe-Noire.</li>
+            <li>support@fruitShop.com</li>
+            <li>+242 06 682 55 04</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-span-1 md:col-span-1 lg:col-span-1">
+        <div class="footer-box pages">
+          <div class="mb-4 relative">
+            <h2 class="text-white mb-4 relative">Liens utiles</h2>
+            <div
+              class="block absolute bottom-0 left-0 bg-red-600 h-2 w-30%"
+            ></div>
+          </div>
+          <ul>
+            <li>
+              <a href="{% url 'store:home' %}" class="text-white">Accueil</a>
+            </li>
+            <li>
+              <a href="{% url 'store:about' %}" class="text-white">A Propos</a>
+            </li>
+            <li>
+              <a href="{% url 'store:gallery' %}" class="text-white">Galerie</a>
+            </li>
+            <li><a href="news.html" class="text-white">Blog</a></li>
+            <li>
+              <a href="{% url 'store:contact' %}" class="text-white">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-span-1 md:col-span-1 lg:col-span-1">
+        <div class="footer-box subscribe">
+          <h2 class="text-white mb-4 relative">
+            Subscribe
+            <span
+              class="block absolute bottom-0 left-0 bg-red-600 h-2 w-30%"
+            ></span>
+          </h2>
+          <p class="text-white">
+            Subscribe to our mailing list to get the latest updates.
+          </p>
+          <form method="post" action="#">
+            <input
+              type="email"
+              placeholder="Email"
+              class="text-black bg-white px-4 py-2 rounded-md shadow-sm mb-2"
+            />
+            <button
+              type="submit"
+              title="send"
+              class="bg-red-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-red-700"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- copyright -->
+<div class="bg-black opacity-90 flex justify-between items-center">
+  <div class="container mx-auto border-t border-t-slate-300 py-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="col-span-2 md:col-span-3">
+        <p class="text-white">
+          Copyrights &copy; 2024 -
+          <a href="#" class="text-white">FenixAD</a>, All Rights Reserved.
+        </p>
+      </div>
+      <div class="col-span-2 md:col-span-1 text-right">
+        <div class="social-icons flex justify-end">
+          <ul class="flex items-center space-x-4">
+            <li>
+              <a href="#" target="_blank" title="facebook"
+                ><i class="bx bxl-facebook text-white"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#" target="_blank" title="twitter"
+                ><i class="bx bxl-twitter text-white"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#" target="_blank" title="insta"
+                ><i class="bx bxl-instagram text-white"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#" target="_blank" title="linkedin">
+                <i class="bx bxl-linkedin text-white"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank" title="github"
+                ><i class="bx bxl-github text-white"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- end copyright -->

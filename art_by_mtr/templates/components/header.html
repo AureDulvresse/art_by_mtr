@@ -1,0 +1,61 @@
+{% load static %}
+<header
+  x-data="{ isSticky: false }"
+  x-init="window.addEventListener('scroll', () => isSticky = window.scrollY > 50)"
+  x-bind:class="{ 'bg-gray-900 shadow-lg': isSticky, 'bg-transparent': !isSticky }"
+  class="wow animate__animated animate__fadeIn"
+  id="sticker"
+>
+  <div class="container mx-auto flex justify-between items-center">
+    <!-- logo -->
+    <a href="{% url 'store:home' %}">
+      <img src="{% static 'img/logo.png' %}" width="60" alt="logo" />
+    </a>
+    <!-- logo -->
+
+    <!-- menu start -->
+    <nav class="navbar">
+      <ul class="flex space-x-4">
+        <li>
+          <a
+            href="{% url 'store:home' %}"
+            class="{% if request.path == '/' %}active text-red-600{% else %}text-white{% endif %}"
+            x-bind:class="{ 'text-white': isSticky, 'text-black': !isSticky }"
+          >Accueil</a>
+        </li>
+        <li>
+          <a
+            href="{% url 'store:about' %}"
+            class="{% if request.path == '/about/' %}active text-red-600{% else %}text-white{% endif %}"
+            x-bind:class="{ 'text-white': isSticky, 'text-black': !isSticky }"
+          >A Propos</a>
+        </li>
+        <li>
+          <a
+            href="{% url 'store:gallery' %}"
+            class="{% if request.path == '/gallery/' %}active text-red-600{% else %}text-white{% endif %}"
+            x-bind:class="{ 'text-white': isSticky, 'text-black': !isSticky }"
+          >Boutique</a>
+        </li>
+        <li>
+          <a
+            href="news.html"
+            class="{% if request.path == '/news/' %}active text-red-600{% else %}text-white{% endif %}"
+            x-bind:class="{ 'text-white': isSticky, 'text-black': !isSticky }"
+          >Blog</a>
+        </li>
+        <li>
+          <a
+            href="{% url 'store:contact' %}"
+            class="{% if request.path == '/contact/' %}active text-red-600{% else %}text-white{% endif %}"
+            x-bind:class="{ 'text-white': isSticky, 'text-black': !isSticky }"
+          >Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="mobile-menu">
+      <i class="bx bx-menu text-black"></i>
+    </div>
+    <!-- menu end -->
+  </div>
+</header>

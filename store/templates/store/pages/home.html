@@ -1,0 +1,170 @@
+{% extends "base.html" %} {% load static %} {% load custom_tags %} 
+
+{% block title %} Accueil {% endblock title %} {% block content %}
+
+<section class="hero hero-bg-1 flex items-center justify-center">
+  <div class="caption-black"></div>
+  {% include "components/header.html" %}
+  <div class="container mx-auto flex items-start flex-col z-10">
+    <div class="text-center">
+      <h2
+        class="text-6xl text-white mb-4 wow animate__animated animate__slideInUp"
+      >
+        Bienvenue chez <span class="text-red">MTR</span>
+      </h2>
+      <p class="text-lg text-gray-200 mb-4 wow animate__animated animate__fadeInUp" data-wow-delay="0.4s">
+        Explorez notre collection d'art et trouvez l'inspiration
+      </p>
+    </div>
+    <div class="hero-btn flex justify-center gap-4 wow animate__animated animate__fadeInUp"  data-wow-delay="0.7s">
+      <a href="{% url 'store:gallery' %}" class="btn btn-red mr-2"
+        >Visiter la Galerie</a
+      >
+      <a href="{% url 'store:contact' %}" class="btn btn-black ml-2"
+        >Me Contacter</a
+      >
+    </div>
+  </div>
+</section>
+
+<section
+  class="mt-8 pt-4 pb-5 container mx-auto wow animate__animated animate__fadeIn"
+  data-wow-delay="0.3s"
+>
+  <div class="flex items-center justify-center flex-col">
+    <div class="flex items-center flex-col subtitle mb-8">
+      <h2 class="text-center mb-4">Notre <span>Collection d'Art</span></h2>
+      <div class="subtitle-line"></div>
+    </div>
+
+    <div class="grid-container">
+      {% for artwork in artworks %} {% artworkCard artwork %} {% endfor %}
+    </div>
+    <a href="{% url 'store:gallery' %}" class="btn btn-red mt-8  wow animate__animated animate__zoomIn"
+      >Découvrir la galerie</a
+    >
+  </div>
+</section>
+
+<section
+  class="mt-8 pt-4 pb-5 hero-bg-2 paralaxe flex item-center justify-center"
+>
+  <div class="caption-black"></div>
+  <div class="container mx-auto flex item-center flex-col justify-center z-10">
+    <h3 class="text-center text-4xl text-red mb-2 wow animate__animated animate__slideInDown">Nouvelle collection</h3>
+    <p class="text-white mb-4 wow animate__animated animate__slideInDown">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi corrupti
+      repudiandae nostrum. Nostrum quo dolorum aspernatur, officiis dolor sit.
+      Tempore, reiciendis. Nulla doloribus possimus sint cum facilis magni quae
+      repellendus!
+    </p>
+    <div class="flex item-center justify-center gap-3 wow animate__animated animate__zoomIn">
+      <a href="{% url 'store:gallery' %}" class="btn btn-outline-red"
+        >Visiter la boutique</a
+      >
+      <button type="button" class="btn btn-black">Ajouter au panier</button>
+    </div>
+  </div>
+</section>
+
+<section class="mt-8 pt-4 pb-5 about wow animate__animated animate__fadeIn" data-wow-delay="0.3s">
+  <div class="container mx-auto pb-2">
+    <div class="flex justify-center items-start gap-4">
+      <div class="about-img wow animate__animated animate__slideInLeft">
+        <img src="{% static 'img/logo.png' %}" alt="" />
+      </div>
+      <div class="about-text wow animate__animated animate__slideInRight">
+        <div class="subtitle mb-8">
+          <h2 class="mt-3 mb-4">Qui <span>suis-je</span></h2>
+        </div>
+        <p class="text-gray-600 text-lg mb-8">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ipsam
+          quod nesciunt eius accusantium enim quo laborum, ex possimus officia
+          libero molestiae doloribus nostrum consequatur nobis modi nemo hic.
+          Delectus? Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          Saepe esse eaque odit! Porro rem aliquam maiores consequatur eveniet,
+          quos autem error totam natus distinctio optio modi impedit
+          voluptatibus nobis ducimus! Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Sint voluptates nisi culpa tenetur est quo in vero
+          et officia obcaecati quod facere ullam ad aspernatur, iusto corrupti.
+          Atque, modi esse!
+        </p>
+        <a href="" class="btn btn-black">En savoir plus</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mt-8 pt-4 pb-5 contact wow animate__animated animate__fadeIn" data-wow-delay="0.3s">
+  <div class="container mx-auto">
+    <div class="flex justify-center items-start gap-4">
+      <div class="contact-text wow animate__animated animate__slideInLeft">
+        <div class="subtitle mb-8">
+          <h2 class="text-center mb-4">Me <span>Contacter</span></h2>
+        </div>
+        <p class="text-black mb-4">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+          corrupti repudiandae nostrum. Nostrum quo dolorum aspernatur, officiis
+          dolor sit. Tempore, reiciendis. Nulla doloribus possimus sint cum
+          facilis magni quae repellendus!
+        </p>
+      </div>
+
+      <div class="contact-form wow animate__animated animate__slideInRight">
+        <form action="">
+          <div class="mb-3 flex flex-col">
+            <label for="name" class="p-2 text-black"> Votre nom </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-control"
+              placeholder="Entrer votre nom"
+            />
+          </div>
+          <div class="mb-3 flex flex-col">
+            <label for="email" class="p-2 text-black"> Votre email </label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+               class="form-control"
+              placeholder="Entrer votre adresse mail"
+            />
+          </div>
+          <div class="mb-3 flex flex-col">
+            <label for="message" class="p-2 text-black"> Votre message </label>
+            <textarea
+              name="message"
+              id="message"
+               class="form-control"
+              placeholder="Taper votre message"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-black">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section
+  class="mt-8 pt-4 pb-5 container mx-auto wow animate__animated animate__fadeIn"
+  data-wow-delay="0.3s"
+>
+  <div class="flex items-center justify-center flex-col">
+    <div class="flex items-center flex-col subtitle mb-8">
+      <h2 class="text-center mb-4">Evenement <span>& Expo</span></h2>
+      <div class="subtitle-line"></div>
+    </div>
+
+    <div class="grid-container">
+      {% for artwork in artworks %} {% artworkCard artwork %} {% endfor %}
+    </div>
+    <a href="{% url 'store:gallery' %}" class="btn btn-red mt-8  wow animate__animated animate__zoomIn"
+      >Voir Plus</a
+    >
+  </div>
+</section>
+
+{% endblock content %}

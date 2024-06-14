@@ -1,0 +1,107 @@
+{% extends "base.html" %} 
+
+{% load static %} {% load custom_tags %} 
+
+{% block title %} Shop - artwork Détail {% endblock title %} 
+
+{% block content %} 
+
+{% include "components/loader.html" %} 
+{% include "store/layout/header.html" %} 
+
+{% Breadcrumb artwork.title "Détail Produit" %}
+
+<!-- single artwork -->
+<div class="single-artwork mt-150 mb-150">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="single-artwork-img">
+          <img src="{{ artwork.thumbnail.url }}" alt="{{ artwork.name }}" />
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="single-artwork-content">
+          <h3>{{ artwork.name }}</h3>
+          <p class="single-artwork-pricing">
+            <span>Prix</span> {{ artwork.price }} $
+          </p>
+          <p>
+            {% if artwork.description %} 
+            {{ artwork.description }} 
+          {% endif %}
+          </p>
+
+          <div class="single-artwork-form">
+            Stock actuel :
+            <b style="font-size: 20px">{{ artwork.stock }}</b>
+            {% if user.is_authenticated %}
+            <form method="post">
+              {% csrf_token %}
+              <input type="number" name="qte" value="1" min="1" placeholder="1" />
+              <button
+                type="submit"
+                class="btn rounded-pill"
+                style="
+                  font-family: 'Inter', sans-serif;
+                  display: inline-block;
+                  background-color: #f28123;
+                  color: #fff;
+                  padding: 12.56px 20px;
+                "
+              >
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+            </form>
+            {% else %}
+            <div>
+              <a
+                href="{% url 'accounts:login' %}"
+                class="cart-btn"
+                title="Connection pour ajouter au panier"
+              >
+                Add to Cart
+              </a>
+            </div>
+
+            {% endif %}
+          </div>
+          <p>
+            <strong>Categories: </strong>
+            {% for category in artwork.category.all %} {{ category.name }}
+            {%endfor %}
+          </p>
+         
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end single artwork -->
+
+<!-- more artworks -->
+<div class="more-artworks mb-150">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="section-title">
+          <h3><span class="orange-text">Decouvrir </span>aussi</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid,
+            fuga quas itaque eveniet beatae optio.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      {% for r_artwork in related_artworks %} {% ArtworkCard r_artwork user %}
+      {% empty %}
+      <h4>Aucun produit</h4>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- end more artworks -->
+
+{% include "store/layout/footer.html" %} {% endblock content %}

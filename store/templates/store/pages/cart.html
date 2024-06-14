@@ -1,0 +1,119 @@
+{% extends "base.html" %} {% load static %}
+
+{% load mytags %}
+
+{% block title %} Panier {% endblock title %}
+
+{% block content %}
+
+{% include "components/loader.html" %}
+{% include "store/layout/header.html" %}
+
+{% breadcrumb "Panier" "Bien remplis et prêt à être acheter !" %}
+
+{% include "store/components/confirmationModal.html" %}
+
+<!-- cart -->
+<div class="cart-section mt-150 mb-150">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-12">
+        <div class="cart-table-wrap">
+          <table class="cart-table">
+            <thead class="cart-table-head">
+              <tr class="table-head-row">
+                <th class="product-remove">
+                  <i
+                    class="far fa-trash-alt text-danger fa-2x"
+                    style="cursor: pointer"
+                    title="Supprimer le panier"
+                    data-toggle="modal"
+                    data-target="#removeCart"
+                  ></i>
+                </th>
+                <th class="product-image">Product Image</th>
+                <th class="product-name">Désignation</th>
+                <th class="product-price">Prix</th>
+                <th class="product-quantity">Quantité</th>
+                <th class="product-total">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in orders %}
+              <tr class="table-body-row">
+                <td class="product-remove">
+                  <a
+                    href="{% url 'store:delete-order-from-cart' order.uuid %}"
+                    title="Retirer du panier"
+                  >
+                    <i class="fas fa-times-circle"> </i>
+                  </a>
+                </td>
+                <td class="product-image">
+                  <img
+                    src="{{ order.product.thumbnail.url }}"
+                    alt="{{ order.product.name }}"
+                  />
+                </td>
+                <td class="product-name">{{ order.product.name }}</td>
+                <td class="product-price">{{ order.product.price }} $</td>
+                <td class="product-quantity">{{ order.quantity }}</td>
+                <td class="product-total">{{ order.quantity }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                Panier vide
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="total-section">
+          <table class="total-table">
+            <thead class="total-table-head">
+              <tr class="table-total-row">
+                <th>Total</th>
+                <th>Prix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="total-data">
+                <td><strong>Coût total: </strong></td>
+                <td>{{ cart_cumul }} $</td>
+              </tr>
+              <tr class="total-data">
+                <td><strong>Livraison: </strong></td>
+                <td>0 $</td>
+              </tr>
+              <tr class="total-data">
+                <td><strong>Total à payer: </strong></td>
+                <td>{{ cart_cumul }} $</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="cart-buttons">
+            <a href="{% url 'store:checkout' %}" class="boxed-btn black"
+              >Check Out</a
+            >
+          </div>
+        </div>
+
+        <div class="coupon-section">
+          <h3>Apply Coupon</h3>
+          <div class="coupon-form-wrap">
+            <form action="index.html">
+              <p><input type="text" placeholder="Coupon" /></p>
+              <p><input type="submit" value="Apply" /></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end cart -->
+
+{% include "store/layout/footer.html" %} {% endblock content %}
