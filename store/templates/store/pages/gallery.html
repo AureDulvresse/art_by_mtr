@@ -1,8 +1,8 @@
-{% extends "base.html" %} {% load static %} {% load custom_tags %}
+{% extends "base.html" %} {% load static %} {% load custom_tags %} 
 
 {% block title %} Galerie {% endblock title %} 
 
-{% block content %} 
+{% block content %}
 
 {% breadcrumb "Galerie" "Des tableaux unique et exceptionnel" %}
 
@@ -20,14 +20,30 @@
       {% for artwork in artworks %} {% artworkCard artwork %} {% endfor %}
     </div>
 
-     <div class="mt-8 wow animate__animated animate__zoomIn"
+    <div
+      class="mt-8 wow animate__animated animate__zoomIn flex justify-between items-center"
+    >
+      {% if artworks.has_previous %}
+      <a href="?page={{ artworks.previous_page_number }}" class="btn btn-black"
+        >Précédent</a
       >
-      <a href="" class="btn btn-black">Precedent</a> 
-      <span class="text-gray-600">Page 1 sur 3</span>
-      <a href="" class="btn btn-black">Suivant</a>
-      </div>
+      {% else %}
+      <span class="btn btn-black disabled">Précédent</span>
+      {% endif %}
+
+      <span class="text-gray-600"
+        >Page {{ artworks.number }} sur {{ artworks.paginator.num_pages }}</span
+      >
+
+      {% if artworks.has_next %}
+      <a href="?page={{ artworks.next_page_number }}" class="btn btn-black"
+        >Suivant</a
+      >
+      {% else %}
+      <span class="btn btn-black disabled">Suivant</span>
+      {% endif %}
+    </div>
   </div>
 </section>
-
 
 {% endblock content %}

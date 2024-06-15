@@ -254,7 +254,22 @@ a {
     flex: 1 2;
 }
 
-.single-artwork h2{
+.single-artwork-img {
+    width: 70%;
+    flex: 1 1;
+    border-radius: 0.5rem;
+    height: 560px;
+    position: relative;
+}
+
+.single-artwork-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+
+.single-artwork h2 {
     width: 100%;
     line-height: 35px;
 }
