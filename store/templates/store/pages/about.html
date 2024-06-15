@@ -1,12 +1,10 @@
-{% extends "base.html" %} 
+{% extends "base.html" %} {% load static %} {% load custom_tags %} 
 
-{% load static %} {% load custom_tags %} 
-
-{% block title %} About Us {% endblock title %} 
+{% block title %} A Propos {% endblock title %} 
 
 {% block content %} 
 
-{% Breadcrumb "A Propos" "Aller à ma rencontre" %}
+{% breadcrumb "A Propos" "Aller à ma rencontre" %}
 
 <!-- featured section -->
 <div class="feature-bg">
@@ -79,8 +77,6 @@
   </div>
 </div>
 <!-- end featured section -->
-
-{% BannerSection %}
 
 <!-- team section -->
 <div class="mt-150">

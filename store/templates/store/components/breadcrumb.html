@@ -1,14 +1,21 @@
 <!-- breadcrumb-section -->
-<div class="breadcrumb-section breadcrumb-bg">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <div class="breadcrumb-text">
-          <p>{{ msg }}</p>
-          <h1>{{ title }}</h1>
-        </div>
-      </div>
+<section class="breadcrumb-section hero-bg-3 flex items-center justify-center">
+  <div class="caption-black"></div>
+  {% include "components/header.html" %}
+  <div class="container mx-auto flex items-center justify-center flex-col z-10">
+    <div class="flex justify-center items-center text-center flex-col">
+      <p
+        class="text-lg text-gray-200 mb-4 wow animate__animated animate__slideInUp"
+      >
+        {{msg}}
+      </p>
+      <h2
+        class="text-6xl text-red mb-4 wow animate__animated animate__fadeIn"
+        data-wow-delay="0.4s"
+      >
+        {{title}}
+      </h2>
     </div>
   </div>
-</div>
+</section>
 <!-- end breadcrumb section -->

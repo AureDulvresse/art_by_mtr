@@ -10,6 +10,7 @@
     --font-family-sans: 'Inter', sans-serif;
     --transition-duration: 0.3s;
     --header-height: 100vh;
+    --breadcrumb-height: 260px;
     --header-height-lg: 820px;
     --border-radius: 0.5rem;
     --container-padding: 1rem;
@@ -189,6 +190,15 @@ a {
     height: 100%;
 }
 
+.breadcrumb-section {
+    height: var(--breadcrumb-height) !important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    z-index: 20;
+    position: relative;
+}
+
 .subtitle h2 {
     font-size: 2rem;
     font-weight: 600;
@@ -242,6 +252,11 @@ a {
 .contact-form {
     width: 100%;
     flex: 1 2;
+}
+
+.single-artwork h2{
+    width: 100%;
+    line-height: 35px;
 }
 
 /* Styles pour les card */

@@ -9,7 +9,7 @@
       {{ artwork.price }} €
     </p>
     <div class="flex item-center justify-center gap-3">
-      <a href="" class="btn btn-outline-red">Voir le Tableau</a>
+      <a href="{% url 'store:artwork-detail' artwork.slug %}" class="btn btn-outline-red">Voir le Tableau</a>
       <button type="button" class="btn btn-black">Ajouter au panier</button>
     </div>
   </div>

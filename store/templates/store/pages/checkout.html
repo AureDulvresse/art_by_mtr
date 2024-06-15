@@ -1,13 +1,8 @@
-{% extends "base.html" %} 
+{% extends "base.html" %} {% load static %} {% load custom_tags %} 
 
-{% load static %} {% load mytags %} 
-
-{% block title %} Commander {% endblock title %} 
+{% block title %} Checkout {% endblock title %} 
 
 {% block content %} 
-
-{% include "components/loader.html" %} 
-{% include "store/layout/header.html" %}
 
 {% breadcrumb "Commander" "Plus qu'une dernière étape" %}
 
@@ -185,4 +180,4 @@
 </div>
 <!-- end check out section -->
 
-{% include "store/layout/footer.html" %} {% endblock content %}
+{% endblock content %}

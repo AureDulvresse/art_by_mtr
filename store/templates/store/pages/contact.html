@@ -1,15 +1,10 @@
-{% extends "base.html" %}
-
-{% load static %} {% load custom_tags %}
+{% extends "base.html" %} {% load static %} {% load custom_tags %}
 
 {% block title %} Contact {% endblock title %} 
 
 {% block content %} 
 
-{% include "components/loader.html" %}
-{% include "store/layout/header.html" %} 
-
-{% Breadcrumb "Nous contacter" "Get 24/7 Support" %}
+{% breadcrumb "Nous contacter" "Get 24/7 Support" %}
 
 <!-- contact form -->
 <div class="contact-from-section mt-150 mb-150">
@@ -109,4 +104,4 @@
 </div>
 <!-- end google map section -->
 
-{% include "store/layout/footer.html" %} {% endblock content %}
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% load static %} {% load custom_tags %}
+
+{% block title %} Galerie {% endblock title %} 
+
+{% block content %} 
+
+{% breadcrumb "Galerie" "Des tableaux unique et exceptionnel" %}
+
+<section
+  class="mt-8 pt-4 pb-5 container mx-auto wow animate__animated animate__fadeIn"
+  data-wow-delay="0.3s"
+>
+  <div class="flex items-center justify-center flex-col">
+    <div class="flex items-center flex-col subtitle mb-8">
+      <h2 class="text-center mb-4">Notre <span>Galerie d'Art</span></h2>
+      <div class="subtitle-line"></div>
+    </div>
+
+    <div class="grid-container">
+      {% for artwork in artworks %} {% artworkCard artwork %} {% endfor %}
+    </div>
+
+     <div class="mt-8 wow animate__animated animate__zoomIn"
+      >
+      <a href="" class="btn btn-black">Precedent</a> 
+      <span class="text-gray-600">Page 1 sur 3</span>
+      <a href="" class="btn btn-black">Suivant</a>
+      </div>
+  </div>
+</section>
+
+
+{% endblock content %}
