@@ -29,8 +29,13 @@
       referrerpolicy="no-referrer"
     />
 
-    <!-- Style -->
+    <!-- ANIMATE CSS -->
     <link rel="stylesheet" href="{% static 'css/animate.css' %}" />
+    
+    <!-- TOAST CSS -->
+    <link rel="stylesheet" href="{% static 'css/toast.css' %}" />
+    
+    <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
     <!-- Alpine.js -->
@@ -43,6 +48,9 @@
     <main class="max-w-[1920px] mx-auto overflow-hidden bg-white">
       {% block content %} {% endblock content %}
     </main>
+
+     <!-- TOAST JS -->
+    <script src="{% static 'js/vendors/toast.js' %}"></script>
 
     <!-- WOW JS -->
     <script src="{% static 'js/vendors/wow.js' %}"></script>
