@@ -10,7 +10,7 @@
     --font-family-sans: 'Inter', sans-serif;
     --transition-duration: 0.3s;
     --header-height: 100vh;
-    --breadcrumb-height: 260px;
+    --breadcrumb-height: 280px;
     --header-height-lg: 820px;
     --border-radius: 0.5rem;
     --container-padding: 1rem;
@@ -82,6 +82,14 @@ a {
     color: var(--color-gray-600);
 }
 
+.text-sm {
+    font-size: 14px;
+}
+
+.text-center {
+    text-align: center;
+}
+
 .text-2xl {
     font-size: 1.2rem;
     font-weight: 600;
@@ -132,6 +140,11 @@ a {
 .navbar a:hover {
     color: var(--color-red-700);
 }
+
+.navbar a.btn:hover {
+    color: var(--color-white);
+}
+
 
 /* Mobile Menu Icon */
 .mobile-menu {
@@ -190,6 +203,7 @@ a {
     height: 100%;
 }
 
+/* Breadcrumb Section */
 .breadcrumb-section {
     height: var(--breadcrumb-height) !important;
     background-repeat: no-repeat;
@@ -372,6 +386,24 @@ textarea {
     font-family: var(--font-family-sans);
 }
 
+.auth-form {
+    width: 65%;
+    padding: 10px 8px;
+}
+
+
+#login-form div {
+    margin-bottom: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#login-form div label {
+    color: var(--color-black);
+    font-weight: 600;
+}
+
 
 /* Container Styles */
 .container {
@@ -413,12 +445,24 @@ textarea {
     .container {
         max-width: 960px;
     }
+
+    .w-full {
+        width: 80%;
+    }
 }
 
 @media (min-width: 1280px) {
     .container {
         max-width: 1140px;
     }
+
+    .w-full {
+        width: 80%;
+    }
+}
+
+.w-full {
+    width: 100%;
 }
 
 /* Flex Utilities */

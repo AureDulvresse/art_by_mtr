@@ -15,41 +15,60 @@
 
     <!-- menu start -->
     <nav class="navbar">
-      <ul class="flex space-x-4">
+      <ul class="flex items-center">
         <li>
           <a
             href="{% url 'store:home' %}"
             class="{% if request.path == '/' %}active text-red-600{% else %}text-white{% endif %}"
             x-bind:class="{ 'text-white': isSticky, 'text-black': !isSticky }"
-          >Accueil</a>
+            >Accueil</a
+          >
         </li>
         <li>
           <a
             href="{% url 'store:about' %}"
             class="{% if request.path == '/about/' %}active text-red-600{% else %}text-white{% endif %}"
             x-bind:class="{ 'text-white': isSticky, 'text-black': !isSticky }"
-          >A Propos</a>
+            >A Propos</a
+          >
         </li>
         <li>
           <a
             href="{% url 'store:gallery' %}"
             class="{% if request.path == '/gallery/' %}active text-red-600{% else %}text-white{% endif %}"
             x-bind:class="{ 'text-white': isSticky, 'text-black': !isSticky }"
-          >Boutique</a>
+            >Boutique</a
+          >
         </li>
         <li>
           <a
             href="news.html"
             class="{% if request.path == '/news/' %}active text-red-600{% else %}text-white{% endif %}"
             x-bind:class="{ 'text-white': isSticky, 'text-black': !isSticky }"
-          >Blog</a>
+            >Blog</a
+          >
         </li>
         <li>
           <a
             href="{% url 'store:contact' %}"
             class="{% if request.path == '/contact/' %}active text-red-600{% else %}text-white{% endif %}"
             x-bind:class="{ 'text-white': isSticky, 'text-black': !isSticky }"
-          >Contact</a>
+            >Contact</a
+          >
+        </li>
+
+        <li>
+          {% if user.is_authenticated %}
+          <div class="flex items-center justify-center gap-3">
+            <i class="bx bx-shop-cart"></i>
+            <i class="bx bx-user"></i>
+            {{ user.username }}
+          </div>
+          {% else %}
+         <a href="{% url 'accounts:login' %}" class="btn btn-red"
+            >Se connecter</a
+          >
+          {% endif %}
         </li>
       </ul>
     </nav>

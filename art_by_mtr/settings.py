@@ -151,7 +151,7 @@ AUTH_USER_MODEL = "accounts.Customer"
 ROOT_URLCONF = 'art_by_mtr.urls'
 LOGIN_URL = 'accounts:login'
 
-MEDIA_URL = "/media/"
+MEDIA_URL = "/storage/"
 MEDIA_ROOT = BASE_DIR / "storage"
 
 COMPONENTS_DIRS = [

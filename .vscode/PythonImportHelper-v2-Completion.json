@@ -171,6 +171,46 @@
         "documentation": {}
     },
     {
+        "label": "AuthenticationForm",
+        "importPath": "django.contrib.auth.forms",
+        "description": "django.contrib.auth.forms",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.forms",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "importPath": "accounts.models",
+        "description": "accounts.models",
+        "isExtraImport": true,
+        "detail": "accounts.models",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "importPath": "accounts.models",
+        "description": "accounts.models",
+        "isExtraImport": true,
+        "detail": "accounts.models",
+        "documentation": {}
+    },
+    {
         "label": "TestCase",
         "importPath": "django.test",
         "description": "django.test",
@@ -395,11 +435,19 @@
         "documentation": {}
     },
     {
-        "label": "Customer",
-        "importPath": "accounts.models",
-        "description": "accounts.models",
+        "label": "LoginForm",
+        "importPath": "accounts.forms",
+        "description": "accounts.forms",
         "isExtraImport": true,
-        "detail": "accounts.models",
+        "detail": "accounts.forms",
+        "documentation": {}
+    },
+    {
+        "label": "RegisterForm",
+        "importPath": "accounts.forms",
+        "description": "accounts.forms",
+        "isExtraImport": true,
+        "detail": "accounts.forms",
         "documentation": {}
     },
     {
@@ -518,14 +566,6 @@
         "documentation": {}
     },
     {
-        "label": "template",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
         "label": "COMPONENTS_DIRS",
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
@@ -601,6 +641,24 @@
         "documentation": {}
     },
     {
+        "label": "LoginForm",
+        "kind": 6,
+        "importPath": "accounts.forms",
+        "description": "accounts.forms",
+        "peekOfCode": "class LoginForm(AuthenticationForm):\n    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre nom d''utilisateur'}))\n    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre mot de passe'}))\nclass RegisterForm(forms.ModelForm):\n    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre mot de passe'}))\n    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirmer votre mot de passe'}))\n    class Meta:\n        model = Customer\n        fields =  ['username', 'first_name', 'last_name', 'email', 'password']\n    def clean(self):",
+        "detail": "accounts.forms",
+        "documentation": {}
+    },
+    {
+        "label": "RegisterForm",
+        "kind": 6,
+        "importPath": "accounts.forms",
+        "description": "accounts.forms",
+        "peekOfCode": "class RegisterForm(forms.ModelForm):\n    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre mot de passe'}))\n    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirmer votre mot de passe'}))\n    class Meta:\n        model = Customer\n        fields =  ['username', 'first_name', 'last_name', 'email', 'password']\n    def clean(self):\n        cleaned_data = super().clean()\n        password = cleaned_data.get('password')\n        confirm_password = cleaned_data.get('confirm_password')",
+        "detail": "accounts.forms",
+        "documentation": {}
+    },
+    {
         "label": "Customer",
         "kind": 6,
         "importPath": "accounts.models",
@@ -614,7 +672,7 @@
         "kind": 5,
         "importPath": "accounts.urls",
         "description": "accounts.urls",
-        "peekOfCode": "app_name = \"accounts\"\nurlpatterns = [\n    path(\"\", views.UserController.show, name=\"myAccount\"),\n    path(\"login\", views.AuthController.login_page, name=\"login\"),\n    path(\"logout\", views.AuthController.logout_page, name=\"logout\"),\n    path(\"register\", views.AuthController.register_page, name=\"register\"),\n    path(\"update-account\", views.UserController.update, name=\"update-account\"),\n    path(\"delete-account\", views.UserController.destroy, name=\"delete-account\"),\n]",
+        "peekOfCode": "app_name = \"accounts\"\nurlpatterns = [\n    path(\"\", views.show, name=\"myAccount\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path(\"delete-account\", views.destroy, name=\"delete-account\"),\n]",
         "detail": "accounts.urls",
         "documentation": {}
     },
@@ -623,25 +681,61 @@
         "kind": 5,
         "importPath": "accounts.urls",
         "description": "accounts.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.UserController.show, name=\"myAccount\"),\n    path(\"login\", views.AuthController.login_page, name=\"login\"),\n    path(\"logout\", views.AuthController.logout_page, name=\"logout\"),\n    path(\"register\", views.AuthController.register_page, name=\"register\"),\n    path(\"update-account\", views.UserController.update, name=\"update-account\"),\n    path(\"delete-account\", views.UserController.destroy, name=\"delete-account\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.show, name=\"myAccount\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path(\"delete-account\", views.destroy, name=\"delete-account\"),\n]",
         "detail": "accounts.urls",
         "documentation": {}
     },
     {
-        "label": "AuthController",
-        "kind": 6,
+        "label": "login_page",
+        "kind": 2,
         "importPath": "accounts.views",
         "description": "accounts.views",
-        "peekOfCode": "class AuthController:\n    def login_page(request) -> HttpResponse:\n        if request.method == \"POST\":\n            identifiant = request.POST.get(\"username\")\n            pwd = request.POST.get(\"password\")\n            user = authenticate(request, username=identifiant, password=pwd)\n            if user is not None:\n                login(request, user)\n                return redirect(\"store:home\")\n            else:",
+        "peekOfCode": "def login_page(request) -> HttpResponse:\n    if request.method == \"POST\":\n        form = LoginForm(request, data=request.POST)\n        if form.is_valid():\n            try:\n                user = form.get_user()\n                login(request, user)\n                return redirect(\"store:home\")\n            except:\n                form.add_error(None, \"Identifiant ou mot de passe incorrect\")",
         "detail": "accounts.views",
         "documentation": {}
     },
     {
-        "label": "UserController",
-        "kind": 6,
+        "label": "logout_page",
+        "kind": 2,
         "importPath": "accounts.views",
         "description": "accounts.views",
-        "peekOfCode": "class UserController:\n    @login_required\n    def show(request) -> HttpResponse:\n        context = {}\n        return render(request, \"accounts/pages/index.html\", context)\n    @login_required\n    def update(request) -> HttpResponse:\n        if request.method == \"POST\":\n            form = request.POST\n            first_name = form.get(\"first_name\")",
+        "peekOfCode": "def logout_page(request) -> HttpResponse:\n    logout(request)\n    return redirect(\"store:home\")\ndef register_page(request) -> HttpResponse:\n    if request.method == \"POST\":\n        form = RegisterForm(request.POST)\n        if form.is_valid():\n            first_name = form.cleaned_data.get(\"first_name\")\n            last_name = form.cleaned_data.get(\"last_name\")\n            username = form.cleaned_data.get(\"username\")",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
+        "label": "register_page",
+        "kind": 2,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "def register_page(request) -> HttpResponse:\n    if request.method == \"POST\":\n        form = RegisterForm(request.POST)\n        if form.is_valid():\n            first_name = form.cleaned_data.get(\"first_name\")\n            last_name = form.cleaned_data.get(\"last_name\")\n            username = form.cleaned_data.get(\"username\")\n            email = form.cleaned_data.get(\"email\")\n            pwd = form.cleaned_data.get(\"password\")\n            Customer.objects.create_user(",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
+        "label": "show",
+        "kind": 2,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "def show(request) -> HttpResponse:\n    return render(request, \"accounts/profile.html\", {})\n@login_required\ndef update(request) -> HttpResponse:\n    if request.method == \"POST\":\n        form = request.POST\n        first_name = form.get(\"first_name\")\n        last_name = form.get(\"last_name\")\n        username = form.get(\"username\")\n        email = form.get(\"email\")",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
+        "label": "update",
+        "kind": 2,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "def update(request) -> HttpResponse:\n    if request.method == \"POST\":\n        form = request.POST\n        first_name = form.get(\"first_name\")\n        last_name = form.get(\"last_name\")\n        username = form.get(\"username\")\n        email = form.get(\"email\")\n        user = get_object_or_404(Customer, pk = request.user.pk)\n        user.first_name = first_name\n        user.last_name = last_name",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
+        "label": "destroy",
+        "kind": 2,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "def destroy(request) -> HttpResponse:\n    Customer = get_object_or_404(Customer, pk = request.user.pk)\n    logout(request)\n    Customer.delete()\n    return redirect(\"chat:home\")",
         "detail": "accounts.views",
         "documentation": {}
     },
@@ -812,7 +906,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "STATIC_ROOT = 'static_root'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/media/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [",
+        "peekOfCode": "STATIC_ROOT = 'static_root'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/storage/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -821,7 +915,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/media/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/storage/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -830,7 +924,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "AUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/media/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "AUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/storage/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -839,7 +933,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "ROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/media/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "ROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/storage/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -848,7 +942,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "LOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/media/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "LOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/storage/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -857,7 +951,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "MEDIA_URL = \"/media/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "MEDIA_URL = \"/storage/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },

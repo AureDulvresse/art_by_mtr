@@ -5,41 +5,54 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from accounts.models import Customer
+from accounts.forms import LoginForm, RegisterForm
 
 
-class AuthController:
 
-    def login_page(request) -> HttpResponse:
 
-        if request.method == "POST":
-            identifiant = request.POST.get("username")
-            pwd = request.POST.get("password")
-            user = authenticate(request, username=identifiant, password=pwd)
+def login_page(request) -> HttpResponse:
 
-            if user is not None:
+    if request.method == "POST":
+        form = LoginForm(request, data=request.POST)
+
+        if form.is_valid():
+        
+            try:
+                user = form.get_user()
                 login(request, user)
                 return redirect("store:home")
-            else:
-                messages.info(request, "Identifiant ou mot de passe incorrect")
+            except:
+                form.add_error(None, "Identifiant ou mot de passe incorrect")
+                messages.error(request, "Identifiant ou mot de passe incorrect")
+                
+        else:
 
-        return render(request, "accounts/pages/login.html")
+            print(form, form.errors)
+    else:
+        form = LoginForm()
 
-    @login_required
-    def logout_page(request) -> HttpResponse:
-        logout(request)
-        return redirect("store:home")
-	
-	
-    def register_page(request) -> HttpResponse:
-		
-        if request.method == "POST":
-            form = request.POST
-            first_name = form.get("first_name")
-            last_name = form.get("last_name")
-            username = form.get("username")
-            email = form.get("email")
-            pwd = request.POST.get("password")
-			
+    return render(request, "accounts/pages/login.html", {'form': form})
+
+@login_required
+def logout_page(request) -> HttpResponse:
+    logout(request)
+    return redirect("store:home")
+
+
+def register_page(request) -> HttpResponse:
+
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+
+
+        if form.is_valid():
+
+            first_name = form.cleaned_data.get("first_name")
+            last_name = form.cleaned_data.get("last_name")
+            username = form.cleaned_data.get("username")
+            email = form.cleaned_data.get("email")
+            pwd = form.cleaned_data.get("password")
+            
             Customer.objects.create_user(
                 username = username,
                 email = email,
@@ -47,51 +60,52 @@ class AuthController:
                 last_name = last_name, 
                 password=pwd
             )
-			
+            
             request.POST = {}
 
+            messages.info(request, "Inscription réussit")
+
             return redirect("accounts:login")
-		
-        return render(request, "accounts/pages/register.html")
-
-
-class UserController:
-
-    @login_required
-    def show(request) -> HttpResponse:
-
-        context = {}
-
-        return render(request, "accounts/pages/index.html", context)
-    
-
-
-    @login_required
-    def update(request) -> HttpResponse:
         
-        if request.method == "POST":
-            form = request.POST
-            first_name = form.get("first_name")
-            last_name = form.get("last_name")
-            username = form.get("username")
-            email = form.get("email")
+        else:
+            print(form.errors)
+    else:
+        form = RegisterForm()
+    
+    return render(request, "accounts/register.html", {"form": form})
 
-            user = get_object_or_404(Customer, pk = request.user.pk)
+@login_required
+def show(request) -> HttpResponse:
+    return render(request, "accounts/profile.html", {})
 
-            user.first_name = first_name
-            user.last_name = last_name
-            user.username = username
-            user.email = email
-
-            user.save()
-
-            return redirect("accounts:myAccount")
-
-    @login_required
-    def destroy(request) -> HttpResponse:
+@login_required
+def update(request) -> HttpResponse:
+    
+    if request.method == "POST":
+        form = request.POST
+        first_name = form.get("first_name")
+        last_name = form.get("last_name")
+        username = form.get("username")
+        email = form.get("email")
 
         user = get_object_or_404(Customer, pk = request.user.pk)
-        logout(request)
-        user.delete()
 
-        return redirect("store:home")
+        user.first_name = first_name
+        user.last_name = last_name
+        user.username = username
+        user.email = email
+
+        user.save()
+
+        return redirect("accounts:profile")
+
+
+@login_required
+def destroy(request) -> HttpResponse:
+
+    Customer = get_object_or_404(Customer, pk = request.user.pk)
+    logout(request)
+    Customer.delete()
+
+    return redirect("chat:home")
+    
