@@ -1,99 +1,90 @@
-{% extends "base.html" %} {% load static %} {% load custom_tags %}
+{% extends "base.html" %} {% load static %} {% load custom_tags %} 
 
-{% block title %} Contact {% endblock title %} 
+{% block title %} Contact {% endblock title %} {% block content %}
 
-{% block content %} 
-
-{% breadcrumb "Nous contacter" "Get 24/7 Support" user %}
+{% breadcrumb "Nous contacter" "Disponible H24" user %}
 
 <!-- contact form -->
-<div class="contact-from-section mt-150 mb-150">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <div class="form-title">
-          <h2>Have you any question?</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur,
-            ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat
-            aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!
-          </p>
+<section
+  class="mt-8 pt-4 pb-5 contact wow animate__animated animate__fadeIn"
+  data-wow-delay="0.3s"
+>
+  <div class="container mx-auto">
+    <div class="flex justify-center items-start gap-4">
+      <div class="contact-text wow animate__animated animate__slideInLeft">
+        <div class="subtitle mb-8">
+          <h2 class="text-center mb-4">Me <span>Contacter</span></h2>
         </div>
-        <div id="form_status"></div>
-        <div class="contact-form">
-          <form
-            type="POST"
-            id="fruitkha-contact"
-            onSubmit="return valid_datas( this );"
-          >
-            <p>
-              <input type="text" placeholder="Name" name="name" id="name" />
-              <input type="email" placeholder="Email" name="email" id="email" />
-            </p>
-            <p>
-              <input type="tel" placeholder="Phone" name="phone" id="phone" />
-              <input
-                type="text"
-                placeholder="Subject"
-                name="subject"
-                id="subject"
-              />
-            </p>
-            <p>
-              <textarea
-                name="message"
-                id="message"
-                cols="30"
-                rows="10"
-                placeholder="Message"
-              ></textarea>
-            </p>
-            <input type="hidden" name="token" value="FsWga4&@f6aw" />
-            <p><input type="submit" value="Submit" /></p>
-          </form>
-        </div>
+        <p class="text-black mb-4">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+          corrupti repudiandae nostrum. Nostrum quo dolorum aspernatur, officiis
+          dolor sit. Tempore, reiciendis. Nulla doloribus possimus sint cum
+          facilis magni quae repellendus!
+        </p>
       </div>
-      <div class="col-lg-4">
-        <div class="contact-form-wrap">
-          <div class="contact-form-box">
-            <h4><i class="fas fa-map"></i> Shop Address</h4>
-            <p>
-              34/8, East Hukupara <br />
-              Gifirtok, Sadan. <br />
-              Country Name
-            </p>
+
+      <div class="contact-form wow animate__animated animate__slideInRight">
+        <form action="">
+          <div class="mb-3 flex flex-col">
+            <label for="name" class="p-2 text-black"> Votre nom </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-control"
+              placeholder="Entrer votre nom"
+            />
           </div>
-          <div class="contact-form-box">
-            <h4><i class="fas fa-address-book"></i> Contact</h4>
-            <p>
-              Phone: +00 111 222 3333 <br />
-              Email: support@fruitkha.com
-            </p>
+          <div class="mb-3 flex flex-col">
+            <label for="email" class="p-2 text-black"> Votre email </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="form-control"
+              placeholder="Entrer votre adresse mail"
+            />
           </div>
-        </div>
+          <div class="mb-3 flex flex-col">
+            <label for="subject" class="p-2 text-black"> Sujet </label>
+            <input
+              type="text"
+              name="subject"
+              id="subject"
+              class="form-control"
+              placeholder="Entrer un object"
+            />
+          </div>
+          <div class="mb-3 flex flex-col">
+            <label for="message" class="p-2 text-black"> Votre message </label>
+            <textarea
+              name="message"
+              id="message"
+              class="form-control"
+              placeholder="Taper votre message"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-black">Envoyer</button>
+        </form>
       </div>
     </div>
   </div>
-</div>
+</section>
 <!-- end contact form -->
 
 <!-- find our location -->
-<div class="find-location blue-bg">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <p><i class="fas fa-map-marker-alt"></i> Find Our Location</p>
-      </div>
-    </div>
-  </div>
+<div class="flex items-center flex-col subtitle mt-4 mb-8">
+  <h2 class="text-center mb-4">Retrouvez <span>Moi</span></h2>
+  <div class="subtitle-line"></div>
 </div>
+
 <!-- end find our location -->
 
 <!-- google map section -->
-<div class="embed-responsive embed-responsive-21by9">
+<div class="embed-responsive embed-responsive-21by9 w-full">
   <iframe
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26432.42324808999!2d-118.34398767954286!3d34.09378509738966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bf07045279bf%3A0xf67a9a6797bdfae4!2sHollywood%2C%20Los%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1576846473265!5m2!1sen!2sbd"
-    width="600"
+    width="800"
     height="450"
     frameborder="0"
     title="Address"

@@ -24,9 +24,12 @@
 
         <div><!-- Mettre une tabulation ici --></div>
 
-        <div class="">
-          <button type="button" class="btn btn-black"  @click="addToCart">Ajouter au panier</button>
-        </div>
+         <button type="button" class="btn btn-black"
+              x-data="cartHandler()"
+              x-on:click="addToCart($event)"
+              data-artwork-id="{{ artwork.id }}">
+        Ajouter au panier
+      </button>
       </div>
     </div>
   </div>
