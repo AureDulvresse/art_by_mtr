@@ -60,9 +60,8 @@
         <li>
           {% if user.is_authenticated %}
           <div class="flex items-center justify-center gap-3">
-            <i class='bx bx-cart'></i>
-            <i class="bx bx-user"></i>
-            {{ user.username }}
+            <i class="bx bx-cart text-2xl text-white"></i>
+            <i class="bx bx-user text-2xl text-white"></i>
           </div>
           {% else %}
          <a href="{% url 'accounts:login' %}" class="btn btn-red"
