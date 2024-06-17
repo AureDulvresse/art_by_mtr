@@ -139,6 +139,14 @@
         "documentation": {}
     },
     {
+        "label": "UserAdmin",
+        "importPath": "django.contrib.auth.admin",
+        "description": "django.contrib.auth.admin",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.admin",
+        "documentation": {}
+    },
+    {
         "label": "AppConfig",
         "importPath": "django.apps",
         "description": "django.apps",
@@ -331,6 +339,14 @@
         "documentation": {}
     },
     {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
         "label": "authenticate",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
@@ -364,6 +380,14 @@
     },
     {
         "label": "permission_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
         "importPath": "django.contrib.auth.decorators",
         "description": "django.contrib.auth.decorators",
         "isExtraImport": true,
@@ -412,14 +436,6 @@
     },
     {
         "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "redirect",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -606,7 +622,31 @@
         "documentation": {}
     },
     {
+        "label": "csrf_exempt",
+        "importPath": "django.views.decorators.csrf",
+        "description": "django.views.decorators.csrf",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
         "label": "Artwork",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
         "importPath": "store.models",
         "description": "store.models",
         "isExtraImport": true,
@@ -629,6 +669,15 @@
         "description": "accounts.migrations.0001_initial",
         "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Customer',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
         "detail": "accounts.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerAdmin",
+        "kind": 6,
+        "importPath": "accounts.admin",
+        "description": "accounts.admin",
+        "peekOfCode": "class CustomerAdmin(UserAdmin):\n    # Liste des champs à afficher dans l'interface d'administration\n    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff')\n    # Liste des champs à filtrer dans l'interface d'administration\n    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')\n    # Champs de recherche dans l'interface d'administration\n    search_fields = ('username', 'email', 'first_name', 'last_name')\n    # Champs pour l'ajout et la modification d'un utilisateur dans l'interface d'administration\n    fieldsets = (\n        (None, {'fields': ('username', 'password')}),",
+        "detail": "accounts.admin",
         "documentation": {}
     },
     {
@@ -1167,7 +1216,7 @@
         "kind": 5,
         "importPath": "store.urls",
         "description": "store.urls",
-        "peekOfCode": "app_name = \"store\"\nurlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('contact/', views.contact_page, name=\"contact\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "app_name = \"store\"\nurlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('contact/', views.contact_page, name=\"contact\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
         "detail": "store.urls",
         "documentation": {}
     },
@@ -1176,7 +1225,7 @@
         "kind": 5,
         "importPath": "store.urls",
         "description": "store.urls",
-        "peekOfCode": "urlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('contact/', views.contact_page, name=\"contact\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "urlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('contact/', views.contact_page, name=\"contact\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
         "detail": "store.urls",
         "documentation": {}
     },
@@ -1221,7 +1270,16 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def contact_page(request) -> HttpResponse:\n    return render(request, \"store/pages/contact.html\")",
+        "peekOfCode": "def contact_page(request) -> HttpResponse:\n    return render(request, \"store/pages/contact.html\")\n@csrf_exempt\n@login_required\ndef add_to_cart(request):\n    if request.method == \"POST\":\n        artwork_id = request.POST.get(\"artwork_id\")\n        quantity = int(request.POST.get(\"quantity\", 1))\n        try:\n            artwork = Artwork.objects.get(id=artwork_id)",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "add_to_cart",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def add_to_cart(request):\n    if request.method == \"POST\":\n        artwork_id = request.POST.get(\"artwork_id\")\n        quantity = int(request.POST.get(\"quantity\", 1))\n        try:\n            artwork = Artwork.objects.get(id=artwork_id)\n        except Artwork.DoesNotExist:\n            return JsonResponse({\"error\": \"Artwork not found\"}, status=404)\n        cart, created = Cart.objects.get_or_create(customer=request.user)\n        order, created = Order.objects.get_or_create(customer=request.user, artwork=artwork, ordered=False)",
         "detail": "store.views",
         "documentation": {}
     },

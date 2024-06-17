@@ -14,7 +14,7 @@
   <div class="container mx-auto pb-2">
     <div class="flex justify-center items-start gap-4">
       <div class="single-artwork-img wow animate__animated animate__slideInLeft">
-        <img src="{{ artwork.thumbnail }}" alt="" />
+        <img src="{{ artwork.thumbnail }}" alt="{{ artwork.title }}" />
       </div>
       <div class="single-artwork wow animate__animated animate__slideInRight">
         <div class="subtitle mb-8">
@@ -25,7 +25,7 @@
         <div><!-- Mettre une tabulation ici --></div>
 
         <div class="">
-          <button type="button" class="btn btn-black">Ajouter au panier</button>
+          <button type="button" class="btn btn-black"  @click="addToCart">Ajouter au panier</button>
         </div>
       </div>
     </div>

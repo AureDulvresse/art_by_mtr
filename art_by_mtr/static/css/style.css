@@ -269,8 +269,7 @@ a {
 }
 
 .single-artwork-img {
-    width: 70%;
-    flex: 1 1;
+    width: 80%;
     border-radius: 0.5rem;
     height: 560px;
     position: relative;

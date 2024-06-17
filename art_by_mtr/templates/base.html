@@ -31,16 +31,17 @@
 
     <!-- ANIMATE CSS -->
     <link rel="stylesheet" href="{% static 'css/animate.css' %}" />
-    
+
     <!-- TOAST CSS -->
     <link rel="stylesheet" href="{% static 'css/toast.css' %}" />
-    
+
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
     <!-- Alpine.js -->
     <!-- <script src="https://unpkg.com/alpinejs" defer></script> -->
     <script src="{% static 'js/vendors/alpine.js' %}" defer></script>
+
   </head>
   <body class="bg-gray-100 h-screen relative">
     {% include "components/loader.html" %}
@@ -49,7 +50,11 @@
       {% block content %} {% endblock content %}
     </main>
 
-     <!-- TOAST JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+     <!-- JQUERY JS -->
+    <script src="{% static 'js/vendors/jquery.js' %}"></script>
+
+    <!-- TOAST JS -->
     <script src="{% static 'js/vendors/toast.js' %}"></script>
 
     <!-- WOW JS -->
