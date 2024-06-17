@@ -1142,7 +1142,7 @@
         "kind": 2,
         "importPath": "store.templatetags.custom_tags",
         "description": "store.templatetags.custom_tags",
-        "peekOfCode": "def breadcrumb(title, msg, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"artwork-card.html\"))\ndef artworkCard(artwork, *args, **kwargs):\n  data = {\n    'artwork': artwork,",
+        "peekOfCode": "def breadcrumb(title, msg, user, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"artwork-card.html\"))\ndef artworkCard(artwork, *args, **kwargs):\n  data = {",
         "detail": "store.templatetags.custom_tags",
         "documentation": {}
     },
@@ -1169,7 +1169,7 @@
         "kind": 5,
         "importPath": "store.templatetags.custom_tags",
         "description": "store.templatetags.custom_tags",
-        "peekOfCode": "register = template.Library()\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"breadcrumb.html\"))\ndef breadcrumb(title, msg, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"artwork-card.html\"))\ndef artworkCard(artwork, *args, **kwargs):",
+        "peekOfCode": "register = template.Library()\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"breadcrumb.html\"))\ndef breadcrumb(title, msg, user, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"artwork-card.html\"))",
         "detail": "store.templatetags.custom_tags",
         "documentation": {}
     },

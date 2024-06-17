@@ -6,11 +6,12 @@ from art_by_mtr.settings import COMPONENTS_DIRS
 register = template.Library()
 
 @register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], "breadcrumb.html"))
-def breadcrumb(title, msg, *args, **kwargs):
+def breadcrumb(title, msg, user, *args, **kwargs):
   
   data = {
     'title': title,
     'msg': msg,
+    'user': user,
   }
   
   return data
