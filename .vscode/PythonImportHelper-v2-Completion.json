@@ -1277,7 +1277,7 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class Order(models.Model):\n    uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='order', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')\n    customer = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)\n    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)\n    quantity = models.IntegerField(default=1)\n    ordered = models.BooleanField(default=False)\n    created_at = models.DateTimeField(auto_now_add=True)\n    ordered_at = models.DateTimeField(blank=True, null=True)\n    def __str__(self) -> str:\n        return f\"{self.customer.username} commande {self.quantity} {self.artwork.name}\"",
+        "peekOfCode": "class Order(models.Model):\n    uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='order', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')\n    customer = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)\n    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)\n    quantity = models.IntegerField(default=1)\n    ordered = models.BooleanField(default=False)\n    created_at = models.DateTimeField(auto_now_add=True)\n    ordered_at = models.DateTimeField(blank=True, null=True)\n    def __str__(self) -> str:\n        return f\"{self.customer.username} commande {self.quantity} {self.artwork.title}\"",
         "detail": "store.models",
         "documentation": {}
     },

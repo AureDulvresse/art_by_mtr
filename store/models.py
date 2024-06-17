@@ -65,7 +65,7 @@ class Order(models.Model):
     ordered_at = models.DateTimeField(blank=True, null=True)
 
     def __str__(self) -> str:
-        return f"{self.customer.username} commande {self.quantity} {self.artwork.name}"
+        return f"{self.customer.username} commande {self.quantity} {self.artwork.title}"
 
 
 
