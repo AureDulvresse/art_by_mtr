@@ -670,6 +670,15 @@
         "documentation": {}
     },
     {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
@@ -1295,7 +1304,7 @@
         "kind": 5,
         "importPath": "store.urls",
         "description": "store.urls",
-        "peekOfCode": "app_name = \"store\"\nurlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('contact/', views.contact_page, name=\"contact\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "app_name = \"store\"\nurlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('contact/', views.contact_page, name=\"contact\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
         "detail": "store.urls",
         "documentation": {}
     },
@@ -1304,7 +1313,7 @@
         "kind": 5,
         "importPath": "store.urls",
         "description": "store.urls",
-        "peekOfCode": "urlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('contact/', views.contact_page, name=\"contact\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "urlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('contact/', views.contact_page, name=\"contact\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
         "detail": "store.urls",
         "documentation": {}
     },
@@ -1349,7 +1358,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def contact_page(request) -> HttpResponse:\n    return render(request, \"store/pages/contact.html\")\n@csrf_exempt\n@login_required\ndef add_to_cart(request):\n    if request.method == \"POST\":\n        artwork_id = request.POST.get(\"artwork_id\")\n        quantity = int(request.POST.get(\"quantity\", 1))\n        try:\n            artwork = Artwork.objects.get(id=artwork_id)",
+        "peekOfCode": "def contact_page(request) -> HttpResponse:\n    return render(request, \"store/pages/contact.html\")\n@csrf_exempt\n@login_required\ndef add_to_cart(request):\n    if request.method == \"POST\":\n        data = json.loads(request.body)\n        artwork_id = data.get(\"artwork_id\")\n        quantity = int(data.get(\"quantity\", 1))\n        print(request.POST.get(\"artwork_id\"), artwork_id, type(artwork_id))",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1358,7 +1367,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def add_to_cart(request):\n    if request.method == \"POST\":\n        artwork_id = request.POST.get(\"artwork_id\")\n        quantity = int(request.POST.get(\"quantity\", 1))\n        try:\n            artwork = Artwork.objects.get(id=artwork_id)\n        except Artwork.DoesNotExist:\n            return JsonResponse({\"error\": \"Artwork not found\"}, status=404)\n        cart, created = Cart.objects.get_or_create(customer=request.user)\n        order, created = Order.objects.get_or_create(customer=request.user, artwork=artwork, ordered=False)",
+        "peekOfCode": "def add_to_cart(request):\n    if request.method == \"POST\":\n        data = json.loads(request.body)\n        artwork_id = data.get(\"artwork_id\")\n        quantity = int(data.get(\"quantity\", 1))\n        print(request.POST.get(\"artwork_id\"), artwork_id, type(artwork_id))\n        try:\n            artwork = Artwork.objects.get(id=artwork_id)\n        except Artwork.DoesNotExist:\n            return JsonResponse({\"error\": \"Artwork not found\"}, status=404)",
         "detail": "store.views",
         "documentation": {}
     },

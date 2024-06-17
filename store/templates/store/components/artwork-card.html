@@ -7,18 +7,11 @@
     <h3 class="text-2xl mb-2">{{ artwork.title }}</h3>
     <p class="text-lg text-gray-600 mb-4">{{ artwork.price }} €</p>
     <div class="flex item-center justify-center gap-3">
-      <a
-        href="{% url 'store:artwork-detail' artwork.slug %}"
-        class="btn btn-outline-red"
-        >Voir le Tableau</a
-      >
-      <button
-        type="button"
-        class="btn btn-black"
-        x-data
-        x-on:click="addToCart($event)"
-        data-artwork-id="{{ artwork.id }}"
-      >
+      <a href="{% url 'store:artwork-detail' artwork.slug %}" class="btn btn-outline-red">Voir le Tableau</a>
+      <button type="button" class="btn btn-black"
+              x-data="cartHandler()"
+              x-on:click="addToCart($event)"
+              data-artwork-id="{{ artwork.id }}">
         Ajouter au panier
       </button>
     </div>

@@ -7,6 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 from art_by_mtr.settings import ELEMENTS_PER_PAGE
 from store.models import Artwork, Cart, Order
 
+import json
+
 
 def home_page(request) -> HttpResponse:
     artworks = Artwork.objects.all().order_by('-updated_at')[:3]
@@ -67,8 +69,11 @@ def contact_page(request) -> HttpResponse:
 @login_required
 def add_to_cart(request):
     if request.method == "POST":
-        artwork_id = request.POST.get("artwork_id")
-        quantity = int(request.POST.get("quantity", 1))
+        data = json.loads(request.body)
+        artwork_id = data.get("artwork_id")
+        quantity = int(data.get("quantity", 1))
+
+        print(request.POST.get("artwork_id"), artwork_id, type(artwork_id))
 
         try:
             artwork = Artwork.objects.get(id=artwork_id)
@@ -85,6 +90,8 @@ def add_to_cart(request):
 
         order.save()
         cart.orders.add(order)
+
+        print("ok")
 
         return JsonResponse({"message": "Artwork added to cart successfully", "quantity": order.quantity}, status=200)
     return JsonResponse({"error": "Invalid request"}, status=400)
