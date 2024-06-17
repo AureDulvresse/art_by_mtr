@@ -147,6 +147,14 @@
         "documentation": {}
     },
     {
+        "label": "UserAdmin",
+        "importPath": "django.contrib.auth.admin",
+        "description": "django.contrib.auth.admin",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.admin",
+        "documentation": {}
+    },
+    {
         "label": "AppConfig",
         "importPath": "django.apps",
         "description": "django.apps",
@@ -364,6 +372,14 @@
     },
     {
         "label": "logout",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
         "isExtraImport": true,
@@ -1146,6 +1162,69 @@
         "description": "store.templatetags.custom_tags",
         "peekOfCode": "register = template.Library()\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"breadcrumb.html\"))\ndef breadcrumb(title, msg, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"artwork-card.html\"))\ndef artworkCard(artwork, *args, **kwargs):",
         "detail": "store.templatetags.custom_tags",
+        "documentation": {}
+    },
+    {
+        "label": "CategoryAdmin",
+        "kind": 6,
+        "importPath": "store.admin",
+        "description": "store.admin",
+        "peekOfCode": "class CategoryAdmin(admin.ModelAdmin):\n    list_display = ('name', 'created_at', 'updated_at')\n    search_fields = ('name', 'description')\n    list_filter = ('created_at', 'updated_at')\n@admin.register(Medium)\nclass MediumAdmin(admin.ModelAdmin):\n    list_display = ('name', 'created_at', 'updated_at')\n    search_fields = ('name',)\n    list_filter = ('created_at', 'updated_at')\n@admin.register(Artwork)",
+        "detail": "store.admin",
+        "documentation": {}
+    },
+    {
+        "label": "MediumAdmin",
+        "kind": 6,
+        "importPath": "store.admin",
+        "description": "store.admin",
+        "peekOfCode": "class MediumAdmin(admin.ModelAdmin):\n    list_display = ('name', 'created_at', 'updated_at')\n    search_fields = ('name',)\n    list_filter = ('created_at', 'updated_at')\n@admin.register(Artwork)\nclass ArtworkAdmin(admin.ModelAdmin):\n    list_display = ('title', 'category', 'medium', 'price', 'stock', 'created_at', 'updated_at')\n    list_filter = ('category', 'medium', 'created_at', 'updated_at')\n    search_fields = ('title', 'description')\n    prepopulated_fields = {'slug': ('title',)}  # Auto-generate slug from title",
+        "detail": "store.admin",
+        "documentation": {}
+    },
+    {
+        "label": "ArtworkAdmin",
+        "kind": 6,
+        "importPath": "store.admin",
+        "description": "store.admin",
+        "peekOfCode": "class ArtworkAdmin(admin.ModelAdmin):\n    list_display = ('title', 'category', 'medium', 'price', 'stock', 'created_at', 'updated_at')\n    list_filter = ('category', 'medium', 'created_at', 'updated_at')\n    search_fields = ('title', 'description')\n    prepopulated_fields = {'slug': ('title',)}  # Auto-generate slug from title\n@admin.register(Order)\nclass OrderAdmin(admin.ModelAdmin):\n    list_display = ('uuid', 'customer', 'artwork', 'quantity', 'ordered', 'created_at', 'ordered_at')\n    list_filter = ('ordered', 'created_at', 'ordered_at')\n    search_fields = ('customer__username', 'artwork__title')",
+        "detail": "store.admin",
+        "documentation": {}
+    },
+    {
+        "label": "OrderAdmin",
+        "kind": 6,
+        "importPath": "store.admin",
+        "description": "store.admin",
+        "peekOfCode": "class OrderAdmin(admin.ModelAdmin):\n    list_display = ('uuid', 'customer', 'artwork', 'quantity', 'ordered', 'created_at', 'ordered_at')\n    list_filter = ('ordered', 'created_at', 'ordered_at')\n    search_fields = ('customer__username', 'artwork__title')\n@admin.register(Cart)\nclass CartAdmin(admin.ModelAdmin):\n    list_display = ('customer', 'created_at')\n    search_fields = ('customer__username',)\n    filter_horizontal = ('orders',)  # For ManyToManyField\n@admin.register(CheckOut)",
+        "detail": "store.admin",
+        "documentation": {}
+    },
+    {
+        "label": "CartAdmin",
+        "kind": 6,
+        "importPath": "store.admin",
+        "description": "store.admin",
+        "peekOfCode": "class CartAdmin(admin.ModelAdmin):\n    list_display = ('customer', 'created_at')\n    search_fields = ('customer__username',)\n    filter_horizontal = ('orders',)  # For ManyToManyField\n@admin.register(CheckOut)\nclass CheckOutAdmin(admin.ModelAdmin):\n    list_display = ('uuid', 'customer', 'created_at')\n    filter_horizontal = ('orders',)  # For ManyToManyField\n    search_fields = ('customer__username',)",
+        "detail": "store.admin",
+        "documentation": {}
+    },
+    {
+        "label": "CheckOutAdmin",
+        "kind": 6,
+        "importPath": "store.admin",
+        "description": "store.admin",
+        "peekOfCode": "class CheckOutAdmin(admin.ModelAdmin):\n    list_display = ('uuid', 'customer', 'created_at')\n    filter_horizontal = ('orders',)  # For ManyToManyField\n    search_fields = ('customer__username',)",
+        "detail": "store.admin",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "kind": 5,
+        "importPath": "store.admin",
+        "description": "store.admin",
+        "peekOfCode": "Customer = get_user_model()\n# Register your models here.\n@admin.register(Category)\nclass CategoryAdmin(admin.ModelAdmin):\n    list_display = ('name', 'created_at', 'updated_at')\n    search_fields = ('name', 'description')\n    list_filter = ('created_at', 'updated_at')\n@admin.register(Medium)\nclass MediumAdmin(admin.ModelAdmin):\n    list_display = ('name', 'created_at', 'updated_at')",
+        "detail": "store.admin",
         "documentation": {}
     },
     {
