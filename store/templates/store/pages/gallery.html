@@ -21,14 +21,14 @@
     </div>
 
     <div
-      class="mt-8 wow animate__animated animate__zoomIn flex justify-between items-center"
+      class="mt-8 wow animate__animated animate__zoomIn flex justify-between items-center gap-3"
     >
       {% if artworks.has_previous %}
-      <a href="?page={{ artworks.previous_page_number }}" class="btn btn-black"
-        >Précédent</a
+      <a href="?page={{ artworks.previous_page_number }}" class="text-black text-2xl bx bx-chevron-left"
+        ></a
       >
       {% else %}
-      <span class="btn btn-black disabled">Précédent</span>
+      <span class="text-gray-600 text-2xl bx bx-chevron-left"></span>
       {% endif %}
 
       <span class="text-gray-600"
@@ -36,11 +36,11 @@
       >
 
       {% if artworks.has_next %}
-      <a href="?page={{ artworks.next_page_number }}" class="btn btn-black"
-        >Suivant</a
+      <a href="?page={{ artworks.next_page_number }}" class="text-black text-2xl bx bx-chevron-right"
+        ></a
       >
       {% else %}
-      <span class="btn btn-black disabled">Suivant</span>
+      <span class="text-gray-600 text-2xl bx bx-chevron-right"></span>
       {% endif %}
     </div>
   </div>

@@ -144,6 +144,15 @@ a {
     color: var(--color-white);
 }
 
+.navbar i.bx {
+    color: var(--color-white);
+    transition: all var(--transition-duration) ease-in-out;
+    cursor: pointer;
+}
+
+.navbar i.bx:hover {
+    transform: scale(1.098);
+}
 
 /* Mobile Menu Icon */
 .mobile-menu {
