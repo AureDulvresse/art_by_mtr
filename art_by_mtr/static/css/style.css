@@ -278,8 +278,12 @@ a {
     flex: 1 2;
 }
 
+.single-artwork {
+    width: 100%;
+}
+
 .single-artwork-img {
-    width: 80%;
+    width: 48%;
     border-radius: 0.5rem;
     height: 560px;
     position: relative;
@@ -288,11 +292,16 @@ a {
 .single-artwork-img img {
     width: 100%;
     height: 100%;
+    border-radius: 0.5rem;
     object-fit: cover;
     position: absolute;
 }
 
-.single-artwork h2 {
+.single-artwork-text{
+    width: 52%;
+}
+
+.single-artwork-text h2 {
     width: 100%;
     line-height: 35px;
 }
@@ -745,6 +754,7 @@ textarea {
     display: inline-block;
     padding: 0.75rem 1rem;
     font-size: 0.8rem;
+    font-family: var(--font-family-title);
     font-weight: 500;
     text-align: center;
     text-transform: uppercase;
@@ -819,4 +829,25 @@ textarea {
     background-color: #ecb3b7;
     color: #ab424d;
     border: 1px solid #ecb3b7;
+}
+
+.tab {
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    width: 180px;
+    background-color: transparent;
+    color: var(--color-gray-600);
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab.active{
+    font-weight: 600;
+    border-bottom: 1.75px solid var(--color-black);
+    color: var(--color-black);
 }
