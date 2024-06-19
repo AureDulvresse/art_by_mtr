@@ -85,7 +85,7 @@ def contact_page(request) -> HttpResponse:
             return redirect('store:contact')
 
         # Construire le message complet avec un formatage amélioré
-        html_message = render_to_string('contact_email.html', {
+        html_message = render_to_string('store/components/contact_email.html', {
             'name': name,
             'email': email,
             'subject': subject,

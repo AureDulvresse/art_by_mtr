@@ -113,6 +113,17 @@
       <div class="contact-form wow animate__animated animate__slideInRight">
         <form method="POST">
           {% csrf_token %}
+            {% if messages %}
+          <div class="mb-3 flex flex-col">
+            {% for message in messages %}
+            <div
+              class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}"
+            >
+              {{ message }}
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
           <div class="mb-3 flex flex-col">
             <label for="name" class="p-2 text-black"> Votre nom </label>
             <input
