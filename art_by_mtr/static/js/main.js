@@ -14,10 +14,22 @@ function addToCart(event) {
       quantity: 1,
     }),
     success: function (data) {
-      alert(data.message);
+      Toastify({
+        text: data.message,
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        backgroundColor: "#2ecc71",
+      }).showToast();
     },
     error: function (xhr, textStatus, error) {
-      alert("Erreur lors de l'ajout au panier");
+      Toastify({
+        text: "Erreur lors de l'ajout au panier",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        backgroundColor: "#e74c3c",
+      }).showToast();
       console.error(xhr.responseText, textStatus, error);
     },
   });
