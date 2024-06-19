@@ -39,11 +39,10 @@ function getCookie(name) {
   return cookieValue;
 }
 
-
 // Initier Alpine.js
 document.addEventListener("alpine:init", () => {
   Alpine.data("cartHandler", () => ({
-    addToCart, // Assurez-vous que la fonction addToCart est accessible à Alpine.js
+    addToCart,
   }));
 });
 

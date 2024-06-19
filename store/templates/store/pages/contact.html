@@ -27,7 +27,7 @@
       <div class="contact-form wow animate__animated animate__slideInRight">
         <form method="POST">
           {% csrf_token %}
-          {% if messages %}
+               {% if messages %}
           <div class="mb-3 flex flex-col">
             {% for message in messages %}
             <div

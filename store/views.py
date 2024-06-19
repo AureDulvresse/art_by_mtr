@@ -139,7 +139,5 @@ def add_to_cart(request):
         order.save()
         cart.orders.add(order)
 
-        print("ok")
-
         return JsonResponse({"message": "Artwork added to cart successfully", "quantity": order.quantity}, status=200)
     return JsonResponse({"error": "Invalid request"}, status=400)
