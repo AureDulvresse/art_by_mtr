@@ -1,8 +1,6 @@
-{% extends "base.html" %} {% load static %} {% load custom_tags %} 
+{% extends "base.html" %} {% load static %} {% load custom_tags %}
 
-{% block title %} Galerie - Détail oeuvre {% endblock title %}
-
-{% block content %} 
+{% block title %} Galerie - Détail oeuvre {% endblock title %} {% block content %} 
 
 {% breadcrumb artwork.title "Détail de l'oeuvre" user %}
 
@@ -20,7 +18,9 @@
       >
         <img src="{{ artwork.thumbnail }}" alt="{{ artwork.title }}" />
       </div>
-      <div class="single-artwork-text wow animate__animated animate__slideInRight">
+      <div
+        class="single-artwork-text wow animate__animated animate__slideInRight"
+      >
         <div class="subtitle mb-8">
           <h2 class="mt-3 mb-4"><span>{{artwork.title}}</span></h2>
           <div class="subtitle-line"></div>
@@ -38,14 +38,82 @@
           <button
             type="button"
             class="tab ml-4"
-            :class="{ 'active': currentTab === 'related' }"
-            x-on:click="currentTab = 'related'"
+            :class="{ 'active': currentTab === 'supplement' }"
+            x-on:click="currentTab = 'supplement'"
           >
             Oeuvres liées
           </button>
         </div>
-        <div><!-- Mettre une tabulation ici --></div>
 
+        <!-- Contenu des onglets -->
+        <div x-show="currentTab === 'details'">
+          <div class="mb-3">
+            <p class="text-lg text-black flex flex-col">
+              Description:
+              <span class="text-red">{{ artwork.description }}</span>
+            </p>
+          </div>
+          <div class="mb-3">
+            <p class="text-lg text-black flex flex-col">
+              Categorie: <span class="text-red">{{artwork.category.name}}</span>
+            </p>
+          </div>
+          <div class="mb-3">
+            <p class="text-lg text-black flex flex-col">
+              Support utilisé:
+              <span class="text-red">{{artwork.medium.name}}</span>
+            </p>
+          </div>
+          <div class="mb-3">
+            <p class="text-lg text-black flex flex-col">
+              Peint en :
+              <span class="text-red">{{ artwork.created_at|date:"F Y" }}</span>
+            </p>
+          </div>
+        </div>
+        <div x-show="currentTab === 'supplement'">
+          <div class="mb-3">
+            <p class="text-lg text-black flex flex-col">
+              Dimension :
+              <span class="text-red"
+                >{{artwork.width}} x {{artwork.height}} inch</span
+              >
+            </p>
+          </div>
+          <div class="mb-3">
+            <p class="text-lg text-black flex flex-col">
+              Support utilisé:
+              <span class="text-red">{{artwork.medium.name}}</span>
+            </p>
+          </div>
+          <div class="mb-3">
+            <p class="text-lg text-black flex flex-col">
+              Peint en :
+              <span class="text-red">{{ artwork.created_at|date:"F Y" }}</span>
+            </p>
+          </div>
+          {% if artwork.expo %}
+          <div class="mb-3">
+            <p class="text-lg text-black flex flex-col">
+              Fait partie de l'exposition :
+              <span class="text-red">{{ artwork.expo.name }}</span>
+            </p>
+          </div>
+          {% endif %}
+
+          <div class="mb-3">
+            <p class="text-lg text-black flex flex-col">
+              Stock :
+              <span class="text-red">{{ artwork.stock }}</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <p class="text-lg text-black flex flex-col">
+            Prix: <span class="text-red">{{ artwork.price }} €</span>
+          </p>
+        </div>
         <button
           type="button"
           class="btn btn-black"
@@ -75,11 +143,7 @@
     </div>
 
     <div class="grid-container">
-      {% for r_artwork in related_artworks %} 
-      
-      {% artworkCard r_artwork %}
-      
-      {% endfor %}
+      {% for r_artwork in related_artworks %} {% artworkCard r_artwork %} {% endfor %}
     </div>
     <a
       href="{% url 'store:gallery' %}"
