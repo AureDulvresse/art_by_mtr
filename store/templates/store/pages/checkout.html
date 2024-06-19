@@ -7,7 +7,7 @@
 {% breadcrumb "Commander" "Plus qu'une dernière étape" user %}
 
 <!-- check out section -->
-<div class="checkout-section mt-150 mb-150">
+<div class="checkout-section mt-150 mb-150" x-data="stripePayment()" x-init="initStripe">
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
@@ -156,19 +156,7 @@
                 </tr>
                 <tr>
                   <td colspan="2">
-                    <button
-                      type="submit"
-                      class="btn rounded-pill"
-                      style="
-                        font-family: 'Inter', sans-serif;
-                        display: inline-block;
-                        background-color: #f28123;
-                        color: #fff;
-                        padding: 10px 20px;
-                      "
-                    >
-                      Commander
-                    </button>
+                   <button id="checkout-stripe-button" @click="checkoutWithStripe">Checkout Avec Stripe</button>
                   </td>
                 </tr>
               </tbody>

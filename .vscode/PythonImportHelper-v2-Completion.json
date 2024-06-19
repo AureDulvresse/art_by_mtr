@@ -631,15 +631,15 @@
         "documentation": {}
     },
     {
-        "label": "COMPONENTS_DIRS",
-        "importPath": "art_by_mtr.settings",
-        "description": "art_by_mtr.settings",
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
         "isExtraImport": true,
-        "detail": "art_by_mtr.settings",
+        "detail": "django.conf",
         "documentation": {}
     },
     {
-        "label": "AUTH_USER_MODEL",
+        "label": "COMPONENTS_DIRS",
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
         "isExtraImport": true,
@@ -663,6 +663,41 @@
         "documentation": {}
     },
     {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "paypalrestsdk",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "paypalrestsdk",
+        "description": "paypalrestsdk",
+        "detail": "paypalrestsdk",
+        "documentation": {}
+    },
+    {
+        "label": "stripe",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "stripe",
+        "description": "stripe",
+        "detail": "stripe",
+        "documentation": {}
+    },
+    {
         "label": "Paginator",
         "importPath": "django.core.paginator",
         "description": "django.core.paginator",
@@ -679,11 +714,27 @@
         "documentation": {}
     },
     {
+        "label": "method_decorator",
+        "importPath": "django.utils.decorators",
+        "description": "django.utils.decorators",
+        "isExtraImport": true,
+        "detail": "django.utils.decorators",
+        "documentation": {}
+    },
+    {
         "label": "csrf_exempt",
         "importPath": "django.views.decorators.csrf",
         "description": "django.views.decorators.csrf",
         "isExtraImport": true,
         "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "TemplateView",
+        "importPath": "django.views.generic.base",
+        "description": "django.views.generic.base",
+        "isExtraImport": true,
+        "detail": "django.views.generic.base",
         "documentation": {}
     },
     {
@@ -719,6 +770,14 @@
         "documentation": {}
     },
     {
+        "label": "CheckOut",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
         "label": "Order",
         "importPath": "store.models",
         "description": "store.models",
@@ -727,12 +786,11 @@
         "documentation": {}
     },
     {
-        "label": "json",
-        "kind": 6,
+        "label": "Payment",
+        "importPath": "store.models",
+        "description": "store.models",
         "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
+        "detail": "store.models",
         "documentation": {}
     },
     {
@@ -983,7 +1041,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = os.getenv('EMAIL_HOST', default='smtp.gmail.com')\nEMAIL_PORT = os.getenv('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=True)\nEMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/",
+        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = os.getenv('EMAIL_HOST', default='smtp.gmail.com')\nEMAIL_PORT = os.getenv('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=True)\nEMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Stripe settings\nSTRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -992,7 +1050,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "EMAIL_HOST = os.getenv('EMAIL_HOST', default='smtp.gmail.com')\nEMAIL_PORT = os.getenv('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=True)\nEMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'",
+        "peekOfCode": "EMAIL_HOST = os.getenv('EMAIL_HOST', default='smtp.gmail.com')\nEMAIL_PORT = os.getenv('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=True)\nEMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Stripe settings\nSTRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1001,7 +1059,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "EMAIL_PORT = os.getenv('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=True)\nEMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'",
+        "peekOfCode": "EMAIL_PORT = os.getenv('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=True)\nEMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Stripe settings\nSTRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1010,7 +1068,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=True)\nEMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True",
+        "peekOfCode": "EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=True)\nEMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Stripe settings\nSTRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1019,7 +1077,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True",
+        "peekOfCode": "EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Stripe settings\nSTRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1028,7 +1086,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)",
+        "peekOfCode": "EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Stripe settings\nSTRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1037,7 +1095,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/",
+        "peekOfCode": "DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Stripe settings\nSTRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1046,7 +1104,52 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "CONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'",
+        "peekOfCode": "CONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Stripe settings\nSTRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STRIPE_PUBLIC_KEY",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STRIPE_SECRET_KEY",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PAYPAL_CLIENT_ID",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "PAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PAYPAL_CLIENT_SECRET",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "PAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PAYPAL_MODE",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "PAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1406,7 +1509,7 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class Order(models.Model):\n    uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='order', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')\n    customer = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)\n    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)\n    quantity = models.IntegerField(default=1)\n    ordered = models.BooleanField(default=False)\n    created_at = models.DateTimeField(auto_now_add=True)\n    ordered_at = models.DateTimeField(blank=True, null=True)\n    def __str__(self) -> str:\n        return f\"{self.customer.username} commande {self.quantity} {self.artwork.title}\"",
+        "peekOfCode": "class Order(models.Model):\n    uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='order', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')\n    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)\n    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)\n    quantity = models.IntegerField(default=1)\n    ordered = models.BooleanField(default=False)\n    created_at = models.DateTimeField(auto_now_add=True)\n    ordered_at = models.DateTimeField(blank=True, null=True)\n    def __str__(self) -> str:\n        return f\"{self.customer.username} commande {self.quantity} {self.artwork.title}\"",
         "detail": "store.models",
         "documentation": {}
     },
@@ -1415,7 +1518,7 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class Cart(models.Model):\n    customer = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE)\n    orders = models.ManyToManyField(Order)\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self) -> str:\n        return f\"Panier de {self.customer.username}\"\n    def delete(self, *args, **kwargs) -> None:\n        for order in self.orders.all():\n            order.ordered = True\n            order.ordered_at = timezone.now()",
+        "peekOfCode": "class Cart(models.Model):\n    customer = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)\n    orders = models.ManyToManyField(Order)\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self) -> str:\n        return f\"Panier de {self.customer.username}\"\n    def delete(self, *args, **kwargs) -> None:\n        for order in self.orders.all():\n            order.ordered = True\n            order.ordered_at = timezone.now()",
         "detail": "store.models",
         "documentation": {}
     },
@@ -1424,7 +1527,16 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class CheckOut(models.Model):\n    uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='bill', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')\n    customer = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)\n    orders = models.ManyToManyField(Order)\n    created_at = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        verbose_name = \"Commande\"\n    def __str__(self) -> str:\n        return f\"Commande de {self.customer.username}\"",
+        "peekOfCode": "class CheckOut(models.Model):\n    uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='bill', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')\n    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)\n    orders = models.ManyToManyField(Order)\n    created_at = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        verbose_name = \"Commande\"\n    def __str__(self) -> str:\n        return f\"Commande de {self.customer.username}\"\nclass Payment(models.Model):",
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Payment",
+        "kind": 6,
+        "importPath": "store.models",
+        "description": "store.models",
+        "peekOfCode": "class Payment(models.Model):\n    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='payments')\n    stripe_checkout_id = models.CharField(max_length=255, unique=True)\n    amount = models.DecimalField(max_digits=10, decimal_places=2)\n    currency = models.CharField(max_length=10)\n    created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    status = models.CharField(max_length=50)\n    checkout = models.ForeignKey(CheckOut, on_delete=models.CASCADE)\n    def __str__(self):",
         "detail": "store.models",
         "documentation": {}
     },
@@ -1433,7 +1545,7 @@
         "kind": 5,
         "importPath": "store.urls",
         "description": "store.urls",
-        "peekOfCode": "app_name = \"store\"\nurlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/cart/', views.cart_page, name=\"cart\"),\n   path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('contact/', views.contact_page, name=\"contact\"),\n]",
+        "peekOfCode": "app_name = \"store\"\nurlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/cart/', views.cart_page, name=\"cart\"),\n   path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('store/checkout/', views.checkout_page, name=\"checkout\"),\n   path('contact/', views.contact_page, name=\"contact\"),",
         "detail": "store.urls",
         "documentation": {}
     },
@@ -1442,8 +1554,17 @@
         "kind": 5,
         "importPath": "store.urls",
         "description": "store.urls",
-        "peekOfCode": "urlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/cart/', views.cart_page, name=\"cart\"),\n   path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('contact/', views.contact_page, name=\"contact\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "urlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/cart/', views.cart_page, name=\"cart\"),\n   path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('store/checkout/', views.checkout_page, name=\"checkout\"),\n   path('contact/', views.contact_page, name=\"contact\"),\n   path('store/stripe/', views.StripePaymentView.as_view(), name='stripe_payment'),",
         "detail": "store.urls",
+        "documentation": {}
+    },
+    {
+        "label": "StripePaymentView",
+        "kind": 6,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "class StripePaymentView(TemplateView):\n    template_name = 'payments/stripe_payment.html'\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        context['stripe_public_key'] = settings.STRIPE_PUBLIC_KEY\n        return context\n@login_required\ndef create_checkout_session(request):\n    if request.method == 'POST':\n        domain_url = 'http://localhost:8000/'  # Remplacez par votre domaine",
+        "detail": "store.views",
         "documentation": {}
     },
     {
@@ -1496,7 +1617,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def cart_page(request):\n    cart = get_object_or_404(Cart, customer = request.user)\n    cart_cumul = 0\n    orders = cart.orders.all().order_by('-created_at')\n    for order in orders:\n        cart_cumul += (order.product.price * order.quantity)\n    context = {\n        \"orders\": orders,\n        \"cart_cumul\": cart_cumul,\n    }",
+        "peekOfCode": "def cart_page(request):\n    cart = get_object_or_404(Cart, customer = request.user)\n    cart_cumul = 0\n    orders = cart.orders.all().order_by('-created_at')\n    for order in orders:\n        cart_cumul += (order.artwork.price * order.quantity)\n    context = {\n        \"orders\": orders,\n        \"cart_cumul\": cart_cumul,\n    }",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1506,6 +1627,78 @@
         "importPath": "store.views",
         "description": "store.views",
         "peekOfCode": "def add_to_cart(request):\n    if request.method == \"POST\":\n        data = json.loads(request.body)\n        artwork_id = data.get(\"artwork_id\")\n        quantity = int(data.get(\"quantity\", 1))\n        print(request.POST.get(\"artwork_id\"), artwork_id, type(artwork_id))\n        try:\n            artwork = Artwork.objects.get(id=artwork_id)\n        except Artwork.DoesNotExist:\n            return JsonResponse({\"error\": \"Artwork not found\"}, status=404)",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "checkout_page",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def checkout_page(request):\n    user = request.user\n    cart = get_object_or_404(Cart, customer = user)\n    if request.method == \"POST\":\n        CheckOut.objects.create(customer = user, orders = cart.orders.all())\n        cart.delete()\n        return redirect(\"store:shop\")\n    cart_cumul = 0\n    orders = cart.orders.all().order_by('-created_at')\n    for order in orders:",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "create_checkout_session",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def create_checkout_session(request):\n    if request.method == 'POST':\n        domain_url = 'http://localhost:8000/'  # Remplacez par votre domaine\n        checkout = CheckOut.objects.create(customer=request.user)\n        orders = request.user.orders.filter(ordered=False)\n        for order in orders:\n            checkout.orders.add(order)\n        line_items = []\n        for order in orders:\n            line_items.append({",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "stripe_webhook",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def stripe_webhook(request):\n    payload = request.body\n    sig_header = request.META['HTTP_STRIPE_SIGNATURE']\n    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET\n    try:\n        event = stripe.Webhook.construct_event(\n            payload, sig_header, endpoint_secret\n        )\n    except ValueError as e:\n        # Invalid payload",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "create_paypal_payment",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def create_paypal_payment(request):\n    if request.method == 'POST':\n        orders = request.user.orders.filter(ordered=False)\n        total_amount = sum(order.artwork.price * order.quantity for order in orders)\n        payment = paypalrestsdk.Payment({\n            \"intent\": \"sale\",\n            \"payer\": {\n                \"payment_method\": \"paypal\"\n            },\n             \"redirect_urls\": {",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "execute_paypal_payment",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def execute_paypal_payment(request):\n    payment_id = request.GET.get('paymentId')\n    payer_id = request.GET.get('PayerID')\n    payment = paypalrestsdk.Payment.find(payment_id)\n    if payment.execute({\"payer_id\": payer_id}):\n        # Enregistrer les détails du paiement dans la base de données\n        orders = request.user.orders.filter(ordered=False)\n        checkout = CheckOut.objects.create(customer=request.user)\n        for order in orders:\n            checkout.orders.add(order)",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "payment_success",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def payment_success(request):\n    return render(request, 'store/payments/success.html')\n@login_required\ndef payment_cancel(request):\n    return render(request, 'store/payments/cancel.html')",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "payment_cancel",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def payment_cancel(request):\n    return render(request, 'store/payments/cancel.html')",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "stripe.api_key",
+        "kind": 5,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "stripe.api_key = settings.STRIPE_SECRET_KEY\ndef home_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    context = {\n        'artworks': artworks,\n        'events': 4,\n    }\n    return render(request, 'store/pages/home.html', context)\ndef about_page(request) -> HttpResponse:\n    context = {",
         "detail": "store.views",
         "documentation": {}
     },

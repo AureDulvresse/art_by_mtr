@@ -130,6 +130,17 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 CONTACT_EMAIL = os.getenv('CONTACT_EMAIL')
 
 
+# Stripe settings
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')
+
+# PayPal settings
+PAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')
+PAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')
+PAYPAL_MODE = 'sandbox'  # or 'live'
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 

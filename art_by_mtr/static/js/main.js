@@ -51,10 +51,48 @@ function getCookie(name) {
   return cookieValue;
 }
 
+function stripePayment() {
+  return {
+    stripe: null,
+    initStripe() {
+      this.stripe = Stripe("{{ stripe_public_key }}");
+    },
+    checkout() {
+      $.ajax({
+        url: "/stripe/create-checkout-session/",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+          // any additional data you want to send to the server
+        }),
+        success: (response) => {
+          if (response.id) {
+            this.stripe
+              .redirectToCheckout({ sessionId: response.id })
+              .then((result) => {
+                if (result.error) {
+                  alert(result.error.message);
+                }
+              });
+          } else {
+            console.error("Error:", response);
+          }
+        },
+        error: (xhr, status, error) => {
+          console.error("Error:", error);
+        },
+      });
+    },
+  };
+}
+
 // Initier Alpine.js
 document.addEventListener("alpine:init", () => {
   Alpine.data("cartHandler", () => ({
     addToCart,
+  }));
+  Alpine.data("checkoutWithStripe", () => ({
+    stripePayment,
   }));
 });
 
@@ -62,4 +100,5 @@ document.addEventListener("alpine:init", () => {
 $(document).ready(function () {
   // Utilisation de jQuery pour l'initialisation de WOW.js
   new WOW().init();
+
 });
