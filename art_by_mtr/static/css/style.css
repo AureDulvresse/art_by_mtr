@@ -63,6 +63,10 @@ a {
     background-color: transparent;
 }
 
+.border-none {
+    border: none;
+}
+
 .text-red {
     color: var(--color-red-600);
 }
@@ -297,7 +301,7 @@ a {
     position: absolute;
 }
 
-.single-artwork-text{
+.single-artwork-text {
     width: 52%;
 }
 
@@ -422,6 +426,14 @@ textarea {
     font-weight: 600;
 }
 
+.cart-preview {
+    width: 300px;
+    height: 190px;
+    float: right;
+    margin-right: 10px;
+    background-color: var(--color-gray-200);
+}
+
 
 /* Container Styles */
 .container {
@@ -439,6 +451,22 @@ textarea {
 .mx-auto {
     margin-left: auto;
     margin-right: auto;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.top-0 {
+    top: 0;
+}
+
+.right-0 { 
+    right: 0;
 }
 
 /* Responsive Styles */
@@ -846,7 +874,7 @@ textarea {
     transition: all 0.3s ease;
 }
 
-.tab.active{
+.tab.active {
     font-weight: 600;
     border-bottom: 1.75px solid var(--color-black);
     color: var(--color-black);

@@ -323,6 +323,15 @@
         "documentation": {}
     },
     {
+        "label": "accounts",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "accounts",
+        "description": "accounts",
+        "detail": "accounts",
+        "documentation": {}
+    },
+    {
         "label": "views",
         "importPath": "accounts",
         "description": "accounts",
@@ -1424,7 +1433,7 @@
         "kind": 5,
         "importPath": "store.urls",
         "description": "store.urls",
-        "peekOfCode": "app_name = \"store\"\nurlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('contact/', views.contact_page, name=\"contact\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "app_name = \"store\"\nurlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/cart/', views.cart_page, name=\"cart\"),\n   path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('contact/', views.contact_page, name=\"contact\"),\n]",
         "detail": "store.urls",
         "documentation": {}
     },
@@ -1433,7 +1442,7 @@
         "kind": 5,
         "importPath": "store.urls",
         "description": "store.urls",
-        "peekOfCode": "urlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('contact/', views.contact_page, name=\"contact\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "urlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/cart/', views.cart_page, name=\"cart\"),\n   path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('contact/', views.contact_page, name=\"contact\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
         "detail": "store.urls",
         "documentation": {}
     },
@@ -1479,6 +1488,15 @@
         "importPath": "store.views",
         "description": "store.views",
         "peekOfCode": "def contact_page(request) -> HttpResponse:\n    if request.method == 'POST':\n        name = request.POST.get('name')\n        email = request.POST.get('email')\n        subject = request.POST.get('subject')\n        message = request.POST.get('message')\n        # Validation simple des données du formulaire\n        if not name or not email or not subject or not message:\n            messages.error(request, \"Tous les champs sont requis.\")\n            return redirect('store:contact')",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "cart_page",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def cart_page(request):\n    cart = get_object_or_404(Cart, customer = request.user)\n    cart_cumul = 0\n    orders = cart.orders.all().order_by('-created_at')\n    for order in orders:\n        cart_cumul += (order.product.price * order.quantity)\n    context = {\n        \"orders\": orders,\n        \"cart_cumul\": cart_cumul,\n    }",
         "detail": "store.views",
         "documentation": {}
     },

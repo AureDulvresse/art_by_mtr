@@ -1,3 +1,4 @@
+import accounts
 from django.urls import path
 # from django.conf.urls import handler404
 
@@ -10,6 +11,7 @@ urlpatterns = [
    path('about/', views.about_page, name="about"),
    path('gallery/', views.gallery_page, name="gallery"),
    path('artwork/<str:slug>/', views.artwork_detail_page, name="artwork-detail"),
+   path('store/cart/', views.cart_page, name="cart"),
    path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),
    path('contact/', views.contact_page, name="contact"),
 ]

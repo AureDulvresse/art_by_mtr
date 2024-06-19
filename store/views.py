@@ -113,6 +113,24 @@ def contact_page(request) -> HttpResponse:
     return render(request, "store/pages/contact.html")
 
 
+@login_required
+def cart_page(request):
+    cart = get_object_or_404(Cart, customer = request.user)
+
+    cart_cumul = 0
+
+    orders = cart.orders.all().order_by('-created_at')
+
+    for order in orders:
+        cart_cumul += (order.product.price * order.quantity)
+
+    context = {
+        "orders": orders,
+        "cart_cumul": cart_cumul,
+    }
+
+    return render(request, "store/pages/cart.html", context)
+
 @csrf_exempt
 @login_required
 def add_to_cart(request):
