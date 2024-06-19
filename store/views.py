@@ -1,8 +1,15 @@
+from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
+
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
 
 from art_by_mtr.settings import ELEMENTS_PER_PAGE
 from store.models import Artwork, Cart, Order
@@ -61,6 +68,45 @@ def artwork_detail_page(request, slug):
     return render(request, 'store/pages/artwork-detail.html', context)
 
 def contact_page(request) -> HttpResponse:
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        # Validation simple des données du formulaire
+        if not name or not email or not subject or not message:
+            messages.error(request, "Tous les champs sont requis.")
+            return redirect('store:contact')
+
+        # Validation de l'adresse email
+        if '@' not in email or '.' not in email:
+            messages.error(request, "Veuillez entrer une adresse email valide.")
+            return redirect('store:contact')
+
+        # Construire le message complet avec un formatage amélioré
+        html_message = render_to_string('contact_email.html', {
+            'name': name,
+            'email': email,
+            'subject': subject,
+            'message': message,
+        })
+        plain_message = strip_tags(html_message)
+
+        try:
+            send_mail(
+                subject,
+                plain_message,
+                settings.DEFAULT_FROM_EMAIL,
+                [settings.CONTACT_EMAIL],  # Assurez-vous de définir cette variable dans vos settings
+                fail_silently=False,
+                html_message=html_message
+            )
+            messages.success(request, "Votre message a été envoyé avec succès!")
+        except Exception as e:
+            messages.error(request, f"Une erreur s'est produite: {e}")
+
+        return redirect('store:contact')
 
     return render(request, "store/pages/contact.html")
 

@@ -139,6 +139,14 @@
         "documentation": {}
     },
     {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
         "label": "UserAdmin",
         "importPath": "django.contrib.auth.admin",
         "description": "django.contrib.auth.admin",
@@ -467,6 +475,14 @@
         "documentation": {}
     },
     {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "LoginForm",
         "importPath": "accounts.forms",
         "description": "accounts.forms",
@@ -598,6 +614,14 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
         "label": "COMPONENTS_DIRS",
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
@@ -638,11 +662,35 @@
         "documentation": {}
     },
     {
+        "label": "send_mail",
+        "importPath": "django.core.mail",
+        "description": "django.core.mail",
+        "isExtraImport": true,
+        "detail": "django.core.mail",
+        "documentation": {}
+    },
+    {
         "label": "csrf_exempt",
         "importPath": "django.views.decorators.csrf",
         "description": "django.views.decorators.csrf",
         "isExtraImport": true,
         "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "render_to_string",
+        "importPath": "django.template.loader",
+        "description": "django.template.loader",
+        "isExtraImport": true,
+        "detail": "django.template.loader",
+        "documentation": {}
+    },
+    {
+        "label": "strip_tags",
+        "importPath": "django.utils.html",
+        "description": "django.utils.html",
+        "isExtraImport": true,
+        "detail": "django.utils.html",
         "documentation": {}
     },
     {
@@ -918,6 +966,78 @@
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
         "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_BACKEND",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = os.getenv('EMAIL_HOST', default='smtp.gmail.com')\nEMAIL_PORT = os.getenv('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=True)\nEMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "EMAIL_HOST = os.getenv('EMAIL_HOST', default='smtp.gmail.com')\nEMAIL_PORT = os.getenv('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=True)\nEMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_PORT",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "EMAIL_PORT = os.getenv('EMAIL_PORT', default=587)\nEMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=True)\nEMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_USE_TLS",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', default=True)\nEMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST_USER",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')\nEMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST_PASSWORD",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')\nDEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_FROM_EMAIL",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CONTACT_EMAIL",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "CONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1358,7 +1478,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def contact_page(request) -> HttpResponse:\n    return render(request, \"store/pages/contact.html\")\n@csrf_exempt\n@login_required\ndef add_to_cart(request):\n    if request.method == \"POST\":\n        data = json.loads(request.body)\n        artwork_id = data.get(\"artwork_id\")\n        quantity = int(data.get(\"quantity\", 1))\n        print(request.POST.get(\"artwork_id\"), artwork_id, type(artwork_id))",
+        "peekOfCode": "def contact_page(request) -> HttpResponse:\n    if request.method == 'POST':\n        name = request.POST.get('name')\n        email = request.POST.get('email')\n        subject = request.POST.get('subject')\n        message = request.POST.get('message')\n        # Validation simple des données du formulaire\n        if not name or not email or not subject or not message:\n            messages.error(request, \"Tous les champs sont requis.\")\n            return redirect('store:contact')",
         "detail": "store.views",
         "documentation": {}
     },

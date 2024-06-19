@@ -111,7 +111,8 @@
       </div>
 
       <div class="contact-form wow animate__animated animate__slideInRight">
-        <form action="">
+        <form method="POST">
+          {% csrf_token %}
           <div class="mb-3 flex flex-col">
             <label for="name" class="p-2 text-black"> Votre nom </label>
             <input
