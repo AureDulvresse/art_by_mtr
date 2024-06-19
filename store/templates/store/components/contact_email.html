@@ -1,68 +1,74 @@
 <!-- contact_email.html -->
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nouveau message de contact</title>
-    {% load static %}
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-      }
-      .email-container {
-        max-width: 600px;
-        margin: 0 auto;
-        background-color: #ffffff;
-        padding: 20px;
-        border: 1px solid #dddddd;
-        border-radius: 5px;
-      }
-      h1 {
-        color: #333333;
-        text-align: center;
-      }
-      p {
-        color: #555555;
-        line-height: 1.6;
-      }
-      .info {
-        margin: 20px 0;
-      }
-      .info strong {
-        display: block;
-        margin-bottom: 5px;
-        color: #333333;
-      }
-      .message {
-        border-top: 1px solid #dddddd;
-        padding-top: 20px;
-        color: #333333;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+        }
+        h1 {
+            color: #333333;
+            text-align: center;
+        }
+        p {
+            color: #555555;
+            line-height: 1.6;
+        }
+        .info {
+            margin: 20px 0;
+        }
+        .info strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #333333;
+        }
+        .message {
+            border-top: 1px solid #dddddd;
+            padding-top: 20px;
+            color: #333333;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 70px;
+            height: 70px;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="email-container">
-      <!-- logo -->
-      <div class="">
-        <img src="{% static 'img/logo.png' %}" width="70" height="70" alt="logo" />
-      </div>
-      <!-- logo -->
-      <h1>Nouveau message de contact</h1>
-      <p>Vous avez reçu un nouveau message de votre formulaire de contact.</p>
-      <div class="info">
-        <p><strong>Nom:</strong> {{ name }}</p>
-        <p><strong>Email:</strong> {{ email }}</p>
-        <p><strong>Sujet:</strong> {{ subject }}</p>
-      </div>
-      <div class="message">
-        <p><strong>Message:</strong></p>
-        <p>{{ message }}</p>
-        
-      </div>
+        <!-- logo -->
+        <div class="logo">
+            <img src="{{ logo_url }}" alt="logo" />
+        </div>
+        <!-- logo -->
+        <h1>Nouveau message de contact</h1>
+        <p>Vous avez reçu un nouveau message depuis votre site web The MTR Art.</p>
+        <div class="info">
+            <p><strong>Nom:</strong> {{ name }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Sujet:</strong> {{ subject }}</p>
+        </div>
+        <div class="message">
+            <p><strong>Message:</strong></p>
+            <p>{{ message }}</p>
+        </div>
     </div>
-  </body>
+</body>
 </html>

@@ -85,11 +85,13 @@ def contact_page(request) -> HttpResponse:
             return redirect('store:contact')
 
         # Construire le message complet avec un formatage amélioré
+        logo_url = request.build_absolute_uri('/static/img/logo_bg_white.png')
         html_message = render_to_string('store/components/contact_email.html', {
             'name': name,
             'email': email,
             'subject': subject,
             'message': message,
+            'logo_url': logo_url,
         })
         plain_message = strip_tags(html_message)
 

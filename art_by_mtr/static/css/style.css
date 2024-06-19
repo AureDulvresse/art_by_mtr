@@ -799,3 +799,22 @@ textarea {
 .z-20 {
     z-index: 20;
 }
+
+ .alert {
+     padding: 10px;
+     margin-bottom: 10px;
+     border-radius: 5px;
+     font-family: Arial, sans-serif;
+ }
+
+ .alert-success {
+     background-color: #a5d8b1;
+     color: #47995a;
+     border: 1px solid #a5d8b1;
+ }
+
+ .alert-error {
+     background-color: #ecb3b7;
+     color: #ab424d;
+     border: 1px solid #ecb3b7;
+ }
