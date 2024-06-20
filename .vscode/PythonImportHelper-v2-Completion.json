@@ -794,6 +794,14 @@
         "documentation": {}
     },
     {
+        "label": "create_paypal_payment",
+        "importPath": "store.views",
+        "description": "store.views",
+        "isExtraImport": true,
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
@@ -1572,7 +1580,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def home_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    context = {\n        'artworks': artworks,\n        'events': 4,\n    }\n    return render(request, 'store/pages/home.html', context)\ndef about_page(request) -> HttpResponse:\n    context = {\n        \"testimonials\": \"testi\",",
+        "peekOfCode": "def home_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    cart = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n        except Cart.DoesNotExist:\n            cart = None\n    context = {\n        'artworks': artworks,",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1581,7 +1589,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def about_page(request) -> HttpResponse:\n    context = {\n        \"testimonials\": \"testi\",\n    }\n    return render(request, \"store/pages/about.html\", context)\ndef gallery_page(request) -> HttpResponse:\n    artworks =  Artwork.objects.all().order_by(\"-updated_at\")\n    paginator = Paginator(artworks, ELEMENTS_PER_PAGE)\n    page = request.GET.get('page')\n    artworks = paginator.get_page(page)",
+        "peekOfCode": "def about_page(request) -> HttpResponse:\n    cart = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n        except Cart.DoesNotExist:\n            cart = None\n    context = {\n        'cart': cart,\n        'testimonials': \"testi\",",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1590,7 +1598,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def gallery_page(request) -> HttpResponse:\n    artworks =  Artwork.objects.all().order_by(\"-updated_at\")\n    paginator = Paginator(artworks, ELEMENTS_PER_PAGE)\n    page = request.GET.get('page')\n    artworks = paginator.get_page(page)\n    context = {\n        'artworks': artworks,\n    }\n    return render(request, 'store/pages/gallery.html', context)\ndef artwork_detail_page(request, slug):",
+        "peekOfCode": "def gallery_page(request) -> HttpResponse:\n    artworks =  Artwork.objects.all().order_by(\"-updated_at\")\n    cart = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n        except Cart.DoesNotExist:\n            cart = None\n    paginator = Paginator(artworks, ELEMENTS_PER_PAGE)\n    page = request.GET.get('page')",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1599,7 +1607,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def artwork_detail_page(request, slug):\n    artwork = get_object_or_404(Artwork, slug=slug)\n    current_category = artwork.category\n    related_artworks = Artwork.objects.exclude(id=artwork.id)\n    related_artworks = related_artworks.filter(category=current_category)[:3]\n    context = {\n        'artwork': artwork,\n        'related_artworks': related_artworks,\n    }\n    return render(request, 'store/pages/artwork-detail.html', context)",
+        "peekOfCode": "def artwork_detail_page(request, slug):\n    cart = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n        except Cart.DoesNotExist:\n            cart = None\n    artwork = get_object_or_404(Artwork, slug=slug)\n    current_category = artwork.category\n    related_artworks = Artwork.objects.exclude(id=artwork.id)",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1608,7 +1616,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def contact_page(request) -> HttpResponse:\n    if request.method == 'POST':\n        name = request.POST.get('name')\n        email = request.POST.get('email')\n        subject = request.POST.get('subject')\n        message = request.POST.get('message')\n        # Validation simple des données du formulaire\n        if not name or not email or not subject or not message:\n            messages.error(request, \"Tous les champs sont requis.\")\n            return redirect('store:contact')",
+        "peekOfCode": "def contact_page(request) -> HttpResponse:\n    cart = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n        except Cart.DoesNotExist:\n            cart = None\n    if request.method == 'POST':\n        name = request.POST.get('name')\n        email = request.POST.get('email')",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1698,7 +1706,7 @@
         "kind": 5,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "stripe.api_key = settings.STRIPE_SECRET_KEY\ndef home_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    context = {\n        'artworks': artworks,\n        'events': 4,\n    }\n    return render(request, 'store/pages/home.html', context)\ndef about_page(request) -> HttpResponse:\n    context = {",
+        "peekOfCode": "stripe.api_key = settings.STRIPE_SECRET_KEY\ndef home_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    cart = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n        except Cart.DoesNotExist:\n            cart = None\n    context = {",
         "detail": "store.views",
         "documentation": {}
     },

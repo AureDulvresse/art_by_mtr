@@ -19,6 +19,7 @@ from django.utils.html import strip_tags
 
 from art_by_mtr.settings import ELEMENTS_PER_PAGE
 from store.models import Artwork, Cart, CheckOut, Order, Payment
+from store.views import create_paypal_payment
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -27,17 +28,33 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def home_page(request) -> HttpResponse:
     artworks = Artwork.objects.all().order_by('-updated_at')[:3]
+    
+    cart = None
+    if request.user.is_authenticated:
+        try:
+            cart = Cart.objects.get(customer=request.user)
+        except Cart.DoesNotExist:
+            cart = None
 
     context = {
         'artworks': artworks,
         'events': 4,
+        'cart': cart,
     }
 
     return render(request, 'store/pages/home.html', context)
 
 def about_page(request) -> HttpResponse:
+    cart = None
+    if request.user.is_authenticated:
+        try:
+            cart = Cart.objects.get(customer=request.user)
+        except Cart.DoesNotExist:
+            cart = None
+
     context = {
-        "testimonials": "testi",
+        'cart': cart,
+        'testimonials': "testi",
     }
 
     return render(request, "store/pages/about.html", context)
@@ -46,18 +63,35 @@ def about_page(request) -> HttpResponse:
 def gallery_page(request) -> HttpResponse:
     artworks =  Artwork.objects.all().order_by("-updated_at")
 
+    cart = None
+    if request.user.is_authenticated:
+        try:
+            cart = Cart.objects.get(customer=request.user)
+        except Cart.DoesNotExist:
+            cart = None
+
+
     paginator = Paginator(artworks, ELEMENTS_PER_PAGE)
     page = request.GET.get('page')
     artworks = paginator.get_page(page)
 
     context = {
         'artworks': artworks,
+        'cart': cart,
     }
 
     return render(request, 'store/pages/gallery.html', context)
 
 
 def artwork_detail_page(request, slug):
+
+    cart = None
+    if request.user.is_authenticated:
+        try:
+            cart = Cart.objects.get(customer=request.user)
+        except Cart.DoesNotExist:
+            cart = None
+
 
     artwork = get_object_or_404(Artwork, slug=slug)
     
@@ -71,11 +105,19 @@ def artwork_detail_page(request, slug):
     context = {
         'artwork': artwork,
         'related_artworks': related_artworks,
+        'cart': cart,
     }
 
     return render(request, 'store/pages/artwork-detail.html', context)
 
 def contact_page(request) -> HttpResponse:
+    cart = None
+    if request.user.is_authenticated:
+        try:
+            cart = Cart.objects.get(customer=request.user)
+        except Cart.DoesNotExist:
+            cart = None
+
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -117,8 +159,9 @@ def contact_page(request) -> HttpResponse:
             messages.error(request, f"Une erreur s'est produite: {e}")
 
         return redirect('store:contact')
+    
 
-    return render(request, "store/pages/contact.html")
+    return render(request, "store/pages/contact.html", {'cart': cart })
 
 
 @login_required
@@ -186,8 +229,9 @@ def checkout_page(request):
         cart_cumul += (order.artwork.price * order.quantity)
 
     context = {
-        "orders": orders,
-        "order_cumul": cart_cumul,
+        'orders': orders,
+        'order_cumul': cart_cumul,
+        'cart': cart,
     }
 
 
