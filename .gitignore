@@ -3,7 +3,7 @@
 __pycache__/
 
 # Environment variables
-.env
+art_by_mtr/.env
 
 # Django stuff:
 *.log
