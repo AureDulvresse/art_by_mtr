@@ -183,7 +183,7 @@ def checkout_page(request):
     orders = cart.orders.all().order_by('-created_at')
 
     for order in orders:
-        cart_cumul += (order.product.price * order.quantity)
+        cart_cumul += (order.artwork.price * order.quantity)
 
     context = {
         "orders": orders,
