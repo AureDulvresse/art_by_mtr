@@ -60,13 +60,20 @@
         <li>
           {% if user.is_authenticated %}
           <div class="flex items-center justify-center gap-3">
-            <button type="button" @click="showCart = true" class="text-white bg-transparent border-none" title="voir le panier">
+            <button
+              type="button"
+              @click="alert('ok')"
+              class="text-white bg-transparent border-none"
+              title="voir le panier"
+            >
               <i class="bx bx-cart text-2xl"></i>
             </button>
             <i class="bx bx-user text-2xl text-white"></i>
           </div>
           {% else %}
-          <a href="{% url 'accounts:login' %}" class="btn btn-red">Se connecter</a>
+          <a href="{% url 'accounts:login' %}" class="btn btn-red"
+            >Se connecter</a
+          >
           {% endif %}
         </li>
       </ul>
@@ -78,19 +85,30 @@
   </div>
 
   <!-- Modal for Cart -->
-  <div x-show="showCart" class="cart-preview shadow-md rounded px-2 py-3">
-    <div class="relative ">
-      <button  type="button" @click="showCart = false" class="absolute top-0 right-0 mb-2 mr-4 border-none bg-transparent text-gray-600" title="voir le panier">
-        <i class="bx bx-x text-2xl"></i>
-      </button>
-      <h2 class="text-lg font-bold mb-4 text-center">Panier</h2>
-      <ul>
-        <li>Produit 1</li>
-        <li>Produit 2</li>
-        <li>Produit 3</li>
-      </ul>
-      <a href="{% url 'store:cart' %}" class="mt-4 btn btn-red">Voir le panier</a>
+  <template x-cloak x-show="showCart" class="z-100">
+    <div class="cart-preview-overlay">
+      <div class="cart-preview shadow-md rounded px-2 py-3">
+        <div class="relative">
+          <button
+            type="button"
+            @click="showCart = !showCart"
+            class="close-btn"
+            title="Fermer le panier"
+          >
+            <i class="bx bx-x text-2xl"></i>
+          </button>
+          <h2 class="text-lg font-bold mb-4 text-center">Panier</h2>
+          <ul>
+            <li>Produit 1</li>
+            <li>Produit 2</li>
+            <li>Produit 3</li>
+          </ul>
+          <a href="{% url 'store:cart' %}" class="mt-4 btn btn-red"
+            >Voir le panier</a
+          >
+        </div>
+      </div>
     </div>
-  </div>
+  </template>
   <!-- End Modal for Cart -->
 </header>

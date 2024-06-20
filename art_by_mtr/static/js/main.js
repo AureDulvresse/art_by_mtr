@@ -92,7 +92,7 @@ document.addEventListener("alpine:init", () => {
   Alpine.data("cartHandler", () => ({
     addToCart,
   }));
-  Alpine.data("checkoutWithStripe", () => ({
+  Alpine.data("stripePayment", () => ({
     stripePayment,
   }));
 });

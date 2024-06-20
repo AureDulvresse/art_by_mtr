@@ -1,7 +1,7 @@
 # A FAIRE DANS LA SEMAINE
 
 - Personnaliser le template [En Cours]
-- Gérer les mailing [***]
+- Gérer les mailing [***] [Done]
 - Interface d'administration [En cours]
 - Checkout et paiement [***]
 - Gerer les requetes coté client (ajout au panier sans rafraichir la page) [**] [Done]

@@ -425,16 +425,74 @@ textarea {
     color: var(--color-black);
     font-weight: 600;
 }
-
-.cart-preview {
-    width: 300px;
-    height: 190px;
-    float: right;
-    margin-right: 10px;
-    background-color: var(--color-gray-200);
+/* Styles for the modal overlay */
+.cart-preview-overlay {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
+/* Modal content */
+.cart-preview {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+    z-index: 1001;
+}
 
+.cart-preview h2 {
+    margin-bottom: 20px;
+}
+
+.cart-preview ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cart-preview ul li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.cart-preview ul li:last-child {
+    border-bottom: none;
+}
+
+.cart-preview a.btn {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.cart-preview .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.cart-preview .close-btn:hover {
+    color: #333;
+}
 /* Container Styles */
 .container {
     width: 100%;
@@ -838,6 +896,10 @@ textarea {
 
 .z-20 {
     z-index: 20;
+}
+
+.z-100{
+    z-index: 100;
 }
 
 .alert {
