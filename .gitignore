@@ -1,0 +1,26 @@
+# Python
+*.pyc
+__pycache__/
+
+# Environment variables
+.env
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
+# Ignore the following directories:
+storage/
+static/
+
+# VS Code
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
