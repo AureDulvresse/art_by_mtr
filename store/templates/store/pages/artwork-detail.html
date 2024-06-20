@@ -114,7 +114,9 @@
             Prix: <span class="text-red">{{ artwork.price }} €</span>
           </p>
         </div>
-        <button
+        <div class="mb-2">
+          <input type="number" name="quantity" id="quantity" class="form-control" value="1" />
+          <button
           type="button"
           class="btn btn-black"
           x-data="cartHandler()"
@@ -123,6 +125,8 @@
         >
           Ajouter au panier
         </button>
+        </div>
+       
       </div>
     </div>
   </div>

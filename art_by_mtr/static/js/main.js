@@ -1,6 +1,8 @@
 // Fonction pour ajouter au panier avec jQuery Ajax
 function addToCart(event) {
   const artworkId = $(event.target).data("artwork-id");
+  const quantityInput = document.getElementById("quantity");
+  const quantity = quantityInput ? quantityInput.value : 1;
 
   $.ajax({
     url: "/store/add-to-cart/",
@@ -11,7 +13,7 @@ function addToCart(event) {
     contentType: "application/json",
     data: JSON.stringify({
       artwork_id: artworkId,
-      quantity: 1,
+      quantity: quantity,
     }),
     success: function (data) {
       Toastify({
