@@ -8,6 +8,7 @@
     <p class="text-lg text-gray-600 mb-4">{{ artwork.price }} €</p>
     <div class="flex item-center justify-center gap-3">
       <a href="{% url 'store:artwork-detail' artwork.slug %}" class="btn btn-outline-red">Voir le Tableau</a>
+      <input type="hidden" name="quantity" id="quantity" value="1" />
       <button type="button" class="btn btn-black"
               x-data="cartHandler()"
               x-on:click="addToCart($event)"
