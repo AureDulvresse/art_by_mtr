@@ -4,7 +4,7 @@ function addToCart(event) {
   const quantity = document.getElementById("quantity");
 
   $.ajax({
-    url: "/store/add-to-cart/",
+    url: "/store/cart/add-to-cart/",
     type: "POST",
     headers: {
       "X-CSRFToken": getCookie("csrftoken"),
@@ -26,6 +26,50 @@ function addToCart(event) {
     error: function (xhr, textStatus, error) {
       Toastify({
         text: "Erreur lors de l'ajout au panier",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        backgroundColor: "#e74c3c",
+      }).showToast();
+      console.error(xhr.responseText, textStatus, error);
+    },
+  });
+}
+
+function removeFromCart(orderUuid) {
+  $.ajax({
+    url: "/store/cart/remove-from-cart/",
+    type: "POST",
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken"),
+    },
+    contentType: "application/json",
+    data: JSON.stringify({
+      order_uuid: orderUuid,
+    }),
+    success: function (data) {
+      if (data.success) {
+        Toastify({
+          text: "Article supprimé du panier",
+          duration: 3000,
+          close: true,
+          gravity: "top",
+          backgroundColor: "#2ecc71",
+        }).showToast();
+        location.reload();
+      } else {
+        Toastify({
+          text: "Erreur lors de la suppression de l'article",
+          duration: 3000,
+          close: true,
+          gravity: "top",
+          backgroundColor: "#e74c3c",
+        }).showToast();
+      }
+    },
+    error: function (xhr, textStatus, error) {
+      Toastify({
+        text: "Erreur lors de la suppression de l'article",
         duration: 3000,
         close: true,
         gravity: "top",
@@ -91,6 +135,7 @@ function stripePayment() {
 document.addEventListener("alpine:init", () => {
   Alpine.data("cartHandler", () => ({
     addToCart,
+    removeFromCart,
   }));
   Alpine.data("stripePayment", () => ({
     stripePayment,

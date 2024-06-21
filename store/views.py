@@ -24,7 +24,6 @@ from store.models import Artwork, Cart, CheckOut, Order, Payment
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-
 def home_page(request) -> HttpResponse:
     artworks = Artwork.objects.all().order_by('-updated_at')[:3]
     
@@ -43,6 +42,7 @@ def home_page(request) -> HttpResponse:
     }
 
     return render(request, 'store/pages/home.html', context)
+
 
 def about_page(request) -> HttpResponse:
 
@@ -73,14 +73,13 @@ def gallery_page(request) -> HttpResponse:
         except Cart.DoesNotExist:
             cart = None
 
-
     paginator = Paginator(artworks, ELEMENTS_PER_PAGE)
     page = request.GET.get('page')
     artworks = paginator.get_page(page)
 
     context = {
         'artworks': artworks,
-         'preview_cart_items': cart_items,
+        'preview_cart_items': cart_items[:3],
     }
 
     return render(request, 'store/pages/gallery.html', context)
@@ -96,7 +95,6 @@ def artwork_detail_page(request, slug):
         except Cart.DoesNotExist:
             cart = None
 
-
     artwork = get_object_or_404(Artwork, slug=slug)
     
     current_category = artwork.category
@@ -105,14 +103,14 @@ def artwork_detail_page(request, slug):
     
     related_artworks = related_artworks.filter(category=current_category)[:3]
     
-    
     context = {
         'artwork': artwork,
         'related_artworks': related_artworks,
-        'preview_cart_items': cart_items,
+        'preview_cart_items': cart_items[:3],
     }
 
     return render(request, 'store/pages/artwork-detail.html', context)
+
 
 def contact_page(request) -> HttpResponse:
 
@@ -167,7 +165,7 @@ def contact_page(request) -> HttpResponse:
         return redirect('store:contact')
     
 
-    return render(request, "store/pages/contact.html", { 'previews_cart_items': cart_items, })
+    return render(request, "store/pages/contact.html", { 'preview_cart_items': cart_items[:3], })
 
 
 @login_required
@@ -188,6 +186,7 @@ def cart_page(request):
     }
 
     return render(request, "store/pages/cart.html", context)
+
 
 @csrf_exempt
 @login_required
@@ -217,6 +216,24 @@ def add_to_cart(request):
 
         return JsonResponse({"message": "Artwork ajouté au panier avec succès", "quantity": order.quantity}, status=200)
     return JsonResponse({"error": "Invalid request"}, status=400)
+
+
+@csrf_exempt
+@login_required
+def remove_from_cart(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        order_uuid = data.get('order_uuid')
+
+        if request.user.is_authenticated:
+            cart = get_object_or_404(Cart, customer=request.user)
+            order = get_object_or_404(Order, uuid=order_uuid)
+
+            if order in cart.orders.all():
+                cart.orders.remove(order)
+                return JsonResponse({'success': True})
+
+        return JsonResponse({'success': False, 'error': 'Invalid request'}, status=400)
 
 
 @login_required

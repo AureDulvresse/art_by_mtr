@@ -1,8 +1,10 @@
 {% extends "base.html" %} {% load static %} {% load custom_tags %}
 
-{% block title %} Galerie - Détail oeuvre {% endblock title %} {% block content %} 
+{% block title %} Galerie - Détail oeuvre {% endblock title %}
 
-{% breadcrumb artwork.title "Détail de l'oeuvre" user %}
+{% block content %} 
+
+{% breadcrumb artwork.title "Détail de l'oeuvre" user preview_cart_items %}
 
 <!-- single artwork -->
 <section
