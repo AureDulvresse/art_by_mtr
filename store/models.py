@@ -61,6 +61,9 @@ class Order(models.Model):
 
     def __str__(self) -> str:
         return f"{self.customer.username} commande {self.quantity} {self.artwork.title}"
+    
+    def get_total_price(self) -> int:
+        return self.artwork.price * self.quantity
 
 class Cart(models.Model):
     customer = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

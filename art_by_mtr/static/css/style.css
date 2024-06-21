@@ -425,6 +425,7 @@ textarea {
     color: var(--color-black);
     font-weight: 600;
 }
+
 /* Styles for the modal overlay */
 .cart-preview-overlay {
     position: fixed;
@@ -443,7 +444,6 @@ textarea {
 .cart-preview {
     width: 90%;
     max-width: 400px;
-    height: 400px;
     background: var(--color-white);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
@@ -492,6 +492,7 @@ textarea {
 .cart-preview .close-btn:hover {
     color: #333;
 }
+
 /* Container Styles */
 .container {
     width: 100%;
@@ -522,7 +523,7 @@ textarea {
     top: 0;
 }
 
-.right-0 { 
+.right-0 {
     right: 0;
 }
 
@@ -897,8 +898,12 @@ textarea {
     z-index: 20;
 }
 
-.z-100{
+.z-100 {
     z-index: 100;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }
 
 .alert {

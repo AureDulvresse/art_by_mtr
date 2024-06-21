@@ -794,14 +794,6 @@
         "documentation": {}
     },
     {
-        "label": "create_paypal_payment",
-        "importPath": "store.views",
-        "description": "store.views",
-        "isExtraImport": true,
-        "detail": "store.views",
-        "documentation": {}
-    },
-    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,

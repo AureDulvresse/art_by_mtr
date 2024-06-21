@@ -85,28 +85,60 @@
   </div>
 
   <!-- Modal for Cart -->
-  <div x-cloak x-show="showCart" class="cart-preview-overlay">
-      <div class="cart-preview shadow-md rounded px-2 py-3">
-        <div class="relative">
-          <button
-            type="button"
-            @click="showCart = !showCart"
-            class="close-btn"
-            title="Fermer le panier"
-          >
-            <i class="bx bx-x text-2xl"></i>
-          </button>
-          <h2 class="text-lg font-bold mb-4 text-center">Votre Panier</h2>
-          <ul>
-            <li>Produit 1</li>
-            <li>Produit 2</li>
-            <li>Produit 3</li>
-          </ul>
-          <a href="{% url 'store:cart' %}" class="mt-4 btn btn-red"
-            >Voir le reste du panier</a
-          >
-        </div>
+  <div
+    x-cloak
+    x-show="showCart"
+    x-transition.opacity
+    x-transition:enter.duration.500ms
+    x-transition:leave.duration.400ms
+    class="cart-preview-overlay"
+  >
+    <div class="cart-preview shadow-md rounded px-2 py-3">
+      <div class="relative">
+        <button
+          type="button"
+          @click="showCart = !showCart"
+          class="close-btn"
+          title="Fermer le panier"
+        >
+          <i class="bx bx-x text-2xl"></i>
+        </button>
+        <h2 class="text-lg font-bold pt-2 text-center">Votre Panier</h2>
+        <ul>
+          {% for item in preview_cart_items %}
+          <li class="flex items-center justify-between w-full py-2">
+            <div>
+              <img
+                src="{{ item.artwork.thumbnail }}"
+                alt="{{ item.artwork.title }}"
+                class="rounded"
+                width="60"
+                height="60"
+              />
+            </div>
+
+            <div class="ml-2 flex justify-start flex-col w-full px-2">
+              <h3 class="text-sm">{{ item.artwork.title }}</h3>
+              <div class="flex items-center gap-4 mt-2">
+                <p class="text-gray-600">{{ item.artwork.price }} €</p>
+                <p class="text-gray-600">Quantité: {{ item.quantity }}</p>
+              </div>
+            </div>
+            <button
+              @click="removeFromCart({{ item.id }})"
+              class="text-red border-none bg-transparent text-lg cursor-pointer"
+              title="retirer du panier"
+            >
+              <i class="bx bx-trash text-xl"></i>
+            </button>
+          </li>
+          {% endfor %}
+        </ul>
+        <a href="{% url 'store:cart' %}" class="mt-4 btn btn-red"
+          >Voir le reste du panier</a
+        >
       </div>
     </div>
+  </div>
   <!-- End Modal for Cart -->
 </header>

@@ -19,7 +19,6 @@ from django.utils.html import strip_tags
 
 from art_by_mtr.settings import ELEMENTS_PER_PAGE
 from store.models import Artwork, Cart, CheckOut, Order, Payment
-from store.views import create_paypal_payment
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -29,31 +28,34 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 def home_page(request) -> HttpResponse:
     artworks = Artwork.objects.all().order_by('-updated_at')[:3]
     
-    cart = None
+    cart_items = None
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
+            cart_items = cart.orders.select_related('artwork')
         except Cart.DoesNotExist:
             cart = None
 
     context = {
         'artworks': artworks,
         'events': 4,
-        'cart': cart,
+        'preview_cart_items': cart_items[:3],
     }
 
     return render(request, 'store/pages/home.html', context)
 
 def about_page(request) -> HttpResponse:
-    cart = None
+
+    cart_items = None
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
+            cart_items = cart.orders.select_related('artwork')
         except Cart.DoesNotExist:
             cart = None
 
     context = {
-        'cart': cart,
+        'preview_cart_items': cart_items[:3],
         'testimonials': "testi",
     }
 
@@ -63,10 +65,11 @@ def about_page(request) -> HttpResponse:
 def gallery_page(request) -> HttpResponse:
     artworks =  Artwork.objects.all().order_by("-updated_at")
 
-    cart = None
+    cart_items = None
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
+            cart_items = cart.orders.select_related('artwork')
         except Cart.DoesNotExist:
             cart = None
 
@@ -77,7 +80,7 @@ def gallery_page(request) -> HttpResponse:
 
     context = {
         'artworks': artworks,
-        'cart': cart,
+         'preview_cart_items': cart_items,
     }
 
     return render(request, 'store/pages/gallery.html', context)
@@ -85,10 +88,11 @@ def gallery_page(request) -> HttpResponse:
 
 def artwork_detail_page(request, slug):
 
-    cart = None
+    cart_items = None
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
+            cart_items = cart.orders.select_related('artwork')
         except Cart.DoesNotExist:
             cart = None
 
@@ -105,16 +109,18 @@ def artwork_detail_page(request, slug):
     context = {
         'artwork': artwork,
         'related_artworks': related_artworks,
-        'cart': cart,
+        'preview_cart_items': cart_items,
     }
 
     return render(request, 'store/pages/artwork-detail.html', context)
 
 def contact_page(request) -> HttpResponse:
-    cart = None
+
+    cart_items = None
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
+            cart_items = cart.orders.select_related('artwork')
         except Cart.DoesNotExist:
             cart = None
 
@@ -161,7 +167,7 @@ def contact_page(request) -> HttpResponse:
         return redirect('store:contact')
     
 
-    return render(request, "store/pages/contact.html", {'cart': cart })
+    return render(request, "store/pages/contact.html", { 'previews_cart_items': cart_items, })
 
 
 @login_required
@@ -173,11 +179,12 @@ def cart_page(request):
     orders = cart.orders.all().order_by('-created_at')
 
     for order in orders:
-        cart_cumul += (order.artwork.price * order.quantity)
+        cart_cumul += order.get_total_price()
 
     context = {
         "orders": orders,
         "cart_cumul": cart_cumul,
+        'preview_cart_items': order[:3],
     }
 
     return render(request, "store/pages/cart.html", context)
