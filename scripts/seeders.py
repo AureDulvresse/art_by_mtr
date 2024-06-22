@@ -1,9 +1,11 @@
 import os
 import django
 import random
+import requests
 from faker import Faker
 from django.utils.text import slugify
 from django.contrib.auth import get_user_model
+from django.core.files.base import ContentFile
 
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -15,6 +17,12 @@ django.setup()
 # Import models
 from store.models import Category, Medium, Artwork, Order, Cart, CheckOut  
 fake = Faker()
+
+def download_image(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        return ContentFile(response.content)
+    return None
 
 def create_categories(n=5):
     categories = []
@@ -32,22 +40,31 @@ def create_media(n=5):
         media.append(medium)
     return media
 
+
 def create_artworks(categories, media, n=20):
     artworks = []
+    image_url_template = 'https://picsum.photos/200/300?random={}'
+
     for _ in range(n):
         title = fake.sentence(nb_words=4)
-        artwork = Artwork.objects.create(
-            title=title,
-            slug=slugify(title),
-            description=fake.text(),
-            price = round(random.uniform(10.0, 1000.0), 2),
-            stock=random.randint(1, 10),
-            width=random.randint(10, 100),
-            height=random.randint(10, 100),
-            category=random.choice(categories),
-            medium=random.choice(media)
-        )
-        artworks.append(artwork)
+        image_url = image_url_template.format(random.randint(1, 1000))
+        image_content = download_image(image_url)
+
+        if image_content:
+            artwork = Artwork.objects.create(
+                title=title,
+                slug=slugify(title),
+                description=fake.text(),
+                price=round(random.uniform(10.0, 1000.0), 2),
+                stock=random.randint(1, 10),
+                width=random.randint(10, 100),
+                height=random.randint(10, 100),
+                category=random.choice(categories),
+                medium=random.choice(media),
+                thumbnail=image_content  # Assigner le contenu de l'image à la miniature
+            )
+            artwork.thumbnail.save(f'{slugify(title)}.jpg', image_content)
+            artworks.append(artwork)
     return artworks
 
 def create_users(n=5):

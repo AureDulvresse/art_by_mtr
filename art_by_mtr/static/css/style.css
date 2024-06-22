@@ -351,6 +351,10 @@ a {
     opacity: 1;
 }
 
+.card-text{
+    height: 120px;
+}
+
 .card h3 {
     margin-bottom: 0.5rem;
     display: -webkit-box;

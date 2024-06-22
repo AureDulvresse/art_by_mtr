@@ -614,6 +614,15 @@
         "documentation": {}
     },
     {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
         "label": "Faker",
         "importPath": "faker",
         "description": "faker",
@@ -627,6 +636,14 @@
         "description": "django.utils.text",
         "isExtraImport": true,
         "detail": "django.utils.text",
+        "documentation": {}
+    },
+    {
+        "label": "ContentFile",
+        "importPath": "django.core.files.base",
+        "description": "django.core.files.base",
+        "isExtraImport": true,
+        "detail": "django.core.files.base",
         "documentation": {}
     },
     {
@@ -1293,7 +1310,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "STATIC_ROOT = 'static_root'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/storage/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [",
+        "peekOfCode": "STATIC_ROOT = 'static_root'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1302,7 +1319,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/storage/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1311,7 +1328,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "AUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/storage/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "AUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1320,7 +1337,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "ROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/storage/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "ROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1329,7 +1346,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "LOGIN_URL = 'accounts:login'\nMEDIA_URL = \"/storage/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "LOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1338,7 +1355,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "MEDIA_URL = \"/storage/\"\nMEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "MEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1347,7 +1364,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "MEDIA_ROOT = BASE_DIR / \"storage\"\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1374,7 +1391,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.urls",
         "description": "art_by_mtr.urls",
-        "peekOfCode": "urlpatterns = [\n    path('dev-admin/', admin.site.urls),\n    path('', include('store.urls')),\n    path('accounts/', include('accounts.urls')),\n    path('blog/', include('blog.urls')),\n    path('manager/', include('manager.urls')),\n] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path('dev-admin/', admin.site.urls),\n    path('', include('store.urls')),\n    path('accounts/', include('accounts.urls')),\n    path('blog/', include('blog.urls')),\n    path('manager/', include('manager.urls')),\n] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\nif settings.DEBUG:\n    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
         "detail": "art_by_mtr.urls",
         "documentation": {}
     },
@@ -1442,6 +1459,15 @@
         "documentation": {}
     },
     {
+        "label": "download_image",
+        "kind": 2,
+        "importPath": "scripts.seeders",
+        "description": "scripts.seeders",
+        "peekOfCode": "def download_image(url):\n    response = requests.get(url)\n    if response.status_code == 200:\n        return ContentFile(response.content)\n    return None\ndef create_categories(n=5):\n    categories = []\n    for _ in range(n):\n        name = fake.word()\n        category = Category.objects.create(name=name, description=fake.text())",
+        "detail": "scripts.seeders",
+        "documentation": {}
+    },
+    {
         "label": "create_categories",
         "kind": 2,
         "importPath": "scripts.seeders",
@@ -1455,7 +1481,7 @@
         "kind": 2,
         "importPath": "scripts.seeders",
         "description": "scripts.seeders",
-        "peekOfCode": "def create_media(n=5):\n    media = []\n    for _ in range(n):\n        name = fake.word()\n        medium = Medium.objects.create(name=name)\n        media.append(medium)\n    return media\ndef create_artworks(categories, media, n=20):\n    artworks = []\n    for _ in range(n):",
+        "peekOfCode": "def create_media(n=5):\n    media = []\n    for _ in range(n):\n        name = fake.word()\n        medium = Medium.objects.create(name=name)\n        media.append(medium)\n    return media\ndef create_artworks(categories, media, n=20):\n    artworks = []\n    image_url_template = 'https://picsum.photos/200/300?random={}'",
         "detail": "scripts.seeders",
         "documentation": {}
     },
@@ -1464,7 +1490,7 @@
         "kind": 2,
         "importPath": "scripts.seeders",
         "description": "scripts.seeders",
-        "peekOfCode": "def create_artworks(categories, media, n=20):\n    artworks = []\n    for _ in range(n):\n        title = fake.sentence(nb_words=4)\n        artwork = Artwork.objects.create(\n            title=title,\n            slug=slugify(title),\n            description=fake.text(),\n            price = round(random.uniform(10.0, 1000.0), 2),\n            stock=random.randint(1, 10),",
+        "peekOfCode": "def create_artworks(categories, media, n=20):\n    artworks = []\n    image_url_template = 'https://picsum.photos/200/300?random={}'\n    for _ in range(n):\n        title = fake.sentence(nb_words=4)\n        image_url = image_url_template.format(random.randint(1, 1000))\n        image_content = download_image(image_url)\n        if image_content:\n            artwork = Artwork.objects.create(\n                title=title,",
         "detail": "scripts.seeders",
         "documentation": {}
     },
@@ -1518,7 +1544,7 @@
         "kind": 5,
         "importPath": "scripts.seeders",
         "description": "scripts.seeders",
-        "peekOfCode": "fake = Faker()\ndef create_categories(n=5):\n    categories = []\n    for _ in range(n):\n        name = fake.word()\n        category = Category.objects.create(name=name, description=fake.text())\n        categories.append(category)\n    return categories\ndef create_media(n=5):\n    media = []",
+        "peekOfCode": "fake = Faker()\ndef download_image(url):\n    response = requests.get(url)\n    if response.status_code == 200:\n        return ContentFile(response.content)\n    return None\ndef create_categories(n=5):\n    categories = []\n    for _ in range(n):\n        name = fake.word()",
         "detail": "scripts.seeders",
         "documentation": {}
     },

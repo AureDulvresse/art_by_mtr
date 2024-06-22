@@ -1,20 +1,33 @@
 <div class="card wow animate__animated animate__slideInUp" data-wow-delay="0.3">
   <div class="card-img">
-    <img src="{{ artwork.thumbnail }}" alt="{{ artwork.title }}" />
+    <img src="{{ artwork.thumbnail.url }}" alt="{{ artwork.title }}" />
   </div>
 
   <div class="p-4">
-    <h3 class="text-2xl mb-2">{{ artwork.title }}</h3>
-    <p class="text-lg text-gray-600 mb-4">{{ artwork.price }} €</p>
-    <div class="flex item-center justify-center gap-3">
-      <a href="{% url 'store:artwork-detail' artwork.slug %}" class="btn btn-outline-red">Voir le Tableau</a>
+    <div class="card-text">
+      <h3 class="text-2xl mb-2">{{ artwork.title }}</h3>
+      <p class="text-lg text-gray-600 mb-4">{{ artwork.price }} €</p>
+    </div>
+
+    <div class="flex item-center justify-center gap-3 mt-3">
+      <a
+        href="{% url 'store:artwork-detail' artwork.slug %}"
+        class="btn btn-outline-red"
+        >Voir le Tableau</a
+      >
+
+      {% if user.is_authenticated %}
       <input type="hidden" name="quantity" id="quantity" value="1" />
-      <button type="button" class="btn btn-black"
-              x-data="cartHandler()"
-              x-on:click="addToCart($event)"
-              data-artwork-id="{{ artwork.id }}">
+      <button
+        type="button"
+        class="btn btn-black"
+        x-data="cartHandler()"
+        x-on:click="addToCart($event)"
+        data-artwork-id="{{ artwork.id }}"
+      >
         Ajouter au panier
       </button>
+      {% endif %}
     </div>
   </div>
 </div>
