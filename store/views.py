@@ -24,7 +24,7 @@ from store.models import Artwork, Cart, CheckOut, Order
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-def home_page(request) -> HttpResponse:
+def home_page(request):
     artworks = Artwork.objects.all().order_by('-updated_at')[:3]
     
     cart_items = None
@@ -37,15 +37,13 @@ def home_page(request) -> HttpResponse:
 
     context = {
         'artworks': artworks,
-        'events': 4,
-        'preview_cart_items': cart_items[:3],
+        'preview_cart_items': cart_items[:3] if cart_items else None,
     }
 
     return render(request, 'store/pages/home.html', context)
 
 
-def about_page(request) -> HttpResponse:
-
+def about_page(request):
     cart_items = None
     if request.user.is_authenticated:
         try:
@@ -55,15 +53,14 @@ def about_page(request) -> HttpResponse:
             cart = None
 
     context = {
-        'preview_cart_items': cart_items[:3],
-        'testimonials': "testi",
+        'preview_cart_items': cart_items[:3] if cart_items else None,
     }
 
     return render(request, "store/pages/about.html", context)
 
 
-def gallery_page(request) -> HttpResponse:
-    artworks =  Artwork.objects.all().order_by("-updated_at")
+def gallery_page(request):
+    artworks = Artwork.objects.all().order_by("-updated_at")
 
     cart_items = None
     if request.user.is_authenticated:
@@ -79,14 +76,13 @@ def gallery_page(request) -> HttpResponse:
 
     context = {
         'artworks': artworks,
-        'preview_cart_items': cart_items[:3],
+        'preview_cart_items': cart_items[:3] if cart_items else None,
     }
 
     return render(request, 'store/pages/gallery.html', context)
 
 
 def artwork_detail_page(request, slug):
-
     cart_items = None
     if request.user.is_authenticated:
         try:
@@ -98,15 +94,12 @@ def artwork_detail_page(request, slug):
     artwork = get_object_or_404(Artwork, slug=slug)
     
     current_category = artwork.category
-    
-    related_artworks = Artwork.objects.exclude(id=artwork.id)
-    
-    related_artworks = related_artworks.filter(category=current_category)[:3]
+    related_artworks = Artwork.objects.exclude(id=artwork.id).filter(category=current_category)[:3]
     
     context = {
         'artwork': artwork,
         'related_artworks': related_artworks,
-        'preview_cart_items': cart_items[:3],
+        'preview_cart_items': cart_items[:3] if cart_items else None,
     }
 
     return render(request, 'store/pages/artwork-detail.html', context)
@@ -170,22 +163,39 @@ def contact_page(request) -> HttpResponse:
 
 @login_required
 def cart_page(request):
-    cart = get_object_or_404(Cart, customer = request.user)
+    cart = get_object_or_404(Cart, customer=request.user)
 
-    cart_cumul = 0
-
-    orders = cart.orders.all().select_related('artwork').order_by('-created_at')
-
-    for order in orders:
-        cart_cumul += order.get_total_price()
+    cart_total = sum(order.get_total_price() for order in cart.orders.all())
 
     context = {
-        "orders": orders,
-        "cart_cumul": cart_cumul,
-        'preview_cart_items': order[:3],
+        "cart": cart,
+        "cart_total": cart_total,
+        'preview_cart_items': cart.orders.select_related('artwork').order_by('-updated_at')[:3] if cart.orders.exists() else None,
     }
 
     return render(request, "store/pages/cart.html", context)
+
+
+
+@login_required
+def checkout_page(request):
+    user = request.user
+    cart = get_object_or_404(Cart, customer=user)
+
+    if request.method == "POST":
+        CheckOut.objects.create(customer=user, orders=cart.orders.all())
+        cart.delete()
+        return redirect("store:shop")
+
+    cart_total = sum(order.get_total_price() for order in cart.orders.all())
+
+    context = {
+        'cart': cart,
+        'cart_total': cart_total,
+        'preview_cart_items': cart.orders.select_related('artwork').order_by('-updated_at')[:3] if cart.orders.exists() else None,
+    }
+
+    return render(request, "store/pages/checkout.html", context)
 
 
 @csrf_exempt
@@ -253,31 +263,6 @@ def remove_from_cart(request):
 
         return JsonResponse({'success': False, 'error': 'User not authenticated'}, status=401)
 
-@login_required
-def checkout_page(request):
-    user = request.user
-    cart = get_object_or_404(Cart, customer = user)
-
-    if request.method == "POST":
-        CheckOut.objects.create(customer = user, orders = cart.orders.all())
-        cart.delete()
-        return redirect("store:shop")
-
-    cart_cumul = 0
-    orders = cart.orders.all().order_by('-created_at')
-
-    for order in orders:
-        cart_cumul += (order.artwork.price * order.quantity)
-
-    context = {
-        'orders': orders,
-        'order_cumul': cart_cumul,
-        'cart': cart,
-    }
-
-
-    return render(request, "store/pages/checkout.html", context)
-    
 
 # @method_decorator(login_required, name='dispatch')
 # class StripePaymentView(TemplateView):

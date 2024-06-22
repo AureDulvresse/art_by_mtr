@@ -112,24 +112,24 @@ class CheckOut(models.Model):
     def __str__(self):
         return f"Checkout by {self.customer.username}"
 
-# class Payment(models.Model):
-#     STATUS_CHOICES = [
-#         ('Pending', 'Pending'),
-#         ('Completed', 'Completed'),
-#         ('Failed', 'Failed'),
-#         ('Refunded', 'Refunded'),
-#     ]
+class Payment(models.Model):
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Completed', 'Completed'),
+        ('Failed', 'Failed'),
+        ('Refunded', 'Refunded'),
+    ]
 
-#     currency = models.CharField(max_length=10)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-#     status = models.CharField(max_length=15, choices=STATUS_CHOICES)
-#     checkout = models.ForeignKey(CheckOut, on_delete=models.CASCADE)
+    currency = models.CharField(max_length=10)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=15, choices=STATUS_CHOICES)
+    checkout = models.ForeignKey(CheckOut, on_delete=models.CASCADE)
 
-#     class Meta:
-#         db_table = "store_payment"
-#         ordering = ["-created_at"]
+    class Meta:
+        db_table = "store_payment"
+        ordering = ["-created_at"]
 
-#     def __str__(self):
-#         return f'Payment {self.id} by {self.checkout.customer.username}'
+    def __str__(self):
+        return f'Payment {self.id} by {self.checkout.customer.username}'
 
