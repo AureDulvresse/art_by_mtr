@@ -31,7 +31,7 @@ def home_page(request) -> HttpResponse:
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
-            cart_items = cart.orders.select_related('artwork')
+            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
 
@@ -50,7 +50,7 @@ def about_page(request) -> HttpResponse:
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
-            cart_items = cart.orders.select_related('artwork')
+            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
 
@@ -69,7 +69,7 @@ def gallery_page(request) -> HttpResponse:
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
-            cart_items = cart.orders.select_related('artwork')
+            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
 
@@ -91,7 +91,7 @@ def artwork_detail_page(request, slug):
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
-            cart_items = cart.orders.select_related('artwork')
+            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
 
@@ -118,7 +118,7 @@ def contact_page(request) -> HttpResponse:
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
-            cart_items = cart.orders.select_related('artwork')
+            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
 
@@ -174,7 +174,7 @@ def cart_page(request):
 
     cart_cumul = 0
 
-    orders = cart.orders.all().order_by('-created_at')
+    orders = cart.orders.all().select_related('artwork').order_by('-created_at')
 
     for order in orders:
         cart_cumul += order.get_total_price()
@@ -213,8 +213,15 @@ def add_to_cart(request):
 
         order.save()
         cart.orders.add(order)
+        
+        cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
 
-        return JsonResponse({"message": "Artwork ajouté au panier avec succès", "quantity": order.quantity}, status=200)
+        # Récupérer les données mises à jour du panier
+        cart_items_html = render_to_string('store/partials/cart_items.html', {'preview_cart_items': cart_items[:3]})
+
+        return JsonResponse({"message": "L'oeuvre a été ajouter au panier avec succès", 
+                             "cart_items_html": cart_items_html}, 
+                             status=200)
     return JsonResponse({"error": "Invalid request"}, status=400)
 
 
@@ -226,15 +233,26 @@ def remove_from_cart(request):
         order_uuid = data.get('order_uuid')
 
         if request.user.is_authenticated:
-            cart = get_object_or_404(Cart, customer=request.user)
-            order = get_object_or_404(Order, uuid=order_uuid)
+            cart_items = None
+            try:
+                cart = get_object_or_404(Cart, customer=request.user)
+                order = get_object_or_404(Order, uuid=order_uuid)
+                cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
 
-            if order in cart.orders.all():
-                cart.orders.remove(order)
-                return JsonResponse({'success': True})
+                if order in cart.orders.all():
+                    cart.orders.remove(order)
 
-        return JsonResponse({'success': False, 'error': 'Invalid request'}, status=400)
+                    # Récupérer les données mises à jour du panier
+                    cart_items_html = render_to_string('store/partials/cart_items.html', {'preview_cart_items': cart_items[:3]})
 
+                    return JsonResponse({'success': True, 'cart_items_html': cart_items_html})
+                else:
+                    return JsonResponse({'success': False, 'error': 'Order not in cart'}, status=400)
+                    
+            except Exception as e:
+                return JsonResponse({'success': False, 'error': 'Invalid request'}, status=400)
+
+        return JsonResponse({'success': False, 'error': 'User not authenticated'}, status=401)
 
 @login_required
 def checkout_page(request):

@@ -57,6 +57,7 @@ class Order(models.Model):
     quantity = models.IntegerField(default=1)
     ordered = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     ordered_at = models.DateTimeField(blank=True, null=True)
 
     def __str__(self) -> str:

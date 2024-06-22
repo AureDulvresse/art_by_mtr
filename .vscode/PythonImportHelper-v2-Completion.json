@@ -83,6 +83,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -612,6 +628,14 @@
         "description": "shortuuid.django_fields",
         "isExtraImport": true,
         "detail": "shortuuid.django_fields",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -1370,11 +1394,20 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "store.migrations.0002_order_updated_at_payment",
+        "description": "store.migrations.0002_order_updated_at_payment",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('store', '0001_initial'),\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='order',\n            name='updated_at',\n            field=models.DateTimeField(auto_now=True),",
+        "detail": "store.migrations.0002_order_updated_at_payment",
+        "documentation": {}
+    },
+    {
         "label": "breadcrumb",
         "kind": 2,
         "importPath": "store.templatetags.custom_tags",
         "description": "store.templatetags.custom_tags",
-        "peekOfCode": "def breadcrumb(title, msg, user, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"artwork-card.html\"))\ndef artworkCard(artwork, *args, **kwargs):\n  data = {",
+        "peekOfCode": "def breadcrumb(title, msg, user, cart_items, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n    'preview_cart_items': cart_items,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"artwork-card.html\"))\ndef artworkCard(artwork, *args, **kwargs):",
         "detail": "store.templatetags.custom_tags",
         "documentation": {}
     },
@@ -1401,7 +1434,7 @@
         "kind": 5,
         "importPath": "store.templatetags.custom_tags",
         "description": "store.templatetags.custom_tags",
-        "peekOfCode": "register = template.Library()\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"breadcrumb.html\"))\ndef breadcrumb(title, msg, user, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"artwork-card.html\"))",
+        "peekOfCode": "register = template.Library()\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"breadcrumb.html\"))\ndef breadcrumb(title, msg, user, cart_items, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n    'preview_cart_items': cart_items,\n  }\n  return data",
         "detail": "store.templatetags.custom_tags",
         "documentation": {}
     },
@@ -1509,7 +1542,7 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class Order(models.Model):\n    uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='order', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')\n    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)\n    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)\n    quantity = models.IntegerField(default=1)\n    ordered = models.BooleanField(default=False)\n    created_at = models.DateTimeField(auto_now_add=True)\n    ordered_at = models.DateTimeField(blank=True, null=True)\n    def __str__(self) -> str:\n        return f\"{self.customer.username} commande {self.quantity} {self.artwork.title}\"",
+        "peekOfCode": "class Order(models.Model):\n    uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='order', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')\n    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)\n    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)\n    quantity = models.IntegerField(default=1)\n    ordered = models.BooleanField(default=False)\n    created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    ordered_at = models.DateTimeField(blank=True, null=True)\n    def __str__(self) -> str:",
         "detail": "store.models",
         "documentation": {}
     },
@@ -1545,7 +1578,7 @@
         "kind": 5,
         "importPath": "store.urls",
         "description": "store.urls",
-        "peekOfCode": "app_name = \"store\"\nurlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/cart/', views.cart_page, name=\"cart\"),\n   path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('store/checkout/', views.checkout_page, name=\"checkout\"),\n   path('contact/', views.contact_page, name=\"contact\"),",
+        "peekOfCode": "app_name = \"store\"\nurlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/cart/', views.cart_page, name=\"cart\"),\n   path('store/cart/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('store/cart/remove-from-cart/', views.remove_from_cart, name='remove-from-cart'),\n   path('store/checkout/', views.checkout_page, name=\"checkout\"),",
         "detail": "store.urls",
         "documentation": {}
     },
@@ -1554,7 +1587,7 @@
         "kind": 5,
         "importPath": "store.urls",
         "description": "store.urls",
-        "peekOfCode": "urlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/cart/', views.cart_page, name=\"cart\"),\n   path('store/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('store/checkout/', views.checkout_page, name=\"checkout\"),\n   path('contact/', views.contact_page, name=\"contact\"),\n   path('store/stripe/', views.StripePaymentView.as_view(), name='stripe_payment'),",
+        "peekOfCode": "urlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/cart/', views.cart_page, name=\"cart\"),\n   path('store/cart/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('store/cart/remove-from-cart/', views.remove_from_cart, name='remove-from-cart'),\n   path('store/checkout/', views.checkout_page, name=\"checkout\"),\n   path('contact/', views.contact_page, name=\"contact\"),",
         "detail": "store.urls",
         "documentation": {}
     },
@@ -1572,7 +1605,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def home_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    cart = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n        except Cart.DoesNotExist:\n            cart = None\n    context = {\n        'artworks': artworks,",
+        "peekOfCode": "def home_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    context = {",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1581,7 +1614,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def about_page(request) -> HttpResponse:\n    cart = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n        except Cart.DoesNotExist:\n            cart = None\n    context = {\n        'cart': cart,\n        'testimonials': \"testi\",",
+        "peekOfCode": "def about_page(request) -> HttpResponse:\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    context = {\n        'preview_cart_items': cart_items[:3],",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1590,7 +1623,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def gallery_page(request) -> HttpResponse:\n    artworks =  Artwork.objects.all().order_by(\"-updated_at\")\n    cart = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n        except Cart.DoesNotExist:\n            cart = None\n    paginator = Paginator(artworks, ELEMENTS_PER_PAGE)\n    page = request.GET.get('page')",
+        "peekOfCode": "def gallery_page(request) -> HttpResponse:\n    artworks =  Artwork.objects.all().order_by(\"-updated_at\")\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    paginator = Paginator(artworks, ELEMENTS_PER_PAGE)",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1599,7 +1632,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def artwork_detail_page(request, slug):\n    cart = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n        except Cart.DoesNotExist:\n            cart = None\n    artwork = get_object_or_404(Artwork, slug=slug)\n    current_category = artwork.category\n    related_artworks = Artwork.objects.exclude(id=artwork.id)",
+        "peekOfCode": "def artwork_detail_page(request, slug):\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    artwork = get_object_or_404(Artwork, slug=slug)\n    current_category = artwork.category",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1608,7 +1641,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def contact_page(request) -> HttpResponse:\n    cart = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n        except Cart.DoesNotExist:\n            cart = None\n    if request.method == 'POST':\n        name = request.POST.get('name')\n        email = request.POST.get('email')",
+        "peekOfCode": "def contact_page(request) -> HttpResponse:\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    if request.method == 'POST':\n        name = request.POST.get('name')",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1617,7 +1650,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def cart_page(request):\n    cart = get_object_or_404(Cart, customer = request.user)\n    cart_cumul = 0\n    orders = cart.orders.all().order_by('-created_at')\n    for order in orders:\n        cart_cumul += (order.artwork.price * order.quantity)\n    context = {\n        \"orders\": orders,\n        \"cart_cumul\": cart_cumul,\n    }",
+        "peekOfCode": "def cart_page(request):\n    cart = get_object_or_404(Cart, customer = request.user)\n    cart_cumul = 0\n    orders = cart.orders.all().select_related('artwork').order_by('-created_at')\n    for order in orders:\n        cart_cumul += order.get_total_price()\n    context = {\n        \"orders\": orders,\n        \"cart_cumul\": cart_cumul,\n        'preview_cart_items': order[:3],",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1627,6 +1660,15 @@
         "importPath": "store.views",
         "description": "store.views",
         "peekOfCode": "def add_to_cart(request):\n    if request.method == \"POST\":\n        data = json.loads(request.body)\n        artwork_id = data.get(\"artwork_id\")\n        quantity = int(data.get(\"quantity\", 1))\n        print(request.POST.get(\"artwork_id\"), artwork_id, type(artwork_id))\n        try:\n            artwork = Artwork.objects.get(id=artwork_id)\n        except Artwork.DoesNotExist:\n            return JsonResponse({\"error\": \"Artwork not found\"}, status=404)",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "remove_from_cart",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def remove_from_cart(request):\n    if request.method == 'POST':\n        data = json.loads(request.body)\n        order_uuid = data.get('order_uuid')\n        if request.user.is_authenticated:\n            cart_items = None\n            try:\n                cart = get_object_or_404(Cart, customer=request.user)\n                order = get_object_or_404(Order, uuid=order_uuid)\n                cart_items = cart.orders.select_related('artwork').order_by('-updated_at')",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1698,7 +1740,7 @@
         "kind": 5,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "stripe.api_key = settings.STRIPE_SECRET_KEY\ndef home_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    cart = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n        except Cart.DoesNotExist:\n            cart = None\n    context = {",
+        "peekOfCode": "stripe.api_key = settings.STRIPE_SECRET_KEY\ndef home_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None",
         "detail": "store.views",
         "documentation": {}
     },

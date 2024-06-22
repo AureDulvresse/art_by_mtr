@@ -1,0 +1,36 @@
+{% for item in preview_cart_items %}
+<li class="flex items-center justify-between w-full py-2">
+  <div>
+    <img
+      src="{{ item.artwork.thumbnail }}"
+      alt="{{ item.artwork.title }}"
+      class="rounded"
+      width="60"
+      height="60"
+    />
+  </div>
+
+  <div class="ml-2 flex justify-start flex-col w-full px-2">
+    <h3 class="text-sm">{{ item.artwork.title }}</h3>
+    <div class="flex items-center gap-4 mt-2">
+      <p class="text-gray-600">{{ item.artwork.price }} €</p>
+      <p class="text-gray-600">Quantité: {{ item.quantity }}</p>
+    </div>
+  </div>
+  <button
+    @click="removeFromCart('{{ item.uuid }}')"
+    class="text-red border-none bg-transparent text-lg cursor-pointer"
+    title="retirer du panier"
+  >
+    <i class="bx bx-trash text-xl"></i>
+  </button>
+</li>
+
+{% empty %}
+
+<li class="flex items-center justify-between w-full py-2">
+  <h3 class="text-sm">Votre panier est vide</h3>
+  <a href="{% url 'store:gallery' %}"> Consulter la galerie</a>
+</li>
+
+{% endfor %}

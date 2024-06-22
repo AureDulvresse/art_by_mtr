@@ -22,6 +22,7 @@ function addToCart(event) {
         gravity: "top",
         backgroundColor: "#2ecc71",
       }).showToast();
+       $("#cart-items").html(data.cart_items_html);
     },
     error: function (xhr, textStatus, error) {
       Toastify({
@@ -36,7 +37,7 @@ function addToCart(event) {
   });
 }
 
-function removeFromCart(orderUuid) {
+function removeFromCart(order_uuid) {
   $.ajax({
     url: "/store/cart/remove-from-cart/",
     type: "POST",
@@ -45,7 +46,7 @@ function removeFromCart(orderUuid) {
     },
     contentType: "application/json",
     data: JSON.stringify({
-      order_uuid: orderUuid,
+      order_uuid: order_uuid,
     }),
     success: function (data) {
       if (data.success) {
@@ -56,7 +57,7 @@ function removeFromCart(orderUuid) {
           gravity: "top",
           backgroundColor: "#2ecc71",
         }).showToast();
-        location.reload();
+        $("#cart-items").html(data.cart_items_html);
       } else {
         Toastify({
           text: "Erreur lors de la suppression de l'article",
