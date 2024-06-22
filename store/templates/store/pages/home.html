@@ -38,7 +38,7 @@
     </div>
 
     <div class="grid-container">
-      {% for artwork in artworks %} {% artworkCard artwork %} {% endfor %}
+      {% for artwork in artworks %} {% artworkCard artwork user %} {% endfor %}
     </div>
     <a href="{% url 'store:gallery' %}" class="btn btn-red mt-8  wow animate__animated animate__zoomIn"
       >Découvrir la galerie</a

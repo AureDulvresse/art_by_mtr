@@ -1571,7 +1571,7 @@
         "kind": 2,
         "importPath": "store.templatetags.custom_tags",
         "description": "store.templatetags.custom_tags",
-        "peekOfCode": "def breadcrumb(title, msg, user, cart_items, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n    'preview_cart_items': cart_items,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"artwork-card.html\"))\ndef artworkCard(artwork, *args, **kwargs):",
+        "peekOfCode": "def breadcrumb(title, msg, user, cart_items, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n    'preview_cart_items': cart_items,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"artwork-card.html\"))\ndef artworkCard(artwork, user, *args, **kwargs):",
         "detail": "store.templatetags.custom_tags",
         "documentation": {}
     },
@@ -1580,7 +1580,7 @@
         "kind": 2,
         "importPath": "store.templatetags.custom_tags",
         "description": "store.templatetags.custom_tags",
-        "peekOfCode": "def artworkCard(artwork, *args, **kwargs):\n  data = {\n    'artwork': artwork,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"post-card.html\"))\ndef postCard(post, *args, **kwargs):\n  data = {\n    'post': post,\n  }",
+        "peekOfCode": "def artworkCard(artwork, user, *args, **kwargs):\n  data = {\n    'artwork': artwork,\n    'user': user,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"post-card.html\"))\ndef postCard(post, *args, **kwargs):\n  data = {\n    'post': post,",
         "detail": "store.templatetags.custom_tags",
         "documentation": {}
     },

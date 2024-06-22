@@ -1,14 +1,8 @@
-{% extends "base.html" %} 
+{% extends "base.html" %} {% load static %} {% load custom_tags %} 
 
-{% load static %} {% load mytags %}
+{% block title %} Connexion {% endblock %} {% block content %} 
 
-{% block title %} Enregistrement {% endblock %}
-
-{% block content %} 
-
-{% include "components/loader.html" %}
-{% include "accounts/layout/header.html" %}
-{% breadcrumb "Enrégistrement" "Dévenez un de nous client en un clic" user %}
+{% breadcrumb "Enrégistrement" "Dévenez un de nous client en un clic" user preview_cart_items %}
 
 <div class="mt-4 py-5">
   <div class="container">

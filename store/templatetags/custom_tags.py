@@ -18,10 +18,11 @@ def breadcrumb(title, msg, user, cart_items, *args, **kwargs):
   return data
 
 @register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], "artwork-card.html"))
-def artworkCard(artwork, *args, **kwargs):
+def artworkCard(artwork, user, *args, **kwargs):
   
   data = {
     'artwork': artwork,
+    'user': user,
   }
   
   return data
