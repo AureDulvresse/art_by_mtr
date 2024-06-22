@@ -18,7 +18,7 @@ from django.utils.html import strip_tags
 
 
 from art_by_mtr.settings import ELEMENTS_PER_PAGE
-from store.models import Artwork, Cart, CheckOut, Order, Payment
+from store.models import Artwork, Cart, CheckOut, Order
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -194,9 +194,7 @@ def add_to_cart(request):
     if request.method == "POST":
         data = json.loads(request.body)
         artwork_id = data.get("artwork_id")
-        quantity = int(data.get("quantity", 1))
-
-        print(request.POST.get("artwork_id"), artwork_id, type(artwork_id))
+        quantity = int(data.get("quantity"))
 
         try:
             artwork = Artwork.objects.get(id=artwork_id)
@@ -241,6 +239,7 @@ def remove_from_cart(request):
 
                 if order in cart.orders.all():
                     cart.orders.remove(order)
+                    order.delete()
 
                     # Récupérer les données mises à jour du panier
                     cart_items_html = render_to_string('store/partials/cart_items.html', {'preview_cart_items': cart_items[:3]})
@@ -280,173 +279,173 @@ def checkout_page(request):
     return render(request, "store/pages/checkout.html", context)
     
 
-@method_decorator(login_required, name='dispatch')
-class StripePaymentView(TemplateView):
-    template_name = 'payments/stripe_payment.html'
+# @method_decorator(login_required, name='dispatch')
+# class StripePaymentView(TemplateView):
+#     template_name = 'payments/stripe_payment.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['stripe_public_key'] = settings.STRIPE_PUBLIC_KEY
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['stripe_public_key'] = settings.STRIPE_PUBLIC_KEY
+#         return context
 
-@login_required
-def create_checkout_session(request):
-    if request.method == 'POST':
-        domain_url = 'http://localhost:8000/'  # Remplacez par votre domaine
-        checkout = CheckOut.objects.create(customer=request.user)
-        orders = request.user.orders.filter(ordered=False)
-        for order in orders:
-            checkout.orders.add(order)
+# @login_required
+# def create_checkout_session(request):
+#     if request.method == 'POST':
+#         domain_url = 'http://localhost:8000/'  # Remplacez par votre domaine
+#         checkout = CheckOut.objects.create(customer=request.user)
+#         orders = request.user.orders.filter(ordered=False)
+#         for order in orders:
+#             checkout.orders.add(order)
 
-        line_items = []
-        for order in orders:
-            line_items.append({
-                'price_data': {
-                    'currency': 'usd',
-                    'artwork_data': {
-                        'name': order.artwork.title,
-                    },
-                    'unit_amount': int(order.artwork.price * 100),  # Convert to cents
-                },
-                'quantity': order.quantity,
-            })
+#         line_items = []
+#         for order in orders:
+#             line_items.append({
+#                 'price_data': {
+#                     'currency': 'usd',
+#                     'artwork_data': {
+#                         'name': order.artwork.title,
+#                     },
+#                     'unit_amount': int(order.artwork.price * 100),  # Convert to cents
+#                 },
+#                 'quantity': order.quantity,
+#             })
 
-        try:
-            checkout_session = stripe.checkout.Session.create(
-                payment_method_types=['card'],
-                line_items=line_items,
-                mode='payment',
-                success_url=domain_url + 'payments/success/',
-                cancel_url=domain_url + 'payments/cancel/',
-            )
+#         try:
+#             checkout_session = stripe.checkout.Session.create(
+#                 payment_method_types=['card'],
+#                 line_items=line_items,
+#                 mode='payment',
+#                 success_url=domain_url + 'payments/success/',
+#                 cancel_url=domain_url + 'payments/cancel/',
+#             )
             
-            # Enregistrer les détails du paiement dans la base de données
-            Payment.objects.create(
-                user=request.user,
-                stripe_checkout_id=checkout_session.id,
-                amount=sum(order.artwork.price * order.quantity for order in orders),
-                currency='usd',
-                status='created',
-                checkout=checkout
-            )
+#             # Enregistrer les détails du paiement dans la base de données
+#             Payment.objects.create(
+#                 user=request.user,
+#                 stripe_checkout_id=checkout_session.id,
+#                 amount=sum(order.artwork.price * order.quantity for order in orders),
+#                 currency='usd',
+#                 status='created',
+#                 checkout=checkout
+#             )
 
-            return JsonResponse({'id': checkout_session.id})
-        except Exception as e:
-            return JsonResponse({'error': str(e)}, status=400)
+#             return JsonResponse({'id': checkout_session.id})
+#         except Exception as e:
+#             return JsonResponse({'error': str(e)}, status=400)
 
-@csrf_exempt
-def stripe_webhook(request):
-    payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+# @csrf_exempt
+# def stripe_webhook(request):
+#     payload = request.body
+#     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+#     endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
 
-    try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, endpoint_secret
-        )
-    except ValueError as e:
-        # Invalid payload
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
-        return HttpResponse(status=400)
+#     try:
+#         event = stripe.Webhook.construct_event(
+#             payload, sig_header, endpoint_secret
+#         )
+#     except ValueError as e:
+#         # Invalid payload
+#         return HttpResponse(status=400)
+#     except stripe.error.SignatureVerificationError as e:
+#         # Invalid signature
+#         return HttpResponse(status=400)
 
-    # Handle the checkout.session.completed event
-    if event['type'] == 'checkout.session.completed':
-        session = event['data']['object']
+#     # Handle the checkout.session.completed event
+#     if event['type'] == 'checkout.session.completed':
+#         session = event['data']['object']
 
-        # Mettre à jour l'état du paiement
-        payment = Payment.objects.get(stripe_checkout_id=session['id'])
-        payment.status = 'completed'
-        payment.save()
+#         # Mettre à jour l'état du paiement
+#         payment = Payment.objects.get(stripe_checkout_id=session['id'])
+#         payment.status = 'completed'
+#         payment.save()
 
-    return HttpResponse(status=200)
+#     return HttpResponse(status=200)
 
-paypalrestsdk.configure({
-    "mode": settings.PAYPAL_MODE,  # sandbox or live
-    "client_id": settings.PAYPAL_CLIENT_ID,
-    "client_secret": settings.PAYPAL_CLIENT_SECRET,
-})
+# paypalrestsdk.configure({
+#     "mode": settings.PAYPAL_MODE,  # sandbox or live
+#     "client_id": settings.PAYPAL_CLIENT_ID,
+#     "client_secret": settings.PAYPAL_CLIENT_SECRET,
+# })
 
-@login_required
-def create_paypal_payment(request):
-    if request.method == 'POST':
-        orders = request.user.orders.filter(ordered=False)
-        total_amount = sum(order.artwork.price * order.quantity for order in orders)
+# @login_required
+# def create_paypal_payment(request):
+#     if request.method == 'POST':
+#         orders = request.user.orders.filter(ordered=False)
+#         total_amount = sum(order.artwork.price * order.quantity for order in orders)
 
-        payment = paypalrestsdk.Payment({
-            "intent": "sale",
-            "payer": {
-                "payment_method": "paypal"
-            },
-             "redirect_urls": {
-                "return_url": "http://localhost:8000/payments/success/",
-                "cancel_url": "http://localhost:8000/payments/cancel/"
-            },
-            "transactions": [{
-                "item_list": {
-                    "items": [{
-                        "name": order.artwork.title,
-                        "sku": order.artwork.slug,
-                        "price": str(order.artwork.price),
-                        "currency": "USD",
-                        "quantity": order.quantity
-                    } for order in orders]
-                },
-                "amount": {
-                    "total": str(total_amount),
-                    "currency": "USD"
-                },
-                "description": "This is the payment transaction description."
-            }]
-        })
+#         payment = paypalrestsdk.Payment({
+#             "intent": "sale",
+#             "payer": {
+#                 "payment_method": "paypal"
+#             },
+#              "redirect_urls": {
+#                 "return_url": "http://localhost:8000/payments/success/",
+#                 "cancel_url": "http://localhost:8000/payments/cancel/"
+#             },
+#             "transactions": [{
+#                 "item_list": {
+#                     "items": [{
+#                         "name": order.artwork.title,
+#                         "sku": order.artwork.slug,
+#                         "price": str(order.artwork.price),
+#                         "currency": "USD",
+#                         "quantity": order.quantity
+#                     } for order in orders]
+#                 },
+#                 "amount": {
+#                     "total": str(total_amount),
+#                     "currency": "USD"
+#                 },
+#                 "description": "This is the payment transaction description."
+#             }]
+#         })
 
-        if payment.create():
-            for link in payment.links:
-                if link.rel == "approval_url":
-                    approval_url = str(link.href)
-                    return redirect(approval_url)
-        else:
-            return JsonResponse({'error': payment.error}, status=400)
+#         if payment.create():
+#             for link in payment.links:
+#                 if link.rel == "approval_url":
+#                     approval_url = str(link.href)
+#                     return redirect(approval_url)
+#         else:
+#             return JsonResponse({'error': payment.error}, status=400)
 
-@login_required
-def execute_paypal_payment(request):
-    payment_id = request.GET.get('paymentId')
-    payer_id = request.GET.get('PayerID')
-    payment = paypalrestsdk.Payment.find(payment_id)
+# @login_required
+# def execute_paypal_payment(request):
+#     payment_id = request.GET.get('paymentId')
+#     payer_id = request.GET.get('PayerID')
+#     payment = paypalrestsdk.Payment.find(payment_id)
 
-    if payment.execute({"payer_id": payer_id}):
-        # Enregistrer les détails du paiement dans la base de données
-        orders = request.user.orders.filter(ordered=False)
-        checkout = CheckOut.objects.create(customer=request.user)
-        for order in orders:
-            checkout.orders.add(order)
+#     if payment.execute({"payer_id": payer_id}):
+#         # Enregistrer les détails du paiement dans la base de données
+#         orders = request.user.orders.filter(ordered=False)
+#         checkout = CheckOut.objects.create(customer=request.user)
+#         for order in orders:
+#             checkout.orders.add(order)
 
-        Payment.objects.create(
-            user=request.user,
-            stripe_checkout_id=payment.id,
-            amount=payment.transactions[0].amount.total,
-            currency=payment.transactions[0].amount.currency,
-            status='completed',
-            checkout=checkout
-        )
+#         Payment.objects.create(
+#             user=request.user,
+#             stripe_checkout_id=payment.id,
+#             amount=payment.transactions[0].amount.total,
+#             currency=payment.transactions[0].amount.currency,
+#             status='completed',
+#             checkout=checkout
+#         )
 
-        for order in orders:
-            order.ordered = True
-            order.ordered_at = timezone.now()
-            order.save()
+#         for order in orders:
+#             order.ordered = True
+#             order.ordered_at = timezone.now()
+#             order.save()
 
-        return redirect('payments/success/')
-    else:
-        return JsonResponse({'error': payment.error}, status=400)
+#         return redirect('payments/success/')
+#     else:
+#         return JsonResponse({'error': payment.error}, status=400)
     
 
 
-@login_required
-def payment_success(request):
-    return render(request, 'store/payments/success.html')
+# @login_required
+# def payment_success(request):
+#     return render(request, 'store/payments/success.html')
 
-@login_required
-def payment_cancel(request):
-    return render(request, 'store/payments/cancel.html')
+# @login_required
+# def payment_cancel(request):
+#     return render(request, 'store/payments/cancel.html')
 

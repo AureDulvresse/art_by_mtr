@@ -1,5 +1,4 @@
 from django.db import models
-from django.http import HttpResponse
 from django.utils import timezone
 from django.urls import reverse
 from shortuuid.django_fields import ShortUUIDField
@@ -14,8 +13,10 @@ class Category(models.Model):
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
+        db_table = "store_category"
+        ordering = ["name"]
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name
 
 class Medium(models.Model):
@@ -24,15 +25,17 @@ class Medium(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Support"
-        verbose_name_plural = "Supports"
+        verbose_name = "Medium"
+        verbose_name_plural = "Media"
+        db_table = "store_medium"
+        ordering = ["name"]
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name
 
 class Artwork(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200)
+    title = models.CharField(max_length=180, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(blank=True)
     price = models.FloatField(default=0.0)
     stock = models.IntegerField(default=1)
@@ -44,11 +47,16 @@ class Artwork(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self) -> str:
+    class Meta:
+        db_table = "store_artwork"
+        ordering = ["title"]
+        unique_together = ["title", "slug"]
+
+    def __str__(self):
         return self.title
     
-    def get_absolute_url(self) -> HttpResponse:
-        return reverse("artwork-detail", kwargs={"uuid": self.slug})
+    def get_absolute_url(self):
+        return reverse("artwork-detail", kwargs={"slug": self.slug})
 
 class Order(models.Model):
     uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='order', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')
@@ -60,49 +68,68 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     ordered_at = models.DateTimeField(blank=True, null=True)
 
-    def __str__(self) -> str:
-        return f"{self.customer.username} commande {self.quantity} {self.artwork.title}"
+    class Meta:
+        db_table = "store_order"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.customer.username} ordered {self.quantity} of {self.artwork.title}"
     
-    def get_total_price(self) -> int:
+    def get_total_price(self):
         return self.artwork.price * self.quantity
 
 class Cart(models.Model):
     customer = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     orders = models.ManyToManyField(Order)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "store_cart"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"Cart of {self.customer.username}"
     
-    def __str__(self) -> str:
-        return f"Panier de {self.customer.username}"
-    
-    def delete(self, *args, **kwargs) -> None:
+    def delete(self, *args, **kwargs):
         for order in self.orders.all():
             order.ordered = True
             order.ordered_at = timezone.now()
             order.save()
         self.orders.clear()
-        super(*args, **kwargs).delete()
+        super().delete(*args, **kwargs)
 
 class CheckOut(models.Model):
-    uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='bill', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')
+    uuid = ShortUUIDField(unique=True, length=10, max_length=30, alphabet='abcdefghijklmnopqrstuvwxyz1234567890')
     customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     orders = models.ManyToManyField(Order)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = "Commande"
-
-    def __str__(self) -> str:
-        return f"Commande de {self.customer.username}"
-
-class Payment(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='payments')
-    stripe_checkout_id = models.CharField(max_length=255, unique=True)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    currency = models.CharField(max_length=10)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=50)
-    checkout = models.ForeignKey(CheckOut, on_delete=models.CASCADE)
+        verbose_name = "CheckOut"
+        db_table = "store_checkout"
+        ordering = ["-created_at"]
 
     def __str__(self):
-        return f'Payment {self.id} by {self.user}'
+        return f"Checkout by {self.customer.username}"
+
+# class Payment(models.Model):
+#     STATUS_CHOICES = [
+#         ('Pending', 'Pending'),
+#         ('Completed', 'Completed'),
+#         ('Failed', 'Failed'),
+#         ('Refunded', 'Refunded'),
+#     ]
+
+#     currency = models.CharField(max_length=10)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+#     status = models.CharField(max_length=15, choices=STATUS_CHOICES)
+#     checkout = models.ForeignKey(CheckOut, on_delete=models.CASCADE)
+
+#     class Meta:
+#         db_table = "store_payment"
+#         ordering = ["-created_at"]
+
+#     def __str__(self):
+#         return f'Payment {self.id} by {self.checkout.customer.username}'
+

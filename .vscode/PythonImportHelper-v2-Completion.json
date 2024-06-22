@@ -99,14 +99,6 @@
         "documentation": {}
     },
     {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -216,6 +208,15 @@
         "description": "django.contrib.auth.forms",
         "isExtraImport": true,
         "detail": "django.contrib.auth.forms",
+        "documentation": {}
+    },
+    {
+        "label": "django",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django",
+        "description": "django",
+        "detail": "django",
         "documentation": {}
     },
     {
@@ -339,28 +340,11 @@
         "documentation": {}
     },
     {
-        "label": "accounts",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "accounts",
-        "description": "accounts",
-        "detail": "accounts",
-        "documentation": {}
-    },
-    {
         "label": "views",
         "importPath": "accounts",
         "description": "accounts",
         "isExtraImport": true,
         "detail": "accounts",
-        "documentation": {}
-    },
-    {
-        "label": "HttpResponse",
-        "importPath": "django.http",
-        "description": "django.http",
-        "isExtraImport": true,
-        "detail": "django.http",
         "documentation": {}
     },
     {
@@ -405,6 +389,14 @@
     },
     {
         "label": "logout",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
         "isExtraImport": true,
@@ -605,6 +597,120 @@
         "documentation": {}
     },
     {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "Faker",
+        "importPath": "faker",
+        "description": "faker",
+        "isExtraImport": true,
+        "detail": "faker",
+        "documentation": {}
+    },
+    {
+        "label": "slugify",
+        "importPath": "django.utils.text",
+        "description": "django.utils.text",
+        "isExtraImport": true,
+        "detail": "django.utils.text",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "Category",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Medium",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Artwork",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "CheckOut",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Artwork",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "CheckOut",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
         "label": "django.db.models.deletion",
         "kind": 6,
         "isExtraImport": true,
@@ -628,14 +734,6 @@
         "description": "shortuuid.django_fields",
         "isExtraImport": true,
         "detail": "shortuuid.django_fields",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -775,55 +873,6 @@
         "description": "django.utils.html",
         "isExtraImport": true,
         "detail": "django.utils.html",
-        "documentation": {}
-    },
-    {
-        "label": "Artwork",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Cart",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "CheckOut",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Order",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Payment",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "sys",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "sys",
-        "description": "sys",
-        "detail": "sys",
         "documentation": {}
     },
     {
@@ -1385,6 +1434,87 @@
         "documentation": {}
     },
     {
+        "label": "create_categories",
+        "kind": 2,
+        "importPath": "scripts.seeders",
+        "description": "scripts.seeders",
+        "peekOfCode": "def create_categories(n=5):\n    categories = []\n    for _ in range(n):\n        name = fake.word()\n        category = Category.objects.create(name=name, description=fake.text())\n        categories.append(category)\n    return categories\ndef create_media(n=5):\n    media = []\n    for _ in range(n):",
+        "detail": "scripts.seeders",
+        "documentation": {}
+    },
+    {
+        "label": "create_media",
+        "kind": 2,
+        "importPath": "scripts.seeders",
+        "description": "scripts.seeders",
+        "peekOfCode": "def create_media(n=5):\n    media = []\n    for _ in range(n):\n        name = fake.word()\n        medium = Medium.objects.create(name=name)\n        media.append(medium)\n    return media\ndef create_artworks(categories, media, n=20):\n    artworks = []\n    for _ in range(n):",
+        "detail": "scripts.seeders",
+        "documentation": {}
+    },
+    {
+        "label": "create_artworks",
+        "kind": 2,
+        "importPath": "scripts.seeders",
+        "description": "scripts.seeders",
+        "peekOfCode": "def create_artworks(categories, media, n=20):\n    artworks = []\n    for _ in range(n):\n        title = fake.sentence(nb_words=4)\n        artwork = Artwork.objects.create(\n            title=title,\n            slug=slugify(title),\n            description=fake.text(),\n            price=random.uniform(10.0, 1000.0),\n            stock=random.randint(1, 10),",
+        "detail": "scripts.seeders",
+        "documentation": {}
+    },
+    {
+        "label": "create_users",
+        "kind": 2,
+        "importPath": "scripts.seeders",
+        "description": "scripts.seeders",
+        "peekOfCode": "def create_users(n=5):\n    User = get_user_model()\n    users = []\n    for _ in range(n):\n        user = User.objects.create_user(\n            username=fake.user_name(),\n            email=fake.email(),\n            password='password123'\n        )\n        users.append(user)",
+        "detail": "scripts.seeders",
+        "documentation": {}
+    },
+    {
+        "label": "create_orders",
+        "kind": 2,
+        "importPath": "scripts.seeders",
+        "description": "scripts.seeders",
+        "peekOfCode": "def create_orders(users, artworks, n=30):\n    orders = []\n    for _ in range(n):\n        order = Order.objects.create(\n            customer=random.choice(users),\n            artwork=random.choice(artworks),\n            quantity=random.randint(1, 5),\n            ordered=fake.boolean(chance_of_getting_true=50)\n        )\n        orders.append(order)",
+        "detail": "scripts.seeders",
+        "documentation": {}
+    },
+    {
+        "label": "create_carts",
+        "kind": 2,
+        "importPath": "scripts.seeders",
+        "description": "scripts.seeders",
+        "peekOfCode": "def create_carts(users, orders):\n    for user in users:\n        cart = Cart.objects.create(customer=user)\n        cart.orders.set(random.sample(orders, k=random.randint(1, 5)))\n        cart.save()\ndef create_checkouts(users, orders):\n    for user in users:\n        checkout = CheckOut.objects.create(customer=user)\n        checkout.orders.set(random.sample(orders, k=random.randint(1, 5)))\n        checkout.save()",
+        "detail": "scripts.seeders",
+        "documentation": {}
+    },
+    {
+        "label": "create_checkouts",
+        "kind": 2,
+        "importPath": "scripts.seeders",
+        "description": "scripts.seeders",
+        "peekOfCode": "def create_checkouts(users, orders):\n    for user in users:\n        checkout = CheckOut.objects.create(customer=user)\n        checkout.orders.set(random.sample(orders, k=random.randint(1, 5)))\n        checkout.save()\ndef populate_data():\n    print(\"Creating categories...\")\n    categories = create_categories()\n    print(\"Creating media...\")\n    media = create_media()",
+        "detail": "scripts.seeders",
+        "documentation": {}
+    },
+    {
+        "label": "populate_data",
+        "kind": 2,
+        "importPath": "scripts.seeders",
+        "description": "scripts.seeders",
+        "peekOfCode": "def populate_data():\n    print(\"Creating categories...\")\n    categories = create_categories()\n    print(\"Creating media...\")\n    media = create_media()\n    print(\"Creating artworks...\")\n    artworks = create_artworks(categories, media)\n    print(\"Creating users...\")\n    users = create_users()\n    print(\"Creating orders...\")",
+        "detail": "scripts.seeders",
+        "documentation": {}
+    },
+    {
+        "label": "fake",
+        "kind": 5,
+        "importPath": "scripts.seeders",
+        "description": "scripts.seeders",
+        "peekOfCode": "fake = Faker()\ndef create_categories(n=5):\n    categories = []\n    for _ in range(n):\n        name = fake.word()\n        category = Category.objects.create(name=name, description=fake.text())\n        categories.append(category)\n    return categories\ndef create_media(n=5):\n    media = []",
+        "detail": "scripts.seeders",
+        "documentation": {}
+    },
+    {
         "label": "Migration",
         "kind": 6,
         "importPath": "store.migrations.0001_initial",
@@ -1396,10 +1526,19 @@
     {
         "label": "Migration",
         "kind": 6,
-        "importPath": "store.migrations.0002_order_updated_at_payment",
-        "description": "store.migrations.0002_order_updated_at_payment",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('store', '0001_initial'),\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='order',\n            name='updated_at',\n            field=models.DateTimeField(auto_now=True),",
-        "detail": "store.migrations.0002_order_updated_at_payment",
+        "importPath": "store.migrations.0002_auto_20240622_2254",
+        "description": "store.migrations.0002_auto_20240622_2254",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('store', '0001_initial'),  # Remplacez par la dernière migration générée\n    ]\n    operations = [\n        migrations.RunPython(change_storage_engine_to_innodb),\n    ]",
+        "detail": "store.migrations.0002_auto_20240622_2254",
+        "documentation": {}
+    },
+    {
+        "label": "change_storage_engine_to_innodb",
+        "kind": 2,
+        "importPath": "store.migrations.0002_auto_20240622_2254",
+        "description": "store.migrations.0002_auto_20240622_2254",
+        "peekOfCode": "def change_storage_engine_to_innodb(apps, schema_editor):\n    tables = [\n        'store_category',\n        'store_medium',\n        'store_artwork',\n        'store_order',\n        'store_checkout',\n        'store_cart',\n    ]\n    for table in tables:",
+        "detail": "store.migrations.0002_auto_20240622_2254",
         "documentation": {}
     },
     {
@@ -1515,7 +1654,7 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class Category(models.Model):\n    name = models.CharField(max_length=128, unique=True)\n    description = models.TextField(blank=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    class Meta:\n        verbose_name = \"Category\"\n        verbose_name_plural = \"Categories\"\n    def __str__(self) -> str:\n        return self.name",
+        "peekOfCode": "class Category(models.Model):\n    name = models.CharField(max_length=128, unique=True)\n    description = models.TextField(blank=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    class Meta:\n        verbose_name = \"Category\"\n        verbose_name_plural = \"Categories\"\n        db_table = \"store_category\"\n        ordering = [\"name\"]",
         "detail": "store.models",
         "documentation": {}
     },
@@ -1524,7 +1663,7 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class Medium(models.Model):\n    name = models.CharField(max_length=128, unique=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    class Meta:\n        verbose_name = \"Support\"\n        verbose_name_plural = \"Supports\"\n    def __str__(self) -> str:\n        return self.name\nclass Artwork(models.Model):",
+        "peekOfCode": "class Medium(models.Model):\n    name = models.CharField(max_length=128, unique=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    class Meta:\n        verbose_name = \"Medium\"\n        verbose_name_plural = \"Media\"\n        db_table = \"store_medium\"\n        ordering = [\"name\"]\n    def __str__(self):",
         "detail": "store.models",
         "documentation": {}
     },
@@ -1533,7 +1672,7 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class Artwork(models.Model):\n    title = models.CharField(max_length=200)\n    slug = models.SlugField(max_length=200)\n    description = models.TextField(blank=True)\n    price = models.FloatField(default=0.0)\n    stock = models.IntegerField(default=1)\n    width = models.IntegerField()\n    height = models.IntegerField()\n    thumbnail = models.ImageField(upload_to=\"artworks\", blank=True, null=True)\n    category = models.ForeignKey(Category, on_delete=models.CASCADE)",
+        "peekOfCode": "class Artwork(models.Model):\n    title = models.CharField(max_length=180, unique=True)\n    slug = models.SlugField(max_length=200, unique=True)\n    description = models.TextField(blank=True)\n    price = models.FloatField(default=0.0)\n    stock = models.IntegerField(default=1)\n    width = models.IntegerField()\n    height = models.IntegerField()\n    thumbnail = models.ImageField(upload_to=\"artworks\", blank=True, null=True)\n    category = models.ForeignKey(Category, on_delete=models.CASCADE)",
         "detail": "store.models",
         "documentation": {}
     },
@@ -1542,7 +1681,7 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class Order(models.Model):\n    uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='order', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')\n    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)\n    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)\n    quantity = models.IntegerField(default=1)\n    ordered = models.BooleanField(default=False)\n    created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    ordered_at = models.DateTimeField(blank=True, null=True)\n    def __str__(self) -> str:",
+        "peekOfCode": "class Order(models.Model):\n    uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='order', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')\n    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)\n    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)\n    quantity = models.IntegerField(default=1)\n    ordered = models.BooleanField(default=False)\n    created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    ordered_at = models.DateTimeField(blank=True, null=True)\n    class Meta:",
         "detail": "store.models",
         "documentation": {}
     },
@@ -1551,7 +1690,7 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class Cart(models.Model):\n    customer = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)\n    orders = models.ManyToManyField(Order)\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self) -> str:\n        return f\"Panier de {self.customer.username}\"\n    def delete(self, *args, **kwargs) -> None:\n        for order in self.orders.all():\n            order.ordered = True\n            order.ordered_at = timezone.now()",
+        "peekOfCode": "class Cart(models.Model):\n    customer = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)\n    orders = models.ManyToManyField(Order)\n    created_at = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        db_table = \"store_cart\"\n        ordering = [\"-created_at\"]\n    def __str__(self):\n        return f\"Cart of {self.customer.username}\"\n    def delete(self, *args, **kwargs):",
         "detail": "store.models",
         "documentation": {}
     },
@@ -1560,16 +1699,7 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class CheckOut(models.Model):\n    uuid = ShortUUIDField(unique=True, length=10, max_length=30, prefix='bill', alphabet='abcdefghijklmnopqrstuvwxyz1234567890')\n    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)\n    orders = models.ManyToManyField(Order)\n    created_at = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        verbose_name = \"Commande\"\n    def __str__(self) -> str:\n        return f\"Commande de {self.customer.username}\"\nclass Payment(models.Model):",
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Payment",
-        "kind": 6,
-        "importPath": "store.models",
-        "description": "store.models",
-        "peekOfCode": "class Payment(models.Model):\n    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='payments')\n    stripe_checkout_id = models.CharField(max_length=255, unique=True)\n    amount = models.DecimalField(max_digits=10, decimal_places=2)\n    currency = models.CharField(max_length=10)\n    created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    status = models.CharField(max_length=50)\n    checkout = models.ForeignKey(CheckOut, on_delete=models.CASCADE)\n    def __str__(self):",
+        "peekOfCode": "class CheckOut(models.Model):\n    uuid = ShortUUIDField(unique=True, length=10, max_length=30, alphabet='abcdefghijklmnopqrstuvwxyz1234567890')\n    customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)\n    orders = models.ManyToManyField(Order)\n    created_at = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        verbose_name = \"CheckOut\"\n        db_table = \"store_checkout\"\n        ordering = [\"-created_at\"]\n    def __str__(self):",
         "detail": "store.models",
         "documentation": {}
     },
@@ -1589,15 +1719,6 @@
         "description": "store.urls",
         "peekOfCode": "urlpatterns = [\n   path('', views.home_page, name=\"home\"),\n   path('about/', views.about_page, name=\"about\"),\n   path('gallery/', views.gallery_page, name=\"gallery\"),\n   path('artwork/<str:slug>/', views.artwork_detail_page, name=\"artwork-detail\"),\n   path('store/cart/', views.cart_page, name=\"cart\"),\n   path('store/cart/add-to-cart/', views.add_to_cart, name='add-to-cart'),\n   path('store/cart/remove-from-cart/', views.remove_from_cart, name='remove-from-cart'),\n   path('store/checkout/', views.checkout_page, name=\"checkout\"),\n   path('contact/', views.contact_page, name=\"contact\"),",
         "detail": "store.urls",
-        "documentation": {}
-    },
-    {
-        "label": "StripePaymentView",
-        "kind": 6,
-        "importPath": "store.views",
-        "description": "store.views",
-        "peekOfCode": "class StripePaymentView(TemplateView):\n    template_name = 'payments/stripe_payment.html'\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        context['stripe_public_key'] = settings.STRIPE_PUBLIC_KEY\n        return context\n@login_required\ndef create_checkout_session(request):\n    if request.method == 'POST':\n        domain_url = 'http://localhost:8000/'  # Remplacez par votre domaine",
-        "detail": "store.views",
         "documentation": {}
     },
     {
@@ -1659,7 +1780,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def add_to_cart(request):\n    if request.method == \"POST\":\n        data = json.loads(request.body)\n        artwork_id = data.get(\"artwork_id\")\n        quantity = int(data.get(\"quantity\", 1))\n        print(request.POST.get(\"artwork_id\"), artwork_id, type(artwork_id))\n        try:\n            artwork = Artwork.objects.get(id=artwork_id)\n        except Artwork.DoesNotExist:\n            return JsonResponse({\"error\": \"Artwork not found\"}, status=404)",
+        "peekOfCode": "def add_to_cart(request):\n    if request.method == \"POST\":\n        data = json.loads(request.body)\n        artwork_id = data.get(\"artwork_id\")\n        quantity = int(data.get(\"quantity\"))\n        try:\n            artwork = Artwork.objects.get(id=artwork_id)\n        except Artwork.DoesNotExist:\n            return JsonResponse({\"error\": \"Artwork not found\"}, status=404)\n        cart, created = Cart.objects.get_or_create(customer=request.user)",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1678,60 +1799,6 @@
         "importPath": "store.views",
         "description": "store.views",
         "peekOfCode": "def checkout_page(request):\n    user = request.user\n    cart = get_object_or_404(Cart, customer = user)\n    if request.method == \"POST\":\n        CheckOut.objects.create(customer = user, orders = cart.orders.all())\n        cart.delete()\n        return redirect(\"store:shop\")\n    cart_cumul = 0\n    orders = cart.orders.all().order_by('-created_at')\n    for order in orders:",
-        "detail": "store.views",
-        "documentation": {}
-    },
-    {
-        "label": "create_checkout_session",
-        "kind": 2,
-        "importPath": "store.views",
-        "description": "store.views",
-        "peekOfCode": "def create_checkout_session(request):\n    if request.method == 'POST':\n        domain_url = 'http://localhost:8000/'  # Remplacez par votre domaine\n        checkout = CheckOut.objects.create(customer=request.user)\n        orders = request.user.orders.filter(ordered=False)\n        for order in orders:\n            checkout.orders.add(order)\n        line_items = []\n        for order in orders:\n            line_items.append({",
-        "detail": "store.views",
-        "documentation": {}
-    },
-    {
-        "label": "stripe_webhook",
-        "kind": 2,
-        "importPath": "store.views",
-        "description": "store.views",
-        "peekOfCode": "def stripe_webhook(request):\n    payload = request.body\n    sig_header = request.META['HTTP_STRIPE_SIGNATURE']\n    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET\n    try:\n        event = stripe.Webhook.construct_event(\n            payload, sig_header, endpoint_secret\n        )\n    except ValueError as e:\n        # Invalid payload",
-        "detail": "store.views",
-        "documentation": {}
-    },
-    {
-        "label": "create_paypal_payment",
-        "kind": 2,
-        "importPath": "store.views",
-        "description": "store.views",
-        "peekOfCode": "def create_paypal_payment(request):\n    if request.method == 'POST':\n        orders = request.user.orders.filter(ordered=False)\n        total_amount = sum(order.artwork.price * order.quantity for order in orders)\n        payment = paypalrestsdk.Payment({\n            \"intent\": \"sale\",\n            \"payer\": {\n                \"payment_method\": \"paypal\"\n            },\n             \"redirect_urls\": {",
-        "detail": "store.views",
-        "documentation": {}
-    },
-    {
-        "label": "execute_paypal_payment",
-        "kind": 2,
-        "importPath": "store.views",
-        "description": "store.views",
-        "peekOfCode": "def execute_paypal_payment(request):\n    payment_id = request.GET.get('paymentId')\n    payer_id = request.GET.get('PayerID')\n    payment = paypalrestsdk.Payment.find(payment_id)\n    if payment.execute({\"payer_id\": payer_id}):\n        # Enregistrer les détails du paiement dans la base de données\n        orders = request.user.orders.filter(ordered=False)\n        checkout = CheckOut.objects.create(customer=request.user)\n        for order in orders:\n            checkout.orders.add(order)",
-        "detail": "store.views",
-        "documentation": {}
-    },
-    {
-        "label": "payment_success",
-        "kind": 2,
-        "importPath": "store.views",
-        "description": "store.views",
-        "peekOfCode": "def payment_success(request):\n    return render(request, 'store/payments/success.html')\n@login_required\ndef payment_cancel(request):\n    return render(request, 'store/payments/cancel.html')",
-        "detail": "store.views",
-        "documentation": {}
-    },
-    {
-        "label": "payment_cancel",
-        "kind": 2,
-        "importPath": "store.views",
-        "description": "store.views",
-        "peekOfCode": "def payment_cancel(request):\n    return render(request, 'store/payments/cancel.html')",
         "detail": "store.views",
         "documentation": {}
     },

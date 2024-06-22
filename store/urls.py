@@ -1,4 +1,3 @@
-import accounts
 from django.urls import path
 # from django.conf.urls import handler404
 
@@ -17,14 +16,14 @@ urlpatterns = [
    path('store/checkout/', views.checkout_page, name="checkout"),
    path('contact/', views.contact_page, name="contact"),
    
-   path('store/stripe/', views.StripePaymentView.as_view(), name='stripe_payment'),
-   path('store/stripe/create-checkout-session/', views.create_checkout_session, name='create_checkout_session'),
+   # path('store/stripe/', views.StripePaymentView.as_view(), name='stripe_payment'),
+   # path('store/stripe/create-checkout-session/', views.create_checkout_session, name='create_checkout_session'),
 
-   path('store/paypal/create-payment/', views.create_paypal_payment, name='create_paypal_payment'),
-   path('store/paypal/execute/',views.execute_paypal_payment, name='execute_paypal_payment'),
+   # path('store/paypal/create-payment/', views.create_paypal_payment, name='create_paypal_payment'),
+   # path('store/paypal/execute/',views.execute_paypal_payment, name='execute_paypal_payment'),
 
-   path('payments/success/', views.payment_success, name='create_paypal_payment'),
-   path('payments/cancel/',views.payment_cancel, name='execute_paypal_payment'),
+   # path('payments/success/', views.payment_success, name='create_paypal_payment'),
+   # path('payments/cancel/',views.payment_cancel, name='execute_paypal_payment'),
 ]
 
 # handler404 = f"{app_name}.views.page_404"
