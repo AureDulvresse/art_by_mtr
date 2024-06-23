@@ -59,10 +59,9 @@
       repellendus!
     </p>
     <div class="flex item-center justify-center gap-3 wow animate__animated animate__zoomIn">
-      <a href="{% url 'store:gallery' %}" class="btn btn-outline-red"
+      <a href="{% url 'store:gallery' %}" class="btn btn-black"
         >Visiter la boutique</a
       >
-      <button type="button" class="btn btn-black">Ajouter au panier</button>
     </div>
   </div>
 </section>
@@ -181,7 +180,7 @@
     </div>
 
     <div class="grid-container">
-      {% for artwork in artworks %} {% artworkCard artwork %} {% endfor %}
+      {% for artwork in artworks %} {% artworkCard artwork user  %} {% endfor %}
     </div>
     <a href="{% url 'store:gallery' %}" class="btn btn-red mt-8  wow animate__animated animate__zoomIn"
       >Voir Plus</a

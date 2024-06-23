@@ -32,7 +32,7 @@ def home_page(request):
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
-            cart_items = cart.select_related('artwork').order_by('-updated_at')
+            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
 
@@ -192,7 +192,7 @@ def checkout_page(request):
 
     context = {
         'cart': cart,
-        'total_coast': total_cost,
+        'total_cost': total_cost,
         'preview_cart_items': cart.select_related('artwork').order_by('-updated_at')[:3] if cart.exists() else None,
     }
 

@@ -472,6 +472,26 @@ a {
     text-align: center;
 }
 
+.checkout-section {
+    padding: 50px 0;
+}
+
+/* Accordéons */
+.single-accordion {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.single-accordion .card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+.single-accordion .card-body {
+    padding: 20px;
+}
+
 .form-control {
     padding: 12px 10px;
     border-radius: var(--border-radius);

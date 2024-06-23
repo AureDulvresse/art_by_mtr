@@ -1785,7 +1785,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def home_page(request):\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    context = {",
+        "peekOfCode": "def home_page(request):\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    context = {",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1839,7 +1839,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def checkout_page(request):\n    user = request.user\n    cart, total_cost = get_cart_items(user)\n    if request.method == \"POST\":\n        CheckOut.objects.create(customer=user, orders=cart.orders.all())\n        cart.delete()\n        return redirect(\"store:shop\")\n    context = {\n        'cart': cart,\n        'total_coast': total_cost,",
+        "peekOfCode": "def checkout_page(request):\n    user = request.user\n    cart, total_cost = get_cart_items(user)\n    if request.method == \"POST\":\n        CheckOut.objects.create(customer=user, orders=cart.orders.all())\n        cart.delete()\n        return redirect(\"store:shop\")\n    context = {\n        'cart': cart,\n        'total_cost': total_cost,",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1866,7 +1866,7 @@
         "kind": 5,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "stripe.api_key = settings.STRIPE_SECRET_KEY\ndef home_page(request):\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None",
+        "peekOfCode": "stripe.api_key = settings.STRIPE_SECRET_KEY\ndef home_page(request):\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None",
         "detail": "store.views",
         "documentation": {}
     },

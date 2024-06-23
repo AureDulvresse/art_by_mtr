@@ -1,28 +1,30 @@
-{% extends "base.html" %} {% load static %} {% load custom_tags %} 
+{% extends "base.html" %} {% load static %}
 
-{% block title %} Checkout {% endblock title %} 
+{% load custom_tags %} {% block title %} Checkout {% endblock title %}
 
 {% block content %} 
 
-{% breadcrumb "Commander" "Plus qu'une dernière étape" user preview_cart_items %}
+{% breadcrumb "Finaliser votre commande" "Plus qu'une dernière étape" user preview_cart_items %}
 
 <!-- Checkout Section -->
-<div class="checkout-section mt-150 mb-150" x-data="stripePayment()" x-init="initStripe">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8">
+<section
+  class="mt-8 pt-4 pb-5 checkout wow animate__animated animate__fadeIn"
+  data-wow-delay="0.3s"
+>
+  <div class="container mx-auto pb-2">
+    <div class="flex justify-center items-start gap-4">
+      <div class="wow animate__animated animate__slideInLeft">
         <div class="checkout-accordion-wrap">
           <div class="accordion" id="accordionExample">
-            <div class="card single-accordion">
+            <div class="card single-accordion" x-data="{ open: true }">
               <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
                   <button
                     class="btn btn-link"
                     type="button"
-                    data-toggle="collapse"
-                    data-target="#collapseOne"
+                    @click="open = !open"
                     aria-expanded="true"
-                    aria-controls="collapseOne"
+                    :aria-expanded="open.toString()"
                   >
                     Billing Address
                   </button>
@@ -31,41 +33,50 @@
 
               <div
                 id="collapseOne"
-                class="collapse show"
+                class="collapse"
+                :class="{ 'show': open }"
                 aria-labelledby="headingOne"
                 data-parent="#accordionExample"
               >
                 <div class="card-body">
                   <div class="billing-address-form">
                     <form method="post">
-                      <p><input type="text" placeholder="Name" /></p>
-                      <p><input type="email" placeholder="Email" /></p>
-                      <p><input type="text" placeholder="Address" /></p>
-                      <p><input type="tel" placeholder="Phone" /></p>
-                      <p>
+                      <div class="mb-3">
+                        <input type="text" class="form-control w-full" placeholder="Name" />
+                      </div>
+                      <div class="mb-3">
+                        <input type="email" class="form-control w-full" placeholder="Email" />
+                      </div>
+                      <div class="mb-3">
+                        <input type="text" class="form-control w-full" placeholder="Address" />
+                      </div>
+                      <div class="mb-3">
+                        <input type="tel" class="form-control w-full" placeholder="Phone" />
+                      </div>
+                      <div class="mb-3">
                         <textarea
                           name="bill"
                           id="bill"
                           cols="30"
                           rows="10"
+                          class="form-control w-full"
                           placeholder="Say Something"
                         ></textarea>
-                      </p>
+                      </div>
                     </form>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="card single-accordion">
+            <div class="card single-accordion" x-data="{ open: false }">
               <div class="card-header" id="headingTwo">
                 <h5 class="mb-0">
                   <button
-                    class="btn btn-link collapsed"
+                    class="btn btn-link"
                     type="button"
-                    data-toggle="collapse"
-                    data-target="#collapseTwo"
+                    @click="open = !open"
                     aria-expanded="false"
-                    aria-controls="collapseTwo"
+                    :aria-expanded="open.toString()"
                   >
                     Shipping Address
                   </button>
@@ -74,6 +85,7 @@
               <div
                 id="collapseTwo"
                 class="collapse"
+                :class="{ 'show': open }"
                 aria-labelledby="headingTwo"
                 data-parent="#accordionExample"
               >
@@ -84,16 +96,15 @@
                 </div>
               </div>
             </div>
-            <div class="card single-accordion">
+            <div class="card single-accordion" x-data="{ open: false }">
               <div class="card-header" id="headingThree">
                 <h5 class="mb-0">
                   <button
-                    class="btn btn-link collapsed"
+                    class="btn btn-link"
                     type="button"
-                    data-toggle="collapse"
-                    data-target="#collapseThree"
+                    @click="open = !open"
                     aria-expanded="false"
-                    aria-controls="collapseThree"
+                    :aria-expanded="open.toString()"
                   >
                     Card Details
                   </button>
@@ -102,6 +113,7 @@
               <div
                 id="collapseThree"
                 class="collapse"
+                :class="{ 'show': open }"
                 aria-labelledby="headingThree"
                 data-parent="#accordionExample"
               >
@@ -111,23 +123,22 @@
                       <div id="card-element">
                         <!-- Stripe Element will be inserted here. -->
                       </div>
-                      <button id="submit">Submit Payment</button>
+                      <button type="submit" id="submit">Submit Payment</button>
                       <div id="card-errors" role="alert"></div>
                     </form>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="card single-accordion">
+            <div class="card single-accordion" x-data="{ open: false }">
               <div class="card-header" id="headingFour">
                 <h5 class="mb-0">
                   <button
-                    class="btn btn-link collapsed"
+                    class="btn btn-black w-full"
                     type="button"
-                    data-toggle="collapse"
-                    data-target="#collapseFour"
+                    @click="open = !open"
                     aria-expanded="false"
-                    aria-controls="collapseFour"
+                    :aria-expanded="open.toString()"
                   >
                     PayPal
                   </button>
@@ -136,6 +147,7 @@
               <div
                 id="collapseFour"
                 class="collapse"
+                :class="{ 'show': open }"
                 aria-labelledby="headingFour"
                 data-parent="#accordionExample"
               >
@@ -148,51 +160,62 @@
         </div>
       </div>
 
-      <div class="col-lg-4">
-        <div class="order-details-wrap">
-          <table class="order-details">
-            <thead>
-              <tr>
+      <div class="wow animate__animated animate__slideInRight">
+        <div class="total-section">
+          <table class="total-table">
+            <thead class="total-table-head">
+              <tr class="table-total-row">
                 <th>Your order Details</th>
                 <th>Price</th>
               </tr>
             </thead>
-            <tbody class="order-details-body">
-              <tr>
-                <td>Product</td>
-                <td>Total</td>
+            <tbody class="mt-2">
+              <tr class="total-data">
+                <td>Tableaux</td>
+                <td class="text-red">Total</td>
               </tr>
-              {% for order in cart_items %}
-              <tr>
-                <td>{{ order.artwork.name }}</td>
-                <td>{{ order.artwork.price }} $</td>
+              {% for order in cart %}
+              <tr class="total-data">
+                <td>{{ order.artwork.title }}</td>
+                <td class="text-red">{{ order.get_total_price }} €</td>
               </tr>
               {% endfor %}
             </tbody>
-            <tr class="bg-dark">
-                <td class="bg-dark py-1"></td>
-                <td class="bg-dark py-1"></td>
+
+            <tr class="bg-black py-2">
+              <td class="bg-black py-1"></td>
+              <td class="bg-black py-1"></td>
             </tr>
-              <tbody class="checkout-details bg-dark-subtle ">
-                <tr>
-                  <td>Subtotal</td>
-                  <td>{{ order_cumul }} $</td>
-                </tr>
-                <tr>
-                  <td>Shipping</td>
-                  <td>0 $</td>
-                </tr>
-                <tr>
-                  <td>Total</td>
-                  <td>{{ order_cumul }} $</td>
-                </tr>
-              </tbody>
+            <tbody>
+              <tr class="total-data">
+                <td>Subtotal</td>
+                <td>{{ total_cost }} €</td>
+              </tr>
+              <tr class="total-data">
+                <td>Shipping</td>
+                <td>0 $</td>
+              </tr>
+              <tr class="total-data">
+                <td>Total</td>
+                <td>{{ total_cost|add:0 }} €</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<!-- End Checkout Section -->
+    <!-- End Checkout Section -->
 
-{% endblock content %}
+    {% endblock content %}
+
+    <script>
+      function stripePayment() {
+        return {
+          initStripe() {
+            // Initialisation de Stripe ici
+          },
+        };
+      }
+    </script>
+  </div>
+</section>
