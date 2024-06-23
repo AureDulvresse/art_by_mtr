@@ -6,7 +6,7 @@
 
 {% breadcrumb "Commander" "Plus qu'une dernière étape" user preview_cart_items %}
 
-<!-- check out section -->
+<!-- Checkout Section -->
 <div class="checkout-section mt-150 mb-150" x-data="stripePayment()" x-init="initStripe">
   <div class="container">
     <div class="row">
@@ -107,8 +107,40 @@
               >
                 <div class="card-body">
                   <div class="card-details">
-                    <p>Your card details goes here.</p>
+                    <form id="payment-form">
+                      <div id="card-element">
+                        <!-- Stripe Element will be inserted here. -->
+                      </div>
+                      <button id="submit">Submit Payment</button>
+                      <div id="card-errors" role="alert"></div>
+                    </form>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="card single-accordion">
+              <div class="card-header" id="headingFour">
+                <h5 class="mb-0">
+                  <button
+                    class="btn btn-link collapsed"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseFour"
+                    aria-expanded="false"
+                    aria-controls="collapseFour"
+                  >
+                    PayPal
+                  </button>
+                </h5>
+              </div>
+              <div
+                id="collapseFour"
+                class="collapse"
+                aria-labelledby="headingFour"
+                data-parent="#accordionExample"
+              >
+                <div class="card-body">
+                  <div id="paypal-button-container"></div>
                 </div>
               </div>
             </div>
@@ -130,10 +162,10 @@
                 <td>Product</td>
                 <td>Total</td>
               </tr>
-              {% for order in orders %}
+              {% for order in cart_items %}
               <tr>
-                <td>{{ order.product.name }}</td>
-                <td>{{ order.product.price }} $</td>
+                <td>{{ order.artwork.name }}</td>
+                <td>{{ order.artwork.price }} $</td>
               </tr>
               {% endfor %}
             </tbody>
@@ -144,20 +176,15 @@
               <tbody class="checkout-details bg-dark-subtle ">
                 <tr>
                   <td>Subtotal</td>
-                  <td>{{ order_cumul }}</td>
+                  <td>{{ order_cumul }} $</td>
                 </tr>
                 <tr>
                   <td>Shipping</td>
-                  <td>0</td>
+                  <td>0 $</td>
                 </tr>
                 <tr>
                   <td>Total</td>
-                  <td>{{ order_cumul }}</td>
-                </tr>
-                <tr>
-                  <td colspan="2">
-                   <button id="checkout-stripe-button" @click="stripePayment">Checkout Avec Stripe</button>
-                  </td>
+                  <td>{{ order_cumul }} $</td>
                 </tr>
               </tbody>
           </table>
@@ -166,6 +193,6 @@
     </div>
   </div>
 </div>
-<!-- end check out section -->
+<!-- End Checkout Section -->
 
 {% endblock content %}

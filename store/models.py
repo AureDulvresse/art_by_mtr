@@ -90,6 +90,10 @@ class Cart(models.Model):
     def __str__(self):
         return f"Cart of {self.customer.username}"
     
+    @property
+    def total_cost(self):
+        return sum(order.artwork.price * order.quantity for order in self.orders.all())
+    
     def delete(self, *args, **kwargs):
         for order in self.orders.all():
             order.ordered = True

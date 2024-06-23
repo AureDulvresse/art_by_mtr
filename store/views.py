@@ -19,6 +19,7 @@ from django.utils.html import strip_tags
 
 from art_by_mtr.settings import ELEMENTS_PER_PAGE
 from store.models import Artwork, Cart, CheckOut, Order
+from store.utils import get_cart_items
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -31,7 +32,7 @@ def home_page(request):
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
-            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
+            cart_items = cart.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
 
@@ -48,7 +49,7 @@ def about_page(request):
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
-            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
+            cart_items = cart.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
 
@@ -63,10 +64,11 @@ def gallery_page(request):
     artworks = Artwork.objects.all().order_by("-updated_at")
 
     cart_items = None
-    if request.user.is_authenticated:
+    user = request.user
+    if user.is_authenticated:
         try:
-            cart = Cart.objects.get(customer=request.user)
-            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
+            cart, _ = get_cart_items(user)
+            cart_items = cart.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
 
@@ -84,9 +86,10 @@ def gallery_page(request):
 
 def artwork_detail_page(request, slug):
     cart_items = None
-    if request.user.is_authenticated:
+    user = request.user
+    if user.is_authenticated:
         try:
-            cart = Cart.objects.get(customer=request.user)
+            cart, _ = get_cart_items(user)
             cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
@@ -108,10 +111,11 @@ def artwork_detail_page(request, slug):
 def contact_page(request) -> HttpResponse:
 
     cart_items = None
-    if request.user.is_authenticated:
+    user = request.user
+    if user.is_authenticated:
         try:
-            cart = Cart.objects.get(customer=request.user)
-            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
+            cart, _ = get_cart_items(user)
+            cart_items = cart.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
 
@@ -163,14 +167,13 @@ def contact_page(request) -> HttpResponse:
 
 @login_required
 def cart_page(request):
-    cart = get_object_or_404(Cart, customer=request.user)
-
-    cart_total = sum(order.get_total_price() for order in cart.orders.all())
+    user = request.user
+    cart, total_cost = get_cart_items(user)
 
     context = {
-        "cart": cart,
-        "cart_total": cart_total,
-        'preview_cart_items': cart.orders.select_related('artwork').order_by('-updated_at')[:3] if cart.orders.exists() else None,
+        "cart": cart.select_related('artwork').order_by('-updated_at'),
+        "total_cost": total_cost,
+        'preview_cart_items': cart.select_related('artwork').order_by('-updated_at')[:3] if cart.exists() else None,
     }
 
     return render(request, "store/pages/cart.html", context)
@@ -180,19 +183,17 @@ def cart_page(request):
 @login_required
 def checkout_page(request):
     user = request.user
-    cart = get_object_or_404(Cart, customer=user)
+    cart, total_cost = get_cart_items(user)
 
     if request.method == "POST":
         CheckOut.objects.create(customer=user, orders=cart.orders.all())
         cart.delete()
         return redirect("store:shop")
 
-    cart_total = sum(order.get_total_price() for order in cart.orders.all())
-
     context = {
         'cart': cart,
-        'cart_total': cart_total,
-        'preview_cart_items': cart.orders.select_related('artwork').order_by('-updated_at')[:3] if cart.orders.exists() else None,
+        'total_coast': total_cost,
+        'preview_cart_items': cart.select_related('artwork').order_by('-updated_at')[:3] if cart.exists() else None,
     }
 
     return render(request, "store/pages/checkout.html", context)
@@ -243,8 +244,8 @@ def remove_from_cart(request):
         if request.user.is_authenticated:
             cart_items = None
             try:
-                cart = get_object_or_404(Cart, customer=request.user)
                 order = get_object_or_404(Order, uuid=order_uuid)
+                cart, _ = get_cart_items(request.user)
                 cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
 
                 if order in cart.orders.all():

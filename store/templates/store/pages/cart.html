@@ -1,112 +1,97 @@
 {% extends "base.html" %} {% load static %} {% load custom_tags %}
 
-{% block title %} Panier {% endblock title %}
-
-{% block content %}
+{% block title %} Panier {% endblock title %} {% block content %}
 
 {% breadcrumb "Panier" "Bien remplis et prêt à être acheter !" user preview_cart_items %}
 
-<!-- cart -->
-<div class="cart-section mt-150 mb-150">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-12">
-        <div class="cart-table-wrap">
-          <table class="cart-table">
-            <thead class="cart-table-head">
-              <tr class="table-head-row">
-                <th class="artwork-remove">
-                  <i
-                    class="far fa-trash-alt text-danger fa-2x"
-                    style="cursor: pointer"
-                    title="Supprimer le panier"
-                    data-toggle="modal"
-                    data-target="#removeCart"
-                  ></i>
-                </th>
-                <th class="artwork-image">artwork Image</th>
-                <th class="artwork-name">Désignation</th>
-                <th class="artwork-price">Prix</th>
-                <th class="artwork-quantity">Quantité</th>
-                <th class="artwork-total">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for order in orders %}
-              <tr class="table-body-row">
-                <td class="artwork-remove">
-                  <a
-                    href=""
-                    title="Retirer du panier"
-                  >
-                    <i class="fas fa-times-circle"> </i>
-                  </a>
-                </td>
-                <td class="artwork-image">
-                  <img
-                    src="{{ order.artwork.thumbnail.url }}"
-                    alt="{{ order.artwork.title }}"
-                  />
-                </td>
-                <td class="artwork-name">{{ order.artwork.name }}</td>
-                <td class="artwork-price">{{ order.artwork.price }} $</td>
-                <td class="artwork-quantity">{{ order.quantity }}</td>
-                <td class="artwork-total">{{ order.quantity }}</td>
-              </tr>
-              {% empty %}
-              <tr>
-                Panier vide
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
+<!-- Cart Section -->
+<section
+  class="mt-8 pt-4 pb-5 cart wow animate__animated animate__fadeIn"
+  data-wow-delay="0.3s"
+>
+  <div class="container mx-auto pb-2">
+    <div class="flex justify-center items-start gap-4">
+      <div class="cart-table-wrap wow animate__animated animate__slideInLeft"">
+      <table class="cart-table">
+        <thead class="cart-table-head">
+          <tr class="table-head-row">
+            <th class="artwork-remove">
+              <i
+                class="bx bx-trash-alt text-red text-2xl"
+                style="cursor: pointer"
+                title="Supprimer le panier"
+                data-toggle="modal"
+                data-target="#removeCart"
+              ></i>
+            </th>
+            <th class="artwork-image">Image</th>
+            <th class="artwork-name">Titre de l'oeuvre</th>
+            <th class="artwork-price">Prix</th>
+            <th class="artwork-quantity">Quantité</th>
+            <th class="artwork-total">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart %}
+          <tr class="table-body-row">
+            <td class="artwork-remove">
+              <button
+                @click="removeFromCart('{{ item.uuid }}')"
+                class="text-red border-none bg-transparent text-lg cursor-pointer"
+                title="retirer du panier"
+              >
+                <i class="bx bx-x-circle text-red"></i>
+              </button>
+            </td>
+            <td class="artwork-image">
+              <img src="{{ item.artwork.thumbnail.url}}" alt="Artwork Title" />
+            </td>
+            <td class="artwork-name">{{ item.artwork.title }}</td>
+            <td class="artwork-price">{{ item.artwork.price }} €</td>
+            <td class="artwork-quantity">{{ item.quantity }}</td>
+            <td class="artwork-total">{{ item.get_total_price }} €</td>
+          </tr>
 
-      <div class="col-lg-4">
-        <div class="total-section">
-          <table class="total-table">
-            <thead class="total-table-head">
-              <tr class="table-total-row">
-                <th>Total</th>
-                <th>Prix</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="total-data">
-                <td><strong>Coût total: </strong></td>
-                <td>{{ cart_cumul }} $</td>
-              </tr>
-              <tr class="total-data">
-                <td><strong>Livraison: </strong></td>
-                <td>0 $</td>
-              </tr>
-              <tr class="total-data">
-                <td><strong>Total à payer: </strong></td>
-                <td>{{ cart_cumul }} $</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="cart-buttons">
-            <a href="{% url 'store:checkout' %}" class="boxed-btn black"
-              >Check Out</a
-            >
-          </div>
-        </div>
+          {% empty %}
+          <tr>
+            <td colspan="6" class="text-center">Panier vide</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
-        <div class="coupon-section">
-          <h3>Apply Coupon</h3>
-          <div class="coupon-form-wrap">
-            <form action="index.html">
-              <p><input type="text" placeholder="Coupon" /></p>
-              <p><input type="submit" value="Apply" /></p>
-            </form>
-          </div>
+    <div class="wow animate__animated animate__slideInRight">
+      <div class="total-section">
+        <table class="total-table">
+          <thead class="total-table-head">
+            <tr class="table-total-row">
+              <th>Total</th>
+              <th>Prix</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="total-data">
+              <td><strong>Coût total: </strong></td>
+              <td>{{ total_cost }} €</td>
+            </tr>
+            <tr class="total-data">
+              <td><strong>Livraison: </strong></td>
+              <td>0 €</td>
+            </tr>
+            <tr class="total-data">
+              <td><strong>Total à payer: </strong></td>
+              <td>{{ total_cost|add:0 }}  €</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="cart-buttons">
+          <a href="{% url 'store:checkout' %}" class="btn btn-red w-full">Check Out</a>
         </div>
       </div>
     </div>
   </div>
-</div>
-<!-- end cart -->
+  <!-- End Cart Section -->
 
-{% endblock content %}
+  {% endblock content %}
+</section>
