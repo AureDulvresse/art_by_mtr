@@ -14,30 +14,31 @@
       href="{% static 'img/favicon.ico' %}"
     />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
-    />
+    /> -->
 
     <!-- Boxicons -->
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
       integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    />
+    /> -->
+    <link rel="stylesheet" href="{% static 'css/boxicons.min.css' %}" />
 
     <!-- ANIMATE CSS -->
     <link rel="stylesheet" href="{% static 'css/animate.css' %}" />
 
     <!-- TOAST CSS -->
-    <link
+    <!-- <link
       rel="stylesheet"
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-    />
+    /> -->
     <link rel="stylesheet" href="{% static 'css/toast.css' %}" />
 
     <!-- CUSTOM CSS -->
@@ -47,8 +48,8 @@
     <!-- <script src="https://unpkg.com/alpinejs" defer></script> -->
     <script src="{% static 'js/vendors/alpine.js' %}" defer></script>
 
-
-    <script src="https://js.stripe.com/v3/" defer></script>
+    <!-- <script src="https://js.stripe.com/v3/" defer></script> -->
+    <script src="{% static 'js/vendors/stripe.js' %}" defer></script>
   </head>
   <body class="bg-gray-100 h-screen relative">
     {% include "components/loader.html" %}
@@ -57,19 +58,20 @@
       {% block content %} {% endblock content %}
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-    <!-- JQUERY JS -->
-    <script src="{% static 'js/vendors/jquery.js' %}"></script>
 
-    <!-- TOAST JS -->
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/toastify-js"
-    ></script>
-    <script src="{% static 'js/vendors/toast.js' %}"></script>
+     <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" defer></script> -->
+    <!-- JQUERY JS -->
+    <script src="{% static 'js/vendors/jquery.js' %}" defer></script>
 
     <!-- WOW JS -->
     <script src="{% static 'js/vendors/wow.js' %}"></script>
+
+    <!-- TOAST JS -->
+    <!-- <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script> -->
+    <script src="{% static 'js/vendors/toast.js' %}" defer></script>
 
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>

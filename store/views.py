@@ -49,7 +49,7 @@ def about_page(request):
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(customer=request.user)
-            cart_items = cart.select_related('artwork').order_by('-updated_at')
+            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
 
@@ -90,7 +90,7 @@ def artwork_detail_page(request, slug):
     if user.is_authenticated:
         try:
             cart, _ = get_cart_items(user)
-            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
+            cart_items = cart.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
 
@@ -245,7 +245,7 @@ def remove_from_cart(request):
             cart_items = None
             try:
                 order = get_object_or_404(Order, uuid=order_uuid)
-                cart, _ = get_cart_items(request.user)
+                cart = get_object_or_404(Cart, customer=request.user)
                 cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
 
                 if order in cart.orders.all():

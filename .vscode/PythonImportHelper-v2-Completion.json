@@ -1794,7 +1794,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def about_page(request):\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    context = {\n        'preview_cart_items': cart_items[:3] if cart_items else None,",
+        "peekOfCode": "def about_page(request):\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    context = {\n        'preview_cart_items': cart_items[:3] if cart_items else None,",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1812,7 +1812,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def artwork_detail_page(request, slug):\n    cart_items = None\n    user = request.user\n    if user.is_authenticated:\n        try:\n            cart, _ = get_cart_items(user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    artwork = get_object_or_404(Artwork, slug=slug)",
+        "peekOfCode": "def artwork_detail_page(request, slug):\n    cart_items = None\n    user = request.user\n    if user.is_authenticated:\n        try:\n            cart, _ = get_cart_items(user)\n            cart_items = cart.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    artwork = get_object_or_404(Artwork, slug=slug)",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1857,7 +1857,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def remove_from_cart(request):\n    if request.method == 'POST':\n        data = json.loads(request.body)\n        order_uuid = data.get('order_uuid')\n        if request.user.is_authenticated:\n            cart_items = None\n            try:\n                order = get_object_or_404(Order, uuid=order_uuid)\n                cart, _ = get_cart_items(request.user)\n                cart_items = cart.orders.select_related('artwork').order_by('-updated_at')",
+        "peekOfCode": "def remove_from_cart(request):\n    if request.method == 'POST':\n        data = json.loads(request.body)\n        order_uuid = data.get('order_uuid')\n        if request.user.is_authenticated:\n            cart_items = None\n            try:\n                order = get_object_or_404(Order, uuid=order_uuid)\n                cart = get_object_or_404(Cart, customer=request.user)\n                cart_items = cart.orders.select_related('artwork').order_by('-updated_at')",
         "detail": "store.views",
         "documentation": {}
     },

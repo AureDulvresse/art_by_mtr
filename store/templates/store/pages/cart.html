@@ -36,7 +36,8 @@
           <tr class="table-body-row">
             <td class="artwork-remove">
               <button
-                @click="removeFromCart('{{ item.uuid }}')"
+                x-data="cartHandler()"
+                x-on:click="removeFromCart('{{ item.uuid }}')"
                 class="text-red border-none bg-transparent text-lg cursor-pointer"
                 title="retirer du panier"
               >
