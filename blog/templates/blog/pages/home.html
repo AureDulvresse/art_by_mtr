@@ -1,10 +1,10 @@
-{% extends "base.html" %} {% load static %} {% load store_custom_tags %} 
+{% extends "base.html" %} {% load static %} {% load blog_custom_tags %}
 
-{% block title %} Galerie {% endblock title %} 
+{% block title %} Actualité {% endblock title %} 
 
 {% block content %}
 
-{% breadcrumb "Galerie" "Des tableaux unique et exceptionnel" user preview_cart_items %}
+{% breadcrumb "Actualité & Evenements" "A venir chez The MTR Art" user preview_cart_items %}
 
 <section
   class="mt-8 pt-4 pb-5 container mx-auto wow animate__animated animate__fadeIn"
@@ -12,19 +12,19 @@
 >
   <div class="flex items-center justify-center flex-col">
     <div class="flex items-center flex-col subtitle mb-8">
-      <h2 class="text-center mb-4">Notre <span>Galerie d'Art</span></h2>
+      <h2 class="text-center mb-4">Nos <span>Evenements</span></h2>
       <div class="subtitle-line"></div>
     </div>
 
     <div class="grid-container">
-      {% for artwork in artworks %} {% artworkCard artwork user %} {% endfor %}
+      {% for post in posts %} {% postCard post user %} {% endfor %}
     </div>
 
     <div
       class="mt-8 wow animate__animated animate__zoomIn flex justify-between items-center gap-3"
     >
-      {% if artworks.has_previous %}
-      <a href="?page={{ artworks.previous_page_number }}" class="text-black text-2xl bx bx-chevron-left"
+      {% if posts.has_previous %}
+      <a href="?page={{ posts.previous_page_number }}" class="text-black text-2xl bx bx-chevron-left"
         ></a
       >
       {% else %}
@@ -32,11 +32,11 @@
       {% endif %}
 
       <span class="text-gray-600"
-        >Page {{ artworks.number }} sur {{ artworks.paginator.num_pages }}</span
+        >Page {{ posts.number }} sur {{ posts.paginator.num_pages }}</span
       >
 
-      {% if artworks.has_next %}
-      <a href="?page={{ artworks.next_page_number }}" class="text-black text-2xl bx bx-chevron-right"
+      {% if posts.has_next %}
+      <a href="?page={{ posts.next_page_number }}" class="text-black text-2xl bx bx-chevron-right"
         ></a
       >
       {% else %}

@@ -1,0 +1,22 @@
+<div class="card wow animate__animated animate__slideInUp" data-wow-delay="0.3">
+  {% if post.thumbnail %}
+  <div class="card-img">
+    <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}" />
+  </div>
+  {% else %}
+  <div class="card-img">
+    <img src="/media/posts/default.jpg" alt="{{ post.title }}" />
+  </div>
+  {% endif %}
+
+  <div class="p-4">
+    <div class="card-text">
+      <h3 class="text-2xl mb-2">{{ post.title }}</h3>
+      <p class="text-lg text-gray-600 mb-4">{{ post.description }}</p>
+    </div>
+
+    <div class="flex item-start">
+      <a href="{% url 'blog:post-detail' %}" class="text-gray-200">Lire</a>
+    </div>
+  </div>
+</div>

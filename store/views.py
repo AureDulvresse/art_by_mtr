@@ -1,3 +1,4 @@
+import django
 import json
 import paypalrestsdk
 import stripe
@@ -17,9 +18,10 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
 
-from art_by_mtr.settings import ELEMENTS_PER_PAGE
+from django.conf import settings
 from store.models import Artwork, Cart, CheckOut, Order
 from store.utils import get_cart_items
+from blog.models import Post
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -27,6 +29,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def home_page(request):
     artworks = Artwork.objects.all().order_by('-updated_at')[:3]
+    posts = Post.objects.all().order_by('-updated_at')[:3]
     
     cart_items = None
     if request.user.is_authenticated:
@@ -38,6 +41,7 @@ def home_page(request):
 
     context = {
         'artworks': artworks,
+        'posts': posts,
         'preview_cart_items': cart_items[:3] if cart_items else None,
     }
 
@@ -72,7 +76,7 @@ def gallery_page(request):
         except Cart.DoesNotExist:
             cart = None
 
-    paginator = Paginator(artworks, ELEMENTS_PER_PAGE)
+    paginator = Paginator(artworks, settings.ELEMENTS_PER_PAGE)
     page = request.GET.get('page')
     artworks = paginator.get_page(page)
 

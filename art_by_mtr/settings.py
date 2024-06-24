@@ -178,9 +178,11 @@ LOGIN_URL = 'accounts:login'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-COMPONENTS_DIRS = [
-    "store/components/",
-]
+COMPONENTS_DIRS : dict = {
+    "global": "components/",
+    "store": "store/components/",
+    "blog": "blog/components/",
+}
 
-ELEMENTS_PER_PAGE = 6
+ELEMENTS_PER_PAGE = 9
 

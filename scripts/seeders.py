@@ -1,3 +1,5 @@
+from datetime import timezone
+import django.utils
 import os
 import django
 import random
@@ -15,8 +17,9 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'art_by_mtr.settings')
 django.setup()
 
 # Import models
-from store.models import Category, Medium, Artwork, Order, Cart, CheckOut  
-fake = Faker()
+from store.models import Category, Medium, Artwork, Order, Cart, CheckOut
+from blog.models import Post
+fake = Faker('fr-FR')
 
 def download_image(url):
     response = requests.get(url)
@@ -43,7 +46,7 @@ def create_media(n=5):
 
 def create_artworks(categories, media, n=20):
     artworks = []
-    image_url_template = 'https://picsum.photos/200/300?random={}'
+    image_url_template = 'https://picsum.photos/200/300?art={}'
 
     for _ in range(n):
         title = fake.sentence(nb_words=4)
@@ -67,7 +70,7 @@ def create_artworks(categories, media, n=20):
             artworks.append(artwork)
     return artworks
 
-def create_users(n=5):
+def create_users(n=10):
     User = get_user_model()
     users = []
     for _ in range(n):
@@ -78,6 +81,32 @@ def create_users(n=5):
         )
         users.append(user)
     return users
+
+
+def create_posts(artwork, n=15):
+    posts = []
+    image_url_template = 'https://picsum.photos/200/300?random={}'
+
+    if image_content:
+        for _ in range(n):
+            title = fake.sentence(nb_words=4)
+            image_url = image_url_template.format(random.randint(1, 1000))
+            image_content = download_image(image_url)
+
+            post = Post.objects.create(
+                title=title,
+                slug=slugify(title),
+                description=fake.text(),
+                content = fake.text(max_nb_chars=250),
+                event_date = fake.date_between(start_date='2024-01-01', end_date=timezone),
+                event_place = fake.address(),
+                event_artworks = random.choice(artwork),
+            )
+
+            post.thumbnail.save(f'{slugify(title)}.jpg', image_content)
+            posts.append(post)
+
+    return posts
 
 def create_orders(users, artworks, n=30):
     orders = []

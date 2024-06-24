@@ -51,6 +51,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -244,6 +260,14 @@
         "documentation": {}
     },
     {
+        "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
         "label": "Customer",
         "importPath": "accounts.models",
         "description": "accounts.models",
@@ -380,6 +404,14 @@
         "documentation": {}
     },
     {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
         "label": "JsonResponse",
         "importPath": "django.http",
         "description": "django.http",
@@ -477,6 +509,14 @@
     },
     {
         "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_object_or_404",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -597,6 +637,86 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "Post",
+        "importPath": "blog.models",
+        "description": "blog.models",
+        "isExtraImport": true,
+        "detail": "blog.models",
+        "documentation": {}
+    },
+    {
+        "label": "Post",
+        "importPath": "blog.models",
+        "description": "blog.models",
+        "isExtraImport": true,
+        "detail": "blog.models",
+        "documentation": {}
+    },
+    {
+        "label": "Post",
+        "importPath": "blog.models",
+        "description": "blog.models",
+        "isExtraImport": true,
+        "detail": "blog.models",
+        "documentation": {}
+    },
+    {
         "label": "Post",
         "importPath": "blog.models",
         "description": "blog.models",
@@ -606,6 +726,14 @@
     },
     {
         "label": "Artwork",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
         "importPath": "store.models",
         "description": "store.models",
         "isExtraImport": true,
@@ -694,10 +822,42 @@
     },
     {
         "label": "views",
-        "importPath": "store",
-        "description": "store",
+        "importPath": "blog",
+        "description": "blog",
         "isExtraImport": true,
-        "detail": "store",
+        "detail": "blog",
+        "documentation": {}
+    },
+    {
+        "label": "Paginator",
+        "importPath": "django.core.paginator",
+        "description": "django.core.paginator",
+        "isExtraImport": true,
+        "detail": "django.core.paginator",
+        "documentation": {}
+    },
+    {
+        "label": "Paginator",
+        "importPath": "django.core.paginator",
+        "description": "django.core.paginator",
+        "isExtraImport": true,
+        "detail": "django.core.paginator",
+        "documentation": {}
+    },
+    {
+        "label": "get_cart_items",
+        "importPath": "store.utils",
+        "description": "store.utils",
+        "isExtraImport": true,
+        "detail": "store.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_cart_items",
+        "importPath": "store.utils",
+        "description": "store.utils",
+        "isExtraImport": true,
+        "detail": "store.utils",
         "documentation": {}
     },
     {
@@ -714,6 +874,39 @@
         "description": "store",
         "isExtraImport": true,
         "detail": "store",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "django.utils",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
         "documentation": {}
     },
     {
@@ -794,62 +987,6 @@
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "COMPONENTS_DIRS",
-        "importPath": "art_by_mtr.settings",
-        "description": "art_by_mtr.settings",
-        "isExtraImport": true,
-        "detail": "art_by_mtr.settings",
-        "documentation": {}
-    },
-    {
-        "label": "ELEMENTS_PER_PAGE",
-        "importPath": "art_by_mtr.settings",
-        "description": "art_by_mtr.settings",
-        "isExtraImport": true,
-        "detail": "art_by_mtr.settings",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
         "label": "json",
         "kind": 6,
         "isExtraImport": true,
@@ -874,14 +1011,6 @@
         "importPath": "stripe",
         "description": "stripe",
         "detail": "stripe",
-        "documentation": {}
-    },
-    {
-        "label": "Paginator",
-        "importPath": "django.core.paginator",
-        "description": "django.core.paginator",
-        "isExtraImport": true,
-        "detail": "django.core.paginator",
         "documentation": {}
     },
     {
@@ -930,14 +1059,6 @@
         "description": "django.utils.html",
         "isExtraImport": true,
         "detail": "django.utils.html",
-        "documentation": {}
-    },
-    {
-        "label": "get_cart_items",
-        "importPath": "store.utils",
-        "description": "store.utils",
-        "isExtraImport": true,
-        "detail": "store.utils",
         "documentation": {}
     },
     {
@@ -1350,7 +1471,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "STATIC_ROOT = 'static_root'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [",
+        "peekOfCode": "STATIC_ROOT = 'static_root'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1359,7 +1480,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1368,7 +1489,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "AUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "AUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n}",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1377,7 +1498,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "ROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "ROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n}\nELEMENTS_PER_PAGE = 9",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1386,7 +1507,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "LOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "LOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n}\nELEMENTS_PER_PAGE = 9",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1395,7 +1516,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "MEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "MEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n}\nELEMENTS_PER_PAGE = 9",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1404,16 +1525,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
-        "detail": "art_by_mtr.settings",
-        "documentation": {}
-    },
-    {
-        "label": "COMPONENTS_DIRS",
-        "kind": 5,
-        "importPath": "art_by_mtr.settings",
-        "description": "art_by_mtr.settings",
-        "peekOfCode": "COMPONENTS_DIRS = [\n    \"store/components/\",\n]\nELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n}\nELEMENTS_PER_PAGE = 9",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1422,7 +1534,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "ELEMENTS_PER_PAGE = 6",
+        "peekOfCode": "ELEMENTS_PER_PAGE = 9",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1442,6 +1554,42 @@
         "description": "art_by_mtr.wsgi",
         "peekOfCode": "application = get_wsgi_application()",
         "detail": "art_by_mtr.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "blog.migrations.0001_initial",
+        "description": "blog.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('store', '0002_payment'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Post',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "blog.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "breadcrumb",
+        "kind": 2,
+        "importPath": "blog.templatetags.blog_custom_tags",
+        "description": "blog.templatetags.blog_custom_tags",
+        "peekOfCode": "def breadcrumb(title, msg, user, cart_items, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n    'preview_cart_items': cart_items,\n  }\n  return data\n@register.inclusion_tag(os.path.join(settings.COMPONENTS_DIRS.get('blog'), \"post-card.html\"))\ndef postCard(post, *args, **kwargs):",
+        "detail": "blog.templatetags.blog_custom_tags",
+        "documentation": {}
+    },
+    {
+        "label": "postCard",
+        "kind": 2,
+        "importPath": "blog.templatetags.blog_custom_tags",
+        "description": "blog.templatetags.blog_custom_tags",
+        "peekOfCode": "def postCard(post, *args, **kwargs):\n  data = {\n    'post': post,\n  }\n  return data",
+        "detail": "blog.templatetags.blog_custom_tags",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 5,
+        "importPath": "blog.templatetags.blog_custom_tags",
+        "description": "blog.templatetags.blog_custom_tags",
+        "peekOfCode": "register = template.Library()\n@register.inclusion_tag(os.path.join(settings.COMPONENTS_DIRS.get('global'), \"breadcrumb.html\"))\ndef breadcrumb(title, msg, user, cart_items, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n    'preview_cart_items': cart_items,\n  }\n  return data",
+        "detail": "blog.templatetags.blog_custom_tags",
         "documentation": {}
     },
     {
@@ -1476,7 +1624,7 @@
         "kind": 5,
         "importPath": "blog.urls",
         "description": "blog.urls",
-        "peekOfCode": "app_name = \"blog\"\nurlpatterns = [\n   path('', views.gallery_page, name=\"artwork-list\"),\n   path('artwork/:pk', views.artwork_detail_page)\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "app_name = \"blog\"\nurlpatterns = [\n   path('', views.blog_page, name=\"index\"),\n   path('post/:slug', views.post_detail_page, name=\"post-detail\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
         "detail": "blog.urls",
         "documentation": {}
     },
@@ -1485,8 +1633,26 @@
         "kind": 5,
         "importPath": "blog.urls",
         "description": "blog.urls",
-        "peekOfCode": "urlpatterns = [\n   path('', views.gallery_page, name=\"artwork-list\"),\n   path('artwork/:pk', views.artwork_detail_page)\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "urlpatterns = [\n   path('', views.blog_page, name=\"index\"),\n   path('post/:slug', views.post_detail_page, name=\"post-detail\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
         "detail": "blog.urls",
+        "documentation": {}
+    },
+    {
+        "label": "blog_page",
+        "kind": 2,
+        "importPath": "blog.views",
+        "description": "blog.views",
+        "peekOfCode": "def blog_page(request):\n    posts = Post.objects.all().order_by(\"-updated_at\")\n    cart_items = None\n    user = request.user\n    if user.is_authenticated:\n        try:\n            cart, _ = get_cart_items(user)\n            cart_items = cart.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None",
+        "detail": "blog.views",
+        "documentation": {}
+    },
+    {
+        "label": "post_detail_page",
+        "kind": 2,
+        "importPath": "blog.views",
+        "description": "blog.views",
+        "peekOfCode": "def post_detail_page(request, slug) -> HttpResponse:\n    cart_items = None\n    user = request.user\n    if user.is_authenticated:\n        try:\n            cart, _ = get_cart_items(user)\n            cart_items = cart.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    post = get_object_or_404(Post, slug=slug)",
+        "detail": "blog.views",
         "documentation": {}
     },
     {
@@ -1539,7 +1705,7 @@
         "kind": 2,
         "importPath": "scripts.seeders",
         "description": "scripts.seeders",
-        "peekOfCode": "def create_media(n=5):\n    media = []\n    for _ in range(n):\n        name = fake.word()\n        medium = Medium.objects.create(name=name)\n        media.append(medium)\n    return media\ndef create_artworks(categories, media, n=20):\n    artworks = []\n    image_url_template = 'https://picsum.photos/200/300?random={}'",
+        "peekOfCode": "def create_media(n=5):\n    media = []\n    for _ in range(n):\n        name = fake.word()\n        medium = Medium.objects.create(name=name)\n        media.append(medium)\n    return media\ndef create_artworks(categories, media, n=20):\n    artworks = []\n    image_url_template = 'https://picsum.photos/200/300?art={}'",
         "detail": "scripts.seeders",
         "documentation": {}
     },
@@ -1548,7 +1714,7 @@
         "kind": 2,
         "importPath": "scripts.seeders",
         "description": "scripts.seeders",
-        "peekOfCode": "def create_artworks(categories, media, n=20):\n    artworks = []\n    image_url_template = 'https://picsum.photos/200/300?random={}'\n    for _ in range(n):\n        title = fake.sentence(nb_words=4)\n        image_url = image_url_template.format(random.randint(1, 1000))\n        image_content = download_image(image_url)\n        if image_content:\n            artwork = Artwork.objects.create(\n                title=title,",
+        "peekOfCode": "def create_artworks(categories, media, n=20):\n    artworks = []\n    image_url_template = 'https://picsum.photos/200/300?art={}'\n    for _ in range(n):\n        title = fake.sentence(nb_words=4)\n        image_url = image_url_template.format(random.randint(1, 1000))\n        image_content = download_image(image_url)\n        if image_content:\n            artwork = Artwork.objects.create(\n                title=title,",
         "detail": "scripts.seeders",
         "documentation": {}
     },
@@ -1557,7 +1723,16 @@
         "kind": 2,
         "importPath": "scripts.seeders",
         "description": "scripts.seeders",
-        "peekOfCode": "def create_users(n=5):\n    User = get_user_model()\n    users = []\n    for _ in range(n):\n        user = User.objects.create_user(\n            username=fake.user_name(),\n            email=fake.email(),\n            password='password123'\n        )\n        users.append(user)",
+        "peekOfCode": "def create_users(n=10):\n    User = get_user_model()\n    users = []\n    for _ in range(n):\n        user = User.objects.create_user(\n            username=fake.user_name(),\n            email=fake.email(),\n            password='password123'\n        )\n        users.append(user)",
+        "detail": "scripts.seeders",
+        "documentation": {}
+    },
+    {
+        "label": "create_posts",
+        "kind": 2,
+        "importPath": "scripts.seeders",
+        "description": "scripts.seeders",
+        "peekOfCode": "def create_posts(artwork, n=15):\n    posts = []\n    image_url_template = 'https://picsum.photos/200/300?random={}'\n    if image_content:\n        for _ in range(n):\n            title = fake.sentence(nb_words=4)\n            image_url = image_url_template.format(random.randint(1, 1000))\n            image_content = download_image(image_url)\n            post = Post.objects.create(\n                title=title,",
         "detail": "scripts.seeders",
         "documentation": {}
     },
@@ -1602,7 +1777,7 @@
         "kind": 5,
         "importPath": "scripts.seeders",
         "description": "scripts.seeders",
-        "peekOfCode": "fake = Faker()\ndef download_image(url):\n    response = requests.get(url)\n    if response.status_code == 200:\n        return ContentFile(response.content)\n    return None\ndef create_categories(n=5):\n    categories = []\n    for _ in range(n):\n        name = fake.word()",
+        "peekOfCode": "fake = Faker('fr-FR')\ndef download_image(url):\n    response = requests.get(url)\n    if response.status_code == 200:\n        return ContentFile(response.content)\n    return None\ndef create_categories(n=5):\n    categories = []\n    for _ in range(n):\n        name = fake.word()",
         "detail": "scripts.seeders",
         "documentation": {}
     },
@@ -1627,37 +1802,28 @@
     {
         "label": "breadcrumb",
         "kind": 2,
-        "importPath": "store.templatetags.custom_tags",
-        "description": "store.templatetags.custom_tags",
-        "peekOfCode": "def breadcrumb(title, msg, user, cart_items, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n    'preview_cart_items': cart_items,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"artwork-card.html\"))\ndef artworkCard(artwork, user, *args, **kwargs):",
-        "detail": "store.templatetags.custom_tags",
+        "importPath": "store.templatetags.store_custom_tags",
+        "description": "store.templatetags.store_custom_tags",
+        "peekOfCode": "def breadcrumb(title, msg, user, cart_items, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n    'preview_cart_items': cart_items,\n  }\n  return data\n@register.inclusion_tag(os.path.join(settings.COMPONENTS_DIRS.get('store'), \"artwork-card.html\"))\ndef artworkCard(artwork, user, *args, **kwargs):",
+        "detail": "store.templatetags.store_custom_tags",
         "documentation": {}
     },
     {
         "label": "artworkCard",
         "kind": 2,
-        "importPath": "store.templatetags.custom_tags",
-        "description": "store.templatetags.custom_tags",
-        "peekOfCode": "def artworkCard(artwork, user, *args, **kwargs):\n  data = {\n    'artwork': artwork,\n    'user': user,\n  }\n  return data\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"post-card.html\"))\ndef postCard(post, *args, **kwargs):\n  data = {\n    'post': post,",
-        "detail": "store.templatetags.custom_tags",
-        "documentation": {}
-    },
-    {
-        "label": "postCard",
-        "kind": 2,
-        "importPath": "store.templatetags.custom_tags",
-        "description": "store.templatetags.custom_tags",
-        "peekOfCode": "def postCard(post, *args, **kwargs):\n  data = {\n    'post': post,\n  }\n  return data",
-        "detail": "store.templatetags.custom_tags",
+        "importPath": "store.templatetags.store_custom_tags",
+        "description": "store.templatetags.store_custom_tags",
+        "peekOfCode": "def artworkCard(artwork, user, *args, **kwargs):\n  data = {\n    'artwork': artwork,\n    'user': user,\n  }\n  return data",
+        "detail": "store.templatetags.store_custom_tags",
         "documentation": {}
     },
     {
         "label": "register",
         "kind": 5,
-        "importPath": "store.templatetags.custom_tags",
-        "description": "store.templatetags.custom_tags",
-        "peekOfCode": "register = template.Library()\n@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], \"breadcrumb.html\"))\ndef breadcrumb(title, msg, user, cart_items, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n    'preview_cart_items': cart_items,\n  }\n  return data",
-        "detail": "store.templatetags.custom_tags",
+        "importPath": "store.templatetags.store_custom_tags",
+        "description": "store.templatetags.store_custom_tags",
+        "peekOfCode": "register = template.Library()\n@register.inclusion_tag(os.path.join(settings.COMPONENTS_DIRS.get('global'), \"breadcrumb.html\"))\ndef breadcrumb(title, msg, user, cart_items, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n    'preview_cart_items': cart_items,\n  }\n  return data",
+        "detail": "store.templatetags.store_custom_tags",
         "documentation": {}
     },
     {
@@ -1827,7 +1993,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def home_page(request):\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    context = {",
+        "peekOfCode": "def home_page(request):\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    posts = Post.objects.all().order_by('-updated_at')[:3]\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None",
         "detail": "store.views",
         "documentation": {}
     },
@@ -1908,7 +2074,7 @@
         "kind": 5,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "stripe.api_key = settings.STRIPE_SECRET_KEY\ndef home_page(request):\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None",
+        "peekOfCode": "stripe.api_key = settings.STRIPE_SECRET_KEY\ndef home_page(request):\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    posts = Post.objects.all().order_by('-updated_at')[:3]\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:",
         "detail": "store.views",
         "documentation": {}
     },

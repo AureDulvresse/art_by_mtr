@@ -1,11 +1,11 @@
 from django import template
 import os
 
-from art_by_mtr.settings import COMPONENTS_DIRS
+from django.conf import settings
 
 register = template.Library()
 
-@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], "breadcrumb.html"))
+@register.inclusion_tag(os.path.join(settings.COMPONENTS_DIRS.get('global'), "breadcrumb.html"))
 def breadcrumb(title, msg, user, cart_items, *args, **kwargs):
   
   data = {
@@ -17,7 +17,7 @@ def breadcrumb(title, msg, user, cart_items, *args, **kwargs):
   
   return data
 
-@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], "artwork-card.html"))
+@register.inclusion_tag(os.path.join(settings.COMPONENTS_DIRS.get('store'), "artwork-card.html"))
 def artworkCard(artwork, user, *args, **kwargs):
   
   data = {
@@ -27,11 +27,3 @@ def artworkCard(artwork, user, *args, **kwargs):
   
   return data
 
-@register.inclusion_tag(os.path.join(COMPONENTS_DIRS[0], "post-card.html"))
-def postCard(post, *args, **kwargs):
-  
-  data = {
-    'post': post,
-  }
-  
-  return data
