@@ -15,8 +15,8 @@
       <p class="text-lg text-gray-600 mb-4 line-clamp-2">{{ post.description }}</p>
     </div>
 
-    <div class="flex item-start">
-      <a href="{% url 'blog:post-detail' %}" class="text-gray-200">Lire</a>
+    <div class="flex item-start mt-4">
+      <a href="{% url 'blog:post-detail' post.slug %}" class="text-red">Lire</a>
     </div>
   </div>
 </div>

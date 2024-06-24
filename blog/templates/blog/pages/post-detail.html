@@ -1,0 +1,60 @@
+{% extends "base.html" %} {% load static %} {% load blog_custom_tags %} {% load store_custom_tags %}
+
+{% block title %} Actualité - Détail {% endblock title %} 
+
+{% block content %}
+
+{% breadcrumb post.title "Détail du poste" user preview_cart_items %}
+
+<section
+  class="single-artwork mt-8 pt-4 pb-5 about wow animate__animated animate__fadeIn"
+  data-wow-delay="0.3s"
+>
+  <div class="container mx-auto">
+    <div class="post-details">
+      <img src="{{ post.thumbnail.url }}" alt="Post Thumbnail" class="img-fluid" />
+      <h1>{{post.title}}</h1>
+      <div class="meta">
+        <span><strong>Date:</strong>{{ post.event_date|date:"F Y" }}</span>
+        <span><strong>Location:</strong> {{ post.event_place }}</span>
+      </div>
+      <div class="description">
+        <p>{{ post.description }}</p>
+      </div>
+      <div class="content">
+        <p>{{ post.content }}</p>
+      </div>
+      <!-- more artworks -->
+      {% if related_artworks %}
+
+      <section
+        class="mt-8 pt-4 pb-5 container mx-auto wow animate__animated animate__fadeIn"
+        data-wow-delay="0.3s"
+      >
+        <div class="flex items-center justify-center flex-col">
+          <div class="flex items-center flex-col subtitle mb-8">
+            <h2 class="text-center mb-4">Decouvrir les oeuvres de<span> cette évènement !</span></h2>
+            <div class="subtitle-line"></div>
+          </div>
+
+          <div class="grid-container">
+            {% for r_artwork in related_artworks %} 
+            
+            {% artworkCard r_artwork user %} 
+            
+            {% endfor %}
+          </div>
+          <a
+            href="{% url 'store:gallery' %}"
+            class="btn btn-red mt-8 wow animate__animated animate__zoomIn"
+            >Découvrir d'autres oeuvres</a
+          >
+        </div>
+      </section>
+
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

@@ -44,12 +44,14 @@ def post_detail_page(request, slug) -> HttpResponse:
             cart = None
 
     post = get_object_or_404(Post, slug=slug)
+    post_artworks = post.event_artworks.order_by('-updated_at')
     
     on_coming_events = Post.objects.exclude(id=post.id)[:3]
     
     context = {
         'post': post,
         'on_coming_events': on_coming_events,
+        'related_artworks': post_artworks,
         'preview_cart_items': cart_items[:3] if cart_items else None,
     }
 

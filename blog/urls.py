@@ -7,7 +7,7 @@ app_name = "blog"
 
 urlpatterns = [
    path('', views.blog_page, name="index"),
-   path('post/:slug', views.post_detail_page, name="post-detail"),
+   path('posts/<str:slug>/', views.post_detail_page, name="post-detail"),
 ]
 
 # handler404 = f"{app_name}.views.page_404"
