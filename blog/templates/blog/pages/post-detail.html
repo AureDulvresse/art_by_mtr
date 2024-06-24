@@ -1,12 +1,12 @@
-{% extends "base.html" %} {% load static %} 
+{% extends "base.html" %} {% load static %}
 
-{% load blog_custom_tags %} 
-
-{% load store_custom_tags %} 
+{% load blog_custom_tags %} {% load store_custom_tags %} 
 
 {% block title %} Actualité - Détail {% endblock title %}
 
-{% block content %} {% breadcrumb post.title "Détail du poste" user preview_cart_items %}
+{% block content %}
+
+{% breadcrumb post.title "Détail du poste" user preview_cart_items %}
 
 <section
   class="single-artwork mt-8 pt-4 pb-5 about wow animate__animated animate__fadeIn"
@@ -35,39 +35,47 @@
       <div class="content text-black">
         <p>{{ post.content }}</p>
       </div>
-      <!-- more artworks -->
-      {% if related_artworks %}
-
-      <section
-        class="mt-8 pt-4 pb-5 container mx-auto wow animate__animated animate__fadeIn"
-        data-wow-delay="0.3s"
-      >
-        <div class="flex items-center justify-center flex-col">
-          <div class="flex items-center flex-col subtitle mb-8">
-            <h2 class="text-center mb-5">
-              Decouvrir les oeuvres de<span> cette évènement !</span>
-            </h2>
-            <div class="subtitle-line"></div>
-          </div>
-
-          <div class="grid-container">
-            {% for r_artwork in related_artworks %} 
-            
-            {% artworkCard r_artwork user %} 
-            
-            {% endfor %}
-          </div>
-          <a
-            href="{% url 'store:gallery' %}"
-            class="btn btn-red mt-8 wow animate__animated animate__zoomIn"
-            >Découvrir d'autres oeuvres</a
-          >
-        </div>
-      </section>
-
-      {% endif %}
+      <div class="flex items-center justify-center gap-3 mt-2 mb-5">
+        <h5>Partager</h5>
+        <a href="#" target="_blank"><i class="bx bxl-facebook"></i></a>
+        <a href="#" target="_blank"><i class="bx bxl-twitter"></i></a>
+        <a href="#" target="_blank"><i class="bx bxl-instagram"></i></a>
+        <a href="#" target="_blank"><i class="bx bxl-pinterest"></i></a>
     </div>
+    </div>
+    
   </div>
 </section>
 
-{% include "components/footer.html" %} {% endblock content %}
+<!-- more artworks -->
+{% if related_artworks %}
+
+<section
+  class="mt-8 pt-4 pb-5 container mx-auto wow animate__animated animate__fadeIn"
+  data-wow-delay="0.3s"
+>
+  <div class="flex items-center justify-center flex-col">
+    <div class="flex items-center flex-col subtitle mb-8">
+      <h2 class="text-center mb-5">
+        Decouvrir les oeuvres de<span> cette évènement !</span>
+      </h2>
+      <div class="subtitle-line"></div>
+    </div>
+
+    <div class="grid-container">
+      {% for r_artwork in related_artworks %} {% artworkCard r_artwork user %}
+      {% endfor %}
+    </div>
+    <a
+      href="{% url 'store:gallery' %}"
+      class="btn btn-red mt-8 wow animate__animated animate__zoomIn"
+      >Découvrir d'autres oeuvres</a
+    >
+  </div>
+</section>
+
+{% endif %} 
+
+{% include "components/footer.html" %} 
+
+{% endblock content %}
