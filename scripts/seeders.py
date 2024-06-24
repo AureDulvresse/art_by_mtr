@@ -19,6 +19,7 @@ django.setup()
 # Import models
 from store.models import Category, Medium, Artwork, Order, Cart, CheckOut
 from blog.models import Post
+
 fake = Faker('fr-FR')
 
 def download_image(url):
@@ -42,7 +43,6 @@ def create_media(n=5):
         medium = Medium.objects.create(name=name)
         media.append(medium)
     return media
-
 
 def create_artworks(categories, media, n=20):
     artworks = []
@@ -82,29 +82,33 @@ def create_users(n=10):
         users.append(user)
     return users
 
-
-def create_posts(artwork, n=15):
+def create_posts(artworks, n=15):
     posts = []
     image_url_template = 'https://picsum.photos/200/300?random={}'
 
-    if image_content:
-        for _ in range(n):
-            title = fake.sentence(nb_words=4)
-            image_url = image_url_template.format(random.randint(1, 1000))
-            image_content = download_image(image_url)
+    for _ in range(n):
+        title = fake.sentence(nb_words=4)
+        image_url = image_url_template.format(random.randint(1, 1000))
+        image_content = download_image(image_url)
 
-            post = Post.objects.create(
-                title=title,
-                slug=slugify(title),
-                description=fake.text(),
-                content = fake.text(max_nb_chars=250),
-                event_date = fake.date_between(start_date='2024-01-01', end_date=timezone),
-                event_place = fake.address(),
-                event_artworks = random.choice(artwork),
-            )
+        post = Post.objects.create(
+            title=title,
+            slug=slugify(title),
+            description=fake.text(),
+            content=fake.text(max_nb_chars=250),
+            event_date=fake.date_time_this_year(before_now=True, after_now=False, tzinfo=timezone.utc),
+            event_place=fake.address(),
+        )
 
+        if image_content:
             post.thumbnail.save(f'{slugify(title)}.jpg', image_content)
-            posts.append(post)
+
+        # Associer des œuvres au post
+        if artworks:
+            num_artworks = random.randint(0, 5)
+            post.event_artworks.set(random.sample(artworks, k=num_artworks))
+
+        posts.append(post)
 
     return posts
 
@@ -144,6 +148,9 @@ def populate_data():
 
     print("Creating users...")
     users = create_users()
+
+    print("Creating posts...")
+    create_posts(artworks)
 
     print("Creating orders...")
     orders = create_orders(users, artworks)

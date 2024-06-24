@@ -1615,7 +1615,7 @@
         "kind": 6,
         "importPath": "blog.models",
         "description": "blog.models",
-        "peekOfCode": "class Post(models.Model):\n    title = models.CharField(max_length=180, unique=True, verbose_name=\"Thème de l'évenement\")\n    slug = models.SlugField(max_length=250,unique=True)\n    description = models.TextField()\n    content = models.TextField()\n    event_date = models.DateTimeField()\n    event_place = models.CharField(max_length=200)\n    event_artworks = models.ManyToManyField(Artwork)\n    thumbnail = models.ImageField(upload_to=\"posts\", blank=True, null=True)\n    created_at = models.DateTimeField(auto_now_add=True)",
+        "peekOfCode": "class Post(models.Model):\n    title = models.CharField(\n        max_length=180, \n        unique=True, \n        verbose_name=\"Thème de l'événement\"\n    )\n    slug = models.SlugField(\n        max_length=250,\n        unique=True,\n    )",
         "detail": "blog.models",
         "documentation": {}
     },
@@ -1732,7 +1732,7 @@
         "kind": 2,
         "importPath": "scripts.seeders",
         "description": "scripts.seeders",
-        "peekOfCode": "def create_posts(artwork, n=15):\n    posts = []\n    image_url_template = 'https://picsum.photos/200/300?random={}'\n    if image_content:\n        for _ in range(n):\n            title = fake.sentence(nb_words=4)\n            image_url = image_url_template.format(random.randint(1, 1000))\n            image_content = download_image(image_url)\n            post = Post.objects.create(\n                title=title,",
+        "peekOfCode": "def create_posts(artworks, n=15):\n    posts = []\n    image_url_template = 'https://picsum.photos/200/300?random={}'\n    for _ in range(n):\n        title = fake.sentence(nb_words=4)\n        image_url = image_url_template.format(random.randint(1, 1000))\n        image_content = download_image(image_url)\n        post = Post.objects.create(\n            title=title,\n            slug=slugify(title),",
         "detail": "scripts.seeders",
         "documentation": {}
     },
@@ -1768,7 +1768,7 @@
         "kind": 2,
         "importPath": "scripts.seeders",
         "description": "scripts.seeders",
-        "peekOfCode": "def populate_data():\n    print(\"Creating categories...\")\n    categories = create_categories()\n    print(\"Creating media...\")\n    media = create_media()\n    print(\"Creating artworks...\")\n    artworks = create_artworks(categories, media)\n    print(\"Creating users...\")\n    users = create_users()\n    print(\"Creating orders...\")",
+        "peekOfCode": "def populate_data():\n    print(\"Creating categories...\")\n    categories = create_categories()\n    print(\"Creating media...\")\n    media = create_media()\n    print(\"Creating artworks...\")\n    artworks = create_artworks(categories, media)\n    print(\"Creating users...\")\n    users = create_users()\n    print(\"Creating posts...\")",
         "detail": "scripts.seeders",
         "documentation": {}
     },
