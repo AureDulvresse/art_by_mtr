@@ -310,6 +310,28 @@ a {
     line-height: 35px;
 }
 
+.post-details .description{
+   margin-top: 20px;
+   margin-bottom: 20px;
+   font-style: italic;
+}
+
+.post-details .content{
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.post-img{
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.post-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /* Styles pour les card */
 
 .grid-container {

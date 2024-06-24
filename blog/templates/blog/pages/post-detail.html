@@ -1,10 +1,12 @@
-{% extends "base.html" %} {% load static %} {% load blog_custom_tags %} {% load store_custom_tags %}
+{% extends "base.html" %} {% load static %} 
 
-{% block title %} Actualité - Détail {% endblock title %} 
+{% load blog_custom_tags %} 
 
-{% block content %}
+{% load store_custom_tags %} 
 
-{% breadcrumb post.title "Détail du poste" user preview_cart_items %}
+{% block title %} Actualité - Détail {% endblock title %}
+
+{% block content %} {% breadcrumb post.title "Détail du poste" user preview_cart_items %}
 
 <section
   class="single-artwork mt-8 pt-4 pb-5 about wow animate__animated animate__fadeIn"
@@ -12,16 +14,25 @@
 >
   <div class="container mx-auto">
     <div class="post-details">
-      <img src="{{ post.thumbnail.url }}" alt="Post Thumbnail" class="img-fluid" />
-      <h1>{{post.title}}</h1>
-      <div class="meta">
-        <span><strong>Date:</strong>{{ post.event_date|date:"F Y" }}</span>
-        <span><strong>Location:</strong> {{ post.event_place }}</span>
+      {% if post.thumbnail %}
+      <div class="w-full relative rounded post-img">
+        <img
+          src="{{ post.thumbnail.url }}"
+          alt="{{ post.title }}"
+          class="img-fluid rounded"
+        />
       </div>
-      <div class="description">
+      {% endif %}
+
+      <h1 class="text-4xl text-red">{{post.title}}</h1>
+      <div class="meta">
+        <p><strong>Date: </strong>{{ post.event_date|date:" d F Y" }}</p>
+        <p><strong>Location: </strong> {{ post.event_place }}</p>
+      </div>
+      <div class="description mt-4 mb-5 text-lg text-gray-600">
         <p>{{ post.description }}</p>
       </div>
-      <div class="content">
+      <div class="content text-black">
         <p>{{ post.content }}</p>
       </div>
       <!-- more artworks -->
@@ -33,7 +44,9 @@
       >
         <div class="flex items-center justify-center flex-col">
           <div class="flex items-center flex-col subtitle mb-8">
-            <h2 class="text-center mb-4">Decouvrir les oeuvres de<span> cette évènement !</span></h2>
+            <h2 class="text-center mb-5">
+              Decouvrir les oeuvres de<span> cette évènement !</span>
+            </h2>
             <div class="subtitle-line"></div>
           </div>
 
@@ -57,6 +70,4 @@
   </div>
 </section>
 
-{% include "components/footer.html" %}
-
-{% endblock content %}
+{% include "components/footer.html" %} {% endblock content %}
