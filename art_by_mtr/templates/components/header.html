@@ -19,35 +19,35 @@
         <li>
           <a
             href="{% url 'store:home' %}"
-            class="{% if request.path == '/' %} active text-red-600 {% else %} text-white {% endif %}"
+            class="{% if request.PATH_INFO == '/' %} active text-red-600 {% else %} text-white {% endif %}"
             >Accueil</a
           >
         </li>
         <li>
           <a
             href="{% url 'store:about' %}"
-            class="{% if request.path == '/about/' %} active text-red-600 {% else %} text-white {% endif %}"
+            class="{% if request.PATH_INFO == '/about/' %} active text-red-600 {% else %} text-white {% endif %}"
             >A Propos</a
           >
         </li>
         <li>
           <a
             href="{% url 'store:gallery' %}"
-            class="{% if request.path == '/store/' %}active text-red-600{% else %}text-white{% endif %}"
+            class="{% if request.PATH_INFO == '/store/' %}active text-red-600{% else %}text-white{% endif %}"
             >Boutique</a
           >
         </li>
         <li>
           <a
             href="{% url 'blog:home' %}"
-            class="{% if request.path == '/blog/' %}active text-red-600{% else %}text-white{% endif %}"
+            class="{% if request.PATH_INFO == '/blog/' %}active text-red-600{% else %}text-white{% endif %}"
             >Blog</a
           >
         </li>
         <li>
           <a
             href="{% url 'store:contact' %}"
-            class="{% if request.path == '/contact/' %} active text-red-600{% else %} text-white{% endif %}"
+            class="{% if request.PATH_INFO == '/contact/' %} active text-red-600{% else %} text-white{% endif %}"
             >Contact</a
           >
         </li>

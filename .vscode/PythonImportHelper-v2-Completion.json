@@ -179,6 +179,14 @@
         "documentation": {}
     },
     {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -269,6 +277,22 @@
     },
     {
         "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
         "importPath": "django",
         "description": "django",
         "isExtraImport": true,
@@ -428,6 +452,14 @@
         "documentation": {}
     },
     {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
         "label": "JsonResponse",
         "importPath": "django.http",
         "description": "django.http",
@@ -500,6 +532,14 @@
         "documentation": {}
     },
     {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
         "label": "get_object_or_404",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -541,6 +581,14 @@
     },
     {
         "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -709,6 +757,22 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "Post",
+        "importPath": "blog.models",
+        "description": "blog.models",
+        "isExtraImport": true,
+        "detail": "blog.models",
+        "documentation": {}
+    },
+    {
         "label": "Post",
         "importPath": "blog.models",
         "description": "blog.models",
@@ -750,6 +814,30 @@
     },
     {
         "label": "Cart",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Artwork",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Artwork",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "CheckOut",
         "importPath": "store.models",
         "description": "store.models",
         "isExtraImport": true,
@@ -861,11 +949,11 @@
         "documentation": {}
     },
     {
-        "label": "get_cart_items",
-        "importPath": "store.utils",
-        "description": "store.utils",
+        "label": "Paginator",
+        "importPath": "django.core.paginator",
+        "description": "django.core.paginator",
         "isExtraImport": true,
-        "detail": "store.utils",
+        "detail": "django.core.paginator",
         "documentation": {}
     },
     {
@@ -877,19 +965,20 @@
         "documentation": {}
     },
     {
-        "label": "views",
-        "importPath": "store",
-        "description": "store",
+        "label": "get_cart_items",
+        "importPath": "store.utils",
+        "description": "store.utils",
         "isExtraImport": true,
-        "detail": "store",
+        "detail": "store.utils",
         "documentation": {}
     },
     {
-        "label": "views",
-        "importPath": "store",
-        "description": "store",
+        "label": "datetime",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "store",
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
         "documentation": {}
     },
     {
@@ -898,6 +987,63 @@
         "description": "datetime",
         "isExtraImport": true,
         "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "DateInput",
+        "importPath": "django.forms.widgets",
+        "description": "django.forms.widgets",
+        "isExtraImport": true,
+        "detail": "django.forms.widgets",
+        "documentation": {}
+    },
+    {
+        "label": "mark_safe",
+        "importPath": "django.utils.safestring",
+        "description": "django.utils.safestring",
+        "isExtraImport": true,
+        "detail": "django.utils.safestring",
+        "documentation": {}
+    },
+    {
+        "label": "views",
+        "importPath": "manager",
+        "description": "manager",
+        "isExtraImport": true,
+        "detail": "manager",
+        "documentation": {}
+    },
+    {
+        "label": "csrf_exempt",
+        "importPath": "django.views.decorators.csrf",
+        "description": "django.views.decorators.csrf",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "csrf_exempt",
+        "importPath": "django.views.decorators.csrf",
+        "description": "django.views.decorators.csrf",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "ArtworkForm",
+        "importPath": "manager.forms",
+        "description": "manager.forms",
+        "isExtraImport": true,
+        "detail": "manager.forms",
         "documentation": {}
     },
     {
@@ -1003,30 +1149,11 @@
         "documentation": {}
     },
     {
-        "label": "json",
-        "kind": 6,
+        "label": "views",
+        "importPath": "store",
+        "description": "store",
         "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
-        "documentation": {}
-    },
-    {
-        "label": "paypalrestsdk",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "paypalrestsdk",
-        "description": "paypalrestsdk",
-        "detail": "paypalrestsdk",
-        "documentation": {}
-    },
-    {
-        "label": "stripe",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "stripe",
-        "description": "stripe",
-        "detail": "stripe",
+        "detail": "store",
         "documentation": {}
     },
     {
@@ -1043,14 +1170,6 @@
         "description": "django.utils.decorators",
         "isExtraImport": true,
         "detail": "django.utils.decorators",
-        "documentation": {}
-    },
-    {
-        "label": "csrf_exempt",
-        "importPath": "django.views.decorators.csrf",
-        "description": "django.views.decorators.csrf",
-        "isExtraImport": true,
-        "detail": "django.views.decorators.csrf",
         "documentation": {}
     },
     {
@@ -1075,6 +1194,24 @@
         "description": "django.utils.html",
         "isExtraImport": true,
         "detail": "django.utils.html",
+        "documentation": {}
+    },
+    {
+        "label": "paypalrestsdk",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "paypalrestsdk",
+        "description": "paypalrestsdk",
+        "detail": "paypalrestsdk",
+        "documentation": {}
+    },
+    {
+        "label": "stripe",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "stripe",
+        "description": "stripe",
+        "detail": "stripe",
         "documentation": {}
     },
     {
@@ -1505,7 +1642,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "AUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n}",
+        "peekOfCode": "AUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n    \"manager\": \"manager/components/\",",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1514,7 +1651,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "ROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n}\nELEMENTS_PER_PAGE = 9",
+        "peekOfCode": "ROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n    \"manager\": \"manager/components/\",\n}",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1523,7 +1660,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "LOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n}\nELEMENTS_PER_PAGE = 9",
+        "peekOfCode": "LOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n    \"manager\": \"manager/components/\",\n}\nELEMENTS_PER_PAGE = 9",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1532,7 +1669,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "MEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n}\nELEMENTS_PER_PAGE = 9",
+        "peekOfCode": "MEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n    \"manager\": \"manager/components/\",\n}\nELEMENTS_PER_PAGE = 9",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1541,7 +1678,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n}\nELEMENTS_PER_PAGE = 9",
+        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {\n    \"global\": \"components/\",\n    \"store\": \"store/components/\",\n    \"blog\": \"blog/components/\",\n    \"manager\": \"manager/components/\",\n}\nELEMENTS_PER_PAGE = 9",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1559,7 +1696,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.urls",
         "description": "art_by_mtr.urls",
-        "peekOfCode": "urlpatterns = [\n    path('dev-admin/', admin.site.urls),\n    path('', include('store.urls')),\n    path('accounts/', include('accounts.urls')),\n    path('blog/', include('blog.urls')),\n    path('manager/', include('manager.urls')),\n] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\nif settings.DEBUG:\n    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path('dev-admin/', admin.site.urls),\n    path('', include('store.urls')),\n    path('accounts/', include('accounts.urls')),\n    path('blog/', include('blog.urls')),\n    path('management/', include('manager.urls')),\n] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\nif settings.DEBUG:\n    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
         "detail": "art_by_mtr.urls",
         "documentation": {}
     },
@@ -1681,6 +1818,24 @@
         "documentation": {}
     },
     {
+        "label": "topbar",
+        "kind": 2,
+        "importPath": "manager.templatetags.manager_custom_tags",
+        "description": "manager.templatetags.manager_custom_tags",
+        "peekOfCode": "def topbar(title, user, *args, **kwargs):\n  data = {\n    'title': title,\n    'user': user,\n  }\n  return data",
+        "detail": "manager.templatetags.manager_custom_tags",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 5,
+        "importPath": "manager.templatetags.manager_custom_tags",
+        "description": "manager.templatetags.manager_custom_tags",
+        "peekOfCode": "register = template.Library()\n@register.inclusion_tag(os.path.join(settings.COMPONENTS_DIRS.get('manager'), \"topbar.html\"))\ndef topbar(title, user, *args, **kwargs):\n  data = {\n    'title': title,\n    'user': user,\n  }\n  return data",
+        "detail": "manager.templatetags.manager_custom_tags",
+        "documentation": {}
+    },
+    {
         "label": "ManagerConfig",
         "kind": 6,
         "importPath": "manager.apps",
@@ -1690,11 +1845,38 @@
         "documentation": {}
     },
     {
+        "label": "DatePickerWidget",
+        "kind": 6,
+        "importPath": "manager.forms",
+        "description": "manager.forms",
+        "peekOfCode": "class DatePickerWidget(DateInput):\n    def __init__(self, attrs=None, format='%Y-%m-%d'):\n        self.format = format\n        super().__init__(attrs={'class': 'datepicker form-control', 'data-provide': 'datepicker'}, format=format)\n    def render(self, name, value, attrs=None, renderer=None):\n        render_value = value.strftime(self.format) if isinstance(value, datetime.date) else ''\n        return mark_safe(f'<input type=\"text\" name=\"{name}\" value=\"{render_value}\"{\" \".join([f\"{k}={v}\" for k, v in attrs.items()])} />')\nclass PostForm(forms.ModelForm):\n    class Meta:\n        model = Post",
+        "detail": "manager.forms",
+        "documentation": {}
+    },
+    {
+        "label": "PostForm",
+        "kind": 6,
+        "importPath": "manager.forms",
+        "description": "manager.forms",
+        "peekOfCode": "class PostForm(forms.ModelForm):\n    class Meta:\n        model = Post\n        fields = ['title', 'description', 'content', 'event_date', 'event_place', 'thumbnail']\n        labels = {\n            'title': 'Nom évènement',\n            'description': 'Description',\n            'content': 'Plus de détail',\n            'event_date': 'Date évènement',\n            'event_place': 'Lieu évènement',",
+        "detail": "manager.forms",
+        "documentation": {}
+    },
+    {
+        "label": "ArtworkForm",
+        "kind": 6,
+        "importPath": "manager.forms",
+        "description": "manager.forms",
+        "peekOfCode": "class ArtworkForm(forms.ModelForm):\n    class Meta:\n        model = Artwork\n        fields = ['title', 'slug', 'description', 'price', 'stock', 'width', 'height', 'thumbnail', 'category', 'medium']\n        labels = {\n            'title': 'Titre',\n            'slug': 'Slug',\n            'description': 'Description',\n            'price': 'Prix',\n            'stock': 'Stock',",
+        "detail": "manager.forms",
+        "documentation": {}
+    },
+    {
         "label": "app_name",
         "kind": 5,
         "importPath": "manager.urls",
         "description": "manager.urls",
-        "peekOfCode": "app_name = \"manager\"\nurlpatterns = [\n   path('', views.gallery_page, name=\"artwork-list\"),\n   path('artwork/:pk', views.artwork_detail_page)\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "app_name = \"manager\"\nurlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-page'),\n    # path('events/', views.event_page, name = 'event_page'),\n    # path('events_form', views.event_form_page, name = 'event_form_page'),\n    # path('events_add_form', views.event_add_form_page, name = 'event_add_form_page'),\n    # path('orders', views.order_page, name = 'order_page'),\n    # path('payments', views.payment_page, name = 'payment_page'),\n    # path('seetings', views.seetings_page, name = 'seetings_page'),",
         "detail": "manager.urls",
         "documentation": {}
     },
@@ -1703,8 +1885,26 @@
         "kind": 5,
         "importPath": "manager.urls",
         "description": "manager.urls",
-        "peekOfCode": "urlpatterns = [\n   path('', views.gallery_page, name=\"artwork-list\"),\n   path('artwork/:pk', views.artwork_detail_page)\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "urlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-page'),\n    # path('events/', views.event_page, name = 'event_page'),\n    # path('events_form', views.event_form_page, name = 'event_form_page'),\n    # path('events_add_form', views.event_add_form_page, name = 'event_add_form_page'),\n    # path('orders', views.order_page, name = 'order_page'),\n    # path('payments', views.payment_page, name = 'payment_page'),\n    # path('seetings', views.seetings_page, name = 'seetings_page'),\n    # path('delete_event/<int:event_id>/', views.delete_event, name = 'delete_event'),",
         "detail": "manager.urls",
+        "documentation": {}
+    },
+    {
+        "label": "ArtworkController",
+        "kind": 6,
+        "importPath": "manager.views",
+        "description": "manager.views",
+        "peekOfCode": "class ArtworkController:\n    @login_required\n    def index(request) -> HttpResponse:\n        artworks = Artwork.objects.all().order_by('-updated_at')\n        paginator = Paginator(artworks, 10)\n        page = request.GET.get('page')\n        artworks = paginator.get_page(page)\n        context = {\"artworks\" : artworks }\n        return render(request, 'manager/pages/artwork.html', context)\n    @csrf_exempt",
+        "detail": "manager.views",
+        "documentation": {}
+    },
+    {
+        "label": "dashboard_page",
+        "kind": 2,
+        "importPath": "manager.views",
+        "description": "manager.views",
+        "peekOfCode": "def dashboard_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all().order_by('-updated_at')[:6]\n    orders = CheckOut.objects.all().order_by('-created_at')[:6]\n    context = {\n        \"artworks\": artworks,\n        \"orders\": orders,\n    }\n    return render(request, 'manager/pages/dashboard.html', context)\nclass ArtworkController:\n    @login_required",
+        "detail": "manager.views",
         "documentation": {}
     },
     {

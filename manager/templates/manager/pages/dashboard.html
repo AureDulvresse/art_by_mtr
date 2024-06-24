@@ -1,0 +1,99 @@
+{% extends "base.html" %} {% load static %} {% load manager_custom_tags %}
+
+{% block title %} Management {% endblock title %}
+
+{% block content %}
+
+<div class="flex">
+  {% include "manager/partials/sidebar.html" %}
+  <div class="main-content flex-grow-1 p-4">
+    {% topbar "Tableau de board" user %}
+
+    <div class="row text-center mb-4 wow animate__animated animate__fadeIn col-12 w-full" data-wow-delay="3s">
+      <div class="col-md-3">
+        <div
+          class="stat-box p-3 bg-light rounded h-100 d-flex flex-column justify-content-center wow animate__animated animate__zoomIn"
+        >
+          <p class="display-6">55</p>
+          <span>Nombre d'oeuvres</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div
+          class="stat-box p-3 bg-light rounded h-100 d-flex flex-column justify-content-center wow animate__animated animate__zoomIn"
+        >
+          <p class="display-6">150</p>
+          <span>Oeuvres vendues ce Mois</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div
+          class="stat-box p-3 bg-light rounded h-100 d-flex flex-column justify-content-center wow animate__animated animate__zoomIn"
+        >
+          <p class="display-6">15</p>
+          <span>Nombre de client</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div
+          class="stat-box p-3 bg-light rounded h-100 d-flex flex-column justify-content-center wow animate__animated animate__zoomIn"
+        >
+          <p class="display-6">250</p>
+          <span>Evenement ce mois</span>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div
+          class="cart-table-wrap wow animate__animated animate__slideInUp col-12 w-full" data-wow-delay="18s"
+        >
+          <table class="cart-table">
+            <thead class="cart-table-head">
+              <tr class="table-head-row">
+                <th class="artwork-image">Image</th>
+                <th class="artwork-name">Titre de l'oeuvre</th>
+                <th class="artwork-price">Prix</th>
+                <th class="artwork-category">Catégory</th>
+                <th class="artwork-medium">Medium</th>
+                <th class="artwork-medium">Dernière mise à jour</th>
+                <th class="artwork-medium">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in artworks %}
+              <tr class="table-body-row">
+                <td class="artwork-image">
+                  <img src="{{ item.thumbnail.url }}" alt="{{ item.title }}" />
+                </td>
+                <td class="artwork-name">{{ item.title }}</td>
+                <td class="artwork-price">{{ item.price }} €</td>
+                <td class="artwork-category">{{ item.category.name }}</td>
+                <td class="artwork-medium">{{ item.medium.name }}</td>
+                <td class="artwork-medium">{{ item.updated_at|date:"F Y" }}</td>
+                <td class="artwork-actions">
+                  <a href="#" class="btn btn-black">Détail</a>
+                  <button
+                    x-data="cartHandler()"
+                    x-on:click="removeFromCart('{{ item.id }}')"
+                    class="text-red border-none bg-transparent text-lg cursor-pointer"
+                    title="supprimer l'oeuvre"
+                  >
+                    <i class="bx bx-trash-alt text-red"></i>
+                  </button>
+                </td>
+              </tr>
+
+              {% empty %}
+              <tr>
+                <td colspan="6" class="text-center">Aucun oeuvre</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

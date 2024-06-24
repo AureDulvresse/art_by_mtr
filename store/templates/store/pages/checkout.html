@@ -11,16 +11,16 @@
   class="mt-8 pt-4 pb-5 checkout wow animate__animated animate__fadeIn"
   data-wow-delay="0.3s"
 >
-  <div class="container mx-auto pb-2">
-    <div class="flex justify-center items-start gap-4">
-      <div class="wow animate__animated animate__slideInLeft">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-7 wow animate__animated animate__slideInLeft">
         <div class="checkout-accordion-wrap">
           <div class="accordion" id="accordionExample">
-            <div class="card single-accordion w-full" x-data="{ open: true }">
+            <div class="single-accordion" x-data="{ open: true }">
               <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
                   <button
-                    class="btn btn-link"
+                    class="btn"
                     type="button"
                     @click="open = !open"
                     aria-expanded="true"
@@ -42,16 +42,16 @@
                   <div class="billing-address-form">
                     <form method="post">
                       <div class="mb-3">
-                        <input type="text" class="form-control w-full" placeholder="Name" />
+                        <input type="text" class="form-control" placeholder="Name" />
                       </div>
                       <div class="mb-3">
-                        <input type="email" class="form-control w-full" placeholder="Email" />
+                        <input type="email" class="form-control" placeholder="Email" />
                       </div>
                       <div class="mb-3">
-                        <input type="text" class="form-control w-full" placeholder="Address" />
+                        <input type="text" class="form-control " placeholder="Address" />
                       </div>
                       <div class="mb-3">
-                        <input type="tel" class="form-control w-full" placeholder="Phone" />
+                        <input type="tel" class="form-control" placeholder="Phone" />
                       </div>
                       <div class="mb-3">
                         <textarea
@@ -68,7 +68,7 @@
                 </div>
               </div>
             </div>
-            <div class="card single-accordion" x-data="{ open: false }">
+            <div class="single-accordion" x-data="{ open: false }">
               <div class="card-header" id="headingTwo">
                 <h5 class="mb-0">
                   <button
@@ -96,7 +96,7 @@
                 </div>
               </div>
             </div>
-            <div class="card single-accordion" x-data="{ open: false }">
+            <div class="single-accordion" x-data="{ open: false }">
               <div class="card-header" id="headingThree">
                 <h5 class="mb-0">
                   <button
@@ -130,7 +130,7 @@
                 </div>
               </div>
             </div>
-            <div class="card single-accordion" x-data="{ open: false }">
+            <div class="single-accordion" x-data="{ open: false }">
               <div class="card-header" id="headingFour">
                 <h5 class="mb-0">
                   <button
@@ -160,8 +160,8 @@
         </div>
       </div>
 
-      <div class="wow animate__animated animate__slideInRight">
-        <div class="total-section">
+      <div class="col-12 col-md-5 animate__animated animate__slideInRight rounded">
+        <div class="total-section rounded">
           <table class="total-table">
             <thead class="total-table-head">
               <tr class="table-total-row">
@@ -182,9 +182,9 @@
               {% endfor %}
             </tbody>
 
-            <tr class="bg-black py-2">
-              <td class="bg-black py-1"></td>
-              <td class="bg-black py-1"></td>
+            <tr>
+              <td class="border-b-gray"></td>
+              <td class="border-b-gray"></td>
             </tr>
             <tbody>
               <tr class="total-data">
@@ -195,6 +195,10 @@
                 <td>Shipping</td>
                 <td>0 $</td>
               </tr>
+              <tr>
+              <td class="border-b-gray"></td>
+              <td class="border-b-gray"></td>
+            </tr>
               <tr class="total-data">
                 <td>Total</td>
                 <td>{{ total_cost|add:0 }} €</td>

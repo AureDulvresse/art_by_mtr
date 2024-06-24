@@ -182,6 +182,7 @@ COMPONENTS_DIRS : dict = {
     "global": "components/",
     "store": "store/components/",
     "blog": "blog/components/",
+    "manager": "manager/components/",
 }
 
 ELEMENTS_PER_PAGE = 9

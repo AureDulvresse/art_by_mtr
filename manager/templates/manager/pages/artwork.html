@@ -1,0 +1,102 @@
+{% extends "base.html" %} {% load static %} {% load manager_custom_tags %}
+
+{% block title %} Management - Mes Oeuvres {% endblock title %} 
+
+{% block content %}
+
+<div class="flex">
+  {% include "manager/partials/sidebar.html" %}
+
+  <div class="main-content flex-grow-1 p-4">
+    {% topbar "Mes oeuvres" user %}
+
+    <div class="container">
+        
+      <div class="row">
+        <div class="flex justify-between items-center col-12 mb-3 m-O p-0">
+            <form method="post" class="flex item-center justify-center gap-3">
+                <input type="text" class="form-control" name="search-artwork" placeholder="Recherche..." />
+                <button type="submit" class="btn btn-red" title="search">
+                    <i class="bx bx-search"></i>
+                </button>
+            </form>
+            <a class="btn btn-black" href="#">Ajouter une oeuvre</a>
+        </div>
+        <div
+          class="cart-table-wrap wow animate__animated animate__slideInUp col-12 m-O p-0"
+          data-wow-delay="0.7s"
+        >
+          <table class="cart-table">
+            <thead class="cart-table-head">
+              <tr class="table-head-row">
+                <th class="artwork-image">Image</th>
+                <th class="artwork-name">Titre de l'oeuvre</th>
+                <th class="artwork-price">Prix</th>
+                <th class="artwork-category">Catégory</th>
+                <th class="artwork-medium">Medium</th>
+                <th class="artwork-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in artworks %}
+              <tr class="table-body-row">
+                <td class="artwork-image">
+                  <img src="{{ item.thumbnail.url }}" alt="{{ item.title }}" />
+                </td>
+                <td class="artwork-name">{{ item.title }}</td>
+                <td class="artwork-price">{{ item.price }} €</td>
+                <td class="artwork-category">{{ item.category.name }}</td>
+                <td class="artwork-medium">{{ item.medium.name }}</td>
+                <td class="artwork-actions">
+                  <a href="#" class="btn btn-black">Détail</a>
+                  <button
+                    x-data="cartHandler()"
+                    x-on:click="removeFromCart('{{ item.id }}')"
+                    class="text-red border-none bg-transparent text-lg cursor-pointer"
+                    title="supprimer l'oeuvre"
+                  >
+                    <i class="bx bx-trash-alt text-red"></i>
+                  </button>
+                </td>
+              </tr>
+
+              {% empty %}
+              <tr>
+                <td colspan="6" class="text-center">Aucun oeuvre</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div
+          class="mt-5 wow animate__animated animate__zoomIn flex justify-center items-end gap-3"
+        >
+          {% if artworks.has_previous %}
+          <a
+            href="?page={{ artworks.previous_page_number }}"
+            class="text-black text-2xl bx bx-chevron-left"
+          ></a>
+          {% else %}
+          <span class="text-gray-600 text-2xl bx bx-chevron-left"></span>
+          {% endif %}
+
+          <span class="text-gray-600"
+            >Page {{ artworks.number }} sur {{ artworks.paginator.num_pages }}</span
+          >
+
+          {% if artworks.has_next %}
+          <a
+            href="?page={{ artworks.next_page_number }}"
+            class="text-black text-2xl bx bx-chevron-right"
+          ></a>
+          {% else %}
+          <span class="text-gray-600 text-2xl bx bx-chevron-right"></span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,13 +1,8 @@
-import django
-import json
-import paypalrestsdk
-import stripe
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
-
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
@@ -17,8 +12,10 @@ from django.views.generic.base import TemplateView
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
+import json
+import paypalrestsdk
+import stripe
 
-from django.conf import settings
 from store.models import Artwork, Cart, CheckOut, Order
 from store.utils import get_cart_items
 from blog.models import Post
