@@ -42,7 +42,7 @@
         </li>
         <li>
           <a
-            href="news.html"
+            href="{% url 'blog:index' %}"
             class="{% if request.path == '/news/' %}active text-red-600{% else %}text-white{% endif %}"
             x-bind:class="{ 'text-white': isSticky, 'text-black': !isSticky }"
             >Blog</a

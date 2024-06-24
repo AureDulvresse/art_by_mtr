@@ -25,7 +25,7 @@ class ArtworkAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'medium', 'price', 'stock', 'created_at', 'updated_at')
     list_filter = ('category', 'medium', 'created_at', 'updated_at')
     search_fields = ('title', 'description')
-    prepopulated_fields = {'slug': ('title',)}  # Auto-generate slug from title
+    prepopulated_fields = {'slug': ('title',)}
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):

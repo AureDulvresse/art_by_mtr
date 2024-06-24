@@ -316,6 +316,14 @@
         "documentation": {}
     },
     {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -589,78 +597,19 @@
         "documentation": {}
     },
     {
-        "label": "views",
-        "importPath": "store",
-        "description": "store",
+        "label": "Post",
+        "importPath": "blog.models",
+        "description": "blog.models",
         "isExtraImport": true,
-        "detail": "store",
+        "detail": "blog.models",
         "documentation": {}
     },
     {
-        "label": "views",
-        "importPath": "store",
-        "description": "store",
+        "label": "Artwork",
+        "importPath": "store.models",
+        "description": "store.models",
         "isExtraImport": true,
-        "detail": "store",
-        "documentation": {}
-    },
-    {
-        "label": "views",
-        "importPath": "store",
-        "description": "store",
-        "isExtraImport": true,
-        "detail": "store",
-        "documentation": {}
-    },
-    {
-        "label": "random",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "random",
-        "description": "random",
-        "detail": "random",
-        "documentation": {}
-    },
-    {
-        "label": "requests",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "requests",
-        "description": "requests",
-        "detail": "requests",
-        "documentation": {}
-    },
-    {
-        "label": "Faker",
-        "importPath": "faker",
-        "description": "faker",
-        "isExtraImport": true,
-        "detail": "faker",
-        "documentation": {}
-    },
-    {
-        "label": "slugify",
-        "importPath": "django.utils.text",
-        "description": "django.utils.text",
-        "isExtraImport": true,
-        "detail": "django.utils.text",
-        "documentation": {}
-    },
-    {
-        "label": "ContentFile",
-        "importPath": "django.core.files.base",
-        "description": "django.core.files.base",
-        "isExtraImport": true,
-        "detail": "django.core.files.base",
-        "documentation": {}
-    },
-    {
-        "label": "sys",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "sys",
-        "description": "sys",
-        "detail": "sys",
+        "detail": "store.models",
         "documentation": {}
     },
     {
@@ -741,6 +690,81 @@
         "description": "store.models",
         "isExtraImport": true,
         "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "views",
+        "importPath": "store",
+        "description": "store",
+        "isExtraImport": true,
+        "detail": "store",
+        "documentation": {}
+    },
+    {
+        "label": "views",
+        "importPath": "store",
+        "description": "store",
+        "isExtraImport": true,
+        "detail": "store",
+        "documentation": {}
+    },
+    {
+        "label": "views",
+        "importPath": "store",
+        "description": "store",
+        "isExtraImport": true,
+        "detail": "store",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "Faker",
+        "importPath": "faker",
+        "description": "faker",
+        "isExtraImport": true,
+        "detail": "faker",
+        "documentation": {}
+    },
+    {
+        "label": "slugify",
+        "importPath": "django.utils.text",
+        "description": "django.utils.text",
+        "isExtraImport": true,
+        "detail": "django.utils.text",
+        "documentation": {}
+    },
+    {
+        "label": "ContentFile",
+        "importPath": "django.core.files.base",
+        "description": "django.core.files.base",
+        "isExtraImport": true,
+        "detail": "django.core.files.base",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
         "documentation": {}
     },
     {
@@ -1421,12 +1445,30 @@
         "documentation": {}
     },
     {
+        "label": "PostAdmin",
+        "kind": 6,
+        "importPath": "blog.admin",
+        "description": "blog.admin",
+        "peekOfCode": "class PostAdmin(admin.ModelAdmin):\n    list_display = ('title', 'event_date', 'event_place', 'created_at', 'updated_at')\n    list_filter = ('event_date', 'event_place', 'created_at', 'updated_at')\n    search_fields = ('title', 'description')\n    prepopulated_fields = {'slug': ('title',)}",
+        "detail": "blog.admin",
+        "documentation": {}
+    },
+    {
         "label": "BlogConfig",
         "kind": 6,
         "importPath": "blog.apps",
         "description": "blog.apps",
         "peekOfCode": "class BlogConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'blog'",
         "detail": "blog.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Post",
+        "kind": 6,
+        "importPath": "blog.models",
+        "description": "blog.models",
+        "peekOfCode": "class Post(models.Model):\n    title = models.CharField(max_length=180, unique=True, verbose_name=\"Thème de l'évenement\")\n    slug = models.SlugField(max_length=250,unique=True)\n    description = models.TextField()\n    content = models.TextField()\n    event_date = models.DateTimeField()\n    event_place = models.CharField(max_length=200)\n    event_artworks = models.ManyToManyField(Artwork)\n    thumbnail = models.ImageField(upload_to=\"posts\", blank=True, null=True)\n    created_at = models.DateTimeField(auto_now_add=True)",
+        "detail": "blog.models",
         "documentation": {}
     },
     {
@@ -1632,7 +1674,7 @@
         "kind": 6,
         "importPath": "store.admin",
         "description": "store.admin",
-        "peekOfCode": "class MediumAdmin(admin.ModelAdmin):\n    list_display = ('name', 'created_at', 'updated_at')\n    search_fields = ('name',)\n    list_filter = ('created_at', 'updated_at')\n@admin.register(Artwork)\nclass ArtworkAdmin(admin.ModelAdmin):\n    list_display = ('title', 'category', 'medium', 'price', 'stock', 'created_at', 'updated_at')\n    list_filter = ('category', 'medium', 'created_at', 'updated_at')\n    search_fields = ('title', 'description')\n    prepopulated_fields = {'slug': ('title',)}  # Auto-generate slug from title",
+        "peekOfCode": "class MediumAdmin(admin.ModelAdmin):\n    list_display = ('name', 'created_at', 'updated_at')\n    search_fields = ('name',)\n    list_filter = ('created_at', 'updated_at')\n@admin.register(Artwork)\nclass ArtworkAdmin(admin.ModelAdmin):\n    list_display = ('title', 'category', 'medium', 'price', 'stock', 'created_at', 'updated_at')\n    list_filter = ('category', 'medium', 'created_at', 'updated_at')\n    search_fields = ('title', 'description')\n    prepopulated_fields = {'slug': ('title',)}",
         "detail": "store.admin",
         "documentation": {}
     },
@@ -1641,7 +1683,7 @@
         "kind": 6,
         "importPath": "store.admin",
         "description": "store.admin",
-        "peekOfCode": "class ArtworkAdmin(admin.ModelAdmin):\n    list_display = ('title', 'category', 'medium', 'price', 'stock', 'created_at', 'updated_at')\n    list_filter = ('category', 'medium', 'created_at', 'updated_at')\n    search_fields = ('title', 'description')\n    prepopulated_fields = {'slug': ('title',)}  # Auto-generate slug from title\n@admin.register(Order)\nclass OrderAdmin(admin.ModelAdmin):\n    list_display = ('uuid', 'customer', 'artwork', 'quantity', 'ordered', 'created_at', 'ordered_at')\n    list_filter = ('ordered', 'created_at', 'ordered_at')\n    search_fields = ('customer__username', 'artwork__title')",
+        "peekOfCode": "class ArtworkAdmin(admin.ModelAdmin):\n    list_display = ('title', 'category', 'medium', 'price', 'stock', 'created_at', 'updated_at')\n    list_filter = ('category', 'medium', 'created_at', 'updated_at')\n    search_fields = ('title', 'description')\n    prepopulated_fields = {'slug': ('title',)}\n@admin.register(Order)\nclass OrderAdmin(admin.ModelAdmin):\n    list_display = ('uuid', 'customer', 'artwork', 'quantity', 'ordered', 'created_at', 'ordered_at')\n    list_filter = ('ordered', 'created_at', 'ordered_at')\n    search_fields = ('customer__username', 'artwork__title')",
         "detail": "store.admin",
         "documentation": {}
     },
