@@ -2,7 +2,8 @@
 
 {% block title %} Contact {% endblock title %}
 
-{% block content %} 
+{% block content %}
+
 {% breadcrumb "Nous contacter" "Disponible H24" user preview_cart_items %}
 
 <!-- contact form -->
@@ -24,7 +25,7 @@
         </p>
       </div>
 
-      <div class="contact-form wow animate__animated animate__slideInRight">
+      <div class="contact-form wow animate__animated animate__slideInRight shadow-lg p-4 rounded">
         <form method="POST">
           {% csrf_token %}
                {% if messages %}
@@ -107,5 +108,7 @@
   ></iframe>
 </div>
 <!-- end google map section -->
+
+ {% include "components/footer.html" %}
 
 {% endblock content %}

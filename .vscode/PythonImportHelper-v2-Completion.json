@@ -1649,7 +1649,7 @@
         "kind": 5,
         "importPath": "blog.urls",
         "description": "blog.urls",
-        "peekOfCode": "app_name = \"blog\"\nurlpatterns = [\n   path('', views.blog_page, name=\"index\"),\n   path('posts/<str:slug>/', views.post_detail_page, name=\"post-detail\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "app_name = \"blog\"\nurlpatterns = [\n   path('', views.blog_page, name=\"home\"),\n   path('posts/<str:slug>/', views.post_detail_page, name=\"post-detail\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
         "detail": "blog.urls",
         "documentation": {}
     },
@@ -1658,7 +1658,7 @@
         "kind": 5,
         "importPath": "blog.urls",
         "description": "blog.urls",
-        "peekOfCode": "urlpatterns = [\n   path('', views.blog_page, name=\"index\"),\n   path('posts/<str:slug>/', views.post_detail_page, name=\"post-detail\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
+        "peekOfCode": "urlpatterns = [\n   path('', views.blog_page, name=\"home\"),\n   path('posts/<str:slug>/', views.post_detail_page, name=\"post-detail\"),\n]\n# handler404 = f\"{app_name}.views.page_404\"",
         "detail": "blog.urls",
         "documentation": {}
     },

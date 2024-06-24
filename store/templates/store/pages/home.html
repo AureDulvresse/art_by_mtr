@@ -111,7 +111,7 @@
         </p>
       </div>
 
-      <div class="contact-form wow animate__animated animate__slideInRight">
+      <div class="contact-form wow animate__animated animate__slideInRight shadow-lg p-4 rounded">
         <form method="POST">
           {% csrf_token %}
             {% if messages %}
@@ -184,10 +184,12 @@
     <div class="grid-container">
       {% for post in posts %} {% postCard post  %} {% endfor %}
     </div>
-    <a href="{% url 'blog:index' %}" class="btn btn-red mt-8  wow animate__animated animate__zoomIn"
+    <a href="{% url 'blog:home' %}" class="btn btn-red mt-8  wow animate__animated animate__zoomIn"
       >Voir Plus</a
     >
   </div>
 </section>
+
+ {% include "components/footer.html" %}
 
 {% endblock content %}
