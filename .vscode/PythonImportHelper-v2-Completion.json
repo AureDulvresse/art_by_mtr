@@ -67,6 +67,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1563,6 +1579,15 @@
         "description": "blog.migrations.0001_initial",
         "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('store', '0002_payment'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Post',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
         "detail": "blog.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "blog.migrations.0002_alter_post_options_alter_post_content_and_more",
+        "description": "blog.migrations.0002_alter_post_options_alter_post_content_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('blog', '0001_initial'),\n        ('store', '0002_payment'),\n    ]\n    operations = [\n        migrations.AlterModelOptions(\n            name='post',\n            options={'ordering': ['title'], 'verbose_name': 'Post', 'verbose_name_plural': 'Posts'},\n        ),",
+        "detail": "blog.migrations.0002_alter_post_options_alter_post_content_and_more",
         "documentation": {}
     },
     {
