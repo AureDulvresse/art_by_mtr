@@ -70,7 +70,7 @@ function removeFromCart(order_uuid) {
 function showToast(title, message, className) {
   const toastId = "toast-" + Math.random().toString(36).substr(2, 9);
   const toastHTML = `
-    <div id="${toastId}" class="toast ${className}" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="${toastId}" class="toast ${className} wow animate__animated animate__fadeIn" data-wow-delay="0.5s" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <strong class="me-auto">${title}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

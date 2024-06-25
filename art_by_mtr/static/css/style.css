@@ -156,7 +156,7 @@ a {
 }
 
 .navbar a.btn:hover {
-    color: var(--color-white);
+    color: var(--color-white) !important;
 }
 
 .navbar i.bx {
