@@ -1,6 +1,6 @@
 {% load static %}
 <header
-  x-data="{ isSticky: false, showCart: false }"
+  x-data="{ isSticky: false, showCart: false, showUserMenu: false }"
   x-init="window.addEventListener('scroll', () => isSticky = window.scrollY > 50)"
   x-bind:class="{ 'bg-gray-900 shadow-lg': isSticky, 'bg-transparent': !isSticky }"
   class="wow animate__animated animate__fadeIn"
@@ -54,7 +54,7 @@
 
         <li>
           {% if user.is_authenticated %}
-          <div class="flex items-center justify-center gap-3">
+          <div class="flex items-center justify-center gap-3 relative">
             <button
               type="button"
               @click="showCart = !showCart"
@@ -63,7 +63,33 @@
             >
               <i class="bx bx-cart text-2xl"></i>
             </button>
-            <i class="bx bx-user text-2xl text-white"></i>
+            
+            <button
+              type="button"
+              @click="showUserMenu = !showUserMenu"
+              class="text-white bg-transparent border-none"
+              title="Mon compte"
+            >
+              <i class="bx bx-user text-2xl"></i>
+            </button>
+            
+            <div
+              x-show="showUserMenu"
+              x-transition.opacity
+              @click.away="showUserMenu = false"
+              class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20"
+            >
+              <a
+                href="{% url 'accounts:profile' %}"
+                class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                >Profil</a
+              >
+              <a
+                href="{% url 'accounts:logout' %}"
+                class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                >Déconnexion</a
+              >
+            </div>
           </div>
           {% else %}
           <a href="{% url 'accounts:login' %}" class="btn btn-red"

@@ -1,7 +1,6 @@
-// Fonction pour ajouter au panier avec jQuery Ajax
 function addToCart(event) {
   const artworkId = $(event.target).data("artwork-id");
-  const quantity = document.getElementById("quantity");
+  const quantity = document.getElementById("quantity").value;
 
   $.ajax({
     url: "/store/cart/add-to-cart/",
@@ -12,26 +11,14 @@ function addToCart(event) {
     contentType: "application/json",
     data: JSON.stringify({
       artwork_id: artworkId,
-      quantity: quantity.value,
+      quantity: quantity,
     }),
     success: function (data) {
-      Toastify({
-        text: data.message,
-        duration: 3000,
-        close: true,
-        gravity: "top",
-        backgroundColor: "#2ecc71",
-      }).showToast();
-       $("#cart-items").html(data.cart_items_html);
+      showToast("Succès", data.message, "bg-success");
+      $("#cart-items").html(data.cart_items_html);
     },
     error: function (xhr, textStatus, error) {
-      Toastify({
-        text: "Erreur lors de l'ajout au panier",
-        duration: 3000,
-        close: true,
-        gravity: "top",
-        backgroundColor: "#e74c3c",
-      }).showToast();
+      showToast("Erreur", "Erreur lors de l'ajout au panier", "bg-danger");
       console.error(xhr.responseText, textStatus, error);
     },
   });
@@ -50,34 +37,50 @@ function removeFromCart(order_uuid) {
     }),
     success: function (data) {
       if (data.success) {
-        Toastify({
-          text: "Article supprimé du panier",
-          duration: 3000,
-          close: true,
-          gravity: "top",
-          backgroundColor: "#2ecc71",
-        }).showToast();
+        showToast("Succès", "Article supprimé du panier", "bg-success");
         $("#cart-items").html(data.cart_items_html);
       } else {
-        Toastify({
-          text: "Erreur lors de la suppression de l'article",
-          duration: 3000,
-          close: true,
-          gravity: "top",
-          backgroundColor: "#e74c3c",
-        }).showToast();
+        showToast(
+          "Erreur",
+          "Erreur lors de la suppression de l'article",
+          "bg-danger"
+        );
       }
     },
     error: function (xhr, textStatus, error) {
-      Toastify({
-        text: "Erreur lors de la suppression de l'article",
-        duration: 3000,
-        close: true,
-        gravity: "top",
-        backgroundColor: "#e74c3c",
-      }).showToast();
+      showToast(
+        "Erreur",
+        "Erreur lors de la suppression de l'article",
+        "bg-danger"
+      );
       console.error(xhr.responseText, textStatus, error);
     },
+  });
+}
+
+function showToast(title, message, toastClass) {
+  const toastContainer = document.getElementById("toast-container");
+  const toastId = `toast-${Date.now()}`;
+  const toastHtml = `
+    <div id="${toastId}" class="toast ${toastClass} text-white" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">${title}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        ${message}
+      </div>
+    </div>
+  `;
+  toastContainer.insertAdjacentHTML("beforeend", toastHtml);
+
+  const toastElement = document.getElementById(toastId);
+  const bootstrapToast = new bootstrap.Toast(toastElement);
+  bootstrapToast.show();
+
+  // Remove toast element after it's hidden
+  toastElement.addEventListener("hidden.bs.toast", () => {
+    toastElement.remove();
   });
 }
 
@@ -117,7 +120,7 @@ function stripePayment() {
               .redirectToCheckout({ sessionId: response.id })
               .then((result) => {
                 if (result.error) {
-                  alert(result.error.message);
+                  showToast("Erreur", result.error.message, "bg-danger");
                 }
               });
           } else {
@@ -147,5 +150,4 @@ document.addEventListener("alpine:init", () => {
 $(document).ready(function () {
   // Utilisation de jQuery pour l'initialisation de WOW.js
   new WOW().init();
-
 });

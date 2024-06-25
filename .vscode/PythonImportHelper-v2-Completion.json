@@ -1273,7 +1273,7 @@
         "kind": 5,
         "importPath": "accounts.urls",
         "description": "accounts.urls",
-        "peekOfCode": "app_name = \"accounts\"\nurlpatterns = [\n    path(\"\", views.show, name=\"myAccount\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path(\"delete-account\", views.destroy, name=\"delete-account\"),\n]",
+        "peekOfCode": "app_name = \"accounts\"\nurlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path(\"delete-account\", views.destroy, name=\"delete-account\"),\n]",
         "detail": "accounts.urls",
         "documentation": {}
     },
@@ -1282,7 +1282,7 @@
         "kind": 5,
         "importPath": "accounts.urls",
         "description": "accounts.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.show, name=\"myAccount\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path(\"delete-account\", views.destroy, name=\"delete-account\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path(\"delete-account\", views.destroy, name=\"delete-account\"),\n]",
         "detail": "accounts.urls",
         "documentation": {}
     },
