@@ -581,6 +581,13 @@ a {
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 0 10px;
+    transform: translateY(0px);
+    transition: transform 3s ease-in-out;
+}
+
+.stat-box:hover{
+    transform: translateY(-10px);
+    transition: transform 0.8s ease-in-out;
 }
 
 .stat-box p {
@@ -589,7 +596,7 @@ a {
 }
 
 .form-control {
-    padding: 16px 10px !important;
+    padding: 18px 10px !important;
     border-radius: var(--border-radius) !important;
     background-color: var(--color-gray-200);
     border: 1.5px solid transparent;

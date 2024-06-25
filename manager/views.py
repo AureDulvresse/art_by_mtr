@@ -15,11 +15,12 @@ from manager.forms import ArtworkForm
 
 @login_required
 def dashboard_page(request) -> HttpResponse:
-    artworks = Artwork.objects.all().order_by('-updated_at')[:6]
+    artworks = Artwork.objects.all().order_by('-updated_at')
     orders = CheckOut.objects.all().order_by('-created_at')[:6]
 
     context = {
-        "artworks": artworks,
+        "artworks": artworks[:6],
+        "nb_artwork": artworks.count(),
         "orders": orders,
     }
     return render(request, 'manager/pages/dashboard.html', context)

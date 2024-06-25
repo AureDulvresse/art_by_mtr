@@ -1936,7 +1936,7 @@
         "kind": 2,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "def dashboard_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all().order_by('-updated_at')[:6]\n    orders = CheckOut.objects.all().order_by('-created_at')[:6]\n    context = {\n        \"artworks\": artworks,\n        \"orders\": orders,\n    }\n    return render(request, 'manager/pages/dashboard.html', context)\nclass ArtworkController:\n    @login_required",
+        "peekOfCode": "def dashboard_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all().order_by('-updated_at')\n    orders = CheckOut.objects.all().order_by('-created_at')[:6]\n    context = {\n        \"artworks\": artworks[:6],\n        \"nb_artwork\": artworks.count(),\n        \"orders\": orders,\n    }\n    return render(request, 'manager/pages/dashboard.html', context)\nclass ArtworkController:",
         "detail": "manager.views",
         "documentation": {}
     },

@@ -14,7 +14,7 @@
         <div
           class="stat-box p-3 bg-light rounded h-100 d-flex flex-column justify-content-center wow animate__animated animate__zoomIn"
         >
-          <p class="display-6">55</p>
+          <p class="display-6">{{ nb_artwork }}</p>
           <span>Nombre d'oeuvres</span>
         </div>
       </div>
@@ -56,7 +56,6 @@
                 <th class="artwork-price">Prix</th>
                 <th class="artwork-category">Catégory</th>
                 <th class="artwork-medium">Medium</th>
-                <th class="artwork-medium">Dernière mise à jour</th>
                 <th class="artwork-medium">Actions</th>
               </tr>
             </thead>
@@ -70,7 +69,6 @@
                 <td class="artwork-price">{{ item.price }} €</td>
                 <td class="artwork-category">{{ item.category.name }}</td>
                 <td class="artwork-medium">{{ item.medium.name }}</td>
-                <td class="artwork-medium">{{ item.updated_at|date:"F Y" }}</td>
                 <td class="artwork-actions">
                   <a href="#" class="btn btn-black">Détail</a>
                   <button
