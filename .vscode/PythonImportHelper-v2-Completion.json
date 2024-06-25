@@ -2209,7 +2209,7 @@
         "kind": 2,
         "importPath": "store.utils",
         "description": "store.utils",
-        "peekOfCode": "def get_cart_items(user):\n    cart = get_object_or_404(Cart, customer=user)\n    orders = cart.orders.all()\n    total_cost = cart.total_cost\n    return orders, total_cost",
+        "peekOfCode": "def get_cart_items(user):\n    cart = Cart.objects.get(customer = user)\n    orders = cart.orders.all()\n    total_cost = cart.total_cost\n    return orders, total_cost",
         "detail": "store.utils",
         "documentation": {}
     },
