@@ -1,8 +1,12 @@
-{% extends "base.html" %} {% load static %}
+{% extends "base.html" %} 
+
+{% load static %} 
 
 {% load store_custom_tags %} {% load blog_custom_tags %} 
 
-{% block title %} Accueil {% endblock title %} {% block content %}
+{% block title %} Accueil {% endblock title %} 
+
+{% block content %}
 
 <section class="hero hero-bg-1 flex items-center justify-center">
   <div class="caption-black"></div>
@@ -14,11 +18,17 @@
       >
         Bienvenue chez <span class="text-red">MTR</span>
       </h2>
-      <p class="text-lg text-gray-200 mb-4 wow animate__animated animate__fadeInUp" data-wow-delay="0.4s">
+      <p
+        class="text-lg text-gray-200 mb-4 wow animate__animated animate__fadeInUp"
+        data-wow-delay="0.4s"
+      >
         Explorez notre collection d'art et trouvez l'inspiration
       </p>
     </div>
-    <div class="hero-btn flex justify-center gap-4 wow animate__animated animate__fadeInUp"  data-wow-delay="0.7s">
+    <div
+      class="hero-btn flex justify-center gap-4 wow animate__animated animate__fadeInUp"
+      data-wow-delay="0.7s"
+    >
       <a href="{% url 'store:gallery' %}" class="btn btn-red mr-2"
         >Visiter la Galerie</a
       >
@@ -42,33 +52,18 @@
     <div class="grid-container">
       {% for artwork in artworks %} {% artworkCard artwork user %} {% endfor %}
     </div>
-    <a href="{% url 'store:gallery' %}" class="btn btn-red mt-8  wow animate__animated animate__zoomIn"
+    <a
+      href="{% url 'store:gallery' %}"
+      class="btn btn-red mt-8 wow animate__animated animate__zoomIn"
       >Découvrir la galerie</a
     >
   </div>
 </section>
 
 <section
-  class="mt-8 pt-4 pb-5 hero-bg-2 paralaxe flex item-center justify-center"
+  class="mt-8 pt-4 pb-5 about wow animate__animated animate__fadeIn bg-gray-200"
+  data-wow-delay="0.3s"
 >
-  <div class="caption-black"></div>
-  <div class="container mx-auto flex item-center flex-col justify-center z-10">
-    <h3 class="text-center text-4xl text-red mb-2 wow animate__animated animate__slideInDown">Nouvelle collection</h3>
-    <p class="text-white mb-4 wow animate__animated animate__slideInDown">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi corrupti
-      repudiandae nostrum. Nostrum quo dolorum aspernatur, officiis dolor sit.
-      Tempore, reiciendis. Nulla doloribus possimus sint cum facilis magni quae
-      repellendus!
-    </p>
-    <div class="flex item-center justify-center gap-3 wow animate__animated animate__zoomIn">
-      <a href="{% url 'store:gallery' %}" class="btn btn-black"
-        >Visiter la boutique</a
-      >
-    </div>
-  </div>
-</section>
-
-<section class="mt-8 pt-4 pb-5 about wow animate__animated animate__fadeIn" data-wow-delay="0.3s">
   <div class="container mx-auto pb-2">
     <div class="flex justify-center items-start gap-4">
       <div class="about-img wow animate__animated animate__slideInLeft">
@@ -90,13 +85,18 @@
           et officia obcaecati quod facere ullam ad aspernatur, iusto corrupti.
           Atque, modi esse!
         </p>
-        <a href="{% url 'store:about' %}" class="btn btn-black">En savoir plus</a>
+        <a href="{% url 'store:about' %}" class="btn btn-black"
+          >En savoir plus</a
+        >
       </div>
     </div>
   </div>
 </section>
 
-<section class="mt-8 pt-4 pb-5 contact wow animate__animated animate__fadeIn" data-wow-delay="0.3s">
+<section
+  class="mt-8 pt-4 pb-5 contact wow animate__animated animate__fadeIn"
+  data-wow-delay="0.3s"
+>
   <div class="container mx-auto">
     <div class="flex justify-center items-start gap-4">
       <div class="contact-text wow animate__animated animate__slideInLeft">
@@ -111,10 +111,11 @@
         </p>
       </div>
 
-      <div class="contact-form wow animate__animated animate__slideInRight shadow-lg p-4 rounded">
+      <div
+        class="contact-form wow animate__animated animate__slideInRight shadow-lg p-4 rounded"
+      >
         <form method="POST">
-          {% csrf_token %}
-            {% if messages %}
+          {% csrf_token %} {% if messages %}
           <div class="mb-3 flex flex-col">
             {% for message in messages %}
             <div
@@ -141,17 +142,17 @@
               type="email"
               name="email"
               id="email"
-               class="form-control"
+              class="form-control"
               placeholder="Entrer votre adresse mail"
             />
           </div>
-             <div class="mb-3 flex flex-col">
+          <div class="mb-3 flex flex-col">
             <label for="subject" class="p-2 text-black"> Sujet </label>
             <input
               type="text"
               name="subject"
               id="subject"
-               class="form-control"
+              class="form-control"
               placeholder="Entrer un object"
             />
           </div>
@@ -160,7 +161,7 @@
             <textarea
               name="message"
               id="message"
-               class="form-control"
+              class="form-control"
               placeholder="Taper votre message"
             ></textarea>
           </div>
@@ -172,24 +173,26 @@
 </section>
 
 <section
-  class="mt-8 pt-4 pb-5 container mx-auto wow animate__animated animate__fadeIn"
+  class="mt-8 pt-4 pb-5 wow animate__animated animate__fadeIn bg-gray-200"
   data-wow-delay="0.3s"
 >
-  <div class="flex items-center justify-center flex-col">
-    <div class="flex items-center flex-col subtitle mb-8">
-      <h2 class="text-center mb-4">Evenement <span>& Expo</span></h2>
-      <div class="subtitle-line"></div>
-    </div>
+  <div class="container mx-auto">
+    <div class="flex items-center justify-center flex-col">
+      <div class="flex items-center flex-col subtitle mb-8">
+        <h2 class="text-center mb-4">Evenement <span>& Expo</span></h2>
+        <div class="subtitle-line"></div>
+      </div>
 
-    <div class="grid-container">
-      {% for post in posts %} {% postCard post  %} {% endfor %}
+      <div class="grid-container">
+        {% for post in posts %} {% postCard post %} {% endfor %}
+      </div>
+      <a
+        href="{% url 'blog:home' %}"
+        class="btn btn-red mt-8 wow animate__animated animate__zoomIn"
+        >Voir Plus</a
+      >
     </div>
-    <a href="{% url 'blog:home' %}" class="btn btn-red mt-8  wow animate__animated animate__zoomIn"
-      >Voir Plus</a
-    >
   </div>
 </section>
 
- {% include "components/footer.html" %}
-
-{% endblock content %}
+{% include "components/footer.html" %} {% endblock content %}
