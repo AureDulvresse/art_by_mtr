@@ -55,6 +55,7 @@
         <li>
           {% if user.is_authenticated %}
           <div class="flex items-center justify-center gap-3 relative">
+            <!-- Panier Button -->
             <button
               type="button"
               @click="showCart = !showCart"
@@ -63,34 +64,16 @@
             >
               <i class="bx bx-cart text-2xl"></i>
             </button>
-            
-            <button
-              type="button"
-              @click="showUserMenu = !showUserMenu"
+
+            <!-- Utilisateur Button -->
+           <a
+              href="{% url 'accounts:profile' %}"
               class="text-white bg-transparent border-none"
               title="Mon compte"
             >
               <i class="bx bx-user text-2xl"></i>
-            </button>
-            
-            <div
-              x-show="showUserMenu"
-              x-transition.opacity
-              @click.away="showUserMenu = false"
-              class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20"
-            >
-              <a
-                href="{% url 'accounts:profile' %}"
-                class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                >Profil</a
-              >
-              <a
-                href="{% url 'accounts:logout' %}"
-                class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                >Déconnexion</a
-              >
-            </div>
-          </div>
+          </a>
+
           {% else %}
           <a href="{% url 'accounts:login' %}" class="btn btn-red"
             >Se connecter</a

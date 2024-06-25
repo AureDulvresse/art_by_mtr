@@ -1,11 +1,15 @@
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import get_object_or_404, redirect, render
 
 from accounts.models import Customer
 from accounts.forms import LoginForm, RegisterForm
+from store.utils import get_cart_items
+from store.models import Cart
 
 
 
@@ -72,11 +76,19 @@ def register_page(request) -> HttpResponse:
     else:
         form = RegisterForm()
     
-    return render(request, "accounts/register.html", {"form": form})
+    return render(request, "accounts/pages/register.html", {"form": form})
 
 @login_required
 def show(request) -> HttpResponse:
-    return render(request, "accounts/profile.html", {})
+    cart_items = None
+    user = request.user
+    if user.is_authenticated:
+        try:
+            cart, _ = get_cart_items(user)
+            cart_items = cart.select_related('artwork').order_by('-updated_at')
+        except Cart.DoesNotExist:
+            cart = None
+    return render(request, "accounts/pages/index.html", { 'preview_cart_items': cart_items[:3], })
 
 @login_required
 def update(request) -> HttpResponse:
@@ -101,11 +113,29 @@ def update(request) -> HttpResponse:
 
 
 @login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important to update the session with the new password
+            messages.success(request, 'Votre mot de passe a été mis à jour avec succès!')
+            return redirect('accounts:change-password')
+        else:
+            messages.error(request, 'Veuillez corriger les erreurs ci-dessous.')
+    else:
+        form = PasswordChangeForm(request.user)
+    
+    return render(request, 'accounts/change_password.html', {
+        'form': form
+    })
+
+@login_required
 def destroy(request) -> HttpResponse:
 
     Customer = get_object_or_404(Customer, pk = request.user.pk)
     logout(request)
     Customer.delete()
 
-    return redirect("chat:home")
+    return redirect("store:home")
     

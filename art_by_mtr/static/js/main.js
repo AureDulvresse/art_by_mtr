@@ -1,6 +1,7 @@
+// Fonction pour ajouter au panier avec jQuery Ajax
 function addToCart(event) {
   const artworkId = $(event.target).data("artwork-id");
-  const quantity = document.getElementById("quantity").value;
+  const quantity = document.getElementById("quantity");
 
   $.ajax({
     url: "/store/cart/add-to-cart/",
@@ -11,14 +12,18 @@ function addToCart(event) {
     contentType: "application/json",
     data: JSON.stringify({
       artwork_id: artworkId,
-      quantity: quantity,
+      quantity: quantity.value,
     }),
     success: function (data) {
-      showToast("Succès", data.message, "bg-success");
+      showToast("Succès", data.message, "bg-success text-white");
       $("#cart-items").html(data.cart_items_html);
     },
     error: function (xhr, textStatus, error) {
-      showToast("Erreur", "Erreur lors de l'ajout au panier", "bg-danger");
+      showToast(
+        "Erreur",
+        "Erreur lors de l'ajout au panier",
+        "bg-danger text-white"
+      );
       console.error(xhr.responseText, textStatus, error);
     },
   });
@@ -37,13 +42,17 @@ function removeFromCart(order_uuid) {
     }),
     success: function (data) {
       if (data.success) {
-        showToast("Succès", "Article supprimé du panier", "bg-success");
+        showToast(
+          "Succès",
+          "Article supprimé du panier",
+          "bg-success text-white"
+        );
         $("#cart-items").html(data.cart_items_html);
       } else {
         showToast(
           "Erreur",
           "Erreur lors de la suppression de l'article",
-          "bg-danger"
+          "bg-danger text-white"
         );
       }
     },
@@ -51,18 +60,17 @@ function removeFromCart(order_uuid) {
       showToast(
         "Erreur",
         "Erreur lors de la suppression de l'article",
-        "bg-danger"
+        "bg-danger text-white"
       );
       console.error(xhr.responseText, textStatus, error);
     },
   });
 }
 
-function showToast(title, message, toastClass) {
-  const toastContainer = document.getElementById("toast-container");
-  const toastId = `toast-${Date.now()}`;
-  const toastHtml = `
-    <div id="${toastId}" class="toast ${toastClass} text-white" role="alert" aria-live="assertive" aria-atomic="true">
+function showToast(title, message, className) {
+  const toastId = "toast-" + Math.random().toString(36).substr(2, 9);
+  const toastHTML = `
+    <div id="${toastId}" class="toast ${className}" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <strong class="me-auto">${title}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -72,16 +80,10 @@ function showToast(title, message, toastClass) {
       </div>
     </div>
   `;
-  toastContainer.insertAdjacentHTML("beforeend", toastHtml);
 
-  const toastElement = document.getElementById(toastId);
-  const bootstrapToast = new bootstrap.Toast(toastElement);
-  bootstrapToast.show();
-
-  // Remove toast element after it's hidden
-  toastElement.addEventListener("hidden.bs.toast", () => {
-    toastElement.remove();
-  });
+  $("#toast-container").append(toastHTML);
+  const toastElement = new bootstrap.Toast(document.getElementById(toastId));
+  toastElement.show();
 }
 
 function getCookie(name) {
@@ -120,7 +122,7 @@ function stripePayment() {
               .redirectToCheckout({ sessionId: response.id })
               .then((result) => {
                 if (result.error) {
-                  showToast("Erreur", result.error.message, "bg-danger");
+                  alert(result.error.message);
                 }
               });
           } else {

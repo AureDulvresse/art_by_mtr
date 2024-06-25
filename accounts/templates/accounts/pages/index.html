@@ -1,125 +1,86 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
+{% load static %}
+{% load store_custom_tags %}
 
-{% load static %} {% load store_custom_tags %} 
+{% block title %}Mon compte{% endblock title %}
 
-{% block title %}My Account{% endblock %} 
+{% block content %}
 
-{% block content %} 
+{% breadcrumb "Mon compte" "Une gestion complète de ton compte" user preview_cart_items %}
 
-{% include "components/loader.html" %}
-{% include "store/layout/header.html" %}
-
-{% breadcrumb "Mon Compte" "Gère ton compte comme tu le sens !" %}
-
-<div class="mt-4 py-5">
-  <div class="container">
-    <div class="rounded shadow">
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <div class="d-flex align-items-center justify-content-center py-4">
-            <div class="container">
-              <form
-                action="{% url 'accounts:update-account' %}"
-                method="post"
-                class="px-2 py-3"
-              >
-                <h3 class="text-secondary-emphasis" style="color: #f28123">
-                  Informations compte !
-                </h3>
-
-                {% if messages %}
-                <div class="alert alert-danger">
-                  {% for message in messages %} {{ message }} {% endfor %}
-                </div>
-                {% endif %} {% csrf_token %}
-
-                <div class="mb-3">
-                  <label for="first_name" class="form-label">Prénom</label>
-                  <input
-                    type="text"
-                    name="first_name"
-                    id="first_name"
-                    class="form-control form-control-lg"
-                    placeholder="Votre prénom"
-                    value="{{ user.first_name }}"
-                  />
-                </div>
-
-                <div class="mb-3">
-                  <label for="last_name" class="form-label">Nom</label>
-                  <input
-                    type="text"
-                    name="last_name"
-                    id="last_name"
-                    class="form-control form-control-lg"
-                    placeholder="Votre nom"
-                    value="{{ user.last_name }}"
-                  />
-                </div>
-
-                <div class="mb-3">
-                  <label for="username" class="form-label"
-                    >Nom d'utilisateur</label
-                  >
-                  <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    class="form-control form-control-lg"
-                    placeholder="Nom d'utilisateur"
-                    value="{{ user.username }}"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="email" class="form-label"
-                    >Addresse électronique</label
-                  >
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    class="form-control form-control-lg"
-                    placeholder="Adresse mail"
-                    value="{{ user.email }}"
-                  />
-                </div>
-                <div class="d-flex align-items-center justify-content-center">
-                  <button
-                    type="submit"
-                    class="btn rounded-pill mx-2"
-                    style="
-                      font-family: 'Inter', sans-serif;
-                      display: inline-block;
-                      background-color: #f28123;
-                      color: #fff;
-                      padding: 10px 20px;
-                    "
-                  >
-                    Mettre à jour
-                  </button>
-                  <a
-                    href="{% url 'accounts:delete-account' %}"
-                    class="btn btn-danger rounded-pill py-2"
-                  >
-                    Supprimer compte
-                  </a>
-                </div>
-              </form>
-            </div>
+<div class="container mt-4">
+  <div class="row">
+    <!-- Section gauche : Informations du compte -->
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="card-title text-secondary-emphasis mb-4">Informations du compte</h2>
+          
+          {% if messages %}
+          <div class="alert alert-danger">
+            {% for message in messages %}
+              {{ message }}
+            {% endfor %}
           </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="d-flex align-items-center justify-content-center pt-5">
-                <div class="container">
-                    <h3 class="text-secondary-emphasis" style="color: #f28123">
-                        <i class="fas fa-history"></i> Historique d'activité !
-                    </h3>
-                </div>
+          {% endif %}
+          
+          <form action="{% url 'accounts:update-account' %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="first_name" class="form-label">Prénom</label>
+              <input type="text" name="first_name" id="first_name" class="form-control" value="{{ user.first_name }}">
             </div>
+            <div class="mb-3">
+              <label for="last_name" class="form-label">Nom</label>
+              <input type="text" name="last_name" id="last_name" class="form-control" value="{{ user.last_name }}">
+            </div>
+            <div class="mb-3">
+              <label for="username" class="form-label">Nom d'utilisateur</label>
+              <input type="text" name="username" id="username" class="form-control" value="{{ user.username }}">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Adresse électronique</label>
+              <input type="email" name="email" id="email" class="form-control" value="{{ user.email }}">
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-black">Mettre à jour</button>
+              <a href="{% url 'accounts:delete-account' %}" class="btn btn-danger ms-2">Supprimer compte</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Section droite : Historique des commandes -->
+    <div class="col-lg-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="card-title text-secondary-emphasis mb-4">Historique des commandes</h2>
+          
+          <div class="accordion" id="accordionOrders">
+            {% for order in orders %}
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading{{ order.id }}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="false" aria-controls="collapse{{ order.id }}">
+                  {{ order.artwork.title }}
+                </button>
+              </h2>
+              <div id="collapse{{ order.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ order.id }}" data-bs-parent="#accordionOrders">
+                <div class="accordion-body">
+                  <p>Date de commande : {{ order.date_ordered|date:"d M Y" }}</p>
+                  <p>Status : {{ order.status }}</p>
+                  <!-- Ajoutez d'autres détails de la commande ici -->
+                </div>
+              </div>
+            </div>
+            {% empty %}
+            <p>Aucune commande passée.</p>
+            {% endfor %}
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-{% include "store/layout/footer.html" %} {% endblock content %}
+{% endblock content %}

@@ -259,6 +259,14 @@
         "documentation": {}
     },
     {
+        "label": "PasswordChangeForm",
+        "importPath": "django.contrib.auth.forms",
+        "description": "django.contrib.auth.forms",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.forms",
+        "documentation": {}
+    },
+    {
         "label": "django",
         "kind": 6,
         "isExtraImport": true,
@@ -353,6 +361,54 @@
         "description": "django.test",
         "isExtraImport": true,
         "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "views",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "update_session_auth_hash",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
         "documentation": {}
     },
     {
@@ -468,55 +524,7 @@
         "documentation": {}
     },
     {
-        "label": "authenticate",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "login",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "logout",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "get_user_model",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
-        "label": "get_user_model",
-        "importPath": "django.contrib.auth",
-        "description": "django.contrib.auth",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth",
-        "documentation": {}
-    },
-    {
         "label": "login_required",
-        "importPath": "django.contrib.auth.decorators",
-        "description": "django.contrib.auth.decorators",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.decorators",
-        "documentation": {}
-    },
-    {
-        "label": "permission_required",
         "importPath": "django.contrib.auth.decorators",
         "description": "django.contrib.auth.decorators",
         "isExtraImport": true,
@@ -641,6 +649,158 @@
         "description": "accounts.forms",
         "isExtraImport": true,
         "detail": "accounts.forms",
+        "documentation": {}
+    },
+    {
+        "label": "get_cart_items",
+        "importPath": "store.utils",
+        "description": "store.utils",
+        "isExtraImport": true,
+        "detail": "store.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_cart_items",
+        "importPath": "store.utils",
+        "description": "store.utils",
+        "isExtraImport": true,
+        "detail": "store.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_cart_items",
+        "importPath": "store.utils",
+        "description": "store.utils",
+        "isExtraImport": true,
+        "detail": "store.utils",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Artwork",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Artwork",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Artwork",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "CheckOut",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Category",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Medium",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Artwork",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "CheckOut",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Artwork",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "CheckOut",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
         "documentation": {}
     },
     {
@@ -805,126 +965,6 @@
         "documentation": {}
     },
     {
-        "label": "Artwork",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Cart",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Artwork",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Artwork",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "CheckOut",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Category",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Medium",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Artwork",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Order",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Cart",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "CheckOut",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Artwork",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Cart",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "CheckOut",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
-        "label": "Order",
-        "importPath": "store.models",
-        "description": "store.models",
-        "isExtraImport": true,
-        "detail": "store.models",
-        "documentation": {}
-    },
-    {
         "label": "views",
         "importPath": "blog",
         "description": "blog",
@@ -954,22 +994,6 @@
         "description": "django.core.paginator",
         "isExtraImport": true,
         "detail": "django.core.paginator",
-        "documentation": {}
-    },
-    {
-        "label": "get_cart_items",
-        "importPath": "store.utils",
-        "description": "store.utils",
-        "isExtraImport": true,
-        "detail": "store.utils",
-        "documentation": {}
-    },
-    {
-        "label": "get_cart_items",
-        "importPath": "store.utils",
-        "description": "store.utils",
-        "isExtraImport": true,
-        "detail": "store.utils",
         "documentation": {}
     },
     {
@@ -1273,7 +1297,7 @@
         "kind": 5,
         "importPath": "accounts.urls",
         "description": "accounts.urls",
-        "peekOfCode": "app_name = \"accounts\"\nurlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path(\"delete-account\", views.destroy, name=\"delete-account\"),\n]",
+        "peekOfCode": "app_name = \"accounts\"\nurlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path('change-password/', views.change_password, name='change-password'),\n    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),\n    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),",
         "detail": "accounts.urls",
         "documentation": {}
     },
@@ -1282,7 +1306,7 @@
         "kind": 5,
         "importPath": "accounts.urls",
         "description": "accounts.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path(\"delete-account\", views.destroy, name=\"delete-account\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path('change-password/', views.change_password, name='change-password'),\n    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),\n    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),\n    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),",
         "detail": "accounts.urls",
         "documentation": {}
     },
@@ -1318,7 +1342,7 @@
         "kind": 2,
         "importPath": "accounts.views",
         "description": "accounts.views",
-        "peekOfCode": "def show(request) -> HttpResponse:\n    return render(request, \"accounts/profile.html\", {})\n@login_required\ndef update(request) -> HttpResponse:\n    if request.method == \"POST\":\n        form = request.POST\n        first_name = form.get(\"first_name\")\n        last_name = form.get(\"last_name\")\n        username = form.get(\"username\")\n        email = form.get(\"email\")",
+        "peekOfCode": "def show(request) -> HttpResponse:\n    cart_items = None\n    user = request.user\n    if user.is_authenticated:\n        try:\n            cart, _ = get_cart_items(user)\n            cart_items = cart.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    return render(request, \"accounts/pages/index.html\", { 'preview_cart_items': cart_items[:3], })",
         "detail": "accounts.views",
         "documentation": {}
     },
@@ -1332,11 +1356,20 @@
         "documentation": {}
     },
     {
+        "label": "change_password",
+        "kind": 2,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "def change_password(request):\n    if request.method == 'POST':\n        form = PasswordChangeForm(request.user, request.POST)\n        if form.is_valid():\n            user = form.save()\n            update_session_auth_hash(request, user)  # Important to update the session with the new password\n            messages.success(request, 'Votre mot de passe a été mis à jour avec succès!')\n            return redirect('accounts:change-password')\n        else:\n            messages.error(request, 'Veuillez corriger les erreurs ci-dessous.')",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
         "label": "destroy",
         "kind": 2,
         "importPath": "accounts.views",
         "description": "accounts.views",
-        "peekOfCode": "def destroy(request) -> HttpResponse:\n    Customer = get_object_or_404(Customer, pk = request.user.pk)\n    logout(request)\n    Customer.delete()\n    return redirect(\"chat:home\")",
+        "peekOfCode": "def destroy(request) -> HttpResponse:\n    Customer = get_object_or_404(Customer, pk = request.user.pk)\n    logout(request)\n    Customer.delete()\n    return redirect(\"store:home\")",
         "detail": "accounts.views",
         "documentation": {}
     },
