@@ -14,11 +14,11 @@ function addToCart(event) {
       artwork_id: artworkId,
       quantity: quantity.value,
     }),
-    success: function (data) {
+    success: (data) => {
       showToast("Succès", data.message, "bg-success text-white");
       $("#cart-items").html(data.cart_items_html);
     },
-    error: function (xhr, textStatus, error) {
+    error: (xhr, textStatus, error) => {
       showToast(
         "Erreur",
         "Erreur lors de l'ajout au panier",
@@ -40,7 +40,7 @@ function removeFromCart(order_uuid) {
     data: JSON.stringify({
       order_uuid: order_uuid,
     }),
-    success: function (data) {
+    success: (data) => {
       if (data.success) {
         showToast(
           "Succès",
@@ -58,7 +58,47 @@ function removeFromCart(order_uuid) {
         );
       }
     },
-    error: function (xhr, textStatus, error) {
+    error: (xhr, textStatus, error) => {
+      showToast(
+        "Erreur",
+        "Erreur lors de la suppression de l'article",
+        "bg-danger text-white"
+      );
+      console.error(xhr.responseText, textStatus, error);
+    },
+  });
+}
+
+function removeArtwork(artwork_id) {
+  $.ajax({
+    url: "/management/artworks/delete/",
+    type: "POST",
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken"),
+    },
+    contentType: "application/json",
+    data: JSON.stringify({
+      id: artwork_id,
+    }),
+    success: (data) => {
+      if (data.success) {
+        showToast(
+          "Succès",
+          "Oeuvre supprimé avec succès",
+          "bg-success text-white"
+        );
+
+        $("#artwork-list").html(data.artworks);
+        $("#artwork-last-updated").html(data.last_updated_artworks);
+      } else {
+        showToast(
+          "Erreur",
+          "Erreur lors de la suppression de l'oeuvre",
+          "bg-danger text-white"
+        );
+      }
+    },
+    error: (xhr, textStatus, error) => {
       showToast(
         "Erreur",
         "Erreur lors de la suppression de l'article",
@@ -144,6 +184,9 @@ document.addEventListener("alpine:init", () => {
   Alpine.data("cartHandler", () => ({
     addToCart,
     removeFromCart,
+  }));
+  Alpine.data("ArtworkHandler", () => ({
+    removeArtwork,
   }));
   Alpine.data("stripePayment", () => ({
     stripePayment,

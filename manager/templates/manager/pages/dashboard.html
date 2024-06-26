@@ -10,23 +10,23 @@
   <div class="main-content flex-grow-1 p-4">
     {% topbar "Tableau de bord" user %}
 
-    <div class="row text-center mb-4 wow animate__fadeIn col-12" data-wow-delay="1s">
+    <div class="row text-center mb-2 wow animate__fadeIn col-12" data-wow-delay="1s">
       <div class="col-md-3 mb-3">
         <div class="stat-box p-3 bg-light rounded h-100 d-flex flex-column justify-content-center wow animate__animated animate__zoomIn" data-wow-delay="1.1s">
           <p class="display-6">{{ nb_artwork }}</p>
-          <span>Nombre d'œuvres</span>
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <div class="stat-box p-3 bg-light rounded h-100 d-flex flex-column justify-content-center wow animate__animated animate__zoomIn" data-wow-delay="1.2s">
-          <p class="display-6">{{ artworks_sold_month }}</p>
-          <span>Œuvres vendues ce Mois</span>
+          <span>Oeuvres</span>
         </div>
       </div>
       <div class="col-md-3 mb-3">
         <div class="stat-box p-3 bg-light rounded h-100 d-flex flex-column justify-content-center wow animate__animated animate__zoomIn" data-wow-delay="1.3s">
           <p class="display-6">{{ total_customers }}</p>
-          <span>Nombre de clients</span>
+          <span>Clients</span>
+        </div>
+      </div>
+        <div class="col-md-3 mb-3">
+        <div class="stat-box p-3 bg-light rounded h-100 d-flex flex-column justify-content-center wow animate__animated animate__zoomIn" data-wow-delay="1.2s">
+          <p class="display-6">{{ artworks_sold_month }}</p>
+          <span>Commande validée ce Mois</span>
         </div>
       </div>
       <div class="col-md-3 mb-3">
@@ -41,7 +41,7 @@
       <div class="row">
         <div class="wow animate__animated animate__slideInUp col-12" data-wow-delay="1.5s">
           <table class="table table-striped table-hover">
-            <thead class="cart-table-head text-white">
+            <thead class="text-white">
               <tr class="table-head-row">
                 <th class="artwork-image">Image</th>
                 <th class="artwork-name">Titre de l'oeuvre</th>
@@ -51,7 +51,7 @@
                 <th class="artwork-actions">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="artwork-last-updated">
               {% for item in artworks %}
               <tr class="table-body-row">
                 <td class="artwork-image">
@@ -63,7 +63,7 @@
                 <td class="artwork-medium">{{ item.medium.name }}</td>
                 <td class="artwork-actions flex items-center justify-center h-full">
                   <a href="{% url 'manager:artwork-detail' item.id %}" class="btn btn-black btn-sm">Détail</a>
-                  <button x-data="cartHandler()" x-on:click="removeFromCart('{{ item.id }}')" class="btn btn-danger btn-sm" title="Supprimer l'œuvre">
+                  <button x-data="ArtworkHandler()" x-on:click="removeArtwork('{{ item.id }}')" class="btn btn-danger btn-sm" title="Supprimer l'œuvre">
                     <i class="bx bx-trash-alt"></i>
                   </button>
                 </td>

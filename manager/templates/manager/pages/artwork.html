@@ -1,6 +1,8 @@
-{% extends "base.html" %} {% load static %} {% load manager_custom_tags %}
+{% extends "base.html" %}
 
-{% block title %} Management - Mes Oeuvres {% endblock title %} 
+{% load static %} {% load manager_custom_tags %}
+
+{% block title %} Management - Mes Oeuvres {% endblock title %}
 
 {% block content %}
 
@@ -11,58 +13,75 @@
     {% topbar "Mes oeuvres" user %}
 
     <div class="container">
-        
       <div class="row">
         <div class="flex justify-between items-center col-12 mb-3 m-O p-0">
-            <form method="post" class="flex item-center justify-center gap-3">
-                <input type="text" class="form-control" name="search-artwork" placeholder="Recherche..." />
-                <button type="submit" class="btn btn-red" title="search">
-                    <i class="bx bx-search"></i>
-                </button>
-            </form>
-            <a class="btn btn-black" href="#">Ajouter une oeuvre</a>
+          <form method="post" class="flex item-center justify-center gap-3">
+            <input
+              type="text"
+              class="form-control"
+              name="search-artwork"
+              placeholder="Recherche..."
+            />
+            <button type="submit" class="btn btn-red" title="search">
+              <i class="bx bx-search"></i>
+            </button>
+          </form>
+          <a class="btn btn-black" href="#">Ajouter une oeuvre</a>
         </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
         <div
-          class="cart-table-wrap wow animate__animated animate__slideInUp col-12 m-O p-0"
-          data-wow-delay="0.7s"
+          class="wow animate__animated animate__slideInUp col-12"
+          data-wow-delay="1.5s"
         >
-          <table class="cart-table">
-            <thead class="cart-table-head">
+          <table class="table table-striped table-hover">
+            <thead class="text-white">
               <tr class="table-head-row">
                 <th class="artwork-image">Image</th>
                 <th class="artwork-name">Titre de l'oeuvre</th>
                 <th class="artwork-price">Prix</th>
-                <th class="artwork-category">Catégory</th>
+                <th class="artwork-category">Catégorie</th>
                 <th class="artwork-medium">Medium</th>
                 <th class="artwork-actions">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="artwork-list">
               {% for item in artworks %}
               <tr class="table-body-row">
                 <td class="artwork-image">
-                  <img src="{{ item.thumbnail.url }}" alt="{{ item.title }}" />
+                  <img
+                    src="{{ item.thumbnail.url }}"
+                    alt="{{ item.title }}"
+                    class="img-fluid"
+                  />
                 </td>
                 <td class="artwork-name">{{ item.title }}</td>
                 <td class="artwork-price">{{ item.price }} €</td>
                 <td class="artwork-category">{{ item.category.name }}</td>
                 <td class="artwork-medium">{{ item.medium.name }}</td>
-                <td class="artwork-actions">
-                  <a href="#" class="btn btn-black">Détail</a>
-                  <button
-                    x-data="cartHandler()"
-                    x-on:click="removeFromCart('{{ item.id }}')"
-                    class="text-red border-none bg-transparent text-lg cursor-pointer"
-                    title="supprimer l'oeuvre"
+                <td
+                  class="artwork-actions flex items-center justify-center h-full"
+                >
+                  <a
+                    href="{% url 'manager:artwork-detail' item.id %}"
+                    class="btn btn-black btn-sm"
+                    >Détail</a
                   >
-                    <i class="bx bx-trash-alt text-red"></i>
+                  <button
+                    x-data="ArtworkHandler()"
+                    x-on:click="removeArtwork('{{ item.id }}')"
+                    class="btn btn-danger btn-sm"
+                    title="Supprimer l'œuvre"
+                  >
+                    <i class="bx bx-trash-alt"></i>
                   </button>
                 </td>
               </tr>
-
               {% empty %}
               <tr>
-                <td colspan="6" class="text-center">Aucun oeuvre</td>
+                <td colspan="6" class="text-center">Aucune œuvre trouvée.</td>
               </tr>
               {% endfor %}
             </tbody>
@@ -97,6 +116,6 @@
       </div>
     </div>
   </div>
-</div>
 
-{% endblock content %}
+  {% endblock content %}
+</div>

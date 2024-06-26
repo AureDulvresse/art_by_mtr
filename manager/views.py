@@ -3,11 +3,13 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.template.loader import render_to_string
 from datetime import datetime, timedelta
 
 from accounts.models import Customer
+import json
 from store.models import Artwork, CheckOut
 from blog.models import Post
 from manager.forms import ArtworkForm, PostForm
@@ -17,7 +19,7 @@ def first_day_of_month(date):
     return date.replace(day=1)
 
 @login_required
-def dashboard_page(request):
+def dashboard_page(request) -> HttpResponse:
     artworks = Artwork.objects.all()
     
     # Filtrer les ventes pour le mois en cours et le mois précédent
@@ -35,7 +37,7 @@ def dashboard_page(request):
         'Posts_this_month': Post.objects.filter(event_date__month=current_month.month).count(),
         'sales_current_month': sales_current_month,
         'sales_previous_month': sales_previous_month,
-        'artworks': artworks,
+        'artworks': artworks[:10],
     }
 
     return render(request, 'manager/pages/dashboard.html', context)
@@ -44,7 +46,7 @@ def dashboard_page(request):
 class ArtworkController:
 
     @login_required
-    def index(request):
+    def index(request) -> HttpResponse:
         artworks = Artwork.objects.all().order_by('-updated_at')
 
         paginator = Paginator(artworks, 10)
@@ -57,7 +59,7 @@ class ArtworkController:
     
     @csrf_exempt
     @login_required
-    def store(request):
+    def store(request) -> HttpResponseRedirect:
         if request.method == 'POST':
             form = ArtworkForm(request.POST)
             if form.is_valid():
@@ -72,7 +74,7 @@ class ArtworkController:
     
     @login_required
     def show(request, artwork_id):
-        artwork = get_object_or_404(Artwork, pk=artwork_id)
+        artwork = get_object_or_404(Artwork, id=artwork_id)
         context = {"artwork": artwork}
         return render(request, 'manager/pages/artwork_detail.html', context)
     
@@ -91,6 +93,37 @@ class ArtworkController:
         
         context = {'form': form, 'artwork': artwork}
         return render(request, 'manager/pages/artwork_edit.html', context)
+    
+    @csrf_exempt
+    @login_required
+    def destroy(request) -> JsonResponse:
+        if request.method == 'POST':
+            data = json.loads(request.body)
+            id = int(data.get('id'))
+
+        if request.user.is_authenticated:
+            
+            try:
+                artwork = get_object_or_404(Artwork, pk=id)
+                artwork.delete()
+
+                artwork_list = Artwork.objects.all().order_by('-updated_at')
+
+                # Récupérer les données mises à jour du panier
+                last_updated_artwork_list_html = render_to_string('manager/partials/artwork_list.html', {'artworks': artwork_list[:10]})
+                artwork_list_html = render_to_string('manager/partials/artwork_list.html', {'artworks': artwork_list})
+
+                return JsonResponse({
+                    'success': True, 
+                    'artworks': artwork_list_html, 
+                    'last_updated_artworks': last_updated_artwork_list_html,
+                })
+                    
+            except Exception as e:
+                return JsonResponse({'success': False, 'error': 'Invalid request'}, status=400)
+
+        return JsonResponse({'success': False, 'error': 'User not authenticated'}, status=401)
+
 
 
 class PostController:
