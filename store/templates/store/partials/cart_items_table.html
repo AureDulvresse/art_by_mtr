@@ -1,0 +1,35 @@
+{% for item in cart %}
+<tr>
+  <td class="product-info">
+    <div class="d-flex align-items-center">
+      <img
+        src="{{ item.artwork.thumbnail.url }}"
+        alt="{{ item.artwork.title }}"
+        class="artwork-image rounded"
+      />
+
+      <div class="ml-3">
+        <h5 class="mb-0">{{ item.artwork.title }}</h5>
+        <p class="mb-0">Catégorie: {{ item.artwork.category }}</p>
+      </div>
+    </div>
+  </td>
+  <td>{{ item.artwork.price }} €</td>
+  <td>{{ item.quantity }}</td>
+  <td>{{ item.get_total_price }} €</td>
+  <td>
+    <button
+      x-data="cartHandler()"
+      x-on:click="removeFromCart('{{ item.uuid }}')"
+      class="btn btn-outline-danger btn-sm"
+      title="Retirer du panier"
+    >
+      Retirer
+    </button>
+  </td>
+</tr>
+{% empty %}
+<tr>
+  <td colspan="5" class="text-center">Panier vide</td>
+</tr>
+{% endfor %}

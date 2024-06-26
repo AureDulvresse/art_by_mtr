@@ -19,6 +19,7 @@ import stripe
 from store.models import Artwork, Cart, CheckOut, Order
 from store.utils import get_cart_items
 from blog.models import Post
+from art_by_mtr.settings import TRIGGER_CODES
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -255,8 +256,14 @@ def remove_from_cart(request):
 
                     # Récupérer les données mises à jour du panier
                     cart_items_html = render_to_string('store/partials/cart_items.html', {'preview_cart_items': cart_items[:3]})
+                    cart_items_table_html = render_to_string('store/partials/cart_items_table.html', {'cart': cart_items})
 
-                    return JsonResponse({'success': True, 'cart_items_html': cart_items_html})
+                    return JsonResponse({
+                        'success': True, 
+                        'cart_items_html': cart_items_html, 
+                        'cart_items_table_html': cart_items_table_html,
+                    })
+                
                 else:
                     return JsonResponse({'success': False, 'error': 'Order not in cart'}, status=400)
                     

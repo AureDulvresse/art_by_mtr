@@ -44,10 +44,12 @@ function removeFromCart(order_uuid) {
       if (data.success) {
         showToast(
           "Succès",
-          "Article supprimé du panier",
+          "Oeuvre supprimé du panier",
           "bg-success text-white"
         );
+
         $("#cart-items").html(data.cart_items_html);
+        $("#cart-items-table").html(data.cart_items_table_html);
       } else {
         showToast(
           "Erreur",

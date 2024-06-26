@@ -13,6 +13,5 @@ urlpatterns = [
    path('artworks/', views.ArtworkController.index, name = 'orders'),
    path('artworks/', views.ArtworkController.index, name = 'payments'),
    path('artworks/', views.ArtworkController.index, name = 'settings'),
-
 ]
 # handler404 = f"{app_name}.views.page_404"

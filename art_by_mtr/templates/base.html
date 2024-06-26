@@ -21,34 +21,26 @@
     />
 
     <!-- Boxicons -->
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
       integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    />
+    /> -->
 
     <link rel="stylesheet" href="{% static 'css/boxicons.min.css' %}" />
 
     <!-- Bootstrap -->
-    <link
+    <!-- <link
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
       rel="stylesheet"
-    />
+    /> -->
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
 
     <!-- ANIMATE CSS -->
     <link rel="stylesheet" href="{% static 'css/animate.css' %}" />
-
-    <!-- TOAST CSS -->
-    <!-- <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-    /> -->
-    <link rel="stylesheet" href="{% static 'css/toast.css' %}" />
 
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
@@ -75,28 +67,24 @@
       {% block content %} {% endblock content %}
     </main>
 
-    <script
+    <!-- <script
       src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"
       defer
-    ></script>
+    ></script> -->
     <!-- JQUERY JS -->
-    <!-- <script src="{% static 'js/vendors/jquery.js' %}" defer></script> -->
+    <script src="{% static 'js/vendors/jquery.js' %}" defer></script>
 
-    <script
+    <!-- <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
-    ></script>
+    ></script> -->
+
+      <script src="{% static 'js/vendors/bootstrap.bundle.min.js' %}" defer></script>
+
 
     <!-- WOW JS -->
     <script src="{% static 'js/vendors/wow.js' %}"></script>
-
-    <!-- TOAST JS -->
-    <!-- <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/toastify-js"
-    ></script> -->
-    <script src="{% static 'js/vendors/toast.js' %}" defer></script>
 
     {% block extra_js %} {% endblock extra_js %}
 
