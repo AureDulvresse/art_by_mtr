@@ -63,6 +63,10 @@ a {
     background-color: var(--color-gray-200);
 }
 
+.bg-gray-100 {
+    background-color: #fbfbfb;
+}
+
 .bg-transparent {
     background-color: transparent;
 }
@@ -255,10 +259,6 @@ a {
     background-size: cover;
     background-attachment: fixed;
     position: relative;
-}
-
-.about .container {
-    border-bottom: 0.9px solid var(--color-gray-200);
 }
 
 .about-img {
