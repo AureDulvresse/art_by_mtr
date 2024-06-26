@@ -98,6 +98,8 @@
     ></script> -->
     <script src="{% static 'js/vendors/toast.js' %}" defer></script>
 
+    {% block extra_js %} {% endblock extra_js %}
+
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
   </body>

@@ -55,7 +55,7 @@ a {
     background-color: var(--color-gray-900);
 }
 
-.bg-gray-600{
+.bg-gray-600 {
     background-color: var(--color-gray-600);
 }
 
@@ -312,21 +312,21 @@ a {
     line-height: 35px;
 }
 
-.post-details .description{
-   font-style: italic;
-   line-height: 20px;
+.post-details .description {
+    font-style: italic;
+    line-height: 20px;
 }
 
-.post-details .content{
+.post-details .content {
     width: 95%;
 }
 
-.post-img{
+.post-img {
     height: 300px;
     margin-bottom: 20px;
 }
 
-.post-img img{
+.post-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -372,7 +372,7 @@ a {
     opacity: 1 !important;
 }
 
-.card-text{
+.card-text {
     height: 110px;
 }
 
@@ -411,47 +411,26 @@ a {
 }
 
 /* Cart Section */
-.cart{
-    width: 100%;
-}
-
-.cart-table-wrap {
-    overflow-x: auto;
-    margin-bottom: 20px;
-}
-
 .cart-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
 }
 
-.cart-table-head {
-    background-color: var(--color-gray-200);
-}
-
-.table-head-row th {
-    padding: 15px 10px;
-    text-align: left;
-    font-weight: 600;
-    color: var(--color-black);
-}
-
-.table-body-row td {
-    padding: 15px 10px;
-    border-bottom: 1px solid var(--color-gray-200);
+@media (min-width: 992px) {
+    .cart-table {
+        width: 65%;
+    }
 }
 
 .artwork-remove a i {
     color: var(--color-red-600);
 }
 
-.artwork-image img {
-    width: 80px;
-    height: 80px;
+.artwork-image {
+    width: 90px;
+    height: 90px;
     object-fit: cover;
-    border-radius: var(--border-radius);
 }
+
 
 .artwork-name,
 .artwork-price,
@@ -462,11 +441,11 @@ a {
     color: var(--color-black);
 }
 
-.artwork-actions{
+.artwork-actions {
     width: 140px;
 }
 
-.artwork-actions button{
+.artwork-actions button {
     margin-left: 17px;
 }
 
@@ -585,7 +564,7 @@ a {
     transition: transform 3s ease-in-out;
 }
 
-.stat-box:hover{
+.stat-box:hover {
     transform: translateY(-10px);
     transition: transform 0.8s ease-in-out;
 }
@@ -826,7 +805,11 @@ textarea {
 }
 
 .w-full {
-    width: 100%;
+    width: 100% !important;
+}
+
+.h-full {
+    height: 100% !important;
 }
 
 /* Flex Utilities */
@@ -874,14 +857,6 @@ textarea {
     align-items: flex-end;
 }
 
-.gap-3 {
-    gap: 8px;
-}
-
-.gap-4 {
-    gap: 16px;
-}
-
 /* Margin Utilities */
 
 .mt-5 {
@@ -916,7 +891,7 @@ textarea {
     border-radius: var(--border-radius);
 }
 
-.rounded-md{
+.rounded-md {
     border-radius: 0.75rem;
 }
 

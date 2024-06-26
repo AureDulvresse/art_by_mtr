@@ -1,37 +1,42 @@
-<div class="sidebar bg-black text-white p-3">
+<div class="sidebar bg-dark text-white p-3 vh-100">
   <div class="text-center mb-4">
-    <h2 class="text-red text-2xl">The MTR <span class="text-white">| Admin</span></h2>
+    <h2 class="text-primary">The MTR <span class="text-light">| Admin</span></h2>
   </div>
   <ul class="nav flex-column">
-    <li class="nav-item">
-      <a class="nav-link text-white bg-red" href="{% url 'manager:dashboard' %}"
-        >Tableau de Bord</a
-      >
+    <li class="nav-item mb-2">
+      <a class="nav-link active text-light" href="{% url 'manager:dashboard' %}">
+        <i class='bx bxs-dashboard'></i> Tableau de Bord
+      </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link text-white" href="{% url 'manager:artwork-page' %}"
-        >Mes ouevres</a
-      >
+    <li class="nav-item mb-2">
+      <a class="nav-link text-light" href="{% url 'manager:artworks' %}">
+        <i class='bx bxs-paint'></i> Mes Oeuvres
+      </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link text-white" href="#"
-        >Evénements</a
-      >
+    <li class="nav-item mb-2">
+      <a class="nav-link text-light" href="{% url 'manager:events' %}">
+        <i class='bx bxs-calendar-event'></i> Evénements
+      </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link text-white" href="#"
-        >Commandes</a
-      >
+    <li class="nav-item mb-2">
+      <a class="nav-link text-light" href="{% url 'manager:orders' %}">
+        <i class='bx bxs-shopping-bag'></i> Commandes
+      </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link text-white" href="#"
-        >Paiements</a
-      >
+    <li class="nav-item mb-2">
+      <a class="nav-link text-light" href="{% url 'manager:payments' %}">
+        <i class='bx bxs-wallet'></i> Paiements
+      </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link text-white" href="#"
-        >Paramètres</a
-      >
+    <li class="nav-item mb-2">
+      <a class="nav-link text-light" href="{% url 'manager:settings' %}">
+        <i class='bx bxs-cog'></i> Paramètres
+      </a>
+    </li>
+    <li class="nav-item mt-auto">
+      <a class="nav-link text-light" href="{% url 'accounts:logout' %}">
+        <i class='bx bxs-log-out'></i> Déconnexion
+      </a>
     </li>
   </ul>
 </div>
