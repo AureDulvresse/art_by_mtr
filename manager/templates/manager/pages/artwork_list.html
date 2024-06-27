@@ -153,7 +153,7 @@
           <div class="w-full flex justify-center items-center gap-3">
             
               <button class="btn btn-sm btn-black"> détail de l'oeuvre </button>
-              <a class="btn btn-sm btn-outline-red" href="{% url 'manager:delete-artwork' pk %}">Supprimer</a>
+              {% comment %} <a class="btn btn-sm btn-outline-red" href=`{% url 'manager:delete-artwork' pk %}`>Supprimer</a> {% endcomment %}
             
           </div>
         </div>

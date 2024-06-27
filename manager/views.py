@@ -107,14 +107,12 @@ class ArtworkController:
     @staticmethod
     @csrf_exempt
     @login_required
-    def destroy(request):
+    def destroy(request, artwork_id):
         if request.method == 'POST':
-            data = json.loads(request.body)
-            id = int(data.get('id'))
 
             if request.user.is_authenticated:
                 try:
-                    artwork = get_object_or_404(Artwork, pk=id)
+                    artwork = get_object_or_404(Artwork, pk=artwork_id)
                     artwork.delete()
                     messages.success(request, 'Œuvre supprimée avec succès')
                     return redirect('manager:artwork-list')
