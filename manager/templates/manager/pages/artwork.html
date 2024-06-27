@@ -56,10 +56,11 @@
                     {% for item in artworks %}
                     <tr
                       @click="
-                      openModal = true;
                       modalTitle = '{{ item.title|escapejs }}';
                       modalDescription = '{{ item.description|escapejs }}';
                       modalImage = '{{ item.thumbnail.url }}';
+                      openModal = true;
+                      alert(`${modalTitle} ${modalImage} ${modalDescription}`)
                     "
                     >
                       <td class="artwork-image">
@@ -143,20 +144,25 @@
         >
           <i class="bx bx-x text-2xl"></i>
         </button>
+         <pre>{{ modalTitle }}</pre>
+      <pre>{{ modalDescription }}</pre>
+      <pre>{{ modalImage }}</pre>
         <div class="flex items-center justify-center flex-col mt-2">
-          <img
+          <div>
+<img
             x-bind:src="modalImage"
             alt="{{ modalTitle }}"
             class="img-fluid rounded"
           />
+          </div>
+          
           <div class="mt-4">
             <h3
-              class="text-lg font-medium text-center pt-2 text-red"
-              id="modal-title"
+              class="text-center pt-2 text-red"
             >
               {{ modalTitle }}
             </h3>
-            <p class="text-sm text-gray-500" id="modal-description">
+            <p class="text-sm text-gray-500">
               {{ modalDescription }}
             </p>
           </div>
