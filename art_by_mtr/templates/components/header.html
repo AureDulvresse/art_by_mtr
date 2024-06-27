@@ -1,6 +1,6 @@
 {% load static %}
 <header
-  x-data="{ isSticky: false, showCart: false, showUserMenu: false }"
+  x-data="{ isSticky: false, showCart: false }"
   x-init="window.addEventListener('scroll', () => isSticky = window.scrollY > 50)"
   x-bind:class="{ 'bg-gray-900 shadow-lg': isSticky, 'bg-transparent': !isSticky }"
   class="wow animate__animated animate__fadeIn"

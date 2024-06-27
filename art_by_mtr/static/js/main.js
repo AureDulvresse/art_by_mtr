@@ -188,6 +188,7 @@ document.addEventListener("alpine:init", () => {
   Alpine.data("ArtworkHandler", () => ({
     removeArtwork,
   }));
+
   Alpine.data("stripePayment", () => ({
     stripePayment,
   }));

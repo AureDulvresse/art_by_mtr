@@ -2,32 +2,35 @@
 
 {% load static %} {% load manager_custom_tags %}
 
-{% block title %} Management - Mes Oeuvres {% endblock title %}
-
-{% block content %}
-
-<div class="flex">
+{% block title %} Management - Mes Oeuvres {% endblock title %} {% block content %}
+<div
+  class="flex"
+  x-data="{ openModal: false, modalTitle: '', modalDescription: '', modalImage: '' }"
+>
   {% include "manager/partials/sidebar.html" %}
 
-  <div class="main-content flex-grow-1 p-4">
+  <div class="main-content p-4">
     {% topbar "Mes oeuvres" user %}
 
     <div class="container">
-      <div class="row">
+      <div class="row w-full">
         <div class="col-12 mb-4">
-          <div class="d-flex justify-content-between align-items-center">
-            <form method="post" class="d-flex align-items-center">
+          <div class="flex justify-between items-center">
+            <form method="post" class="flex items-center" style="width: 60%;">
               <input
                 type="text"
                 class="form-control me-2"
+                style="height: 50px !important;"
                 name="search-artwork"
                 placeholder="Recherche..."
               />
-              <button type="submit" class="btn btn-red">
+              <button type="submit" class="btn btn-red" style="width: 200px !important;">
                 <i class="bx bx-search"></i> Rechercher
               </button>
             </form>
-            <a href="#" class="btn btn-outline-red">Ajouter une oeuvre</a>
+            <div >
+              <a href="#" class="btn btn-outline-red">Ajouter une oeuvre</a>
+            </div>
           </div>
         </div>
       </div>
@@ -49,14 +52,21 @@
                       <th class="artwork-medium">Medium</th>
                     </tr>
                   </thead>
-                  <tbody id="artwork-list">
+                  <tbody>
                     {% for item in artworks %}
-                    <tr>
+                    <tr
+                      @click="
+                      openModal = true;
+                      modalTitle = '{{ item.title|escapejs }}';
+                      modalDescription = '{{ item.description|escapejs }}';
+                      modalImage = '{{ item.thumbnail.url }}';
+                    "
+                    >
                       <td class="artwork-image">
                         <img
                           src="{{ item.thumbnail.url }}"
                           alt="{{ item.title }}"
-                          class="img-fluid"
+                          class="img-fluid cursor-pointer"
                         />
                       </td>
                       <td class="artwork-name">{{ item.title }}</td>
@@ -114,5 +124,56 @@
     </div>
   </div>
 
-  {% endblock content %}
+  <!-- Modal -->
+  <div
+    x-cloak
+    x-show="openModal"
+    x-transition.opacity
+    x-transition:enter.duration.500ms
+    x-transition:leave.duration.400ms
+    class="cart-preview-overlay"
+  >
+    <div class="cart-preview shadow-md rounded px-2 py-3">
+      <div class="relative">
+        <button
+          type="button"
+          @click="openModal = false"
+          class="close-btn"
+          title="Fermer la modal"
+        >
+          <i class="bx bx-x text-2xl"></i>
+        </button>
+        <div class="flex items-center justify-center flex-col mt-2">
+          <img
+            x-bind:src="modalImage"
+            alt="{{ modalTitle }}"
+            class="img-fluid rounded"
+          />
+          <div class="mt-4">
+            <h3
+              class="text-lg font-medium text-center pt-2 text-red"
+              id="modal-title"
+            >
+              {{ modalTitle }}
+            </h3>
+            <p class="text-sm text-gray-500" id="modal-description">
+              {{ modalDescription }}
+            </p>
+          </div>
+          <div class="mt-6 w-full flex justify-center items-center">
+            <div class="flex items-center justify-center gap-3">
+              <a class="btn btn-sm btn-black" href="#"> Voir </a>
+              <button
+                class="btn btn-sm btn-outline-red"
+                @click="openModal = false"
+              >
+                Supprimer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+{% endblock content %}
