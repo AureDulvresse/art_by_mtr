@@ -448,6 +448,9 @@ a {
 .artwork-actions button {
     margin-left: 17px;
 }
+.artwork-table .card:hover{
+    transform: none !important;
+}
 
 /* Total Section */
 .total-section {
