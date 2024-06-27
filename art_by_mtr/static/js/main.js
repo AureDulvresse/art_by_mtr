@@ -69,46 +69,6 @@ function removeFromCart(order_uuid) {
   });
 }
 
-function removeArtwork(artwork_id) {
-  $.ajax({
-    url: "/management/artworks/delete/",
-    type: "POST",
-    headers: {
-      "X-CSRFToken": getCookie("csrftoken"),
-    },
-    contentType: "application/json",
-    data: JSON.stringify({
-      id: artwork_id,
-    }),
-    success: (data) => {
-      if (data.success) {
-        showToast(
-          "Succès",
-          "Oeuvre supprimé avec succès",
-          "bg-success text-white"
-        );
-
-        $("#artwork-list").html(data.artwork_list_html);
-        $("#artwork-last-updated").html(data.last_updated_artworks);
-      } else {
-        showToast(
-          "Erreur",
-          "Erreur lors de la suppression de l'oeuvre",
-          "bg-danger text-white"
-        );
-      }
-    },
-    error: (xhr, textStatus, error) => {
-      showToast(
-        "Erreur",
-        "Erreur lors de la suppression de l'article",
-        "bg-danger text-white"
-      );
-      console.error(xhr.responseText, textStatus, error);
-    },
-  });
-}
-
 function showToast(title, message, className) {
   const toastId = "toast-" + Math.random().toString(36).substr(2, 9);
   const toastHTML = `
@@ -184,9 +144,6 @@ document.addEventListener("alpine:init", () => {
   Alpine.data("cartHandler", () => ({
     addToCart,
     removeFromCart,
-  }));
-  Alpine.data("ArtworkHandler", () => ({
-    removeArtwork,
   }));
 
   Alpine.data("stripePayment", () => ({

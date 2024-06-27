@@ -448,7 +448,8 @@ a {
 .artwork-actions button {
     margin-left: 17px;
 }
-.artwork-table .card:hover{
+
+.artwork-table .card:hover {
     transform: none !important;
 }
 
@@ -959,8 +960,19 @@ textarea {
     border-color: var(--color-red-600);
 }
 
+.btn-outline-black {
+    background-color: transparent;
+    color: var(--color-black);
+    border-color: var(--color-black);
+}
+
 .btn-outline-red:hover {
     background-color: var(--color-red-600);
+    color: var(--color-white);
+}
+
+.btn-outline-black:hover {
+    background-color: var(--color-black);
     color: var(--color-white);
 }
 

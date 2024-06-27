@@ -6,11 +6,12 @@
 {% block content %}
 <div
   class="flex"
-  x-data="{ 
+  x-data="{
     openModal: false, 
     modalTitle: '', 
     modalDescription: '', 
-    modalImage: '' 
+    modalImage: '' ,
+    pk: 0,
   }"
 >
   {% include "manager/partials/sidebar.html" %}
@@ -30,12 +31,12 @@
                 name="search-artwork"
                 placeholder="Recherche..."
               />
-              <button type="submit" class="btn btn-red" style="width: 200px !important;">
+              <button type="submit" class="btn btn-black" style="width: 200px !important;">
                 <i class="bx bx-search"></i> Rechercher
               </button>
             </form>
             <div >
-              <a href="#" class="btn btn-outline-red">Ajouter une oeuvre</a>
+              <a href="#" class="btn btn-outline-black">Ajouter une oeuvre</a>
             </div>
           </div>
         </div>
@@ -65,6 +66,7 @@
                   modalTitle = '{{ item.title|escapejs }}';
                   modalDescription = '{{ item.description|escapejs }}';
                   modalImage = '{{ item.thumbnail.url }}';
+                  pk: '{{ item.id }}';
                   openModal = true;
                 "
                 >
@@ -150,8 +152,8 @@
           </div>
           <div class="w-full flex justify-center items-center gap-3">
             
-              <a class="btn btn-sm btn-black" href="#"> Voir </a>
-              <a class="btn btn-sm btn-outline-red" href="#">Supprimer</a>
+              <button class="btn btn-sm btn-black"> détail de l'oeuvre </button>
+              <a class="btn btn-sm btn-outline-red" href="{% url 'manager:delete-artwork' pk %}">Supprimer</a>
             
           </div>
         </div>
