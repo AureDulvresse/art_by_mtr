@@ -8,13 +8,9 @@
       <p class="mb-0 me-3 text-black">
         {{ user.first_name }} {{ user.last_name }}
       </p>
-      <img
-        src="img.jpeg"
-        alt="Icône Utilisateur"
-        class="rounded-full cursor-pointer"
-        width="35px"
-        height="35px"
-      />
+       <a class="btn btn-outline-red" href="{% url 'accounts:logout' %}">
+         <i class='bx bx-log-out-circle'></i> Déconnexion
+      </a>
     </div>
   </div>
 </header>

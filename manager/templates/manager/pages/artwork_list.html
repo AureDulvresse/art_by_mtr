@@ -70,7 +70,13 @@
                 >
                   <th scope="row">{{ forloop.counter }}</th>
                   <td class="artwork-image">
-                    <img src="{{ item.thumbnail.url }}" alt="{{ item.title }}" class="img-fluid cursor-pointer" />
+                    <img
+                      src="{{ item.thumbnail.url }}"
+                      alt="{{ item.title }}"
+                      class="img-thumbnail cursor-pointer"
+                      width="70"
+                      height="70"
+                    />
                   </td>
                   <td class="artwork-name">{{ item.title }}</td>
                   <td class="artwork-price">{{ item.price }} €</td>
@@ -135,7 +141,7 @@
           <i class="bx bx-x text-2xl"></i>
         </button>
         <div class="flex items-center justify-center flex-col mt-2">
-          <div>
+          <div class="border rounded">
             <img :src="modalImage" :alt="modalTitle" class="img-fluid rounded" width="150" height="70" />
           </div>
           <div class="mt-4">

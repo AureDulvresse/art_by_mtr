@@ -1,8 +1,8 @@
-<div class="sidebar bg-dark text-white p-3 vh-100">
+<div class="sidebar bg-black text-white p-3 vh-100">
   <div class="text-center mb-4">
     <h2 class="text-red text-lg">The MTR <span class="text-light">| Admin</span></h2>
   </div>
-  <ul class="nav flex-column">
+  <ul class="nav flex-column py-3">
     <li class="nav-item mb-2">
       <a class="nav-link active text-light" href="{% url 'manager:dashboard' %}">
         <i class='bx bxs-dashboard'></i> Tableau de Bord
@@ -31,11 +31,6 @@
     <li class="nav-item mb-2">
       <a class="nav-link text-light" href="{% url 'manager:settings' %}">
         <i class='bx bxs-cog'></i> Paramètres
-      </a>
-    </li>
-    <li class="nav-item mt-auto">
-      <a class="nav-link text-light" href="{% url 'accounts:logout' %}">
-        <i class='bx bxs-log-out'></i> Déconnexion
       </a>
     </li>
   </ul>
