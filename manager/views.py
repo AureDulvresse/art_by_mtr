@@ -62,7 +62,7 @@ class ArtworkController:
 
         context = {"artworks": artworks}
         
-        return render(request, 'manager/pages/artwork.html', context)
+        return render(request, 'manager/pages/artwork_list.html', context)
     
     @staticmethod
     @csrf_exempt
@@ -112,26 +112,19 @@ class ArtworkController:
             data = json.loads(request.body)
             id = int(data.get('id'))
 
-        if request.user.is_authenticated:
-            
-            try:
-                artwork = get_object_or_404(Artwork, pk=id)
-                artwork.delete()
+            if request.user.is_authenticated:
+                try:
+                    artwork = get_object_or_404(Artwork, pk=id)
+                    artwork.delete()
+                    messages.success(request, 'Œuvre supprimée avec succès')
+                    return redirect('manager:artwork-list')
 
-                artwork_list = Artwork.objects.all().order_by('-updated_at')
+                except Exception as e:
+                    messages.error(request, 'Une erreur est survenue lors de la suppression de l\'œuvre')
+                    return redirect('manager:artwork-list')
 
-                # Récupérer les données mises à jour du panier
-                artwork_list_html = render_to_string('manager/partials/artwork_list.html', {'artworks': artwork_list})
-
-                return JsonResponse({
-                    'success': True, 
-                    'artwork_list_html': artwork_list_html, 
-                })
-                    
-            except Exception as e:
-                return JsonResponse({'success': False, 'error': 'Invalid request'}, status=400)
-
-        return JsonResponse({'success': False, 'error': 'User not authenticated'}, status=401)
+        messages.error(request, 'Requête invalide')
+        return redirect('manager:artwork-list')
 
 
 class PostController:
@@ -139,67 +132,21 @@ class PostController:
     @staticmethod
     @login_required
     @csrf_exempt
-    def create(request):
+    def store(request):
         if request.method == 'POST':
             form = PostForm(request.POST)
             if form.is_valid():
                 post = form.save()
-                data = {
-                    'success': True,
-                    'message': 'Événement ajouté avec succès',
-                    'post_id': post.id,
-                }
+                messages.success(request, 'Événement ajouté avec succès')
+                return redirect('manager:post-list')
             else:
-                data = {
-                    'success': False,
-                    'errors': form.errors,
-                }
-            return JsonResponse(data)
-
-    @staticmethod
-    @login_required
-    @csrf_exempt
-    def delete(request, post_id):
-        if request.method == 'POST':
-            try:
-                post = Post.objects.get(pk=post_id)
-                post.delete()
-                data = {
-                    'success': True,
-                    'message': 'Événement supprimé avec succès',
-                }
-            except Post.DoesNotExist:
-                data = {
-                    'success': False,
-                    'message': 'Événement non trouvé',
-                }
-            return JsonResponse(data)
-
-    @staticmethod
-    @login_required
-    def update(request, post_id):
-        post = get_object_or_404(Post, pk=post_id)
-        
-        if request.method == 'POST':
-            form = PostForm(request.POST, instance=post)
-            if form.is_valid():
-                form.save()
-                data = {
-                    'success': True,
-                    'message': 'Événement mis à jour avec succès',
-                    'post_id': post.id,
-                }
-            else:
-                data = {
-                    'success': False,
-                    'errors': form.errors,
-                }
-            return JsonResponse(data)
+                messages.error(request, 'Erreur dans le formulaire')
+                context = {'form': form}
+                return render(request, 'manager/pages/post_add.html', context)
         else:
-            form = PostForm(instance=post)
-        
-        context = {'form': form, 'post': post}
-        return render(request, 'manager/pages/post_edit.html', context)
+            form = PostForm()
+            context = {'form': form}
+            return render(request, 'manager/pages/post_add.html', context)
 
     @staticmethod
     @login_required
@@ -219,3 +166,39 @@ class PostController:
         post = get_object_or_404(Post, pk=post_id)
         context = {'post': post}
         return render(request, 'manager/pages/post_detail.html', context)
+
+    @staticmethod
+    @login_required
+    @csrf_exempt
+    def delete(request, post_id):
+        if request.method == 'POST':
+            try:
+                post = Post.objects.get(pk=post_id)
+                post.delete()
+                messages.success(request, 'Événement supprimé avec succès')
+                return redirect('manager:post-list')
+            except Post.DoesNotExist:
+                messages.error(request, 'Événement non trouvé')
+                return redirect('manager:post-list')
+
+
+    @staticmethod
+    @login_required
+    def update(request, post_id):
+        post = get_object_or_404(Post, pk=post_id)
+        
+        if request.method == 'POST':
+            form = PostForm(request.POST, instance=post)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Événement mis à jour avec succès')
+                return redirect('manager:post-list')
+            else:
+                messages.error(request, 'Erreur dans le formulaire')
+                context = {'form': form, 'post': post}
+                return render(request, 'manager/pages/post_edit.html', context)
+        else:
+            form = PostForm(instance=post)
+            context = {'form': form, 'post': post}
+            return render(request, 'manager/pages/post_edit.html', context)
+

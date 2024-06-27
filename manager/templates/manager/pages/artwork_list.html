@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load static %}
+{% load manager_custom_tags %}
+
+{% block title %}Management - Mes Oeuvres{% endblock title %}
+{% block content %}
+<div
+  class="flex"
+  x-data="{ 
+    openModal: false, 
+    modalTitle: '', 
+    modalDescription: '', 
+    modalImage: '' 
+  }"
+>
+  {% include "manager/partials/sidebar.html" %}
+
+  <div class="main-content p-4">
+    {% topbar "Mes oeuvres" user %}
+
+    <div class="container">
+      <div class="row w-full">
+        <div class="col-12 mb-4">
+          <div class="flex justify-between items-center">
+            <form method="post" class="flex items-center" style="width: 60%;">
+              <input
+                type="text"
+                class="form-control me-2"
+                style="height: 50px !important;"
+                name="search-artwork"
+                placeholder="Recherche..."
+              />
+              <button type="submit" class="btn btn-red" style="width: 200px !important;">
+                <i class="bx bx-search"></i> Rechercher
+              </button>
+            </form>
+            <div >
+              <a href="#" class="btn btn-outline-red">Ajouter une oeuvre</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="artwork-table">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Liste des Oeuvres</h5>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="text-white bg-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Titre de l'œuvre</th>
+                  <th scope="col">Prix</th>
+                  <th scope="col">Catégorie</th>
+                  <th scope="col">Medium</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in artworks %}
+                <tr
+                  @click="
+                  modalTitle = '{{ item.title|escapejs }}';
+                  modalDescription = '{{ item.description|escapejs }}';
+                  modalImage = '{{ item.thumbnail.url }}';
+                  openModal = true;
+                "
+                >
+                  <th scope="row">{{ forloop.counter }}</th>
+                  <td class="artwork-image">
+                    <img src="{{ item.thumbnail.url }}" alt="{{ item.title }}" class="img-fluid cursor-pointer" />
+                  </td>
+                  <td class="artwork-name">{{ item.title }}</td>
+                  <td class="artwork-price">{{ item.price }} €</td>
+                  <td class="artwork-category">{{ item.category.name }}</td>
+                  <td class="artwork-medium">{{ item.medium.name }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="6" class="text-center">Aucune œuvre trouvée.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-center align-items-center mt-4">
+        {% if artworks.has_previous %}
+        <a href="?page={{ artworks.previous_page_number }}" class="btn btn-outline-red btn-sm me-2">
+          <i class="bx bx-chevron-left"></i> Précédent
+        </a>
+        {% else %}
+        <span class="btn btn-outline-secondary btn-sm disabled me-2">
+          <i class="bx bx-chevron-left"></i> Précédent
+        </span>
+        {% endif %}
+
+        <span class="text-muted">
+          Page {{ artworks.number }} sur {{ artworks.paginator.num_pages }}
+        </span>
+
+        {% if artworks.has_next %}
+        <a href="?page={{ artworks.next_page_number }}" class="btn btn-outline-red btn-sm ms-2">
+          Suivant <i class="bx bx-chevron-right"></i>
+        </a>
+        {% else %}
+        <span class="btn btn-outline-secondary btn-sm ms-2 disabled">
+          Suivant <i class="bx bx-chevron-right"></i>
+        </span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    x-cloak
+    x-show="openModal"
+    x-transition.opacity
+    x-transition:enter.duration.500ms
+    x-transition:leave.duration.400ms
+    class="cart-preview-overlay"
+  >
+    <div class="cart-preview shadow-md rounded px-2 py-3">
+      <div class="relative">
+        <button
+          type="button"
+          @click="openModal = false"
+          class="close-btn"
+          title="Fermer la modal"
+        >
+          <i class="bx bx-x text-2xl"></i>
+        </button>
+        <div class="flex items-center justify-center flex-col mt-2">
+          <div>
+            <img :src="modalImage" :alt="modalTitle" class="img-fluid rounded" width="150" height="70" />
+          </div>
+          <div class="mt-4">
+            <h3 class="text-center pt-2 text-red" x-text="modalTitle"></h3>
+            <p class="text-sm text-gray-500 text-center" x-text="modalDescription"></p>
+          </div>
+          <div class="w-full flex justify-center items-center gap-3">
+            
+              <a class="btn btn-sm btn-black" href="#"> Voir </a>
+              <a class="btn btn-sm btn-outline-red" href="#">Supprimer</a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

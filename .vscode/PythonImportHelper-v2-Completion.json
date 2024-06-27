@@ -1997,7 +1997,7 @@
         "kind": 5,
         "importPath": "manager.urls",
         "description": "manager.urls",
-        "peekOfCode": "app_name = \"manager\"\nurlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/', views.ArtworkController.index, name = 'artworks'),\n   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('artworks/', views.ArtworkController.index, name = 'artworks'),\n   path('artworks/', views.ArtworkController.index, name = 'events'),\n   path('artworks/', views.ArtworkController.index, name = 'orders'),\n   path('artworks/', views.ArtworkController.index, name = 'payments'),",
+        "peekOfCode": "app_name = \"manager\"\nurlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),\n   path('artworks/update/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('artworks/', views.PostController.show, name = 'post-detail'),\n   path('artworks/', views.ArtworkController.store, name = 'create-post'),",
         "detail": "manager.urls",
         "documentation": {}
     },
@@ -2006,7 +2006,7 @@
         "kind": 5,
         "importPath": "manager.urls",
         "description": "manager.urls",
-        "peekOfCode": "urlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/', views.ArtworkController.index, name = 'artworks'),\n   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('artworks/', views.ArtworkController.index, name = 'artworks'),\n   path('artworks/', views.ArtworkController.index, name = 'events'),\n   path('artworks/', views.ArtworkController.index, name = 'orders'),\n   path('artworks/', views.ArtworkController.index, name = 'payments'),\n   path('artworks/', views.ArtworkController.index, name = 'settings'),",
+        "peekOfCode": "urlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),\n   path('artworks/update/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('artworks/', views.PostController.show, name = 'post-detail'),\n   path('artworks/', views.ArtworkController.store, name = 'create-post'),\n   path('artworks/', views.ArtworkController.update, name = 'update-post'),",
         "detail": "manager.urls",
         "documentation": {}
     },
@@ -2015,7 +2015,7 @@
         "kind": 6,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "class ArtworkController:\n    @staticmethod\n    @login_required\n    def index(request):\n        artworks = Artwork.objects.all().order_by('-updated_at')\n        paginator = Paginator(artworks, 10)\n        page = request.GET.get('page')\n        artworks = paginator.get_page(page)\n        context = {\"artworks\": artworks}\n        return render(request, 'manager/pages/artwork.html', context)",
+        "peekOfCode": "class ArtworkController:\n    @staticmethod\n    @login_required\n    def index(request):\n        artworks = Artwork.objects.all().order_by('-updated_at')\n        paginator = Paginator(artworks, 10)\n        page = request.GET.get('page')\n        artworks = paginator.get_page(page)\n        context = {\"artworks\": artworks}\n        return render(request, 'manager/pages/artwork_list.html', context)",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2024,7 +2024,7 @@
         "kind": 6,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "class PostController:\n    @staticmethod\n    @login_required\n    @csrf_exempt\n    def create(request):\n        if request.method == 'POST':\n            form = PostForm(request.POST)\n            if form.is_valid():\n                post = form.save()\n                data = {",
+        "peekOfCode": "class PostController:\n    @staticmethod\n    @login_required\n    @csrf_exempt\n    def store(request):\n        if request.method == 'POST':\n            form = PostForm(request.POST)\n            if form.is_valid():\n                post = form.save()\n                messages.success(request, 'Événement ajouté avec succès')",
         "detail": "manager.views",
         "documentation": {}
     },

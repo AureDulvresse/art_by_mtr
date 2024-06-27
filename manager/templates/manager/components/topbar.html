@@ -1,13 +1,20 @@
-<header class="flex justify-between items-center mb-4 wow animate__animated animate__slideInDown col-12 w-full">
+<header
+  class="flex justify-between items-center mb-4 wow animate__animated animate__slideInDown col-12 w-full"
+>
   <h1 class="text-red text-4xl">{{ title }}</h1>
-  <div class="d-flex align-items-center">
-    <p class="mb-0 me-3 text-black{{ user.first_name }} {{ user.last_name }}</p>
-    <img
-      src="img.jpeg"
-      alt="Icône Utilisateur"
-      class="rounded-full cursor-pointer"
-      width="35px"
-      height="35px"
-    />
+  <div class="flex items-center">
+    <a href="{% url 'store:home' %}" class="text-red text-lg me-3">Voir le site</a>
+    <div class="d-flex align-items-center">
+      <p class="mb-0 me-3 text-black">
+        {{ user.first_name }} {{ user.last_name }}
+      </p>
+      <img
+        src="img.jpeg"
+        alt="Icône Utilisateur"
+        class="rounded-full cursor-pointer"
+        width="35px"
+        height="35px"
+      />
+    </div>
   </div>
 </header>
