@@ -88,7 +88,7 @@ function removeArtwork(artwork_id) {
           "bg-success text-white"
         );
 
-        $("#artwork-list").html(data.artworks);
+        $("#artwork-list").html(data.artwork_list_html);
         $("#artwork-last-updated").html(data.last_updated_artworks);
       } else {
         showToast(

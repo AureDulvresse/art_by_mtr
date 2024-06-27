@@ -115,7 +115,7 @@ class ArtworkController:
 
                 return JsonResponse({
                     'success': True, 
-                    'artworks': artwork_list_html, 
+                    'artwork_list_html': artwork_list_html, 
                     'last_updated_artworks': last_updated_artwork_list_html,
                 })
                     
