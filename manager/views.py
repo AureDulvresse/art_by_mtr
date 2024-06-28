@@ -3,8 +3,9 @@ import json
 
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -39,7 +40,7 @@ def dashboard_page(request):
         'nb_artwork': artworks.count(),
         'artworks_sold_month': sales_current_month,
         'total_customers': Customer.objects.filter(is_superuser=False, is_staff=False, is_active=True).count(),
-        'Posts_this_month': Post.objects.filter(event_date__month=current_month.month).count(),
+        'posts_this_month': Post.objects.filter(event_date__month=current_month.month).count(),
         'sales_current_month': sales_current_month,
         'sales_previous_month': sales_previous_month,
         'artwork_categories': artwork_categories,
@@ -107,22 +108,16 @@ class ArtworkController:
     @staticmethod
     @csrf_exempt
     @login_required
-    def destroy(request, artwork_id):
-        if request.method == 'POST':
-
-            if request.user.is_authenticated:
-                try:
-                    artwork = get_object_or_404(Artwork, pk=artwork_id)
-                    artwork.delete()
-                    messages.success(request, 'Œuvre supprimée avec succès')
-                    return redirect('manager:artwork-list')
-
-                except Exception as e:
-                    messages.error(request, 'Une erreur est survenue lors de la suppression de l\'œuvre')
-                    return redirect('manager:artwork-list')
-
-        messages.error(request, 'Requête invalide')
-        return redirect('manager:artwork-list')
+    @require_POST
+    def destroy(request):
+        try:
+            data = json.loads(request.body)
+            artwork_id = data.get('artwork_id')
+            artwork = get_object_or_404(Artwork, pk=artwork_id)
+            artwork.delete()
+            return JsonResponse({'success': True, 'message': 'Œuvre supprimée avec succès'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': 'Une erreur est survenue lors de la suppression de l\'œuvre'}, status=500)
 
 
 class PostController:

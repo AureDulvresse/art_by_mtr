@@ -1127,6 +1127,14 @@
         "documentation": {}
     },
     {
+        "label": "require_POST",
+        "importPath": "django.views.decorators.http",
+        "description": "django.views.decorators.http",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.http",
+        "documentation": {}
+    },
+    {
         "label": "render_to_string",
         "importPath": "django.template.loader",
         "description": "django.template.loader",
@@ -1997,7 +2005,7 @@
         "kind": 5,
         "importPath": "manager.urls",
         "description": "manager.urls",
-        "peekOfCode": "app_name = \"manager\"\nurlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),\n   path('artworks/update/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/<int:artwork_id>/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('artworks/', views.PostController.show, name = 'post-detail'),\n   path('artworks/', views.ArtworkController.store, name = 'create-post'),",
+        "peekOfCode": "app_name = \"manager\"\nurlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),\n   path('artworks/update/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('artworks/', views.PostController.show, name = 'post-detail'),\n   path('artworks/', views.ArtworkController.store, name = 'create-post'),",
         "detail": "manager.urls",
         "documentation": {}
     },
@@ -2006,7 +2014,7 @@
         "kind": 5,
         "importPath": "manager.urls",
         "description": "manager.urls",
-        "peekOfCode": "urlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),\n   path('artworks/update/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/<int:artwork_id>/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('artworks/', views.PostController.show, name = 'post-detail'),\n   path('artworks/', views.ArtworkController.store, name = 'create-post'),\n   path('artworks/', views.ArtworkController.update, name = 'update-post'),",
+        "peekOfCode": "urlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),\n   path('artworks/update/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('artworks/', views.PostController.show, name = 'post-detail'),\n   path('artworks/', views.ArtworkController.store, name = 'create-post'),\n   path('artworks/', views.ArtworkController.update, name = 'update-post'),",
         "detail": "manager.urls",
         "documentation": {}
     },

@@ -69,6 +69,52 @@ function removeFromCart(order_uuid) {
   });
 }
 
+function deleteArtwork(artwork_id) {
+  $.ajax({
+    url: "/management/artworks/delete/",
+    type: "POST",
+    headers: {
+      "X-CSRFToken": "{{ csrf_token }}",
+    },
+    contentType: "application/json",
+    data: JSON.stringify({ artwork_id: artwork_id }),
+    success: function (data) {
+      if (data.success) {
+        showToast("Succès", "Oeuvre supprimé", "bg-success text-white");
+        reloadTable();
+      } else {
+        alert(data.message);
+      }
+    },
+    error: (xhr, textStatus, error) => {
+      showToast(
+        "Erreur",
+        "Erreur lors de la suppression de l'article",
+        "bg-danger text-white"
+      );
+      console.error(xhr.responseText, textStatus, error);
+    },
+  });
+}
+
+function reloadTable() {
+  $.ajax({
+    url: window.location.href,
+    type: "GET",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+    },
+    success: function (data) {
+      var parsedHTML = $.parseHTML(data);
+      var newTableBody = $(parsedHTML).find("#artwork-table-body").html();
+      $("#artwork-table-body").html(newTableBody);
+    },
+    error: function (xhr, status, error) {
+      console.error("Error:", error);
+    },
+  });
+}
+
 function showToast(title, message, className) {
   const toastId = "toast-" + Math.random().toString(36).substr(2, 9);
   const toastHTML = `
@@ -144,6 +190,10 @@ document.addEventListener("alpine:init", () => {
   Alpine.data("cartHandler", () => ({
     addToCart,
     removeFromCart,
+  }));
+
+  Alpine.data("artworkManager", () => ({
+    deleteArtwork,
   }));
 
   Alpine.data("stripePayment", () => ({

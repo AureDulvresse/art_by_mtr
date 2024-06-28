@@ -1,8 +1,9 @@
 {% extends "base.html" %}
-{% load static %}
-{% load manager_custom_tags %}
+
+{% load static %} {% load manager_custom_tags %}
 
 {% block title %}Management - Mes Oeuvres{% endblock title %}
+
 {% block content %}
 <div
   class="flex"
@@ -11,7 +12,7 @@
     modalTitle: '', 
     modalDescription: '', 
     modalImage: '' ,
-    pk: 0,
+    artwork_id: 0,
   }"
 >
   {% include "manager/partials/sidebar.html" %}
@@ -23,19 +24,23 @@
       <div class="row w-full">
         <div class="col-12 mb-4">
           <div class="flex justify-between items-center">
-            <form method="post" class="flex items-center" style="width: 60%;">
+            <form method="post" class="flex items-center" style="width: 60%">
               <input
                 type="text"
                 class="form-control me-2"
-                style="height: 50px !important;"
+                style="height: 50px !important"
                 name="search-artwork"
                 placeholder="Recherche..."
               />
-              <button type="submit" class="btn btn-black" style="width: 200px !important;">
+              <button
+                type="submit"
+                class="btn btn-black"
+                style="width: 200px !important"
+              >
                 <i class="bx bx-search"></i> Rechercher
               </button>
             </form>
-            <div >
+            <div>
               <a href="#" class="btn btn-outline-black">Ajouter une oeuvre</a>
             </div>
           </div>
@@ -59,14 +64,14 @@
                   <th scope="col">Medium</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="artwork-table-body">
                 {% for item in artworks %}
                 <tr
                   @click="
                   modalTitle = '{{ item.title|escapejs }}';
                   modalDescription = '{{ item.description|escapejs }}';
                   modalImage = '{{ item.thumbnail.url }}';
-                  pk: '{{ item.id }}';
+                  artwork_id = '{{ item.id }}';
                   openModal = true;
                 "
                 >
@@ -97,7 +102,10 @@
       </div>
       <div class="col-12 d-flex justify-content-center align-items-center mt-4">
         {% if artworks.has_previous %}
-        <a href="?page={{ artworks.previous_page_number }}" class="btn btn-outline-red btn-sm me-2">
+        <a
+          href="?page={{ artworks.previous_page_number }}"
+          class="btn btn-outline-red btn-sm me-2"
+        >
           <i class="bx bx-chevron-left"></i> Précédent
         </a>
         {% else %}
@@ -111,7 +119,10 @@
         </span>
 
         {% if artworks.has_next %}
-        <a href="?page={{ artworks.next_page_number }}" class="btn btn-outline-red btn-sm ms-2">
+        <a
+          href="?page={{ artworks.next_page_number }}"
+          class="btn btn-outline-red btn-sm ms-2"
+        >
           Suivant <i class="bx bx-chevron-right"></i>
         </a>
         {% else %}
@@ -144,21 +155,37 @@
         </button>
         <div class="flex items-center justify-center flex-col mt-2">
           <div class="border rounded">
-            <img :src="modalImage" :alt="modalTitle" class="img-fluid rounded" width="150" height="70" />
+            <img
+              :src="modalImage"
+              :alt="modalTitle"
+              class="img-fluid rounded"
+              width="150"
+              height="70"
+            />
           </div>
           <div class="mt-4">
             <h3 class="text-center pt-2 text-red" x-text="modalTitle"></h3>
-            <p class="text-sm text-gray-500 text-center" x-text="modalDescription"></p>
+            <p
+              class="text-sm text-gray-500 text-center"
+              x-text="modalDescription"
+            ></p>
           </div>
           <div class="w-full flex justify-center items-center gap-3">
-            
-              <button class="btn btn-sm btn-black"> détail de l'oeuvre </button>
-              {% comment %} <a class="btn btn-sm btn-outline-red" href=`{% url 'manager:delete-artwork' pk %}`>Supprimer</a> {% endcomment %}
-            
+            <button class="btn btn-sm btn-black">Détail de l'œuvre</button>
+            <button
+              class="btn btn-sm btn-outline-red"
+              x-on:click="
+              deleteArtwork(artwork_id);
+              openModal = false;                                           
+              "
+            >
+              Supprimer
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 {% endblock content %}

@@ -11,7 +11,7 @@ urlpatterns = [
    path('artworks/', views.ArtworkController.index, name = 'artwork-list'),
    path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),
    path('artworks/update/', views.ArtworkController.update, name = 'update-artwork'),
-   path('artworks/<int:artwork_id>/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),
+   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),
 
    path('posts/', views.PostController.index, name = 'post-list'),
    path('artworks/', views.PostController.show, name = 'post-detail'),
