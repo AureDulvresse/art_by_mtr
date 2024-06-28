@@ -10,7 +10,7 @@ urlpatterns = [
 
    path('artworks/create/', views.ArtworkController.store, name = 'add-artwork'),
    path('artworks/', views.ArtworkController.index, name = 'artwork-list'),
-   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),
+   path('artworks/details/<str:artwork_id>/', views.ArtworkController.show, name = 'artwork-detail'),
    path('artworks/update/', views.ArtworkController.update, name = 'update-artwork'),
    path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),
 

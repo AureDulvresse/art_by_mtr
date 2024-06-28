@@ -81,12 +81,12 @@ class ArtworkController:
         context = {'form': form}
         return render(request, 'manager/pages/artwork_add.html', context)
     
-    @staticmethod
-    @login_required
-    def show(request, artwork_id):
-        artwork = get_object_or_404(Artwork, id=artwork_id)
-        context = {"artwork": artwork}
-        return render(request, 'manager/pages/artwork_detail.html', context)
+        @staticmethod
+        @login_required
+        def show(request, artwork_id):
+            artwork = get_object_or_404(Artwork, id=artwork_id)
+            context = {"artwork": artwork}
+            return render(request, 'manager/pages/artwork_detail.html', context)
     
     @staticmethod
     @login_required
