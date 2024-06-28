@@ -1,0 +1,39 @@
+{% extends "base.html" %} 
+
+{% load static %}
+
+{% load manager_custom_tags %} 
+
+{% block title %}Management - Ajouter une nouvelle œuvre{% endblock title %} 
+
+{% block content %}
+<div class="flex">
+  {% include "manager/partials/sidebar.html" %}
+
+  <div class="main-content p-4">
+    {% topbar "Mes oeuvres - Nouvelle œuvre" user %}
+    <div class="container">
+      <div class="row w-full artwork-table">
+        <div class="col-12 card shadow">
+          <div class="card-header bg-dark text-white">
+            <h4>Ajouter une nouvelle œuvre</h4>
+          </div>
+          <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %} {{ form.as_p }}
+              <div class="d-flex justify-content-end mt-3">
+                <button type="submit" class="btn btn-black">Ajouter</button>
+                <a
+                  href="{% url 'manager:artwork-list' %}"
+                  class="btn btn-outline-red ms-2"
+                  >Annuler</a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

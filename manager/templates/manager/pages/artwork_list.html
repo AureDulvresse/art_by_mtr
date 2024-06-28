@@ -1,25 +1,24 @@
 {% extends "base.html" %}
 
-{% load static %} {% load manager_custom_tags %}
+{% load static %}{% load manager_custom_tags %}
 
-{% block title %}Management - Mes Oeuvres{% endblock title %}
+{% block title %}Management - Mes Œuvres{% endblock title %}
 
 {% block content %}
 <div
   class="flex"
-  x-data="{
+  x-data="{ 
     openModal: false, 
     modalTitle: '', 
     modalDescription: '', 
-    modalImage: '' ,
+    modalImage: '',
     artwork_id: 0,
   }"
 >
   {% include "manager/partials/sidebar.html" %}
 
   <div class="main-content p-4">
-    {% topbar "Mes oeuvres" user %}
-
+    {% topbar "Mes Œuvres" user %}
     <div class="container">
       <div class="row w-full">
         <div class="col-12 mb-4">
@@ -41,7 +40,7 @@
               </button>
             </form>
             <div>
-              <a href="#" class="btn btn-outline-black">Ajouter une oeuvre</a>
+              <a href="{% url 'manager:add-artwork' %}" class="btn btn-outline-black">Ajouter une Œuvre</a>
             </div>
           </div>
         </div>
@@ -51,17 +50,17 @@
     <div class="artwork-table">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Liste des Oeuvres</h5>
+          <h5 class="card-title">Liste des Œuvres</h5>
           <div class="table-responsive">
             <table class="table table-striped table-hover">
               <thead class="text-white bg-dark">
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Image</th>
-                  <th scope="col">Titre de l'œuvre</th>
+                  <th scope="col">Titre de l'Œuvre</th>
                   <th scope="col">Prix</th>
                   <th scope="col">Catégorie</th>
-                  <th scope="col">Medium</th>
+                  <th scope="col">Médium</th>
                 </tr>
               </thead>
               <tbody id="artwork-table-body">
@@ -70,13 +69,14 @@
                   @click="
                   modalTitle = '{{ item.title|escapejs }}';
                   modalDescription = '{{ item.description|escapejs }}';
-                  modalImage = '{{ item.thumbnail.url }}';
+                  modalImage = '{% if item.thumbnail %}{{ item.thumbnail.url }}{% else %}{% static 'chemin/vers/image-par-defaut.jpg' %}{% endif %}';
                   artwork_id = '{{ item.id }}';
                   openModal = true;
                 "
                 >
                   <th scope="row">{{ forloop.counter }}</th>
                   <td class="artwork-image">
+                    {% if item.thumbnail %}
                     <img
                       src="{{ item.thumbnail.url }}"
                       alt="{{ item.title }}"
@@ -84,6 +84,16 @@
                       width="70"
                       height="70"
                     />
+                    {% else %}
+                    <!-- Image de remplacement ou image par défaut -->
+                    <img
+                      src="{% static 'chemin/vers/image-par-defaut.jpg' %}"
+                      alt="Image de remplacement"
+                      class="img-thumbnail cursor-pointer"
+                      width="70"
+                      height="70"
+                    />
+                    {% endif %}
                   </td>
                   <td class="artwork-name">{{ item.title }}</td>
                   <td class="artwork-price">{{ item.price }} €</td>
@@ -92,7 +102,7 @@
                 </tr>
                 {% empty %}
                 <tr>
-                  <td colspan="6" class="text-center">Aucune œuvre trouvée.</td>
+                  <td colspan="6" class="text-center">Aucune Œuvre Trouvée.</td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -149,7 +159,7 @@
           type="button"
           @click="openModal = false"
           class="close-btn"
-          title="Fermer la modal"
+          title="Fermer la Modal"
         >
           <i class="bx bx-x text-2xl"></i>
         </button>
@@ -171,12 +181,12 @@
             ></p>
           </div>
           <div class="w-full flex justify-center items-center gap-3">
-            <button class="btn btn-sm btn-black">Détail de l'œuvre</button>
+            <button class="btn btn-sm btn-black">Détail de l'Œuvre</button>
             <button
               class="btn btn-sm btn-outline-red"
-              x-on:click="
-              deleteArtwork(artwork_id);
-              openModal = false;                                           
+              @click="
+                deleteArtwork(artwork_id);
+                
               "
             >
               Supprimer
@@ -187,5 +197,4 @@
     </div>
   </div>
 </div>
-
 {% endblock content %}

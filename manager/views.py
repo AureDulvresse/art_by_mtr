@@ -70,7 +70,7 @@ class ArtworkController:
     @login_required
     def store(request):
         if request.method == 'POST':
-            form = ArtworkForm(request.POST)
+            form = ArtworkForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Œuvre ajoutée')

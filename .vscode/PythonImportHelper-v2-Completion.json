@@ -1978,7 +1978,7 @@
         "kind": 6,
         "importPath": "manager.forms",
         "description": "manager.forms",
-        "peekOfCode": "class DatePickerWidget(DateInput):\n    def __init__(self, attrs=None, format='%Y-%m-%d'):\n        self.format = format\n        super().__init__(attrs={'class': 'datepicker form-control', 'data-provide': 'datepicker'}, format=format)\n    def render(self, name, value, attrs=None, renderer=None):\n        render_value = value.strftime(self.format) if isinstance(value, datetime.date) else ''\n        return mark_safe(f'<input type=\"text\" name=\"{name}\" value=\"{render_value}\"{\" \".join([f\"{k}={v}\" for k, v in attrs.items()])} />')\nclass PostForm(forms.ModelForm):\n    class Meta:\n        model = Post",
+        "peekOfCode": "class DatePickerWidget(DateInput):\n    def __init__(self, attrs=None, format='%Y-%m-%d'):\n        self.format = format\n        super().__init__(attrs={'class': 'datepicker form-control', 'data-provide': 'datepicker'}, format=format)\n    def render(self, name, value, attrs=None, renderer=None):\n        render_value = value.strftime(self.format) if isinstance(value, datetime.date) else ''\n        final_attrs = self.build_attrs(attrs, {'name': name})\n        return mark_safe(f'<input type=\"text\" value=\"{render_value}\"{\" \".join([f\"{k}={v}\" for k, v in final_attrs.items()])} />')\nclass PostForm(forms.ModelForm):\n    class Meta:",
         "detail": "manager.forms",
         "documentation": {}
     },
@@ -2005,7 +2005,7 @@
         "kind": 5,
         "importPath": "manager.urls",
         "description": "manager.urls",
-        "peekOfCode": "app_name = \"manager\"\nurlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),\n   path('artworks/update/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('artworks/', views.PostController.show, name = 'post-detail'),\n   path('artworks/', views.ArtworkController.store, name = 'create-post'),",
+        "peekOfCode": "app_name = \"manager\"\nurlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/create/', views.ArtworkController.store, name = 'add-artwork'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),\n   path('artworks/update/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('artworks/', views.PostController.show, name = 'post-detail'),",
         "detail": "manager.urls",
         "documentation": {}
     },
@@ -2014,7 +2014,7 @@
         "kind": 5,
         "importPath": "manager.urls",
         "description": "manager.urls",
-        "peekOfCode": "urlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),\n   path('artworks/update/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('artworks/', views.PostController.show, name = 'post-detail'),\n   path('artworks/', views.ArtworkController.store, name = 'create-post'),\n   path('artworks/', views.ArtworkController.update, name = 'update-post'),",
+        "peekOfCode": "urlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/create/', views.ArtworkController.store, name = 'add-artwork'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/<str:artwork_id>/details/', views.ArtworkController.show, name = 'artwork-detail'),\n   path('artworks/update/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('artworks/', views.PostController.show, name = 'post-detail'),\n   path('artworks/', views.ArtworkController.store, name = 'create-post'),",
         "detail": "manager.urls",
         "documentation": {}
     },
@@ -2293,7 +2293,7 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class Artwork(models.Model):\n    title = models.CharField(max_length=180, unique=True)\n    slug = models.SlugField(max_length=200, unique=True)\n    description = models.TextField(blank=True)\n    price = models.FloatField(default=0.0)\n    stock = models.IntegerField(default=1)\n    width = models.IntegerField()\n    height = models.IntegerField()\n    thumbnail = models.ImageField(upload_to=\"artworks\", blank=True, null=True)\n    category = models.ForeignKey(Category, on_delete=models.CASCADE)",
+        "peekOfCode": "class Artwork(models.Model):\n    title = models.CharField(max_length=180, unique=True)\n    slug = models.SlugField(max_length=200, unique=True)\n    description = models.TextField(blank=True)\n    price = models.FloatField(default=0.0)\n    stock = models.IntegerField(default=1)\n    width = models.PositiveIntegerField()\n    height = models.PositiveIntegerField()\n    thumbnail = models.ImageField(upload_to=\"artworks\", blank=True, null=True)\n    category = models.ForeignKey(Category, on_delete=models.CASCADE)",
         "detail": "store.models",
         "documentation": {}
     },
