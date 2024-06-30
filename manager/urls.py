@@ -13,15 +13,14 @@ urlpatterns = [
    path('artworks/update/<str:artwork_id>/', views.ArtworkController.update, name = 'update-artwork'),
    path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),
 
+   path('posts/create/', views.PostController.store, name = 'add-post'),
    path('posts/', views.PostController.index, name = 'post-list'),
-   path('artworks/', views.PostController.show, name = 'post-detail'),
-   path('artworks/', views.ArtworkController.store, name = 'create-post'),
-   path('artworks/', views.ArtworkController.update, name = 'update-post'),
-   path('artworks/', views.ArtworkController.destroy, name = 'delete-post'),
+   path('posts/update/<str:post_id>/', views.PostController.update, name = 'update-post'),
+   path('posts/delete/', views.PostController.destroy, name = 'delete-post'),
 
-   path('artworks/', views.ArtworkController.index, name = 'orders'),
-   path('artworks/', views.ArtworkController.index, name = 'payments'),
-   path('artworks/', views.ArtworkController.index, name = 'settings'),
+   path('orders/', views.ArtworkController.index, name = 'orders'),
+   path('payments/', views.ArtworkController.index, name = 'payments'),
+   path('settings/', views.ArtworkController.index, name = 'settings'),
 ]
 
 # handler404 = f"{app_name}.views.page_404"

@@ -74,14 +74,14 @@ function deleteArtwork(artwork_id) {
     url: "/management/artworks/delete/",
     type: "POST",
     headers: {
-      "X-CSRFToken": "{{ csrf_token }}",
+      "X-CSRFToken": getCookie("csrftoken"),
     },
     contentType: "application/json",
     data: JSON.stringify({ artwork_id: artwork_id }),
     success: function (data) {
       if (data.success) {
-        showToast("Succès", "Oeuvre supprimé", "bg-success text-white");
-        reloadTable();
+        showToast("Succès", "Oeuvre supprimée", "bg-success text-white");
+        reloadTable("#artwork-table-body");
       } else {
         alert(data.message);
       }
@@ -97,7 +97,35 @@ function deleteArtwork(artwork_id) {
   });
 }
 
-function reloadTable() {
+function deletePost(post_id) {
+   $.ajax({
+     url: "/management/posts/delete/",
+     type: "POST",
+     headers: {
+       "X-CSRFToken": getCookie("csrftoken"),
+     },
+     contentType: "application/json",
+     data: JSON.stringify({ post_id: post_id }),
+     success: function (data) {
+       if (data.success) {
+         showToast("Succès", "Evènement supprimé", "bg-success text-white");
+         reloadTable("#post-table-body");
+       } else {
+         alert(data.message);
+       }
+     },
+     error: (xhr, textStatus, error) => {
+       showToast(
+         "Erreur",
+         "Erreur lors de la suppression de l'évènement",
+         "bg-danger text-white"
+       );
+       console.error(xhr.responseText, textStatus, error);
+     },
+   });
+}
+
+function reloadTable(content_ref) {
   $.ajax({
     url: window.location.href,
     type: "GET",
@@ -106,8 +134,8 @@ function reloadTable() {
     },
     success: function (data) {
       var parsedHTML = $.parseHTML(data);
-      var newTableBody = $(parsedHTML).find("#artwork-table-body").html();
-      $("#artwork-table-body").html(newTableBody);
+      var newTableBody = $(parsedHTML).find(content_ref).html();
+      $(content_ref).html(newTableBody);
     },
     error: function (xhr, status, error) {
       console.error("Error:", error);
@@ -194,6 +222,10 @@ document.addEventListener("alpine:init", () => {
 
   Alpine.data("artworkManager", () => ({
     deleteArtwork,
+  }));
+
+  Alpine.data("postManager", () => ({
+    deletePost,
   }));
 
   Alpine.data("stripePayment", () => ({

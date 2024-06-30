@@ -4,19 +4,19 @@
 
 {% load manager_custom_tags %}
 
-{% block title %}Management - Modifier information d'une œuvre{% endblock title %}
+{% block title %}Management - Modifier information évènement{% endblock title %}
 
 {% block content %}
 <div class="flex">
   {% include "manager/partials/sidebar.html" %}
 
   <div class="main-content p-4">
-    {% topbar "Mes oeuvres - Modification " user %}
+    {% topbar "Evènement - Modification " user %}
     <div class="container">
       <div class="row w-full artwork-table">
         <div class="col-12 card shadow">
           <div class="card-header bg-dark text-white">
-            <h4>Modifier information d'une œuvre</h4>
+            <h4>Modifier information d'un évènement</h4>
           </div>
           <div class="card-body">
             <form method="post" enctype="multipart/form-data">
@@ -26,7 +26,7 @@
                   Mettre à jour
                 </button>
                 <a
-                  href="{% url 'manager:artwork-list' %}"
+                  href="{% url 'manager:post-list' %}"
                   class="btn btn-outline-red ms-2"
                   >Annuler</a
                 >

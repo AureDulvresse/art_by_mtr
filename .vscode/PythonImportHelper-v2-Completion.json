@@ -965,6 +965,14 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
         "label": "Post",
         "importPath": "blog.models",
         "description": "blog.models",
@@ -1282,6 +1290,15 @@
         "description": "store",
         "isExtraImport": true,
         "detail": "store",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
         "documentation": {}
     },
     {
@@ -2005,7 +2022,7 @@
         "kind": 5,
         "importPath": "manager.urls",
         "description": "manager.urls",
-        "peekOfCode": "app_name = \"manager\"\nurlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/create/', views.ArtworkController.store, name = 'add-artwork'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/update/<str:artwork_id>/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('artworks/', views.PostController.show, name = 'post-detail'),\n   path('artworks/', views.ArtworkController.store, name = 'create-post'),",
+        "peekOfCode": "app_name = \"manager\"\nurlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/create/', views.ArtworkController.store, name = 'add-artwork'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/update/<str:artwork_id>/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/create/', views.PostController.store, name = 'add-post'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('posts/update/<str:post_id>/', views.PostController.update, name = 'update-post'),",
         "detail": "manager.urls",
         "documentation": {}
     },
@@ -2014,7 +2031,7 @@
         "kind": 5,
         "importPath": "manager.urls",
         "description": "manager.urls",
-        "peekOfCode": "urlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/create/', views.ArtworkController.store, name = 'add-artwork'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/update/<str:artwork_id>/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('artworks/', views.PostController.show, name = 'post-detail'),\n   path('artworks/', views.ArtworkController.store, name = 'create-post'),\n   path('artworks/', views.ArtworkController.update, name = 'update-post'),",
+        "peekOfCode": "urlpatterns = [\n   path('', views.dashboard_page, name = 'dashboard'),\n   path('artworks/create/', views.ArtworkController.store, name = 'add-artwork'),\n   path('artworks/', views.ArtworkController.index, name = 'artwork-list'),\n   path('artworks/update/<str:artwork_id>/', views.ArtworkController.update, name = 'update-artwork'),\n   path('artworks/delete/', views.ArtworkController.destroy, name = 'delete-artwork'),\n   path('posts/create/', views.PostController.store, name = 'add-post'),\n   path('posts/', views.PostController.index, name = 'post-list'),\n   path('posts/update/<str:post_id>/', views.PostController.update, name = 'update-post'),\n   path('posts/delete/', views.PostController.destroy, name = 'delete-post'),",
         "detail": "manager.urls",
         "documentation": {}
     },
@@ -2032,7 +2049,7 @@
         "kind": 6,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "class PostController:\n    @staticmethod\n    @login_required\n    @csrf_exempt\n    def store(request):\n        if request.method == 'POST':\n            form = PostForm(request.POST)\n            if form.is_valid():\n                post = form.save()\n                messages.success(request, 'Événement ajouté avec succès')",
+        "peekOfCode": "class PostController:\n    @staticmethod\n    @login_required\n    @csrf_exempt\n    @staticmethod\n    @csrf_exempt\n    @login_required\n    def store(request):\n        if request.method == 'POST':\n            form = PostForm(request.POST, request.FILES)",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2356,7 +2373,16 @@
         "kind": 2,
         "importPath": "store.utils",
         "description": "store.utils",
-        "peekOfCode": "def get_cart_items(user):\n    cart = Cart.objects.get(customer = user)\n    orders = cart.orders.all()\n    total_cost = cart.total_cost\n    return orders, total_cost",
+        "peekOfCode": "def get_cart_items(user):\n    cart = Cart.objects.get(customer = user)\n    orders = cart.orders.all()\n    total_cost = cart.total_cost\n    return orders, total_cost\ndef get_unique_filename(instance, filename):\n    extension = filename.split('.')[-1]\n    filename = f\"{instance.title}_{uuid.uuid4().hex[:8]}.{extension}\"\n    file_path = f'media/artworks/{filename}'\n    return os.path.join(settings.BASE_DIR, file_path)",
+        "detail": "store.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_unique_filename",
+        "kind": 2,
+        "importPath": "store.utils",
+        "description": "store.utils",
+        "peekOfCode": "def get_unique_filename(instance, filename):\n    extension = filename.split('.')[-1]\n    filename = f\"{instance.title}_{uuid.uuid4().hex[:8]}.{extension}\"\n    file_path = f'media/artworks/{filename}'\n    return os.path.join(settings.BASE_DIR, file_path)",
         "detail": "store.utils",
         "documentation": {}
     },

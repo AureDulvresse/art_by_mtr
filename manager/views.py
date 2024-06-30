@@ -88,13 +88,13 @@ class ArtworkController:
         artwork = get_object_or_404(Artwork, pk=artwork_id)
 
         if request.method == 'POST':
-            form = ArtworkForm(request.POST, instance=artwork)
+            form = ArtworkForm(request.POST, request.FILES, instance=artwork)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Œuvre modifiée')
                 return redirect('manager:artwork-list') 
         else:
-            form = ArtworkForm(instance=artwork)
+            form = ArtworkForm(instance=artwork) 
         
         context = {'form': form, 'artwork': artwork}
         return render(request, 'manager/pages/artwork_edit.html', context)
@@ -119,21 +119,21 @@ class PostController:
     @staticmethod
     @login_required
     @csrf_exempt
+    @staticmethod
+    @csrf_exempt
+    @login_required
     def store(request):
         if request.method == 'POST':
-            form = PostForm(request.POST)
+            form = PostForm(request.POST, request.FILES)
             if form.is_valid():
-                post = form.save()
-                messages.success(request, 'Événement ajouté avec succès')
-                return redirect('manager:post-list')
-            else:
-                messages.error(request, 'Erreur dans le formulaire')
-                context = {'form': form}
-                return render(request, 'manager/pages/post_add.html', context)
+                form.save()
+                messages.success(request, 'Evènement créé')
+                return redirect('manager:post-list') 
         else:
             form = PostForm()
-            context = {'form': form}
-            return render(request, 'manager/pages/post_add.html', context)
+        
+        context = {'form': form}
+        return render(request, 'manager/pages/post_add.html', context)
 
     @staticmethod
     @login_required
@@ -147,45 +147,35 @@ class PostController:
         context = {'posts': posts}
         return render(request, 'manager/pages/post_list.html', context)
 
-    @staticmethod
-    @login_required
-    def show(request, post_id):
-        post = get_object_or_404(Post, pk=post_id)
-        context = {'post': post}
-        return render(request, 'manager/pages/post_detail.html', context)
-
-    @staticmethod
-    @login_required
-    @csrf_exempt
-    def delete(request, post_id):
-        if request.method == 'POST':
-            try:
-                post = Post.objects.get(pk=post_id)
-                post.delete()
-                messages.success(request, 'Événement supprimé avec succès')
-                return redirect('manager:post-list')
-            except Post.DoesNotExist:
-                messages.error(request, 'Événement non trouvé')
-                return redirect('manager:post-list')
-
-
+    
     @staticmethod
     @login_required
     def update(request, post_id):
         post = get_object_or_404(Post, pk=post_id)
-        
+
         if request.method == 'POST':
-            form = PostForm(request.POST, instance=post)
+            form = PostForm(request.POST, request.FILES, instance=post)
             if form.is_valid():
                 form.save()
-                messages.success(request, 'Événement mis à jour avec succès')
-                return redirect('manager:post-list')
-            else:
-                messages.error(request, 'Erreur dans le formulaire')
-                context = {'form': form, 'post': post}
-                return render(request, 'manager/pages/post_edit.html', context)
+                messages.success(request, 'Evènement modifiée')
+                return redirect('manager:post-list') 
         else:
-            form = PostForm(instance=post)
-            context = {'form': form, 'post': post}
-            return render(request, 'manager/pages/post_edit.html', context)
+            form = PostForm(instance=post) 
+        
+        context = {'form': form, 'post': post}
+        return render(request, 'manager/pages/post_edit.html', context)
+
+    @staticmethod
+    @csrf_exempt
+    @login_required
+    @require_POST
+    def destroy(request):
+        try:
+            data = json.loads(request.body)
+            post_id = data.get('post_id')
+            post = get_object_or_404(Post, pk=post_id)
+            post.delete()
+            return JsonResponse({'success': True, 'message': 'Evènement supprimé avec succès'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': 'Une erreur est survenue lors de la suppression de l\'œuvre'}, status=500)
 
