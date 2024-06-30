@@ -13,7 +13,7 @@ from django.template.loader import render_to_string
 from django.db.models import Count
 
 from accounts.models import Customer
-from store.models import Artwork, Category, CheckOut
+from store.models import Artwork, Category, CheckOut, Order
 from blog.models import Post
 from manager.forms import ArtworkForm, PostForm
 
@@ -49,6 +49,35 @@ def dashboard_page(request):
 
     return render(request, 'manager/pages/dashboard.html', context)
 
+
+class OrderController:
+
+    @staticmethod
+    @login_required
+    def index(request):
+        orders = Order.objects.all().filter(ordered=True)
+
+        paginator = Paginator(orders, 10)
+        page = request.GET.get('page')
+        orders = paginator.get_page(page)
+
+        context = {
+            'orders': orders,
+        }
+
+        return render(request, 'manager/pages/orders_list.html', context)
+
+    @staticmethod
+    @login_required
+    def show(request, order_number):
+        order = get_object_or_404(Order, uuid=order_number)
+
+        context = {
+            'orders': order,
+        }
+
+        return render(request, 'manager/pages/order_list.html', context)
+    
 
 class ArtworkController:
 
@@ -178,4 +207,3 @@ class PostController:
             return JsonResponse({'success': True, 'message': 'Evènement supprimé avec succès'})
         except Exception as e:
             return JsonResponse({'success': False, 'message': 'Une erreur est survenue lors de la suppression de l\'œuvre'}, status=500)
-

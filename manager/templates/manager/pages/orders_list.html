@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% load static %} {% load manager_custom_tags %}
+{% load static %}
+
+{% load manager_custom_tags %}
 
 {% block title %}Management - Evènements{% endblock title %}
 
@@ -45,26 +47,27 @@
               <thead class="text-white bg-dark">
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Client</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Lieu</th>
+                  <th scope="col">Nom complet du client</th>
+                  <th scope="col">Date de commande</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody id="post-table-body">
-                {% for item in posts %}
-                <tr
-                  @click="
-                    modalTitle = '{{ item.title|escapejs }}';
-                    modalDate = '{{ item.event_date|escapejs }}';
-                    modalPlace = '{{ item.event_place|escapejs }}';
-                    post_id = '{{ item.id }}';
-                    openModal = true;"
-                >
+                {% for item in orders %}
+                <tr>
                   <th scope="row">{{ forloop.counter }}</th>
 
-                  <td class="artwork-name">{{ item.title }}</td>
-                  <td class="artwork-price">{{ item.event_date }}</td>
-                  <td class="artwork-category">{{ item.event_place }}</td>
+                  <td class="artwork-name">{{ item.customer.first_name }} {{ item.customer.last_name }}</td>
+                  <td class="artwork-price">{{ item.ordered_at }}</td>
+                  <td class="artwork-category">
+                    <button
+                      type="button"
+                      class="btn btn-black btn-sm"
+                      @click="window.location.href = '/management/orders/details/' + item.uuid"
+                    >
+                      Détail
+                    </button>
+                  </td>
                 </tr>
                 {% empty %}
                 <tr>
@@ -112,54 +115,5 @@
     </div>
   </div>
 
-  <!-- Modal -->
-  <div
-    x-cloak
-    x-show="openModal"
-    x-transition.opacity
-    x-transition:enter.duration.500ms
-    x-transition:leave.duration.400ms
-    class="cart-preview-overlay"
-  >
-    <div class="cart-preview shadow-md rounded px-2 py-3">
-      <div class="relative">
-        <button
-          type="button"
-          @click="openModal = false"
-          class="close-btn"
-          title="Fermer la modal"
-        >
-          <i class="bx bx-x text-2xl"></i>
-        </button>
-        <div class="flex items-center justify-center flex-col mt-2">
-          <div class="mt-4">
-            <h3 class="text-center pt-2 text-red" x-text="modalTitle"></h3>
-            <p class="text-sm text-gray-500 text-center" x-text="modalDate"></p>
-            <p
-              class="text-sm text-gray-500 text-center"
-              x-text="modalPlace"
-            ></p>
-          </div>
-          <div class="w-full flex justify-center items-center gap-3">
-            <button
-              class="btn btn-sm btn-black"
-              @click="window.location.href = '/management/posts/update/' + post_id"
-            >
-              Mettre à jour
-            </button>
-            <button
-              class="btn btn-sm btn-outline-red"
-              @click="
-                deletePost(post_id);
-                openModal = false;
-              "
-            >
-              Supprimer
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% endblock content %}
 </div>
-{% endblock content %}

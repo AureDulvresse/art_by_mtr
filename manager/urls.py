@@ -18,7 +18,9 @@ urlpatterns = [
    path('posts/update/<str:post_id>/', views.PostController.update, name = 'update-post'),
    path('posts/delete/', views.PostController.destroy, name = 'delete-post'),
 
-   path('orders/', views.ArtworkController.index, name = 'orders'),
+   path('orders/', views.OrderController.index, name = 'orders-list'),
+   path('orders/details/<str:order_number>', views.OrderController.show, name = 'orders-detail'),
+
    path('payments/', views.ArtworkController.index, name = 'payments'),
    path('settings/', views.ArtworkController.index, name = 'settings'),
 ]
