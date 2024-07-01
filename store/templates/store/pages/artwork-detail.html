@@ -1,8 +1,12 @@
-{% extends "base.html" %} {% load static %} {% load store_custom_tags %}
+{% extends "base.html" %}
 
-{% block title %} Galerie - Détail oeuvre {% endblock title %}
+{% load static %}
 
-{% block content %} 
+{% load store_custom_tags %}
+
+{% block title %} Galerie - Détail oeuvre {% endblock title %} 
+
+{% block content %}
 
 {% breadcrumb artwork.title "Détail de l'oeuvre" user preview_cart_items %}
 
@@ -116,23 +120,34 @@
             Prix: <span class="text-red">{{ artwork.price }} €</span>
           </p>
         </div>
-        <div class="mb-2">
-          <input type="number" name="quantity" id="quantity" class="form-control" value="1" />
-           {% if user.is_authenticated %}
+        <div class="mb-2 flex items-center justify-start gap-3">
+          <div style="width: 150px;" >
+            <input
+              type="number"
+              name="quantity"
+              id="quantity"
+              class="form-control"
+              style="height: 48px;"
+              value="1"
+            />
+          </div>
+
+          {% if user.is_authenticated %}
           <button
-          type="button"
-          class="btn btn-black"
-          x-data="cartHandler()"
-          x-on:click="addToCart($event)"
-          data-artwork-id="{{ artwork.id }}"
-        >
-          Ajouter au panier
-        </button>
-        {% else %}
-        <a href="{% url 'accounts:login' %}" class="btn btn-black">Ajouter au panier</a>
-        {% endif %}
+            type="button"
+            class="btn btn-black"
+            x-data="cartHandler()"
+            x-on:click="addToCart($event)"
+            data-artwork-id="{{ artwork.id }}"
+          >
+            Ajouter au panier
+          </button>
+          {% else %}
+          <a href="{% url 'accounts:login' %}" class="btn btn-black"
+            >Ajouter au panier</a
+          >
+          {% endif %}
         </div>
-       
       </div>
     </div>
   </div>
@@ -153,7 +168,8 @@
     </div>
 
     <div class="grid-container">
-      {% for r_artwork in related_artworks %} {% artworkCard r_artwork user %} {% endfor %}
+      {% for r_artwork in related_artworks %} {% artworkCard r_artwork user %}
+      {% endfor %}
     </div>
     <a
       href="{% url 'store:gallery' %}"
@@ -166,6 +182,4 @@
 {% endif %}
 <!-- end more artworks -->
 
-{% include "components/footer.html" %}
-
-{% endblock content %}
+{% include "components/footer.html" %} {% endblock content %}
