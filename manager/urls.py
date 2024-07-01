@@ -21,7 +21,7 @@ urlpatterns = [
    path('orders/', views.OrderController.index, name = 'order-list'),
    path('orders/details/<str:order_number>', views.OrderController.show, name = 'order-detail'),
 
-   path('payments/', views.ArtworkController.index, name = 'payments'),
+   path('payments/', views.payment_list, name = 'payments'),
    path('settings/', views.ArtworkController.index, name = 'settings'),
 ]
 

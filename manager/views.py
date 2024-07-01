@@ -15,7 +15,7 @@ from django.urls import reverse
 from django.db.models import Count, Prefetch, Q
 
 from accounts.models import Customer
-from store.models import Artwork, Category, CheckOut, Order
+from store.models import Artwork, Category, CheckOut, Order, Payment
 from blog.models import Post
 from manager.forms import ArtworkForm, PostForm
 
@@ -54,6 +54,25 @@ def dashboard_page(request):
 
     return render(request, 'manager/pages/dashboard.html', context)
 
+def payment_list(request):
+    payments = Payment.objects.all().order_by('-created_at')
+
+    # Gestion de la recherche
+    query = request.GET.get('q')
+    if query and query.strip():
+        payments = payments.filter(checkout__customer__username__icontains=query)
+
+    # Pagination
+    paginator = Paginator(payments, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'payments': page_obj,
+        'query': query if query else '',
+    }
+
+    return render(request, 'manager/pages/payment_list.html', context)
 
 class OrderController:
 

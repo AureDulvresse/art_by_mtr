@@ -716,6 +716,14 @@
         "documentation": {}
     },
     {
+        "label": "Payment",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
         "label": "Artwork",
         "importPath": "store.models",
         "description": "store.models",
@@ -749,6 +757,14 @@
     },
     {
         "label": "Order",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Payment",
         "importPath": "store.models",
         "description": "store.models",
         "isExtraImport": true,
@@ -1981,6 +1997,15 @@
         "documentation": {}
     },
     {
+        "label": "PaymentAdmin",
+        "kind": 6,
+        "importPath": "manager.admin",
+        "description": "manager.admin",
+        "peekOfCode": "class PaymentAdmin(admin.ModelAdmin):\n    list_display = ('id', 'currency', 'status', 'created_at', 'updated_at')\n    list_filter = ('status', 'created_at', 'updated_at')\n    search_fields = ('checkout__customer__username',)  # Recherche par nom d'utilisateur du client\n    readonly_fields = ('created_at', 'updated_at')  # Champs en lecture seule\n    def has_delete_permission(self, request, obj=None):\n        return False  # Désactiver la suppression via l'interface admin\n    # def has_add_permission(self, request):\n    #     return False  # Désactiver l'ajout via l'interface admin\n    def has_change_permission(self, request, obj=None):",
+        "detail": "manager.admin",
+        "documentation": {}
+    },
+    {
         "label": "ManagerConfig",
         "kind": 6,
         "importPath": "manager.apps",
@@ -2085,6 +2110,15 @@
         "importPath": "manager.views",
         "description": "manager.views",
         "peekOfCode": "def dashboard_page(request):\n    artworks = Artwork.objects.all()\n    # Filtrer les ventes pour le mois en cours et le mois précédent\n    today = datetime.today()\n    current_month = first_day_of_month(today)\n    previous_month = first_day_of_month(today - timedelta(days=1)).replace(day=1)\n    sales_current_month = CheckOut.objects.filter(created_at__gte=current_month).count()\n    sales_previous_month = CheckOut.objects.filter(created_at__gte=previous_month, created_at__lt=current_month).count()\n    # Récupérer les catégories d'œuvres et compter le nombre d'œuvres par catégorie\n    artwork_categories = Category.objects.annotate(artwork_count=Count('artwork')).order_by('-artwork_count')",
+        "detail": "manager.views",
+        "documentation": {}
+    },
+    {
+        "label": "payment_list",
+        "kind": 2,
+        "importPath": "manager.views",
+        "description": "manager.views",
+        "peekOfCode": "def payment_list(request):\n    payments = Payment.objects.all().order_by('-created_at')\n    # Gestion de la recherche\n    query = request.GET.get('q')\n    if query and query.strip():\n        payments = payments.filter(checkout__customer__username__icontains=query)\n    # Pagination\n    paginator = Paginator(payments, 10)\n    page_number = request.GET.get('page')\n    page_obj = paginator.get_page(page_number)",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2354,7 +2388,7 @@
         "kind": 6,
         "importPath": "store.models",
         "description": "store.models",
-        "peekOfCode": "class Payment(models.Model):\n    STATUS_CHOICES = [\n        ('Pending', 'Pending'),\n        ('Completed', 'Completed'),\n        ('Failed', 'Failed'),\n        ('Refunded', 'Refunded'),\n    ]\n    currency = models.CharField(max_length=10)\n    created_at = models.DateTimeField(auto_now_add=True)\n    updated_at = models.DateTimeField(auto_now=True)",
+        "peekOfCode": "class Payment(models.Model):\n    EUR = 'EUR'\n    USD = 'USD'\n    CURRENCY_CHOICES = [\n        (EUR, 'EUR'),\n        (USD, 'USD'),\n    ]\n    STATUS_CHOICES = [\n        ('Pending', 'Pending'),\n        ('Completed', 'Completed'),",
         "detail": "store.models",
         "documentation": {}
     },

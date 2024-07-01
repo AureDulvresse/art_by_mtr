@@ -122,6 +122,14 @@ class CheckOut(models.Model):
         return f"Checkout by {self.customer.username}"
 
 class Payment(models.Model):
+    EUR = 'EUR'
+    USD = 'USD'
+
+    CURRENCY_CHOICES = [
+        (EUR, 'EUR'),
+        (USD, 'USD'),
+    ]
+
     STATUS_CHOICES = [
         ('Pending', 'Pending'),
         ('Completed', 'Completed'),
@@ -129,7 +137,7 @@ class Payment(models.Model):
         ('Refunded', 'Refunded'),
     ]
 
-    currency = models.CharField(max_length=10)
+    currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, default=EUR)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=15, choices=STATUS_CHOICES)
