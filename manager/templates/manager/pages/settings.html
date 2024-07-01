@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Paramètres{% endblock title %}
+
+{% block content %}
+<div class="flex">
+  {% include "manager/partials/sidebar.html" %}
+
+  <div class="main-content p-4">
+    {% topbar "Paramètres" user %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Catégories</h5>
+              <form method="post" action="{% url 'manager:add-category' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="categoryName" class="form-label">Nom de la Catégorie</label>
+                  <input type="text" class="form-control" id="categoryName" name="name" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter Catégorie</button>
+              </form>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Liste des Catégories</h5>
+              <ul class="list-group">
+                {% for category in categories %}
+                <li class="list-group-item">{{ category.name }}</li>
+                {% empty %}
+                <li class="list-group-item">Aucune catégorie trouvée.</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Médiums</h5>
+              <form method="post" action="{% url 'manager:add-medium' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="mediumName" class="form-label">Nom du Médium</label>
+                  <input type="text" class="form-control" id="mediumName" name="name" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter Médium</button>
+              </form>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Liste des Médiums</h5>
+              <ul class="list-group">
+                {% for medium in mediums %}
+                <li class="list-group-item">{{ medium.name }}</li>
+                {% empty %}
+                <li class="list-group-item">Aucun médium trouvé.</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Autres éléments à ajouter -->
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

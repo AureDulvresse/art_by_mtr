@@ -4,7 +4,7 @@ from django.forms.widgets import DateInput
 from django.utils.safestring import mark_safe
 
 from blog.models import Post
-from store.models import Artwork
+from store.models import Artwork, Category, Medium
 
 class DatePickerWidget(DateInput):
     def __init__(self, attrs=None, format='%Y-%m-%d'):
@@ -65,3 +65,13 @@ class ArtworkForm(forms.ModelForm):
             'category': forms.Select(attrs={'class': 'form-control'}),
             'medium': forms.Select(attrs={'class': 'form-control'}),
         }
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name', 'description']
+
+class MediumForm(forms.ModelForm):
+    class Meta:
+        model = Medium
+        fields = ['name']

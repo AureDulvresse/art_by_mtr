@@ -732,6 +732,22 @@
         "documentation": {}
     },
     {
+        "label": "Category",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
+        "label": "Medium",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
         "label": "Artwork",
         "importPath": "store.models",
         "description": "store.models",
@@ -2038,6 +2054,24 @@
         "importPath": "manager.forms",
         "description": "manager.forms",
         "peekOfCode": "class ArtworkForm(forms.ModelForm):\n    class Meta:\n        model = Artwork\n        fields = ['title', 'slug', 'description', 'price', 'stock', 'width', 'height', 'thumbnail', 'category', 'medium']\n        labels = {\n            'title': 'Titre',\n            'slug': 'Slug',\n            'description': 'Description',\n            'price': 'Prix',\n            'stock': 'Stock',",
+        "detail": "manager.forms",
+        "documentation": {}
+    },
+    {
+        "label": "CategoryForm",
+        "kind": 6,
+        "importPath": "manager.forms",
+        "description": "manager.forms",
+        "peekOfCode": "class CategoryForm(forms.ModelForm):\n    class Meta:\n        model = Category\n        fields = ['name', 'description']\nclass MediumForm(forms.ModelForm):\n    class Meta:\n        model = Medium\n        fields = ['name']",
+        "detail": "manager.forms",
+        "documentation": {}
+    },
+    {
+        "label": "MediumForm",
+        "kind": 6,
+        "importPath": "manager.forms",
+        "description": "manager.forms",
+        "peekOfCode": "class MediumForm(forms.ModelForm):\n    class Meta:\n        model = Medium\n        fields = ['name']",
         "detail": "manager.forms",
         "documentation": {}
     },
