@@ -444,6 +444,14 @@
         "documentation": {}
     },
     {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -2040,7 +2048,7 @@
         "kind": 6,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "class ArtworkController:\n    @staticmethod\n    @login_required\n    def index(request):\n        artworks = Artwork.objects.all().order_by('-updated_at')\n        paginator = Paginator(artworks, 10)\n        page = request.GET.get('page')\n        artworks = paginator.get_page(page)\n        context = {\"artworks\": artworks}\n        return render(request, 'manager/pages/artwork_list.html', context)",
+        "peekOfCode": "class ArtworkController:\n    @staticmethod\n    @login_required\n    def index(request):\n        artworks = Artwork.objects.all().order_by('-updated_at')\n        # Gestion de la recherche\n        query = request.GET.get('q')\n        if query and query.strip():\n            artworks = artworks.filter(title__icontains=query)\n        paginator = Paginator(artworks, 10)",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2049,7 +2057,7 @@
         "kind": 6,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "class PostController:\n    @staticmethod\n    @login_required\n    @csrf_exempt\n    @staticmethod\n    @csrf_exempt\n    @login_required\n    def store(request):\n        if request.method == 'POST':\n            form = PostForm(request.POST, request.FILES)",
+        "peekOfCode": "class PostController:\n    @staticmethod\n    @login_required\n    @csrf_exempt\n    def store(request):\n        if request.method == 'POST':\n            form = PostForm(request.POST, request.FILES)\n            if form.is_valid():\n                form.save()\n                messages.success(request, 'Evènement créé')",
         "detail": "manager.views",
         "documentation": {}
     },

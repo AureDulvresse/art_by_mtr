@@ -10,6 +10,8 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
+from django.urls import reverse
+
 from django.db.models import Count, Prefetch, Q
 
 from accounts.models import Customer
@@ -104,12 +106,20 @@ class ArtworkController:
     def index(request):
         artworks = Artwork.objects.all().order_by('-updated_at')
 
+        # Gestion de la recherche
+        query = request.GET.get('q')
+        if query and query.strip():
+            artworks = artworks.filter(title__icontains=query)
+
         paginator = Paginator(artworks, 10)
         page = request.GET.get('page')
         artworks = paginator.get_page(page)
 
-        context = {"artworks": artworks}
-        
+        context = {
+            "artworks": artworks,
+            "query": query if query else '',
+        }
+
         return render(request, 'manager/pages/artwork_list.html', context)
     
     @staticmethod
@@ -166,9 +176,6 @@ class PostController:
     @staticmethod
     @login_required
     @csrf_exempt
-    @staticmethod
-    @csrf_exempt
-    @login_required
     def store(request):
         if request.method == 'POST':
             form = PostForm(request.POST, request.FILES)
@@ -187,11 +194,20 @@ class PostController:
     def index(request):
         posts = Post.objects.all().order_by('-event_date')
 
+        # Gestion de la recherche
+        query = request.GET.get('q')
+        if query and query.strip():
+            posts = posts.filter(title__icontains=query)
+
         paginator = Paginator(posts, 10)
         page = request.GET.get('page')
         posts = paginator.get_page(page)
 
-        context = {'posts': posts}
+        context = {
+            'posts': posts,
+            'query': query if query else '',  # Retourne une chaîne vide si query est None
+        }
+
         return render(request, 'manager/pages/post_list.html', context)
 
     

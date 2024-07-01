@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% load static %} {% load manager_custom_tags %}
+{% load static %}
+
+{% load manager_custom_tags %} 
 
 {% block title %}Management - Evènements{% endblock title %}
 
@@ -24,13 +26,29 @@
       <div class="row w-full">
         <div class="col-12 mb-4">
           <div class="flex justify-between items-center">
-            <form method="post" class="flex items-center" style="width: 60%">
+            <form
+              method="get"
+              action="{% url 'manager:post-list' %}"
+              class="flex items-center"
+              style="width: 60%"
+            >
               <input
                 type="text"
+                x-data="{
+                query: '{{ query|default_if_none:'' }}',
+                search: function() {
+                  $.get('{% url 'manager:artwork-list' %}?q=' + this.query, function(data) {
+                    $('#artwork-list').html(data);
+                  });
+                }
+              }"
+                x-init="search()"
+                x-model="query"
+                x-on:input.debounce.300ms="search()"
                 class="form-control me-2"
                 style="height: 50px !important"
-                name="search-artwork"
-                placeholder="Recherche..."
+                placeholder="Rechercher par titre"
+                name="q"
               />
               <button
                 type="submit"
@@ -41,7 +59,11 @@
               </button>
             </form>
             <div>
-              <a href="{% url 'manager:add-post' %}" class="btn btn-outline-black">Ajouter une oeuvre</a>
+              <a
+                href="{% url 'manager:add-post' %}"
+                class="btn btn-outline-black"
+                >Ajouter une oeuvre</a
+              >
             </div>
           </div>
         </div>
@@ -166,7 +188,7 @@
                 openModal = false;
               "
             >
-            Supprimer
+              Supprimer
             </button>
           </div>
         </div>
@@ -175,3 +197,12 @@
   </div>
 </div>
 {% endblock content %}
+
+{% block extra_js %}
+<script>
+  $(document).ready(function() {
+    // Initialisation de Alpine.js
+    Alpine.start();
+  });
+</script>
+{% endblock extra_js %}
