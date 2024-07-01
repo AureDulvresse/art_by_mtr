@@ -1,10 +1,13 @@
 {% extends "base.html" %}
+
 {% load static %}
+
 {% load store_custom_tags %}
 
 {% block title %}Panier{% endblock title %}
 
 {% block content %}
+
 {% breadcrumb "Panier" "Votre panier est prêt à être acheté !" user preview_cart_items %}
 
 <section class="cart-section mt-8 mb-5">
@@ -26,19 +29,26 @@
               {% for item in cart %}
               <tr>
                 <td class="product-info">
-                  <div class="d-flex align-items-center">
-            
-                    <img src="{{ item.artwork.thumbnail.url }}" alt="{{ item.artwork.title }}" class="artwork-image rounded">
-                  
-                    <div class="ml-3">
-                      <h5 class="mb-0">{{ item.artwork.title }}</h5>
+                  <div class="flex items-center justify-between gap-2">
+                    <div>
+                      <img
+                        src="{{ item.artwork.thumbnail.url }}"
+                        alt="{{ item.artwork.title }}"
+                        class="rounded"
+                        width="80"
+                        height="95"
+                      />
+                    </div>
+
+                    <div class="ml-4">
+                      <h5 class="mb-0 line-clamp-2">{{ item.artwork.title }}</h5>
                       <p class="mb-0">Catégorie: {{ item.artwork.category }}</p>
                     </div>
                   </div>
                 </td>
                 <td>{{ item.artwork.price }} €</td>
                 <td>{{ item.quantity }}</td>
-                <td>{{ item.get_total_price }} €</td>
+                <td>{{ item.get_total_price|floatformat:2 }} €</td>
                 <td>
                   <button
                     x-data="cartHandler()"
@@ -68,7 +78,11 @@
             <strong>{{ total_cost }} €</strong>
           </div>
           <div class="text-center">
-            <a href="{% url 'store:checkout' %}" class="btn btn-red btn-lg btn-block">Procéder au paiement</a>
+            <a
+              href="{% url 'store:checkout' %}"
+              class="btn btn-red btn-lg btn-block"
+              >Procéder au paiement</a
+            >
           </div>
         </div>
       </div>
@@ -76,5 +90,4 @@
   </div>
 </section>
 
-{% include "components/footer.html" %}
-{% endblock content %}
+{% include "components/footer.html" %} {% endblock content %}
