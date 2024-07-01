@@ -10,7 +10,7 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
-from django.db.models import Count
+from django.db.models import Count, Prefetch, Q
 
 from accounts.models import Customer
 from store.models import Artwork, Category, CheckOut, Order
@@ -59,17 +59,26 @@ class OrderController:
     @login_required
     @user_passes_test(is_staff_or_superuser)
     def index(request):
-        customers = (
+        query = request.GET.get('q')
+        customers_with_orders = (
             Customer.objects.filter(is_staff=False, is_superuser=False)
-            .prefetch_related('order_set')
+            .annotate(order_count=Count('order', filter=Q(order__ordered=True)))
+            .filter(order_count__gt=0)
         )
 
-        paginator = Paginator(customers, 10)
-        page = request.GET.get('page')
-        customers = paginator.get_page(page)
+        if query:
+            customers_with_orders = customers_with_orders.filter(
+                Q(first_name__icontains=query) |
+                Q(last_name__icontains=query) |
+                Q(email__icontains=query)
+            )
+            
+        orders_prefetch = Prefetch('order_set', queryset=Order.objects.filter(ordered=True))
+        customers = customers_with_orders.prefetch_related(orders_prefetch)
 
         context = {
             'customers': customers,
+            'query': query,
         }
 
         return render(request, 'manager/pages/orders_list.html', context)
@@ -82,9 +91,10 @@ class OrderController:
 
         context = {
             'order': order,
+            'artwork': order.artwork,
         }
 
-        return render(request, 'manager/pages/order_detail.html', context)
+        return render(request, 'manager/pages/order_details.html', context)
     
 
 class ArtworkController:

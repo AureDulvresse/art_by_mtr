@@ -77,7 +77,9 @@ def create_users(n=10):
         user = User.objects.create_user(
             username=fake.user_name(),
             email=fake.email(),
-            password='password123'
+            password='password123',
+            first_name=fake.first_name(),
+            last_name=fake.last_name(),
         )
         users.append(user)
     return users
