@@ -2001,7 +2001,7 @@
         "kind": 6,
         "importPath": "manager.admin",
         "description": "manager.admin",
-        "peekOfCode": "class PaymentAdmin(admin.ModelAdmin):\n    list_display = ('id', 'currency', 'status', 'created_at', 'updated_at')\n    list_filter = ('status', 'created_at', 'updated_at')\n    search_fields = ('checkout__customer__username',)  # Recherche par nom d'utilisateur du client\n    readonly_fields = ('created_at', 'updated_at')  # Champs en lecture seule\n    def has_delete_permission(self, request, obj=None):\n        return False  # Désactiver la suppression via l'interface admin\n    # def has_add_permission(self, request):\n    #     return False  # Désactiver l'ajout via l'interface admin\n    def has_change_permission(self, request, obj=None):",
+        "peekOfCode": "class PaymentAdmin(admin.ModelAdmin):\n    list_display = ('id', 'currency', 'status', 'created_at', 'updated_at')\n    list_filter = ('status', 'created_at', 'updated_at')\n    search_fields = ('checkout__customer__username',)  # Recherche par nom d'utilisateur du client\n    readonly_fields = ('created_at', 'updated_at')  # Champs en lecture seule\n    def has_delete_permission(self, request, obj=None):\n        return False  # Désactiver la suppression via l'interface admin\n    def has_add_permission(self, request):\n        return False  # Désactiver l'ajout via l'interface admin\n    def has_change_permission(self, request, obj=None):",
         "detail": "manager.admin",
         "documentation": {}
     },

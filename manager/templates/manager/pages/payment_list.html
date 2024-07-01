@@ -15,9 +15,26 @@
     <div class="container">
       <div class="row">
         <div class="col-12 mb-4">
-          <form method="get" action="{% url 'manager:payments' %}" class="flex items-center">
-            <input type="text" class="form-control me-2" style="height: 50px !important" placeholder="Rechercher par nom d'utilisateur ou email" name="q" value="{{ query }}">
-            <button type="submit" class="btn btn-black" style="width: 200px !important">
+          <form
+            method="get"
+            action="{% url 'manager:payments' %}"
+            class="flex items-center"
+            style="width: 60%"
+          >
+          {% csrf_token %}
+            <input
+              type="text"
+              class="form-control me-2"
+              style="height: 50px !important"
+              placeholder="Rechercher par nom d'utilisateur ou email"
+              name="q"
+              value="{{ query|default:'' }}"
+            />
+            <button
+              type="submit"
+              class="btn btn-black"
+              style="width: 200px !important"
+            >
               <i class="bx bx-search"></i> Rechercher
             </button>
           </form>
@@ -43,7 +60,9 @@
                   <td>{{ payment.checkout.customer.get_full_name }}</td>
                   <td>{{ payment.checkout.customer.email }}</td>
                   <td>{{ payment.currency }} {{ payment.total_amount }}</td>
-                  <td>{{ payment.status }}</td>
+                  <td class="fw-bold {% if payment.status == 'Completed' %}text-success{% elif payment.status == 'Pending' %}text-warning{% elif payment.status == 'Failed' %}text-danger{% elif payment.status == 'Refunded' %}text-info{% endif %}">
+                    {{ payment.status }}
+                  </td>
                   <td>{{ payment.created_at }}</td>
                 </tr>
                 {% empty %}
