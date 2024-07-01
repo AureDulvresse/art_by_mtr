@@ -77,6 +77,11 @@ class Order(models.Model):
     
     def get_total_price(self):
         return self.artwork.price * self.quantity
+    
+    def save(self, *args, **kwargs):
+        if self.ordered and not self.ordered_at:
+            self.ordered_at = timezone.now()
+        super().save(*args, **kwargs)
 
 class Cart(models.Model):
     customer = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -137,3 +142,14 @@ class Payment(models.Model):
     def __str__(self):
         return f'Payment {self.id} by {self.checkout.customer.username}'
 
+    def mark_completed(self):
+        self.status = 'Completed'
+        self.save()
+
+    def mark_failed(self):
+        self.status = 'Failed'
+        self.save()
+
+    def mark_refunded(self):
+        self.status = 'Refunded'
+        self.save()

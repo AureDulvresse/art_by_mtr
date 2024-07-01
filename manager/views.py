@@ -4,7 +4,7 @@ import json
 from django.conf import settings
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
@@ -20,6 +20,9 @@ from manager.forms import ArtworkForm, PostForm
 # Fonction utilitaire pour obtenir le premier jour du mois
 def first_day_of_month(date):
     return date.replace(day=1)
+
+def is_staff_or_superuser(user):
+    return user.is_staff or user.is_superuser
 
 @login_required
 def dashboard_page(request):
@@ -54,29 +57,34 @@ class OrderController:
 
     @staticmethod
     @login_required
+    @user_passes_test(is_staff_or_superuser)
     def index(request):
-        orders = Order.objects.all().filter(ordered=True)
+        customers = (
+            Customer.objects.filter(is_staff=False, is_superuser=False)
+            .prefetch_related('order_set')
+        )
 
-        paginator = Paginator(orders, 10)
+        paginator = Paginator(customers, 10)
         page = request.GET.get('page')
-        orders = paginator.get_page(page)
+        customers = paginator.get_page(page)
 
         context = {
-            'orders': orders,
+            'customers': customers,
         }
 
         return render(request, 'manager/pages/orders_list.html', context)
 
     @staticmethod
     @login_required
+    @user_passes_test(is_staff_or_superuser)
     def show(request, order_number):
-        order = get_object_or_404(Order, uuid=order_number)
+        order = get_object_or_404(Order, uuid=order_number, customer__is_staff=False, customer__is_superuser=False)
 
         context = {
-            'orders': order,
+            'order': order,
         }
 
-        return render(request, 'manager/pages/order_list.html', context)
+        return render(request, 'manager/pages/order_detail.html', context)
     
 
 class ArtworkController:

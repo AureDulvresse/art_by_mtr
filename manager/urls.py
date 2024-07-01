@@ -19,7 +19,7 @@ urlpatterns = [
    path('posts/delete/', views.PostController.destroy, name = 'delete-post'),
 
    path('orders/', views.OrderController.index, name = 'orders-list'),
-   path('orders/details/<str:order_number>', views.OrderController.show, name = 'orders-detail'),
+   path('orders/details/<str:order_number>', views.OrderController.show, name = 'order-detail'),
 
    path('payments/', views.ArtworkController.index, name = 'payments'),
    path('settings/', views.ArtworkController.index, name = 'settings'),

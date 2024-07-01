@@ -24,3 +24,6 @@ static/
 
 # Windows
 Thumbs.db
+
+#database
+db.sqlite3
