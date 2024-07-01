@@ -15,9 +15,9 @@ from django.urls import reverse
 from django.db.models import Count, Prefetch, Q
 
 from accounts.models import Customer
-from store.models import Artwork, Category, CheckOut, Order, Payment
+from store.models import Artwork, Category, CheckOut, Medium, Order, Payment
 from blog.models import Post
-from manager.forms import ArtworkForm, PostForm
+from manager.forms import ArtworkForm, CategoryForm, MediumForm, PostForm
 
 # Fonction utilitaire pour obtenir le premier jour du mois
 def first_day_of_month(date):
@@ -73,6 +73,23 @@ def payment_list(request):
     }
 
     return render(request, 'manager/pages/payment_list.html', context)
+
+
+def settings_page(request):
+    categories = Category.objects.all()
+    mediums = Medium.objects.all()
+
+    category_form = CategoryForm()
+    medium_form = MediumForm()
+
+    context = {
+        "categories": categories,
+        "mediums": mediums,
+        "category_form": category_form,
+        "medium_form": medium_form,
+    }
+
+    return render(request, 'manager/pages/settings/index.html', context)
 
 class OrderController:
 
@@ -258,5 +275,105 @@ class PostController:
             post = get_object_or_404(Post, pk=post_id)
             post.delete()
             return JsonResponse({'success': True, 'message': 'Evènement supprimé avec succès'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': 'Une erreur est survenue lors de la suppression de l\'œuvre'}, status=500)
+        
+
+class CategoryController:
+
+    @csrf_exempt
+    @login_required
+    @require_POST
+    def store(request):
+        if request.method == 'POST':
+            form = CategoryForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Category créé')
+                return redirect('manager:settings') 
+        else:
+            form = CategoryForm()
+        
+        context = {'form': form}
+        return render(request, 'manager/pages/settings/category_add.html', context)
+    
+    @staticmethod
+    @login_required
+    def update(request, post_id):
+        post = get_object_or_404(Post, pk=post_id)
+
+        if request.method == 'POST':
+            form = PostForm(request.POST, instance=post)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Catégory modifiée')
+                return redirect('manager:settings') 
+        else:
+            form = PostForm(instance=post) 
+        
+        context = {'form': form, 'post': post}
+        return render(request, 'manager/pages/settings/category_edit.html', context)
+
+    @staticmethod
+    @csrf_exempt
+    @login_required
+    @require_POST
+    def destroy(request):
+        try:
+            data = json.loads(request.body)
+            category_id = data.get('category_id')
+            category = get_object_or_404(Category, pk=category_id)
+            category.delete()
+            return JsonResponse({'success': True, 'message': 'Category supprimé avec succès'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': 'Une erreur est survenue lors de la suppression de l\'œuvre'}, status=500)
+        
+
+class MediumController:
+
+    @csrf_exempt
+    @login_required
+    @require_POST
+    def store(request):
+        if request.method == 'POST':
+            form = MediumForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Medium créé')
+                return redirect('manager:settings') 
+        else:
+            form = MediumForm()
+        
+        context = {'form': form}
+        return render(request, 'manager/pages/settings/medium_add.html', context)
+    
+    @staticmethod
+    @login_required
+    def update(request, post_id):
+        post = get_object_or_404(Post, pk=post_id)
+
+        if request.method == 'POST':
+            form = PostForm(request.POST, instance=post)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Catégory modifiée')
+                return redirect('manager:settings') 
+        else:
+            form = PostForm(instance=post) 
+        
+        context = {'form': form, 'post': post}
+        return render(request, 'manager/pages/settings/medium_edit.html', context)
+
+    @staticmethod
+    @csrf_exempt
+    @login_required
+    @require_POST
+    def destroy(request):
+        try:
+            data = json.loads(request.body)
+            medium_id = data.get('medium_id')
+            medium = get_object_or_404(Medium, pk=medium_id)
+            medium.delete()
+            return JsonResponse({'success': True, 'message': 'Medium supprimé avec succès'})
         except Exception as e:
             return JsonResponse({'success': False, 'message': 'Une erreur est survenue lors de la suppression de l\'œuvre'}, status=500)

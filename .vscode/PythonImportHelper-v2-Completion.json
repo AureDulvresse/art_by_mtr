@@ -772,6 +772,14 @@
         "documentation": {}
     },
     {
+        "label": "Medium",
+        "importPath": "store.models",
+        "description": "store.models",
+        "isExtraImport": true,
+        "detail": "store.models",
+        "documentation": {}
+    },
+    {
         "label": "Order",
         "importPath": "store.models",
         "description": "store.models",
@@ -1208,6 +1216,22 @@
     },
     {
         "label": "ArtworkForm",
+        "importPath": "manager.forms",
+        "description": "manager.forms",
+        "isExtraImport": true,
+        "detail": "manager.forms",
+        "documentation": {}
+    },
+    {
+        "label": "CategoryForm",
+        "importPath": "manager.forms",
+        "description": "manager.forms",
+        "isExtraImport": true,
+        "detail": "manager.forms",
+        "documentation": {}
+    },
+    {
+        "label": "MediumForm",
         "importPath": "manager.forms",
         "description": "manager.forms",
         "isExtraImport": true,
@@ -2062,7 +2086,7 @@
         "kind": 6,
         "importPath": "manager.forms",
         "description": "manager.forms",
-        "peekOfCode": "class CategoryForm(forms.ModelForm):\n    class Meta:\n        model = Category\n        fields = ['name', 'description']\nclass MediumForm(forms.ModelForm):\n    class Meta:\n        model = Medium\n        fields = ['name']",
+        "peekOfCode": "class CategoryForm(forms.ModelForm):\n    class Meta:\n        model = Category\n        fields = ['name', 'description']\n        labels = {\n            'name': \"Nom de la Category\",\n            'description': \"Description\",\n        }\n        widgets = {\n            'name': forms.TextInput(attrs={'class': 'form-control'}),",
         "detail": "manager.forms",
         "documentation": {}
     },
@@ -2071,7 +2095,7 @@
         "kind": 6,
         "importPath": "manager.forms",
         "description": "manager.forms",
-        "peekOfCode": "class MediumForm(forms.ModelForm):\n    class Meta:\n        model = Medium\n        fields = ['name']",
+        "peekOfCode": "class MediumForm(forms.ModelForm):\n    class Meta:\n        model = Medium\n        fields = ['name']\n        labels = {\n            'name': \"Nom du support\",\n        }\n        widgets = {\n            'name': forms.TextInput(attrs={'class': 'form-control'}),\n        }",
         "detail": "manager.forms",
         "documentation": {}
     },
@@ -2121,6 +2145,24 @@
         "documentation": {}
     },
     {
+        "label": "CategoryController",
+        "kind": 6,
+        "importPath": "manager.views",
+        "description": "manager.views",
+        "peekOfCode": "class CategoryController:\n    @csrf_exempt\n    @login_required\n    @require_POST\n    def store(request):\n        if request.method == 'POST':\n            form = CategoryForm(request.POST)\n            if form.is_valid():\n                form.save()\n                messages.success(request, 'Category créé')",
+        "detail": "manager.views",
+        "documentation": {}
+    },
+    {
+        "label": "MediumController",
+        "kind": 6,
+        "importPath": "manager.views",
+        "description": "manager.views",
+        "peekOfCode": "class MediumController:\n    @csrf_exempt\n    @login_required\n    @require_POST\n    def store(request):\n        if request.method == 'POST':\n            form = MediumForm(request.POST)\n            if form.is_valid():\n                form.save()\n                messages.success(request, 'Medium créé')",
+        "detail": "manager.views",
+        "documentation": {}
+    },
+    {
         "label": "first_day_of_month",
         "kind": 2,
         "importPath": "manager.views",
@@ -2153,6 +2195,15 @@
         "importPath": "manager.views",
         "description": "manager.views",
         "peekOfCode": "def payment_list(request):\n    payments = Payment.objects.all().order_by('-created_at')\n    # Gestion de la recherche\n    query = request.GET.get('q')\n    if query and query.strip():\n        payments = payments.filter(checkout__customer__username__icontains=query)\n    # Pagination\n    paginator = Paginator(payments, 10)\n    page_number = request.GET.get('page')\n    page_obj = paginator.get_page(page_number)",
+        "detail": "manager.views",
+        "documentation": {}
+    },
+    {
+        "label": "settings_page",
+        "kind": 2,
+        "importPath": "manager.views",
+        "description": "manager.views",
+        "peekOfCode": "def settings_page(request):\n    categories = Category.objects.all()\n    mediums = Medium.objects.all()\n    category_form = CategoryForm()\n    medium_form = MediumForm()\n    context = {\n        \"categories\": categories,\n        \"mediums\": mediums,\n        \"category_form\": category_form,\n        \"medium_form\": medium_form,",
         "detail": "manager.views",
         "documentation": {}
     },

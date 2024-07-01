@@ -70,8 +70,24 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name', 'description']
+        labels = {
+            'name': "Nom de la Category",
+            'description': "Description",
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+        }
 
 class MediumForm(forms.ModelForm):
     class Meta:
         model = Medium
         fields = ['name']
+        labels = {
+            'name': "Nom du support",
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }

@@ -22,17 +22,15 @@ urlpatterns = [
    path('orders/details/<str:order_number>', views.OrderController.show, name = 'order-detail'),
 
    path('payments/', views.payment_list, name = 'payments'),
-   path('settings/', views.ArtworkController.index, name = 'settings'),
+   path('settings/', views.settings_page, name = 'settings'),
 
-   path('categories/', views.CategoryController.index, name='category-list'),
    path('categories/add/', views.CategoryController.store, name='add-category'),
    path('categories/<int:pk>/edit/', views.CategoryController.update, name='edit-category'),
-   path('categories/<int:pk>/delete/', views.CategoryController.destroy, name='delete-category'),
-   
-   path('mediums/', views.medium_list, name='medium-list'),
-   path('mediums/add/', views.medium_add, name='add-medium'),
-   path('mediums/<int:pk>/edit/', views.medium_edit, name='edit-medium'),
-   path('mediums/<int:pk>/delete/', views.medium_delete, name='delete-medium'),
+   path('categories/delete/', views.CategoryController.destroy, name='delete-category'),
+
+   path('mediums/add/', views.MediumController.store, name='add-medium'),
+   path('mediums/<int:pk>/edit/', views.MediumController.update, name='edit-medium'),
+   path('mediums/delete/', views.MediumController.destroy, name='delete-medium'),
 ]
 
 # handler404 = f"{app_name}.views.page_404"

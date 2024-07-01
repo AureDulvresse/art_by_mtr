@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% load manager_custom_tags %}
+
 {% block title %}Paramètres{% endblock title %}
 
 {% block content %}
@@ -17,10 +21,9 @@
               <form method="post" action="{% url 'manager:add-category' %}">
                 {% csrf_token %}
                 <div class="mb-3">
-                  <label for="categoryName" class="form-label">Nom de la Catégorie</label>
-                  <input type="text" class="form-control" id="categoryName" name="name" required>
+                  {{ category_form.as_p }}
                 </div>
-                <button type="submit" class="btn btn-primary">Ajouter Catégorie</button>
+                <button type="submit" class="btn btn-black">Ajouter Catégorie</button>
               </form>
             </div>
           </div>
@@ -45,16 +48,15 @@
               <form method="post" action="{% url 'manager:add-medium' %}">
                 {% csrf_token %}
                 <div class="mb-3">
-                  <label for="mediumName" class="form-label">Nom du Médium</label>
-                  <input type="text" class="form-control" id="mediumName" name="name" required>
+                  {{ medium_form.as_p }}
                 </div>
-                <button type="submit" class="btn btn-primary">Ajouter Médium</button>
+                <button type="submit" class="btn btn-black">Ajouter support</button>
               </form>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Liste des Médiums</h5>
+              <h5 class="card-title">Liste des Supports</h5>
               <ul class="list-group">
                 {% for medium in mediums %}
                 <li class="list-group-item">{{ medium.name }}</li>
