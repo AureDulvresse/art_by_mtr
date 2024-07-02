@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load static %} {% load manager_custom_tags %}
+
+{% block title %}Paramètres{% endblock title %}
+
+{% block content %}
+<div class="flex">
+  {% include "manager/partials/sidebar.html" %}
+
+  <div class="main-content p-4">
+    {% topbar "Paramètres - Modifier category " user %}
+    <div class="container">
+      <div class="row">
+        <form method="post">
+          {% csrf_token %} 
+          {{ category_form.as_p }}
+          <button type="submit" class="btn btn-black">Sauvegarder</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

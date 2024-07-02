@@ -444,14 +444,6 @@
         "documentation": {}
     },
     {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
         "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -1175,22 +1167,6 @@
         "documentation": {}
     },
     {
-        "label": "render_to_string",
-        "importPath": "django.template.loader",
-        "description": "django.template.loader",
-        "isExtraImport": true,
-        "detail": "django.template.loader",
-        "documentation": {}
-    },
-    {
-        "label": "render_to_string",
-        "importPath": "django.template.loader",
-        "description": "django.template.loader",
-        "isExtraImport": true,
-        "detail": "django.template.loader",
-        "documentation": {}
-    },
-    {
         "label": "Count",
         "importPath": "django.db.models",
         "description": "django.db.models",
@@ -1387,6 +1363,14 @@
         "description": "django.views.generic.base",
         "isExtraImport": true,
         "detail": "django.views.generic.base",
+        "documentation": {}
+    },
+    {
+        "label": "render_to_string",
+        "importPath": "django.template.loader",
+        "description": "django.template.loader",
+        "isExtraImport": true,
+        "detail": "django.template.loader",
         "documentation": {}
     },
     {
@@ -2068,7 +2052,7 @@
         "kind": 6,
         "importPath": "manager.forms",
         "description": "manager.forms",
-        "peekOfCode": "class PostForm(forms.ModelForm):\n    class Meta:\n        model = Post\n        fields = ['title', 'description', 'content', 'event_date', 'event_place', 'thumbnail']\n        labels = {\n            'title': 'Nom évènement',\n            'description': 'Description',\n            'content': 'Plus de détail',\n            'event_date': 'Date évènement',\n            'event_place': 'Lieu évènement',",
+        "peekOfCode": "class PostForm(forms.ModelForm):\n    class Meta:\n        model = Post\n        fields = ['title', 'slug', 'description', 'content', 'event_date', 'event_place', 'thumbnail']\n        labels = {\n            'title': 'Nom évènement',\n            'slug': 'slug',\n            'description': 'Description',\n            'content': 'Plus de détail',\n            'event_date': 'Date évènement',",
         "detail": "manager.forms",
         "documentation": {}
     },
@@ -2122,7 +2106,7 @@
         "kind": 6,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "class OrderController:\n    @staticmethod\n    @login_required\n    @user_passes_test(is_staff_or_superuser)\n    def index(request):\n        query = request.GET.get('q')\n        customers_with_orders = (\n            Customer.objects.filter(is_staff=False, is_superuser=False)\n            .annotate(order_count=Count('order', filter=Q(order__ordered=True)))\n            .filter(order_count__gt=0)",
+        "peekOfCode": "class OrderController:\n    @staticmethod\n    @login_required\n    @user_passes_test(is_staff_or_superuser)\n    def index(request) -> HttpResponse:\n        query = request.GET.get('q')\n        customers_with_orders = (\n            Customer.objects.filter(is_staff=False, is_superuser=False)\n            .annotate(order_count=Count('order', filter=Q(order__ordered=True)))\n            .filter(order_count__gt=0)",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2131,7 +2115,7 @@
         "kind": 6,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "class ArtworkController:\n    @staticmethod\n    @login_required\n    def index(request):\n        artworks = Artwork.objects.all().order_by('-updated_at')\n        # Gestion de la recherche\n        query = request.GET.get('q')\n        if query and query.strip():\n            artworks = artworks.filter(title__icontains=query)\n        paginator = Paginator(artworks, 10)",
+        "peekOfCode": "class ArtworkController:\n    @staticmethod\n    @login_required\n    def index(request) -> HttpResponse:\n        artworks = Artwork.objects.all().order_by('-updated_at')\n        # Gestion de la recherche\n        query = request.GET.get('q')\n        if query and query.strip():\n            artworks = artworks.filter(title__icontains=query)\n        paginator = Paginator(artworks, 10)",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2140,7 +2124,7 @@
         "kind": 6,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "class PostController:\n    @staticmethod\n    @login_required\n    @csrf_exempt\n    def store(request):\n        if request.method == 'POST':\n            form = PostForm(request.POST, request.FILES)\n            if form.is_valid():\n                form.save()\n                messages.success(request, 'Evènement créé')",
+        "peekOfCode": "class PostController:\n    @staticmethod\n    @login_required\n    @csrf_exempt\n    def store(request) -> HttpResponse:\n        if request.method == 'POST':\n            form = PostForm(request.POST, request.FILES)\n            if form.is_valid():\n                form.save()\n                messages.success(request, 'Evènement créé')",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2149,7 +2133,7 @@
         "kind": 6,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "class CategoryController:\n    @csrf_exempt\n    @login_required\n    @require_POST\n    def store(request):\n        if request.method == 'POST':\n            form = CategoryForm(request.POST)\n            if form.is_valid():\n                form.save()\n                messages.success(request, 'Category créé')",
+        "peekOfCode": "class CategoryController:\n    @csrf_exempt\n    @login_required\n    @require_POST\n    def store(request) -> HttpResponseRedirect:\n        form = CategoryForm(request.POST)\n        if form.is_valid():\n            form.save()\n            messages.success(request, 'Category créé')\n            return redirect('manager:settings') ",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2158,7 +2142,7 @@
         "kind": 6,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "class MediumController:\n    @csrf_exempt\n    @login_required\n    @require_POST\n    def store(request):\n        if request.method == 'POST':\n            form = MediumForm(request.POST)\n            if form.is_valid():\n                form.save()\n                messages.success(request, 'Medium créé')",
+        "peekOfCode": "class MediumController:\n    @csrf_exempt\n    @login_required\n    @require_POST\n    def store(request) -> HttpResponseRedirect:\n        form = MediumForm(request.POST)\n        if form.is_valid():\n            form.save()\n            messages.success(request, 'Medium créé')\n            return redirect('manager:settings') ",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2167,7 +2151,7 @@
         "kind": 2,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "def first_day_of_month(date):\n    return date.replace(day=1)\ndef is_staff_or_superuser(user):\n    return user.is_staff or user.is_superuser\n@login_required\ndef dashboard_page(request):\n    artworks = Artwork.objects.all()\n    # Filtrer les ventes pour le mois en cours et le mois précédent\n    today = datetime.today()\n    current_month = first_day_of_month(today)",
+        "peekOfCode": "def first_day_of_month(date):\n    return date.replace(day=1)\ndef is_staff_or_superuser(user):\n    return user.is_staff or user.is_superuser\n@login_required\ndef dashboard_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all()\n    # Filtrer les ventes pour le mois en cours et le mois précédent\n    today = datetime.today()\n    current_month = first_day_of_month(today)",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2176,7 +2160,7 @@
         "kind": 2,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "def is_staff_or_superuser(user):\n    return user.is_staff or user.is_superuser\n@login_required\ndef dashboard_page(request):\n    artworks = Artwork.objects.all()\n    # Filtrer les ventes pour le mois en cours et le mois précédent\n    today = datetime.today()\n    current_month = first_day_of_month(today)\n    previous_month = first_day_of_month(today - timedelta(days=1)).replace(day=1)\n    sales_current_month = CheckOut.objects.filter(created_at__gte=current_month).count()",
+        "peekOfCode": "def is_staff_or_superuser(user):\n    return user.is_staff or user.is_superuser\n@login_required\ndef dashboard_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all()\n    # Filtrer les ventes pour le mois en cours et le mois précédent\n    today = datetime.today()\n    current_month = first_day_of_month(today)\n    previous_month = first_day_of_month(today - timedelta(days=1)).replace(day=1)\n    sales_current_month = CheckOut.objects.filter(created_at__gte=current_month).count()",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2185,7 +2169,7 @@
         "kind": 2,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "def dashboard_page(request):\n    artworks = Artwork.objects.all()\n    # Filtrer les ventes pour le mois en cours et le mois précédent\n    today = datetime.today()\n    current_month = first_day_of_month(today)\n    previous_month = first_day_of_month(today - timedelta(days=1)).replace(day=1)\n    sales_current_month = CheckOut.objects.filter(created_at__gte=current_month).count()\n    sales_previous_month = CheckOut.objects.filter(created_at__gte=previous_month, created_at__lt=current_month).count()\n    # Récupérer les catégories d'œuvres et compter le nombre d'œuvres par catégorie\n    artwork_categories = Category.objects.annotate(artwork_count=Count('artwork')).order_by('-artwork_count')",
+        "peekOfCode": "def dashboard_page(request) -> HttpResponse:\n    artworks = Artwork.objects.all()\n    # Filtrer les ventes pour le mois en cours et le mois précédent\n    today = datetime.today()\n    current_month = first_day_of_month(today)\n    previous_month = first_day_of_month(today - timedelta(days=1)).replace(day=1)\n    sales_current_month = CheckOut.objects.filter(created_at__gte=current_month).count()\n    sales_previous_month = CheckOut.objects.filter(created_at__gte=previous_month, created_at__lt=current_month).count()\n    # Récupérer les catégories d'œuvres et compter le nombre d'œuvres par catégorie\n    artwork_categories = Category.objects.annotate(artwork_count=Count('artwork')).order_by('-artwork_count')",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2194,7 +2178,7 @@
         "kind": 2,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "def payment_list(request):\n    payments = Payment.objects.all().order_by('-created_at')\n    # Gestion de la recherche\n    query = request.GET.get('q')\n    if query and query.strip():\n        payments = payments.filter(checkout__customer__username__icontains=query)\n    # Pagination\n    paginator = Paginator(payments, 10)\n    page_number = request.GET.get('page')\n    page_obj = paginator.get_page(page_number)",
+        "peekOfCode": "def payment_list(request) -> HttpResponse:\n    payments = Payment.objects.all().order_by('-created_at')\n    # Gestion de la recherche\n    query = request.GET.get('q')\n    if query and query.strip():\n        payments = payments.filter(checkout__customer__username__icontains=query)\n    # Pagination\n    paginator = Paginator(payments, 10)\n    page_number = request.GET.get('page')\n    page_obj = paginator.get_page(page_number)",
         "detail": "manager.views",
         "documentation": {}
     },
@@ -2203,7 +2187,7 @@
         "kind": 2,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "def settings_page(request):\n    categories = Category.objects.all()\n    mediums = Medium.objects.all()\n    category_form = CategoryForm()\n    medium_form = MediumForm()\n    context = {\n        \"categories\": categories,\n        \"mediums\": mediums,\n        \"category_form\": category_form,\n        \"medium_form\": medium_form,",
+        "peekOfCode": "def settings_page(request) -> HttpResponse:\n    categories = Category.objects.all()\n    mediums = Medium.objects.all()\n    category_form = CategoryForm()\n    medium_form = MediumForm()\n    context = {\n        \"categories\": categories,\n        \"mediums\": mediums,\n        \"category_form\": category_form,\n        \"medium_form\": medium_form,",
         "detail": "manager.views",
         "documentation": {}
     },

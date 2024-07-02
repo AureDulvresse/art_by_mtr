@@ -1,4 +1,3 @@
-// Fonction pour ajouter au panier avec jQuery Ajax
 function addToCart(event) {
   const artworkId = $(event.target).data("artwork-id");
   const quantity = document.getElementById("quantity");
@@ -44,7 +43,7 @@ function removeFromCart(order_uuid) {
       if (data.success) {
         showToast(
           "Succès",
-          "Oeuvre supprimé du panier",
+          "Oeuvre supprimée du panier",
           "bg-success text-white"
         );
 
@@ -98,31 +97,31 @@ function deleteArtwork(artwork_id) {
 }
 
 function deletePost(post_id) {
-   $.ajax({
-     url: "/management/posts/delete/",
-     type: "POST",
-     headers: {
-       "X-CSRFToken": getCookie("csrftoken"),
-     },
-     contentType: "application/json",
-     data: JSON.stringify({ post_id: post_id }),
-     success: function (data) {
-       if (data.success) {
-         showToast("Succès", "Evènement supprimé", "bg-success text-white");
-         reloadTable("#post-table-body");
-       } else {
-         alert(data.message);
-       }
-     },
-     error: (xhr, textStatus, error) => {
-       showToast(
-         "Erreur",
-         "Erreur lors de la suppression de l'évènement",
-         "bg-danger text-white"
-       );
-       console.error(xhr.responseText, textStatus, error);
-     },
-   });
+  $.ajax({
+    url: "/management/posts/delete/",
+    type: "POST",
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken"),
+    },
+    contentType: "application/json",
+    data: JSON.stringify({ post_id: post_id }),
+    success: function (data) {
+      if (data.success) {
+        showToast("Succès", "Evènement supprimé", "bg-success text-white");
+        reloadTable("#post-table-body");
+      } else {
+        alert(data.message);
+      }
+    },
+    error: (xhr, textStatus, error) => {
+      showToast(
+        "Erreur",
+        "Erreur lors de la suppression de l'évènement",
+        "bg-danger text-white"
+      );
+      console.error(xhr.responseText, textStatus, error);
+    },
+  });
 }
 
 function reloadTable(content_ref) {
@@ -143,10 +142,50 @@ function reloadTable(content_ref) {
   });
 }
 
+function deleteItem(url, itemId, itemType) {
+  $.ajax({
+    url: url,
+    method: "POST",
+    headers: {
+      "X-CSRFToken": getCookie("csrftoken"),
+    },
+    contentType: "application/json",
+    data: JSON.stringify({ [`${itemType}_id`]: itemId }),
+    success: function (data) {
+      if (data.success) {
+        $(`li[data-id="${itemId}"]`).remove();
+        showToast(
+          "Succès",
+          `${
+            itemType.charAt(0).toUpperCase() + itemType.slice(1)
+          } supprimé avec succès`,
+          "bg-success text-white"
+        );
+        reloadTable(`#${itemType}-list`);
+      } else {
+        showToast(
+          "Erreur",
+          "Erreur lors de la suppression de l'évènement",
+          "bg-danger text-white"
+        );
+        console.log(data.message);
+      }
+    },
+    error: function (xhr, status, error) {
+      showToast(
+        "Erreur",
+        "Erreur lors de la suppression de l'évènement",
+        "bg-danger text-white"
+      );
+      console.log("Une erreur est survenue lors de la suppression", error);
+    },
+  });
+}
+
 function showToast(title, message, className) {
   const toastId = "toast-" + Math.random().toString(36).substr(2, 9);
   const toastHTML = `
-    <div id="${toastId}" class="toast ${className} wow animate__animated animate__fadeIn" data-wow-delay="0.5s" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="${toastId}" class="toast ${className}" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
       <div class="toast-header">
         <strong class="me-auto">${title}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -226,6 +265,10 @@ document.addEventListener("alpine:init", () => {
 
   Alpine.data("postManager", () => ({
     deletePost,
+  }));
+
+  Alpine.data("SettingsHandler", () => ({
+    deleteItem,
   }));
 
   Alpine.data("stripePayment", () => ({

@@ -9,8 +9,6 @@ from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.template.loader import render_to_string
-from django.urls import reverse
 
 from django.db.models import Count, Prefetch, Q
 
@@ -27,7 +25,7 @@ def is_staff_or_superuser(user):
     return user.is_staff or user.is_superuser
 
 @login_required
-def dashboard_page(request):
+def dashboard_page(request) -> HttpResponse:
     artworks = Artwork.objects.all()
     
     # Filtrer les ventes pour le mois en cours et le mois précédent
@@ -54,7 +52,7 @@ def dashboard_page(request):
 
     return render(request, 'manager/pages/dashboard.html', context)
 
-def payment_list(request):
+def payment_list(request) -> HttpResponse:
     payments = Payment.objects.all().order_by('-created_at')
 
     # Gestion de la recherche
@@ -75,7 +73,7 @@ def payment_list(request):
     return render(request, 'manager/pages/payment_list.html', context)
 
 
-def settings_page(request):
+def settings_page(request) -> HttpResponse:
     categories = Category.objects.all()
     mediums = Medium.objects.all()
 
@@ -96,7 +94,7 @@ class OrderController:
     @staticmethod
     @login_required
     @user_passes_test(is_staff_or_superuser)
-    def index(request):
+    def index(request) -> HttpResponse:
         query = request.GET.get('q')
         customers_with_orders = (
             Customer.objects.filter(is_staff=False, is_superuser=False)
@@ -119,12 +117,12 @@ class OrderController:
             'query': query,
         }
 
-        return render(request, 'manager/pages/orders_list.html', context)
+        return render(request, 'manager/pages/orders/orders_list.html', context)
 
     @staticmethod
     @login_required
     @user_passes_test(is_staff_or_superuser)
-    def show(request, order_number):
+    def show(request, order_number) -> HttpResponse:
         order = get_object_or_404(Order, uuid=order_number, customer__is_staff=False, customer__is_superuser=False)
 
         context = {
@@ -132,14 +130,14 @@ class OrderController:
             'artwork': order.artwork,
         }
 
-        return render(request, 'manager/pages/order_details.html', context)
+        return render(request, 'manager/pages/orders/order_details.html', context)
     
 
 class ArtworkController:
 
     @staticmethod
     @login_required
-    def index(request):
+    def index(request) -> HttpResponse:
         artworks = Artwork.objects.all().order_by('-updated_at')
 
         # Gestion de la recherche
@@ -156,12 +154,12 @@ class ArtworkController:
             "query": query if query else '',
         }
 
-        return render(request, 'manager/pages/artwork_list.html', context)
+        return render(request, 'manager/pages/artworks/artwork_list.html', context)
     
     @staticmethod
     @csrf_exempt
     @login_required
-    def store(request):
+    def store(request) -> HttpResponse:
         if request.method == 'POST':
             form = ArtworkForm(request.POST, request.FILES)
             if form.is_valid():
@@ -172,12 +170,12 @@ class ArtworkController:
             form = ArtworkForm()
         
         context = {'form': form}
-        return render(request, 'manager/pages/artwork_add.html', context)
+        return render(request, 'manager/pages/artworks/artwork_add.html', context)
     
     
     @staticmethod
     @login_required
-    def update(request, artwork_id):
+    def update(request, artwork_id) -> HttpResponse:
         artwork = get_object_or_404(Artwork, pk=artwork_id)
 
         if request.method == 'POST':
@@ -190,13 +188,13 @@ class ArtworkController:
             form = ArtworkForm(instance=artwork) 
         
         context = {'form': form, 'artwork': artwork}
-        return render(request, 'manager/pages/artwork_edit.html', context)
+        return render(request, 'manager/pages/artworks/artwork_edit.html', context)
     
     @staticmethod
     @csrf_exempt
     @login_required
     @require_POST
-    def destroy(request):
+    def destroy(request) -> JsonResponse:
         try:
             data = json.loads(request.body)
             artwork_id = data.get('artwork_id')
@@ -212,7 +210,7 @@ class PostController:
     @staticmethod
     @login_required
     @csrf_exempt
-    def store(request):
+    def store(request) -> HttpResponse:
         if request.method == 'POST':
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
@@ -223,11 +221,11 @@ class PostController:
             form = PostForm()
         
         context = {'form': form}
-        return render(request, 'manager/pages/post_add.html', context)
+        return render(request, 'manager/pages/posts/post_add.html', context)
 
     @staticmethod
     @login_required
-    def index(request):
+    def index(request) -> HttpResponse:
         posts = Post.objects.all().order_by('-event_date')
 
         # Gestion de la recherche
@@ -241,15 +239,15 @@ class PostController:
 
         context = {
             'posts': posts,
-            'query': query if query else '',  # Retourne une chaîne vide si query est None
+            'query': query if query else '',
         }
 
-        return render(request, 'manager/pages/post_list.html', context)
+        return render(request, 'manager/pages/posts/post_list.html', context)
 
     
     @staticmethod
     @login_required
-    def update(request, post_id):
+    def update(request, post_id) -> HttpResponse:
         post = get_object_or_404(Post, pk=post_id)
 
         if request.method == 'POST':
@@ -262,13 +260,13 @@ class PostController:
             form = PostForm(instance=post) 
         
         context = {'form': form, 'post': post}
-        return render(request, 'manager/pages/post_edit.html', context)
+        return render(request, 'manager/pages/posts/post_edit.html', context)
 
     @staticmethod
     @csrf_exempt
     @login_required
     @require_POST
-    def destroy(request):
+    def destroy(request) -> JsonResponse:
         try:
             data = json.loads(request.body)
             post_id = data.get('post_id')
@@ -284,41 +282,36 @@ class CategoryController:
     @csrf_exempt
     @login_required
     @require_POST
-    def store(request):
-        if request.method == 'POST':
-            form = CategoryForm(request.POST)
-            if form.is_valid():
-                form.save()
-                messages.success(request, 'Category créé')
-                return redirect('manager:settings') 
-        else:
-            form = CategoryForm()
+    def store(request) -> HttpResponseRedirect:
         
-        context = {'form': form}
-        return render(request, 'manager/pages/settings/category_add.html', context)
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Category créé')
+            return redirect('manager:settings') 
     
     @staticmethod
     @login_required
-    def update(request, post_id):
-        post = get_object_or_404(Post, pk=post_id)
+    def update(request, id) -> HttpResponse:
+        category = get_object_or_404(Category, pk=id)
 
         if request.method == 'POST':
-            form = PostForm(request.POST, instance=post)
+            form = CategoryForm(request.POST, instance=category)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Catégory modifiée')
                 return redirect('manager:settings') 
         else:
-            form = PostForm(instance=post) 
+            form = CategoryForm(instance=category) 
         
-        context = {'form': form, 'post': post}
+        context = {'category_form': form, 'category': category}
         return render(request, 'manager/pages/settings/category_edit.html', context)
 
     @staticmethod
     @csrf_exempt
     @login_required
     @require_POST
-    def destroy(request):
+    def destroy(request) -> JsonResponse:
         try:
             data = json.loads(request.body)
             category_id = data.get('category_id')
@@ -334,41 +327,36 @@ class MediumController:
     @csrf_exempt
     @login_required
     @require_POST
-    def store(request):
-        if request.method == 'POST':
-            form = MediumForm(request.POST)
-            if form.is_valid():
-                form.save()
-                messages.success(request, 'Medium créé')
-                return redirect('manager:settings') 
-        else:
-            form = MediumForm()
+    def store(request) -> HttpResponseRedirect:
+        form = MediumForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Medium créé')
+            return redirect('manager:settings') 
         
-        context = {'form': form}
-        return render(request, 'manager/pages/settings/medium_add.html', context)
     
     @staticmethod
     @login_required
-    def update(request, post_id):
-        post = get_object_or_404(Post, pk=post_id)
+    def update(request, id) -> HttpResponseRedirect:
+        medium = get_object_or_404(Medium, pk=id)
 
         if request.method == 'POST':
-            form = PostForm(request.POST, instance=post)
+            form = MediumForm(request.POST, instance=medium)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Catégory modifiée')
                 return redirect('manager:settings') 
         else:
-            form = PostForm(instance=post) 
+            form = MediumForm(instance=medium) 
         
-        context = {'form': form, 'post': post}
+        context = {'medium_form': form, 'post': medium}
         return render(request, 'manager/pages/settings/medium_edit.html', context)
 
     @staticmethod
     @csrf_exempt
     @login_required
     @require_POST
-    def destroy(request):
+    def destroy(request, id):
         try:
             data = json.loads(request.body)
             medium_id = data.get('medium_id')

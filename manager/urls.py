@@ -24,13 +24,13 @@ urlpatterns = [
    path('payments/', views.payment_list, name = 'payments'),
    path('settings/', views.settings_page, name = 'settings'),
 
-   path('categories/add/', views.CategoryController.store, name='add-category'),
-   path('categories/<int:pk>/edit/', views.CategoryController.update, name='edit-category'),
-   path('categories/delete/', views.CategoryController.destroy, name='delete-category'),
+   path('settings/categories/add/', views.CategoryController.store, name='add-category'),
+   path('settings/categories/edit/<int:id>/', views.CategoryController.update, name='edit-category'),
+   path('settings/categories/delete/', views.CategoryController.destroy, name='delete-category'),
 
-   path('mediums/add/', views.MediumController.store, name='add-medium'),
-   path('mediums/<int:pk>/edit/', views.MediumController.update, name='edit-medium'),
-   path('mediums/delete/', views.MediumController.destroy, name='delete-medium'),
+   path('settings/mediums/add/', views.MediumController.store, name='add-medium'),
+   path('settings/mediums/edit/<int:id>/', views.MediumController.update, name='edit-medium'),
+   path('settings/mediums/delete/', views.MediumController.destroy, name='delete-medium'),
 ]
 
 # handler404 = f"{app_name}.views.page_404"
