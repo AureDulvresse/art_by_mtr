@@ -145,7 +145,7 @@ function reloadTable(content_ref) {
 function deleteItem(url, itemId, itemType) {
   $.ajax({
     url: url,
-    method: "POST",
+    type: "POST",
     headers: {
       "X-CSRFToken": getCookie("csrftoken"),
     },

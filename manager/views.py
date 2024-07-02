@@ -356,7 +356,7 @@ class MediumController:
     @csrf_exempt
     @login_required
     @require_POST
-    def destroy(request, id):
+    def destroy(request) -> JsonResponse:
         try:
             data = json.loads(request.body)
             medium_id = data.get('medium_id')
