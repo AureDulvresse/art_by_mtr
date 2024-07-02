@@ -1,5 +1,12 @@
-{% extends "base.html" %} {% load static %} {% load manager_custom_tags %} {%
-block title %}Paramètres{% endblock title %} {% block content %}
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load manager_custom_tags %}
+
+{% block title %}Paramètres{% endblock title %}
+
+{% block content %}
 <div class="flex">
   {% include "manager/partials/sidebar.html" %}
 
@@ -7,7 +14,7 @@ block title %}Paramètres{% endblock title %} {% block content %}
     {% topbar "Paramètres" user %}
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 settings">
           <div class="card mb-4">
             <div class="card-body">
               <h5 class="card-title">Catégories</h5>
@@ -52,7 +59,7 @@ block title %}Paramètres{% endblock title %} {% block content %}
           </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 settings">
           <div class="card mb-4">
             <div class="card-body">
               <h5 class="card-title">Médiums</h5>
@@ -81,10 +88,9 @@ block title %}Paramètres{% endblock title %} {% block content %}
                       >Modifier</a
                     >
                     <button
-                      @click="
-                      deleteItem('/management/settings/mediums/delete/', {{ medium.id }}, 'medium');"
+                    type="button"
+                      @click="deleteItem('/management/settings/mediums/delete/', {{ medium.id }}, 'medium');"
                       class="btn btn-sm btn-outline-danger delete-medium-btn"
-                      data-id="{{ medium.id }}"
                     >
                       Supprimer
                     </button>

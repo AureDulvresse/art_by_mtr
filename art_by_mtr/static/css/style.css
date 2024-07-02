@@ -454,7 +454,8 @@ a {
 }
 
 .artwork-table .card:hover,
-.post-table .card:hover {
+.post-table .card:hover,
+.settings .card:hover {
     transform: none !important;
 }
 

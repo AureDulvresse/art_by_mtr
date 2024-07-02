@@ -161,9 +161,13 @@ def contact_page(request) -> HttpResponse:
             messages.error(request, f"Une erreur s'est produite: {e}")
 
         return redirect('store:contact')
+
+    context = {
+        'preview_cart_items': cart_items[:3] if cart_items else None, 
+    }
     
 
-    return render(request, "store/pages/contact.html", { 'preview_cart_items': cart_items[:3], })
+    return render(request, "store/pages/contact.html", context)
 
 
 @login_required
