@@ -14,6 +14,14 @@ class RegisterForm(forms.ModelForm):
         model = Customer
         fields =  ['username', 'first_name', 'last_name', 'email', 'password']
 
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrer un nom d''utilisateur'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre prenom'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre nom'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrer une addresse mail'}),
+
+        }
+
     
     def clean(self):
         cleaned_data = super().clean()

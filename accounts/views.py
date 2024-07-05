@@ -88,7 +88,16 @@ def show(request) -> HttpResponse:
             cart_items = cart.select_related('artwork').order_by('-updated_at')
         except Cart.DoesNotExist:
             cart = None
-    return render(request, "accounts/pages/index.html", { 'preview_cart_items': cart_items[:3], })
+
+        is_admin_or_team_member = user.is_superuser or user.groups.filter(name='team').exists()
+
+        context = {
+            'orders': cart.filter(ordered = True),
+            'is_admin_or_team_member': is_admin_or_team_member,
+            'preview_cart_items': cart_items[:3],
+        }
+
+    return render(request, "accounts/pages/index.html", context)
 
 @login_required
 def update(request) -> HttpResponse:

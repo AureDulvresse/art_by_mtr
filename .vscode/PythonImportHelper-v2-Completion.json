@@ -1431,7 +1431,7 @@
         "kind": 6,
         "importPath": "accounts.forms",
         "description": "accounts.forms",
-        "peekOfCode": "class LoginForm(AuthenticationForm):\n    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre nom d''utilisateur'}))\n    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre mot de passe'}))\nclass RegisterForm(forms.ModelForm):\n    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre mot de passe'}))\n    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirmer votre mot de passe'}))\n    class Meta:\n        model = Customer\n        fields =  ['username', 'first_name', 'last_name', 'email', 'password']\n    def clean(self):",
+        "peekOfCode": "class LoginForm(AuthenticationForm):\n    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre nom d''utilisateur'}))\n    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre mot de passe'}))\nclass RegisterForm(forms.ModelForm):\n    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre mot de passe'}))\n    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirmer votre mot de passe'}))\n    class Meta:\n        model = Customer\n        fields =  ['username', 'first_name', 'last_name', 'email', 'password']\n        widgets = {",
         "detail": "accounts.forms",
         "documentation": {}
     },
@@ -1440,7 +1440,7 @@
         "kind": 6,
         "importPath": "accounts.forms",
         "description": "accounts.forms",
-        "peekOfCode": "class RegisterForm(forms.ModelForm):\n    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre mot de passe'}))\n    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirmer votre mot de passe'}))\n    class Meta:\n        model = Customer\n        fields =  ['username', 'first_name', 'last_name', 'email', 'password']\n    def clean(self):\n        cleaned_data = super().clean()\n        password = cleaned_data.get('password')\n        confirm_password = cleaned_data.get('confirm_password')",
+        "peekOfCode": "class RegisterForm(forms.ModelForm):\n    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre mot de passe'}))\n    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirmer votre mot de passe'}))\n    class Meta:\n        model = Customer\n        fields =  ['username', 'first_name', 'last_name', 'email', 'password']\n        widgets = {\n            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrer un nom d''utilisateur'}),\n            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre prenom'}),\n            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrer votre nom'}),",
         "detail": "accounts.forms",
         "documentation": {}
     },
@@ -1503,7 +1503,7 @@
         "kind": 2,
         "importPath": "accounts.views",
         "description": "accounts.views",
-        "peekOfCode": "def show(request) -> HttpResponse:\n    cart_items = None\n    user = request.user\n    if user.is_authenticated:\n        try:\n            cart, _ = get_cart_items(user)\n            cart_items = cart.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n    return render(request, \"accounts/pages/index.html\", { 'preview_cart_items': cart_items[:3], })",
+        "peekOfCode": "def show(request) -> HttpResponse:\n    cart_items = None\n    user = request.user\n    if user.is_authenticated:\n        try:\n            cart, _ = get_cart_items(user)\n            cart_items = cart.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None\n        is_admin_or_team_member = user.is_superuser or user.groups.filter(name='team').exists()",
         "detail": "accounts.views",
         "documentation": {}
     },

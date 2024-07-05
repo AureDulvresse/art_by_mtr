@@ -47,7 +47,10 @@
               <!-- <a href="{% url 'accounts:delete-account' %}" class="btn btn-danger ms-2">Supprimer compte</a> -->
                <a href="{% url 'accounts:logout' %}" class="btn btn-danger ms-2">Déconnexion</a>
               
-               <a href="{% url 'manager:dashboard' %}" class="btn btn-outline-red ms-2">Administration</a>
+               {% if is_admin_or_team_member %}
+                 <a href="{% url 'manager:dashboard' %}" class="btn btn-outline-red ms-2">Administration</a>
+               {% endif %}
+               
             </div>
           </form>
         </div>
@@ -86,4 +89,5 @@
   </div>
 </div>
 
+{% include "components/footer.html" %}
 {% endblock content %}
