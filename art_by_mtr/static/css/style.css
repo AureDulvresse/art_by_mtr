@@ -225,7 +225,7 @@ a {
 /* Breadcrumb Section */
 .breadcrumb-section {
     height: var(--breadcrumb-height) !important;
-    background-color: #6e2b2bd5 !important;
+    background-color: var(--color-black) !important;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
