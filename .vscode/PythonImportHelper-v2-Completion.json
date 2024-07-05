@@ -1191,6 +1191,22 @@
         "documentation": {}
     },
     {
+        "label": "slugify",
+        "importPath": "django.utils.text",
+        "description": "django.utils.text",
+        "isExtraImport": true,
+        "detail": "django.utils.text",
+        "documentation": {}
+    },
+    {
+        "label": "slugify",
+        "importPath": "django.utils.text",
+        "description": "django.utils.text",
+        "isExtraImport": true,
+        "detail": "django.utils.text",
+        "documentation": {}
+    },
+    {
         "label": "ArtworkForm",
         "importPath": "manager.forms",
         "description": "manager.forms",
@@ -1271,14 +1287,6 @@
         "description": "faker",
         "isExtraImport": true,
         "detail": "faker",
-        "documentation": {}
-    },
-    {
-        "label": "slugify",
-        "importPath": "django.utils.text",
-        "description": "django.utils.text",
-        "isExtraImport": true,
-        "detail": "django.utils.text",
         "documentation": {}
     },
     {
@@ -2061,7 +2069,7 @@
         "kind": 6,
         "importPath": "manager.forms",
         "description": "manager.forms",
-        "peekOfCode": "class ArtworkForm(forms.ModelForm):\n    class Meta:\n        model = Artwork\n        fields = ['title', 'slug', 'description', 'price', 'stock', 'width', 'height', 'thumbnail', 'category', 'medium']\n        labels = {\n            'title': 'Titre',\n            'slug': 'Slug',\n            'description': 'Description',\n            'price': 'Prix',\n            'stock': 'Stock',",
+        "peekOfCode": "class ArtworkForm(forms.ModelForm):\n    class Meta:\n        model = Artwork\n        fields = ['title', 'description', 'price', 'stock', 'width', 'height', 'thumbnail', 'category', 'medium']\n        labels = {\n            'title': 'Titre',\n            'description': 'Description',\n            'price': 'Prix',\n            'stock': 'Stock',\n            'width': 'Largeur',",
         "detail": "manager.forms",
         "documentation": {}
     },

@@ -11,6 +11,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 from django.db.models import Count, Prefetch, Q
+from django.utils.text import slugify
 
 from accounts.models import Customer
 from store.models import Artwork, Category, CheckOut, Medium, Order, Payment
@@ -163,7 +164,10 @@ class ArtworkController:
         if request.method == 'POST':
             form = ArtworkForm(request.POST, request.FILES)
             if form.is_valid():
-                form.save()
+                artwork = form.save(commit=False)
+                slug = slugify(form.cleaned_data['title'])
+                artwork.slug = slug
+                artwork.save()
                 messages.success(request, 'Œuvre ajoutée')
                 return redirect('manager:artwork-list') 
         else:
@@ -181,7 +185,11 @@ class ArtworkController:
         if request.method == 'POST':
             form = ArtworkForm(request.POST, request.FILES, instance=artwork)
             if form.is_valid():
-                form.save()
+                artwork_updated = form.save(commit=False)
+                slug = slugify(form.cleaned_data['title'])
+                artwork_updated.slug = slug
+                artwork_updated.save()
+
                 messages.success(request, 'Œuvre modifiée')
                 return redirect('manager:artwork-list') 
         else:

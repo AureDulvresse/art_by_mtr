@@ -42,10 +42,9 @@ class PostForm(forms.ModelForm):
 class ArtworkForm(forms.ModelForm):
     class Meta:
         model = Artwork
-        fields = ['title', 'slug', 'description', 'price', 'stock', 'width', 'height', 'thumbnail', 'category', 'medium']
+        fields = ['title', 'description', 'price', 'stock', 'width', 'height', 'thumbnail', 'category', 'medium']
         labels = {
             'title': 'Titre',
-            'slug': 'Slug',
             'description': 'Description',
             'price': 'Prix',
             'stock': 'Stock',
@@ -57,7 +56,6 @@ class ArtworkForm(forms.ModelForm):
         }
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'slug': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'price': forms.NumberInput(attrs={'class': 'form-control'}),
             'stock': forms.NumberInput(attrs={'class': 'form-control'}),
