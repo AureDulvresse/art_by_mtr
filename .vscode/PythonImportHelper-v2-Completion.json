@@ -1159,6 +1159,14 @@
         "documentation": {}
     },
     {
+        "label": "FileSystemStorage",
+        "importPath": "django.core.files.storage",
+        "description": "django.core.files.storage",
+        "isExtraImport": true,
+        "detail": "django.core.files.storage",
+        "documentation": {}
+    },
+    {
         "label": "require_POST",
         "importPath": "django.views.decorators.http",
         "description": "django.views.decorators.http",
@@ -2060,7 +2068,7 @@
         "kind": 6,
         "importPath": "manager.forms",
         "description": "manager.forms",
-        "peekOfCode": "class PostForm(forms.ModelForm):\n    class Meta:\n        model = Post\n        fields = ['title', 'slug', 'description', 'content', 'event_date', 'event_place', 'thumbnail']\n        labels = {\n            'title': 'Nom évènement',\n            'slug': 'slug',\n            'description': 'Description',\n            'content': 'Plus de détail',\n            'event_date': 'Date évènement',",
+        "peekOfCode": "class PostForm(forms.ModelForm):\n    class Meta:\n        model = Post\n        fields = ['title', 'description', 'content', 'event_date', 'event_place', 'thumbnail']\n        labels = {\n            'title': 'Nom évènement',\n            'description': 'Description',\n            'content': 'Plus de détail',\n            'event_date': 'Date évènement',\n            'event_place': 'Lieu évènement',",
         "detail": "manager.forms",
         "documentation": {}
     },
@@ -2132,7 +2140,7 @@
         "kind": 6,
         "importPath": "manager.views",
         "description": "manager.views",
-        "peekOfCode": "class PostController:\n    @staticmethod\n    @login_required\n    @csrf_exempt\n    def store(request) -> HttpResponse:\n        if request.method == 'POST':\n            form = PostForm(request.POST, request.FILES)\n            if form.is_valid():\n                form.save()\n                messages.success(request, 'Evènement créé')",
+        "peekOfCode": "class PostController:\n    @staticmethod\n    @login_required\n    @csrf_exempt\n    def store(request) -> HttpResponse:\n        if request.method == 'POST':\n            form = PostForm(request.POST, request.FILES)\n            if form.is_valid():\n                post = form.save(commit=False)\n                # Renommer l'image téléchargée",
         "detail": "manager.views",
         "documentation": {}
     },

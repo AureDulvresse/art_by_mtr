@@ -19,10 +19,9 @@ class DatePickerWidget(DateInput):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'slug', 'description', 'content', 'event_date', 'event_place', 'thumbnail']
+        fields = ['title', 'description', 'content', 'event_date', 'event_place', 'thumbnail']
         labels = {
             'title': 'Nom évènement',
-            'slug': 'slug',
             'description': 'Description',
             'content': 'Plus de détail',
             'event_date': 'Date évènement',
@@ -31,7 +30,6 @@ class PostForm(forms.ModelForm):
         }
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'slug': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
             'event_date': DatePickerWidget(attrs={'class': 'form-control datepicker'}),

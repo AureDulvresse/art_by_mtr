@@ -70,12 +70,6 @@
               <span class="text-red">{{artwork.medium.name}}</span>
             </p>
           </div>
-          <div class="mb-3">
-            <p class="text-lg text-black flex flex-col">
-              Peint en :
-              <span class="text-red">{{ artwork.created_at|date:"F Y" }}</span>
-            </p>
-          </div>
         </div>
         <div x-show="currentTab === 'supplement'">
           <div class="mb-3">
@@ -90,12 +84,6 @@
             <p class="text-lg text-black flex flex-col">
               Support utilisé:
               <span class="text-red">{{artwork.medium.name}}</span>
-            </p>
-          </div>
-          <div class="mb-3">
-            <p class="text-lg text-black flex flex-col">
-              Peint en :
-              <span class="text-red">{{ artwork.created_at|date:"F Y" }}</span>
             </p>
           </div>
           {% if artwork.expo %}

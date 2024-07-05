@@ -1,14 +1,16 @@
 from datetime import datetime, timedelta
 import json
+import os
 
 from django.conf import settings
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
+from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_POST
 
 from django.db.models import Count, Prefetch, Q
 from django.utils.text import slugify
@@ -165,6 +167,20 @@ class ArtworkController:
             form = ArtworkForm(request.POST, request.FILES)
             if form.is_valid():
                 artwork = form.save(commit=False)
+
+                # Renommer l'image téléchargée
+                uploaded_image = request.FILES['thumbnail']
+                _, file_extension = os.path.splitext(uploaded_image.name)
+                
+                new_filename = f'{slugify(form.cleaned_data["title"])}{file_extension}'
+
+                artworks_path = os.path.join('artworks', new_filename)
+
+                artwork.thumbnail = artworks_path
+                
+                fs = FileSystemStorage()
+                fs.save(artworks_path, uploaded_image)
+
                 slug = slugify(form.cleaned_data['title'])
                 artwork.slug = slug
                 artwork.save()
@@ -186,11 +202,34 @@ class ArtworkController:
             form = ArtworkForm(request.POST, request.FILES, instance=artwork)
             if form.is_valid():
                 artwork_updated = form.save(commit=False)
-                slug = slugify(form.cleaned_data['title'])
-                artwork_updated.slug = slug
+
+                # Gestion de l'image téléchargée
+                if 'thumbnail' in request.FILES:
+                    uploaded_image = request.FILES['thumbnail']
+                    _, file_extension = os.path.splitext(uploaded_image.name)
+                    
+                    # Générer un nouveau nom de fichier basé sur le titre
+                    new_filename = f'{slugify(form.cleaned_data["title"])}{file_extension}'
+                    
+                    # Construire le chemin complet du fichier dans le sous-dossier artworks
+                    artworks_path = os.path.join('artworks', new_filename)
+                    
+                    # Supprimer l'ancien fichier s'il existe
+                    if artwork.thumbnail:
+                        fs = FileSystemStorage()
+                        if fs.exists(artwork.thumbnail.name):
+                            fs.delete(artwork.thumbnail.name)
+                    
+                    # Sauvegarder le nouveau fichier dans le système de fichiers
+                    fs = FileSystemStorage()
+                    fs.save(artworks_path, uploaded_image)
+                    artwork_updated.thumbnail = artworks_path
+                
+                # Attribuer le slug basé sur le titre
+                artwork_updated.slug = slugify(form.cleaned_data['title'])
                 artwork_updated.save()
 
-                messages.success(request, 'Œuvre modifiée')
+                messages.success(request, 'Œuvre modifiée avec succès')
                 return redirect('manager:artwork-list') 
         else:
             form = ArtworkForm(instance=artwork) 
@@ -222,7 +261,25 @@ class PostController:
         if request.method == 'POST':
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
-                form.save()
+                post = form.save(commit=False)
+
+                # Renommer l'image téléchargée
+                uploaded_image = request.FILES['thumbnail']
+                _, file_extension = os.path.splitext(uploaded_image.name)
+                
+                new_filename = f'{slugify(form.cleaned_data["title"])}{file_extension}'
+                
+                post.thumbnail = new_filename
+
+                posts_path = os.path.join('posts', new_filename)
+                
+                fs = FileSystemStorage()
+                fs.save(posts_path, uploaded_image)
+
+
+                slug = slugify(form.cleaned_data['title'])
+                post.slug = slug
+                post.save()
                 messages.success(request, 'Evènement créé')
                 return redirect('manager:post-list') 
         else:
@@ -261,7 +318,29 @@ class PostController:
         if request.method == 'POST':
             form = PostForm(request.POST, request.FILES, instance=post)
             if form.is_valid():
-                form.save()
+                post_updated = form.save(commit=False)
+
+                if 'thumbnail' in request.FILES:
+                    uploaded_image = request.FILES['thumbnail']
+                    _, file_extension = os.path.splitext(uploaded_image.name)
+                    
+                    # Générer un nouveau nom de fichier basé sur le titre
+                    new_filename = f'{slugify(form.cleaned_data["title"])}{file_extension}'
+
+                    
+                    # Supprimer l'ancien fichier s'il existe
+                    if post.thumbnail:
+                        fs = FileSystemStorage()
+                        if fs.exists(post.thumbnail.name):
+                            fs.delete(post.thumbnail.name)
+                    
+                    # Sauvegarder le nouveau fichier dans le système de fichiers
+                    fs.save(new_filename, uploaded_image)
+                    post_updated.thumbnail = new_filename
+
+                slug = slugify(form.cleaned_data['title'])
+                post_updated.slug = slug
+                post_updated.save()
                 messages.success(request, 'Evènement modifiée')
                 return redirect('manager:post-list') 
         else:
