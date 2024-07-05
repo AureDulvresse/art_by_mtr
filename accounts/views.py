@@ -92,9 +92,8 @@ def show(request) -> HttpResponse:
         is_admin_or_team_member = user.is_superuser or user.groups.filter(name='team').exists()
 
         context = {
-            'orders': cart.filter(ordered = True),
             'is_admin_or_team_member': is_admin_or_team_member,
-            'preview_cart_items': cart_items[:3],
+            'preview_cart_items': cart_items[:3] if cart_items else None,
         }
 
     return render(request, "accounts/pages/index.html", context)
