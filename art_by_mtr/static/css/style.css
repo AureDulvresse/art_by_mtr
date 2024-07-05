@@ -52,7 +52,7 @@ a {
 }
 
 .bg-gray-900 {
-    background-color: var(--color-gray-900);
+    background-color: var(--color-gray-900) !important;
 }
 
 .bg-gray-600 {
@@ -225,7 +225,6 @@ a {
 /* Breadcrumb Section */
 .breadcrumb-section {
     height: var(--breadcrumb-height) !important;
-    background-color: var(--color-black) !important;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
