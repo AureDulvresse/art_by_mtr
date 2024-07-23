@@ -2,18 +2,19 @@
 {% load static %}
 {% load store_custom_tags %}
 
-{% block title %}Checkout{% endblock title %}
+{% block title %}Finaliser votre commande{% endblock %}
 
 {% block content %}
 
 {% breadcrumb "Finaliser votre commande" "Plus qu'une dernière étape" user preview_cart_items %}
 
-<!-- Checkout Section -->
 <section class="mt-8 pt-4 pb-5 checkout wow animate__animated animate__fadeIn" data-wow-delay="0.3s">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-md-6 wow animate__animated animate__slideInLeft">
+
+    <div class="row container items-start">
+      <!-- Form Section -->
+      <div class="col-12 col-lg-7">
         <div class="accordion" id="accordionExample">
+          <!-- Billing Address -->
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -49,6 +50,7 @@
             </div>
           </div>
 
+          <!-- Shipping Address -->
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -57,11 +59,23 @@
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <p>Formulaire d'adresse de livraison ici.</p>
+                <form method="post" id="shipping-form">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="shipping_name" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="shipping_name" name="shipping_name" placeholder="Votre nom" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="shipping_address" class="form-label">Adresse</label>
+                    <input type="text" class="form-control" id="shipping_address" name="shipping_address" placeholder="Votre adresse" required>
+                  </div>
+                  <!-- Ajoutez plus de champs si nécessaire -->
+                </form>
               </div>
             </div>
           </div>
 
+          <!-- Card Details -->
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -72,16 +86,18 @@
               <div class="accordion-body">
                 <form id="payment-form" method="post">
                   {% csrf_token %}
+                  <div id="card-errors" role="alert"></div>
                   <div id="card-element">
                     <!-- Stripe Element will be inserted here. -->
                   </div>
-                  <button type="submit" id="submit" class="btn btn-black mt-3">Payer</button>
-                  <div id="card-errors" role="alert"></div>
+                  <button type="submit" id="submit" class="btn btn-black mt-3 w-full">Valider et Payer</button>
+                  
                 </form>
               </div>
             </div>
           </div>
 
+          <!-- PayPal -->
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -97,7 +113,8 @@
         </div>
       </div>
 
-      <div class="col-12 col-md-6 animate__animated animate__slideInRight">
+      <!-- Order Summary Section -->
+      <div class="col-12 col-lg-5">
         <div class="total-section p-4 bg-light rounded">
           <table class="total-table w-100">
             <thead class="total-table-head">
@@ -139,71 +156,10 @@
             </tbody>
           </table>
         </div>
-      </div>
+
     </div>
   </div>
 </section>
 
-<script src="https://js.stripe.com/v3/"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY');
-    var elements = stripe.elements();
-    var card = elements.create('card');
-    card.mount('#card-element');
-
-    card.on('change', function (event) {
-      var displayError = document.getElementById('card-errors');
-      if (event.error) {
-        displayError.textContent = event.error.message;
-      } else {
-        displayError.textContent = '';
-      }
-    });
-
-    var form = document.getElementById('payment-form');
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      stripe.createToken(card).then(function (result) {
-        if (result.error) {
-          var errorElement = document.getElementById('card-errors');
-          errorElement.textContent = result.error.message;
-        } else {
-          stripeTokenHandler(result.token);
-        }
-      });
-    });
-
-    function stripeTokenHandler(token) {
-      var form = document.getElementById('payment-form');
-      var hiddenInput = document.createElement('input');
-      hiddenInput.setAttribute('type', 'hidden');
-      hiddenInput.setAttribute('name', 'stripeToken');
-      hiddenInput.setAttribute('value', token.id);
-      form.appendChild(hiddenInput);
-      form.submit();
-    }
-
-    paypal.Buttons({
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '{{ total_cost|floatformat:2 }}'
-            }
-          }]
-        });
-      },
-      onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
-          alert('Transaction completed by ' + details.payer.name.given_name);
-          // Optionally, submit the form to your server with the order details
-        });
-      }
-    }).render('#paypal-button-container');
-  });
-</script>
-
 {% include "components/footer.html" %}
-{% endblock content %}
+{% endblock %}

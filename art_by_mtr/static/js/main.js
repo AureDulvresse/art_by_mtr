@@ -1,6 +1,67 @@
+$(document).ready(function () {
+  // Initialisation de Stripe
+  var stripe = Stripe("{{ stripe_public_key }}");
+  var elements = stripe.elements();
+  var card = elements.create("card");
+  card.mount("#card-element");
+
+  card.on("change", function (event) {
+    var $displayError = $("#card-errors");
+    if (event.error) {
+      $displayError.text(event.error.message);
+    } else {
+      $displayError.text("");
+    }
+  });
+
+  $("#payment-form").on("submit", function (event) {
+    event.preventDefault();
+    stripe.createToken(card).then(function (result) {
+      if (result.error) {
+        var $errorElement = $("#card-errors");
+        $errorElement.addClass("alert alert-danger");
+        $errorElement.text(result.error.message);
+      } else {
+        stripeTokenHandler(result.token);
+      }
+    });
+  });
+
+  function stripeTokenHandler(token) {
+    var $form = $("#payment-form");
+    var $hiddenInput = $(
+      '<input type="hidden" name="stripeToken" class="form-control">'
+    ).val(token.id);
+    $form.append($hiddenInput);
+    $form.submit();
+  }
+
+  paypal
+    .Buttons({
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: [
+            {
+              amount: {
+                value: "{{ total_cost|floatformat:2 }}",
+              },
+            },
+          ],
+        });
+      },
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          alert("Transaction completed by " + details.payer.name.given_name);
+          // Optionnel: soumettre le formulaire avec les détails de la commande
+        });
+      },
+    })
+    .render("#paypal-button-container");
+});
+
 function addToCart(event) {
   const artworkId = $(event.target).data("artwork-id");
-  const quantity = document.getElementById("quantity");
+  const quantity = $("#quantity").val();
 
   $.ajax({
     url: "/store/cart/add-to-cart/",
@@ -11,7 +72,7 @@ function addToCart(event) {
     contentType: "application/json",
     data: JSON.stringify({
       artwork_id: artworkId,
-      quantity: quantity.value,
+      quantity: quantity,
     }),
     success: (data) => {
       showToast("Succès", data.message, "bg-success text-white");
@@ -46,7 +107,6 @@ function removeFromCart(order_uuid) {
           "Oeuvre supprimée du panier",
           "bg-success text-white"
         );
-
         $("#cart-items").html(data.cart_items_html);
         $("#cart-items-table").html(data.cart_items_table_html);
       } else {
@@ -207,7 +267,6 @@ function getCookie(name) {
     const cookies = document.cookie.split(";");
     for (let i = 0; i < cookies.length; i++) {
       const cookie = cookies[i].trim();
-      // Recherche du jeton CSRF par son nom
       if (cookie.startsWith(name + "=")) {
         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
         break;
@@ -252,7 +311,7 @@ function stripePayment() {
   };
 }
 
-// Initier Alpine.js
+// Initialisation d'Alpine.js
 document.addEventListener("alpine:init", () => {
   Alpine.data("cartHandler", () => ({
     addToCart,
@@ -267,17 +326,11 @@ document.addEventListener("alpine:init", () => {
     deletePost,
   }));
 
-  Alpine.data("SettingsHandler", () => ({
+  Alpine.data("settingsHandler", () => ({
     deleteItem,
   }));
 
   Alpine.data("stripePayment", () => ({
     stripePayment,
   }));
-});
-
-// Utilisation avec jQuery pour la gestion de l'événement
-$(document).ready(function () {
-  // Utilisation de jQuery pour l'initialisation de WOW.js
-  new WOW().init();
 });

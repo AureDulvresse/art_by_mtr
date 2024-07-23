@@ -15,7 +15,7 @@
     --header-height-lg: 820px;
     --border-radius: 0.5rem;
     --container-padding: 1rem;
-    --mobile-menu-icon-size: 1.5rem;
+    --mobile-menu-icon-size: 3rem;
 }
 
 /* Reset */
@@ -179,7 +179,7 @@ a {
 }
 
 .mobile-menu i {
-    font-size: var(--mobile-menu-icon-size);
+    font-size: var(--mobile-menu-icon-size) !important;
 }
 
 /* Hero Section */
