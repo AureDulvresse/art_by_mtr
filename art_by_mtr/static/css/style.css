@@ -1026,3 +1026,14 @@ textarea {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
 }
+
+/* Ajoutez ceci dans votre fichier CSS */
+.error-message {
+    color: #ff0000;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+.error-input {
+    border-color: #ff0000;
+}

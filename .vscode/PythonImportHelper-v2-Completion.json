@@ -1341,6 +1341,14 @@
         "documentation": {}
     },
     {
+        "label": "BoundField",
+        "importPath": "django.forms.boundfield",
+        "description": "django.forms.boundfield",
+        "isExtraImport": true,
+        "detail": "django.forms.boundfield",
+        "documentation": {}
+    },
+    {
         "label": "views",
         "importPath": "store",
         "description": "store",
@@ -2316,6 +2324,24 @@
         "documentation": {}
     },
     {
+        "label": "add_class",
+        "kind": 2,
+        "importPath": "store.templatetags.store_custom_tags",
+        "description": "store.templatetags.store_custom_tags",
+        "peekOfCode": "def add_class(field, css_class):\n    if isinstance(field, BoundField):\n        return field.as_widget(attrs={\"class\": css_class})\n    return field\n@register.filter(name='add_class_if_error')\ndef add_class_if_error(field, css_class):\n    if isinstance(field, BoundField):\n        if field.errors:\n            css_class += ' is-invalid'\n        return field.as_widget(attrs={\"class\": css_class})",
+        "detail": "store.templatetags.store_custom_tags",
+        "documentation": {}
+    },
+    {
+        "label": "add_class_if_error",
+        "kind": 2,
+        "importPath": "store.templatetags.store_custom_tags",
+        "description": "store.templatetags.store_custom_tags",
+        "peekOfCode": "def add_class_if_error(field, css_class):\n    if isinstance(field, BoundField):\n        if field.errors:\n            css_class += ' is-invalid'\n        return field.as_widget(attrs={\"class\": css_class})\n    return field\n@register.inclusion_tag(os.path.join(settings.COMPONENTS_DIRS.get('global'), \"breadcrumb.html\"))\ndef breadcrumb(title, msg, user, cart_items, *args, **kwargs):\n  data = {\n    'title': title,",
+        "detail": "store.templatetags.store_custom_tags",
+        "documentation": {}
+    },
+    {
         "label": "breadcrumb",
         "kind": 2,
         "importPath": "store.templatetags.store_custom_tags",
@@ -2338,7 +2364,7 @@
         "kind": 5,
         "importPath": "store.templatetags.store_custom_tags",
         "description": "store.templatetags.store_custom_tags",
-        "peekOfCode": "register = template.Library()\n@register.inclusion_tag(os.path.join(settings.COMPONENTS_DIRS.get('global'), \"breadcrumb.html\"))\ndef breadcrumb(title, msg, user, cart_items, *args, **kwargs):\n  data = {\n    'title': title,\n    'msg': msg,\n    'user': user,\n    'preview_cart_items': cart_items,\n  }\n  return data",
+        "peekOfCode": "register = template.Library()\n@register.filter(name='add_class')\ndef add_class(field, css_class):\n    if isinstance(field, BoundField):\n        return field.as_widget(attrs={\"class\": css_class})\n    return field\n@register.filter(name='add_class_if_error')\ndef add_class_if_error(field, css_class):\n    if isinstance(field, BoundField):\n        if field.errors:",
         "detail": "store.templatetags.store_custom_tags",
         "documentation": {}
     },
