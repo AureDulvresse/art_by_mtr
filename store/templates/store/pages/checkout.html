@@ -91,7 +91,6 @@
                     <!-- Stripe Element will be inserted here. -->
                   </div>
                   <button type="submit" id="submit" class="btn btn-black mt-3 w-full">Valider et Payer</button>
-                  
                 </form>
               </div>
             </div>
@@ -156,10 +155,72 @@
             </tbody>
           </table>
         </div>
-
+      </div>
     </div>
-  </div>
 </section>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=ASKqn34jIKXSJh_KQeAy-foANPRdaX2Mj82532WBkwc7mTEpF7g0_16E_ep5hB-O7mFTaqh1NR5EkN1k"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Stripe initialization
+    var stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY');
+    var elements = stripe.elements();
+    var card = elements.create('card');
+    card.mount('#card-element');
+
+    card.on('change', function (event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      stripe.createToken(card).then(function (result) {
+        if (result.error) {
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          stripeTokenHandler(result.token);
+        }
+      });
+    });
+
+    function stripeTokenHandler(token) {
+      var form = document.getElementById('payment-form');
+      var hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'hidden');
+      hiddenInput.setAttribute('name', 'stripeToken');
+      hiddenInput.setAttribute('value', token.id);
+      form.appendChild(hiddenInput);
+      form.submit();
+    }
+
+    // PayPal button setup
+    paypal.Buttons({
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '{{ total_cost|floatformat:2 }}'
+            }
+          }]
+        });
+      },
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          alert('Transaction completed by ' + details.payer.name.given_name);
+          // Optionally, submit the form to your server with the order details
+        });
+      }
+    }).render('#paypal-button-container');
+  });
+</script>
 
 {% include "components/footer.html" %}
 {% endblock %}
