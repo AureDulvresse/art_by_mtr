@@ -133,14 +133,14 @@ a {
 /* Pour les petits écrans (425px et moins) */
 @media (max-width: 425px) {
     .text-6xl {
-        font-size: 1.5rem !important;
+        font-size: 1.2rem !important;
     }
 }
 
 /* Pour les très petits écrans (375px et moins) */
 @media (max-width: 375px) {
     .text-6xl {
-        font-size: 1.2rem !important;
+        font-size: 1rem !important;
     }
 }
 .text-lg {
