@@ -63,7 +63,7 @@
                   {% csrf_token %}
                   <div class="mb-3">
                     <label for="shipping_name" class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="shipping_name" name="shipping_name" placeholder="Votre nom" required>
+                    <input type="text" class="form-control" id="shipping_name" name="shipping_name" value="{{ user.get_full_name }}" placeholder="Votre nom" required>
                   </div>
                   <div class="mb-3">
                     <label for="shipping_address" class="form-label">Adresse</label>
