@@ -227,6 +227,22 @@
         "documentation": {}
     },
     {
+        "label": "PasswordResetForm",
+        "importPath": "django.contrib.auth.forms",
+        "description": "django.contrib.auth.forms",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.forms",
+        "documentation": {}
+    },
+    {
+        "label": "SetPasswordForm",
+        "importPath": "django.contrib.auth.forms",
+        "description": "django.contrib.auth.forms",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.forms",
+        "documentation": {}
+    },
+    {
         "label": "PasswordChangeForm",
         "importPath": "django.contrib.auth.forms",
         "description": "django.contrib.auth.forms",
@@ -364,6 +380,14 @@
         "documentation": {}
     },
     {
+        "label": "views",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
         "label": "update_session_auth_hash",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
@@ -389,6 +413,14 @@
     },
     {
         "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse_lazy",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -449,14 +481,6 @@
         "description": "django.urls",
         "isExtraImport": true,
         "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "views",
-        "importPath": "accounts",
-        "description": "accounts",
-        "isExtraImport": true,
-        "detail": "accounts",
         "documentation": {}
     },
     {
@@ -653,6 +677,22 @@
     },
     {
         "label": "RegisterForm",
+        "importPath": "accounts.forms",
+        "description": "accounts.forms",
+        "isExtraImport": true,
+        "detail": "accounts.forms",
+        "documentation": {}
+    },
+    {
+        "label": "CustomPasswordResetForm",
+        "importPath": "accounts.forms",
+        "description": "accounts.forms",
+        "isExtraImport": true,
+        "detail": "accounts.forms",
+        "documentation": {}
+    },
+    {
+        "label": "CustomSetPasswordForm",
         "importPath": "accounts.forms",
         "description": "accounts.forms",
         "isExtraImport": true,
@@ -1452,6 +1492,24 @@
         "documentation": {}
     },
     {
+        "label": "CustomPasswordResetForm",
+        "kind": 6,
+        "importPath": "accounts.forms",
+        "description": "accounts.forms",
+        "peekOfCode": "class CustomPasswordResetForm(PasswordResetForm):\n    email = forms.EmailField(\n        max_length=254,\n        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'})\n    )\nclass CustomSetPasswordForm(SetPasswordForm):\n    new_password1 = forms.CharField(\n        max_length=128,\n        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Nouveau mot de passe'})\n    )",
+        "detail": "accounts.forms",
+        "documentation": {}
+    },
+    {
+        "label": "CustomSetPasswordForm",
+        "kind": 6,
+        "importPath": "accounts.forms",
+        "description": "accounts.forms",
+        "peekOfCode": "class CustomSetPasswordForm(SetPasswordForm):\n    new_password1 = forms.CharField(\n        max_length=128,\n        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Nouveau mot de passe'})\n    )\n    new_password2 = forms.CharField(\n        max_length=128,\n        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirmer le mot de passe'})\n    )",
+        "detail": "accounts.forms",
+        "documentation": {}
+    },
+    {
         "label": "Customer",
         "kind": 6,
         "importPath": "accounts.models",
@@ -1465,7 +1523,7 @@
         "kind": 5,
         "importPath": "accounts.urls",
         "description": "accounts.urls",
-        "peekOfCode": "app_name = \"accounts\"\nurlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path('change-password/', views.change_password, name='change-password'),\n    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),\n    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),",
+        "peekOfCode": "app_name = \"accounts\"\nurlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path('change-password/', views.change_password, name='change-password'),\n    path('password_reset/', views.CustomPasswordResetView.as_view(), name='password_reset'),\n    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),",
         "detail": "accounts.urls",
         "documentation": {}
     },
@@ -1474,8 +1532,26 @@
         "kind": 5,
         "importPath": "accounts.urls",
         "description": "accounts.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path('change-password/', views.change_password, name='change-password'),\n    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),\n    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),\n    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path('change-password/', views.change_password, name='change-password'),\n    path('password_reset/', views.CustomPasswordResetView.as_view(), name='password_reset'),\n    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),\n    path('reset/<uidb64>/<token>/', views.CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),",
         "detail": "accounts.urls",
+        "documentation": {}
+    },
+    {
+        "label": "CustomPasswordResetView",
+        "kind": 6,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "class CustomPasswordResetView(auth_views.PasswordResetView):\n    form_class = CustomPasswordResetForm\n    template_name = 'accounts/pages/password_reset_form.html'\n    email_template_name = 'accounts/components/password_reset_email.html'\n    success_url = reverse_lazy('accounts:password_reset_done')\nclass CustomPasswordResetConfirmView(auth_views.PasswordResetConfirmView):\n    form_class = CustomSetPasswordForm\n    template_name = 'accounts/pages/password_reset_confirm.html'\n    success_url = reverse_lazy('accounts:password_reset_complete')",
+        "detail": "accounts.views",
+        "documentation": {}
+    },
+    {
+        "label": "CustomPasswordResetConfirmView",
+        "kind": 6,
+        "importPath": "accounts.views",
+        "description": "accounts.views",
+        "peekOfCode": "class CustomPasswordResetConfirmView(auth_views.PasswordResetConfirmView):\n    form_class = CustomSetPasswordForm\n    template_name = 'accounts/pages/password_reset_confirm.html'\n    success_url = reverse_lazy('accounts:password_reset_complete')",
+        "detail": "accounts.views",
         "documentation": {}
     },
     {
@@ -1519,7 +1595,7 @@
         "kind": 2,
         "importPath": "accounts.views",
         "description": "accounts.views",
-        "peekOfCode": "def update(request) -> HttpResponse:\n    if request.method == \"POST\":\n        form = request.POST\n        first_name = form.get(\"first_name\")\n        last_name = form.get(\"last_name\")\n        username = form.get(\"username\")\n        email = form.get(\"email\")\n        user = get_object_or_404(Customer, pk = request.user.pk)\n        user.first_name = first_name\n        user.last_name = last_name",
+        "peekOfCode": "def update(request) -> HttpResponse:\n    if request.method == \"POST\":\n        form = request.POST\n        first_name = form.get(\"first_name\")\n        last_name = form.get(\"last_name\")\n        username = form.get(\"username\")\n        email = form.get(\"email\")\n        user = get_object_or_404(Customer, pk=request.user.pk)\n        user.first_name = first_name\n        user.last_name = last_name",
         "detail": "accounts.views",
         "documentation": {}
     },
@@ -1528,7 +1604,7 @@
         "kind": 2,
         "importPath": "accounts.views",
         "description": "accounts.views",
-        "peekOfCode": "def change_password(request):\n    if request.method == 'POST':\n        form = PasswordChangeForm(request.user, request.POST)\n        if form.is_valid():\n            user = form.save()\n            update_session_auth_hash(request, user)  # Important to update the session with the new password\n            messages.success(request, 'Votre mot de passe a été mis à jour avec succès!')\n            return redirect('accounts:change-password')\n        else:\n            messages.error(request, 'Veuillez corriger les erreurs ci-dessous.')",
+        "peekOfCode": "def change_password(request):\n    if request.method == 'POST':\n        form = PasswordChangeForm(request.user, request.POST)\n        if form.is_valid():\n            user = form.save()\n            update_session_auth_hash(request, user)\n            messages.success(request, 'Votre mot de passe a été mis à jour avec succès!')\n            return redirect('accounts:change-password')\n        else:\n            messages.error(request, 'Veuillez corriger les erreurs ci-dessous.')",
         "detail": "accounts.views",
         "documentation": {}
     },
@@ -1537,7 +1613,7 @@
         "kind": 2,
         "importPath": "accounts.views",
         "description": "accounts.views",
-        "peekOfCode": "def destroy(request) -> HttpResponse:\n    Customer = get_object_or_404(Customer, pk = request.user.pk)\n    logout(request)\n    Customer.delete()\n    return redirect(\"store:home\")",
+        "peekOfCode": "def destroy(request) -> HttpResponse:\n    user = get_object_or_404(Customer, pk=request.user.pk)\n    logout(request)\n    user.delete()\n    return redirect(\"store:home\")\nclass CustomPasswordResetView(auth_views.PasswordResetView):\n    form_class = CustomPasswordResetForm\n    template_name = 'accounts/pages/password_reset_form.html'\n    email_template_name = 'accounts/components/password_reset_email.html'\n    success_url = reverse_lazy('accounts:password_reset_done')",
         "detail": "accounts.views",
         "documentation": {}
     },
