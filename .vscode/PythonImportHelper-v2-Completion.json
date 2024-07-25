@@ -1523,7 +1523,7 @@
         "kind": 5,
         "importPath": "accounts.urls",
         "description": "accounts.urls",
-        "peekOfCode": "app_name = \"accounts\"\nurlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path('change-password/', views.change_password, name='change-password'),\n    path('password_reset/', views.CustomPasswordResetView.as_view(), name='password_reset'),\n    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),",
+        "peekOfCode": "app_name = \"accounts\"\nurlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path('change-password/', views.change_password, name='change-password'),\n    path('password_reset/', views.CustomPasswordResetView.as_view(), name='password_reset'),\n    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='accounts/pages/password_reset_done.html'), name='password_reset_done'),",
         "detail": "accounts.urls",
         "documentation": {}
     },
@@ -1532,7 +1532,7 @@
         "kind": 5,
         "importPath": "accounts.urls",
         "description": "accounts.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path('change-password/', views.change_password, name='change-password'),\n    path('password_reset/', views.CustomPasswordResetView.as_view(), name='password_reset'),\n    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),\n    path('reset/<uidb64>/<token>/', views.CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.show, name=\"profile\"),\n    path(\"login\", views.login_page, name=\"login\"),\n    path(\"logout\", views.logout_page, name=\"logout\"),\n    path(\"register\", views.register_page, name=\"register\"),\n    path(\"update-account\", views.update, name=\"update-account\"),\n    path('change-password/', views.change_password, name='change-password'),\n    path('password_reset/', views.CustomPasswordResetView.as_view(), name='password_reset'),\n    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='accounts/pages/password_reset_done.html'), name='password_reset_done'),\n    path('reset/<uidb64>/<token>/', views.CustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),",
         "detail": "accounts.urls",
         "documentation": {}
     },
