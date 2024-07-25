@@ -1631,7 +1631,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-@9js1jr2do8^_c4em)#x(s-q#fih16hk010m4ze2gldb*tim6+'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-@9js1jr2do8^_c4em)#x(s-q#fih16hk010m4ze2gldb*tim6+'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\nSECURE_CROSS_ORIGIN_OPONER_POLICY = 'same-origin-allow-popups'\n# Application definition",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1640,7 +1640,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-@9js1jr2do8^_c4em)#x(s-q#fih16hk010m4ze2gldb*tim6+'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-@9js1jr2do8^_c4em)#x(s-q#fih16hk010m4ze2gldb*tim6+'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\nSECURE_CROSS_ORIGIN_OPONER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1649,7 +1649,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\nSECURE_CROSS_ORIGIN_OPONER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1658,7 +1658,16 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'accounts',",
+        "peekOfCode": "ALLOWED_HOSTS = []\nSECURE_CROSS_ORIGIN_OPONER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECURE_CROSS_ORIGIN_OPONER_POLICY",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "SECURE_CROSS_ORIGIN_OPONER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'accounts',",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -2685,6 +2694,24 @@
         "importPath": "store.views",
         "description": "store.views",
         "peekOfCode": "def remove_from_cart(request):\n    if request.method == 'POST':\n        data = json.loads(request.body)\n        order_uuid = data.get('order_uuid')\n        try:\n            order = get_object_or_404(Order, uuid=order_uuid)\n            cart = get_object_or_404(Cart, customer=request.user)\n            if order in cart.orders.all():\n                cart.orders.remove(order)\n                order.delete()",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "payment_success",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def payment_success(request):\n    return render(request, \"pages/payments/success.html\", {})\ndef payment_cancel(request):\n    return render(request, \"pages/payments/cancel.html\", {})",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "payment_cancel",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def payment_cancel(request):\n    return render(request, \"pages/payments/cancel.html\", {})",
         "detail": "store.views",
         "documentation": {}
     },

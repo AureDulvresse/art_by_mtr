@@ -233,3 +233,9 @@ def remove_from_cart(request):
     return JsonResponse({'success': False, 'error': 'User not authenticated'}, status=401)
 
 # Code des paiements (Stripe, PayPal, etc.) peut être réactivé et ajusté si nécessaire
+
+def payment_success(request):
+    return render(request, "pages/payments/success.html", {})
+
+def payment_cancel(request):
+    return render(request, "pages/payments/cancel.html", {})

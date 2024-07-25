@@ -30,6 +30,7 @@ SECRET_KEY = 'django-insecure-@9js1jr2do8^_c4em)#x(s-q#fih16hk010m4ze2gldb*tim6+
 DEBUG = True
 
 ALLOWED_HOSTS = []
+SECURE_CROSS_ORIGIN_OPONER_POLICY = 'same-origin-allow-popups'
 
 
 # Application definition
@@ -141,7 +142,6 @@ STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')
 PAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')
 PAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')
 PAYPAL_MODE = 'sandbox'  # or 'live'
-
 
 
 # Internationalization

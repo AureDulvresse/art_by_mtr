@@ -22,8 +22,8 @@ urlpatterns = [
    # path('store/paypal/create-payment/', views.create_paypal_payment, name='create_paypal_payment'),
    # path('store/paypal/execute/',views.execute_paypal_payment, name='execute_paypal_payment'),
 
-   # path('payments/success/', views.payment_success, name='create_paypal_payment'),
-   # path('payments/cancel/',views.payment_cancel, name='execute_paypal_payment'),
+   path('payments/success/', views.payment_success, name='create_paypal_payment'),
+   path('payments/cancel/',views.payment_cancel, name='execute_paypal_payment'),
 ]
 
 # handler404 = f"{app_name}.views.page_404"

@@ -1,5 +1,5 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} {% load static %}
+
 {% load store_custom_tags %}
 
 {% block title %}Finaliser votre commande{% endblock %}
@@ -8,182 +8,289 @@
 
 {% breadcrumb "Finaliser votre commande" "Plus qu'une dernière étape" user preview_cart_items %}
 
-<section class="mt-8 pt-4 pb-5 checkout wow animate__animated animate__fadeIn" data-wow-delay="0.3s">
-
-    <div class="row container items-start">
-      <!-- Form Section -->
-      <div class="col-12 col-lg-7">
-        <div class="accordion" id="accordionExample">
-          <!-- Billing Address -->
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Adresse de facturation
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <form method="post" id="billing-form">
-                  {% csrf_token %}
-                  <div class="mb-3">
-                    <label for="name" class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom" value="{{ user.get_full_name }}" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Votre email" value="{{ user.email }}" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="address" class="form-label">Adresse</label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="Votre adresse" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="phone" class="form-label">Téléphone</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Votre numéro de téléphone" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="comments" class="form-label">Commentaires</label>
-                    <textarea class="form-control" id="comments" name="comments" rows="3" placeholder="Ajoutez un commentaire"></textarea>
-                  </div>
-                </form>
-              </div>
+<section
+  class="mt-8 pt-4 pb-5 checkout wow animate__animated animate__fadeIn"
+  data-wow-delay="0.3s"
+>
+  <div class="row container items-start">
+    <!-- Form Section -->
+    <div class="col-12 col-lg-7">
+      <div class="accordion" id="accordionExample">
+        <!-- Billing Address -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              Adresse de facturation
+            </button>
+          </h2>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <form method="post" id="billing-form">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="name" class="form-label">Nom</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Votre nom"
+                    value="{{ user.get_full_name }}"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Votre email"
+                    value="{{ user.email }}"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="address" class="form-label">Adresse</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    name="address"
+                    placeholder="Votre adresse"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Téléphone</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="phone"
+                    name="phone"
+                    placeholder="Votre numéro de téléphone"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="comments" class="form-label">Commentaires</label>
+                  <textarea
+                    class="form-control"
+                    id="comments"
+                    name="comments"
+                    rows="3"
+                    placeholder="Ajoutez un commentaire"
+                  ></textarea>
+                </div>
+              </form>
             </div>
           </div>
+        </div>
 
-          <!-- Shipping Address -->
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Adresse de livraison
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <form method="post" id="shipping-form">
-                  {% csrf_token %}
-                  <div class="mb-3">
-                    <label for="shipping_name" class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="shipping_name" name="shipping_name" value="{{ user.get_full_name }}" placeholder="Votre nom" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="shipping_address" class="form-label">Adresse</label>
-                    <input type="text" class="form-control" id="shipping_address" name="shipping_address" placeholder="Votre adresse" required>
-                  </div>
-                  <!-- Ajoutez plus de champs si nécessaire -->
-                </form>
-              </div>
+        <!-- Shipping Address -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+            >
+              Adresse de livraison
+            </button>
+          </h2>
+          <div
+            id="collapseTwo"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <form method="post" id="shipping-form">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="shipping_name" class="form-label">Nom</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="shipping_name"
+                    name="shipping_name"
+                    value="{{ user.get_full_name }}"
+                    placeholder="Votre nom"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="shipping_address" class="form-label"
+                    >Adresse</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="shipping_address"
+                    name="shipping_address"
+                    placeholder="Votre adresse"
+                    required
+                  />
+                </div>
+                <!-- Ajoutez plus de champs si nécessaire -->
+              </form>
             </div>
           </div>
+        </div>
 
-          <!-- Card Details -->
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Détails de la carte
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <form id="payment-form" method="post">
-                  {% csrf_token %}
-                  <div id="card-errors" role="alert"></div>
-                  <div id="card-element">
-                    <!-- Stripe Element will be inserted here. -->
-                  </div>
-                  <button type="submit" id="submit" class="btn btn-black mt-3 w-full">Valider et Payer</button>
-                </form>
-              </div>
+        <!-- Card Details -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseThree"
+              aria-expanded="false"
+              aria-controls="collapseThree"
+            >
+              Détails de la carte
+            </button>
+          </h2>
+          <div
+            id="collapseThree"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <form id="payment-form" method="post">
+                {% csrf_token %}
+                <div id="card-errors" role="alert"></div>
+                <div id="card-element">
+                  <!-- Stripe Element will be inserted here. -->
+                </div>
+                <button
+                  type="submit"
+                  id="submit"
+                  class="btn btn-black mt-3 w-full"
+                >
+                  Valider et Payer
+                </button>
+              </form>
             </div>
           </div>
+        </div>
 
-          <!-- PayPal -->
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                PayPal
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <div id="paypal-button-container"></div>
-              </div>
+        <!-- PayPal -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseFour"
+              aria-expanded="false"
+              aria-controls="collapseFour"
+            >
+              PayPal
+            </button>
+          </h2>
+          <div
+            id="collapseFour"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <div id="paypal-button-container"></div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Order Summary Section -->
-      <div class="col-12 col-lg-5">
-        <div class="total-section p-4 bg-light rounded">
-          <table class="total-table w-100">
-            <thead class="total-table-head">
-              <tr class="table-total-row">
-                <th>Votre commande</th>
-                <th>Prix</th>
-              </tr>
-            </thead>
-            <tbody class="mt-2">
-              {% for order in cart %}
-              <tr class="total-data">
-                <td>{{ order.artwork.title }}</td>
-                <td class="text-red">{{ order.get_total_price|floatformat:2 }} €</td>
-              </tr>
-              {% endfor %}
-            </tbody>
+    <!-- Order Summary Section -->
+    <div class="col-12 col-lg-5">
+      <div class="total-section p-4 bg-light rounded">
+        <table class="total-table w-100">
+          <thead class="total-table-head">
+            <tr class="table-total-row">
+              <th>Votre commande</th>
+              <th>Prix</th>
+            </tr>
+          </thead>
+          <tbody class="mt-2">
+            {% for order in cart %}
+            <tr class="total-data">
+              <td>{{ order.artwork.title }}</td>
+              <td class="text-red">
+                {{ order.get_total_price|floatformat:2 }} €
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
 
+          <tr>
+            <td class="border-b-gray"></td>
+            <td class="border-b-gray"></td>
+          </tr>
+          <tbody>
+            <tr class="total-data">
+              <td>Sous-total</td>
+              <td>{{ total_cost|floatformat:2 }} €</td>
+            </tr>
+            <tr class="total-data">
+              <td>Frais de livraison</td>
+              <td>0 €</td>
+            </tr>
             <tr>
               <td class="border-b-gray"></td>
               <td class="border-b-gray"></td>
             </tr>
-            <tbody>
-              <tr class="total-data">
-                <td>Sous-total</td>
-                <td>{{ total_cost|floatformat:2 }} €</td>
-              </tr>
-              <tr class="total-data">
-                <td>Frais de livraison</td>
-                <td>0 €</td>
-              </tr>
-              <tr>
-                <td class="border-b-gray"></td>
-                <td class="border-b-gray"></td>
-              </tr>
-              <tr class="total-data">
-                <td>Total</td>
-                <td>{{ total_cost|floatformat:2 }} €</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            <tr class="total-data">
+              <td>Total</td>
+              <td>{{ total_cost|floatformat:2 }} €</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
 </section>
 
 <script src="https://js.stripe.com/v3/"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=ASKqn34jIKXSJh_KQeAy-foANPRdaX2Mj82532WBkwc7mTEpF7g0_16E_ep5hB-O7mFTaqh1NR5EkN1k"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=ASKqn34jIKXSJh_KQeAy-foANPRdaX2Mj82532WBkwc7mTEpF7g0_16E_ep5hB-O7mFTaqh1NR5EkN1k&currency=EUR"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener("DOMContentLoaded", function () {
     // Stripe initialization
-    var stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY');
+    var stripe = Stripe("YOUR_STRIPE_PUBLIC_KEY");
     var elements = stripe.elements();
-    var card = elements.create('card');
-    card.mount('#card-element');
+    var card = elements.create("card");
+    card.mount("#card-element");
 
-    card.on('change', function (event) {
-      var displayError = document.getElementById('card-errors');
+    card.on("change", function (event) {
+      var displayError = document.getElementById("card-errors");
       if (event.error) {
         displayError.textContent = event.error.message;
       } else {
-        displayError.textContent = '';
+        displayError.textContent = "";
       }
     });
 
-    var form = document.getElementById('payment-form');
-    form.addEventListener('submit', function (event) {
+    var form = document.getElementById("payment-form");
+    form.addEventListener("submit", function (event) {
       event.preventDefault();
       stripe.createToken(card).then(function (result) {
         if (result.error) {
-          var errorElement = document.getElementById('card-errors');
+          var errorElement = document.getElementById("card-errors");
           errorElement.textContent = result.error.message;
         } else {
           stripeTokenHandler(result.token);
@@ -192,35 +299,41 @@
     });
 
     function stripeTokenHandler(token) {
-      var form = document.getElementById('payment-form');
-      var hiddenInput = document.createElement('input');
-      hiddenInput.setAttribute('type', 'hidden');
-      hiddenInput.setAttribute('name', 'stripeToken');
-      hiddenInput.setAttribute('value', token.id);
+      var form = document.getElementById("payment-form");
+      var hiddenInput = document.createElement("input");
+      hiddenInput.setAttribute("type", "hidden");
+      hiddenInput.setAttribute("name", "stripeToken");
+      hiddenInput.setAttribute("value", token.id);
       form.appendChild(hiddenInput);
       form.submit();
     }
 
     // PayPal button setup
-    paypal.Buttons({
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '{{ total_cost|floatformat:2 }}'
+    paypal
+      .Buttons({
+        createOrder: function (data, actions) {
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  value: "{{ total_cost|floatformat:2 }}",
+                },
+              },
+            ],
+          });
+        },
+        onApprove: function (data, actions) {
+          return actions.order.capture().then(function (details) {
+            alert("Transaction completed by " + details.payer.name.given_name);
+            // Optionally, submit the form to your server with the order details
+            if (details.status === "COMPLETED") {
+              window.location.href = `/payments/success/`;
             }
-          }]
-        });
-      },
-      onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
-          alert('Transaction completed by ' + details.payer.name.given_name);
-          // Optionally, submit the form to your server with the order details
-        });
-      }
-    }).render('#paypal-button-container');
+          });
+        },
+      })
+      .render("#paypal-button-container");
   });
 </script>
 
-{% include "components/footer.html" %}
-{% endblock %}
+{% include "components/footer.html" %} {% endblock %}
