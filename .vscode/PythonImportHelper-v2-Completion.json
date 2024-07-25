@@ -1439,14 +1439,6 @@
         "documentation": {}
     },
     {
-        "label": "PAYPAL_CLIENT_ID",
-        "importPath": "art_by_mtr.settings",
-        "description": "art_by_mtr.settings",
-        "isExtraImport": true,
-        "detail": "art_by_mtr.settings",
-        "documentation": {}
-    },
-    {
         "label": "Migration",
         "kind": 6,
         "importPath": "accounts.migrations.0001_initial",

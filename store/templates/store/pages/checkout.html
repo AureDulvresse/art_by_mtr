@@ -324,8 +324,9 @@
         },
         onApprove: function (data, actions) {
           return actions.order.capture().then(function (details) {
+            console.log(details)
             alert("Transaction completed by " + details.payer.name.given_name);
-            // Optionally, submit the form to your server with the order details
+            // Optionally, submit the form to your server with the order detailsx 
             if (details.status === "COMPLETED") {
               window.location.href = `/payments/success/`;
             }

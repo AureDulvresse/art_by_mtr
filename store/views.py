@@ -17,7 +17,6 @@ import stripe
 from store.models import Artwork, Cart, CheckOut, Order
 from store.utils import get_cart_items
 from blog.models import Post
-from art_by_mtr.settings import PAYPAL_CLIENT_ID
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 

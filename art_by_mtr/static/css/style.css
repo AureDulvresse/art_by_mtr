@@ -124,25 +124,6 @@ a {
     font-family: var(--font-family-title);
 }
 
-/* Pour les écrans de taille moyenne (768px et moins) */
-@media (max-width: 768px) {
-    .text-6xl {
-        font-size: 2rem !important;    }
-}
-
-/* Pour les petits écrans (425px et moins) */
-@media (max-width: 425px) {
-    .text-6xl {
-        font-size: 1.2rem !important;
-    }
-}
-
-/* Pour les très petits écrans (375px et moins) */
-@media (max-width: 375px) {
-    .text-6xl {
-        font-size: 1rem !important;
-    }
-}
 .text-lg {
     font-size: 1.125rem;
     line-height: 1.5;
@@ -203,7 +184,7 @@ a {
 
 /* Hero Section */
 .hero {
-    height: var(--header-height) !important;
+    height: var(--header-height);
     background-repeat: no-repeat;
     background-attachment: fixed;
     z-index: 20;
@@ -227,7 +208,7 @@ a {
 
 @media (min-width: 1280px) {
     .hero {
-        height: var(--header-height-lg);
+        height: var(--header-height);
         border-bottom-left-radius: var(--border-radius);
     }
 }
@@ -281,15 +262,13 @@ a {
 
 .about-img {
     border-radius: 0.5rem;
-    flex: 1 1;
-    width: 100%;
+    width: 260px !important;
     height: 560px;
     position: relative;
 }
 
 .about-text {
     width: 100%;
-    flex: 1 2;
 }
 
 .contact-text {
@@ -348,6 +327,34 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Pour les écrans de taille moyenne (768px et moins) */
+@media (max-width: 768px) {
+    html{
+        font-size: 76%;
+    }
+    .text-6xl {
+        font-size: 2rem !important;
+    }
+
+    .about-img {
+        width: 80% !important;
+    }
+}
+
+/* Pour les petits écrans (425px et moins) */
+@media (max-width: 425px) {
+    .text-6xl {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* Pour les très petits écrans (375px et moins) */
+@media (max-width: 375px) {
+    .text-6xl {
+        font-size: 1rem !important;
+    }
 }
 
 /* Styles pour les card */
@@ -818,17 +825,13 @@ textarea {
     }
 
     .w-full {
-        width: 80%;
+        width: 80% !important;
     }
 }
 
 @media (min-width: 1280px) {
     .container {
         max-width: 1140px;
-    }
-
-    .w-full {
-        width: 80%;
     }
 }
 
