@@ -262,7 +262,7 @@ a {
 
 .about-img {
     border-radius: 0.5rem;
-    width: 260px !important;
+    width: 350px !important;
     height: 560px;
     position: relative;
 }
@@ -327,6 +327,18 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.card-text h3,
+.card-text p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3em;
+    /* assuming 1.5em line-height */
 }
 
 /* Pour les écrans de taille moyenne (768px et moins) */

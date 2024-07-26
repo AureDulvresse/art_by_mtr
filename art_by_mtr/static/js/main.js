@@ -1,64 +1,3 @@
-$(document).ready(function () {
-  // Initialisation de Stripe
-  var stripe = Stripe("{{ stripe_public_key }}");
-  var elements = stripe.elements();
-  var card = elements.create("card");
-  card.mount("#card-element");
-
-  card.on("change", function (event) {
-    var $displayError = $("#card-errors");
-    if (event.error) {
-      $displayError.text(event.error.message);
-    } else {
-      $displayError.text("");
-    }
-  });
-
-  $("#payment-form").on("submit", function (event) {
-    event.preventDefault();
-    stripe.createToken(card).then(function (result) {
-      if (result.error) {
-        var $errorElement = $("#card-errors");
-        $errorElement.addClass("alert alert-danger");
-        $errorElement.text(result.error.message);
-      } else {
-        stripeTokenHandler(result.token);
-      }
-    });
-  });
-
-  function stripeTokenHandler(token) {
-    var $form = $("#payment-form");
-    var $hiddenInput = $(
-      '<input type="hidden" name="stripeToken" class="form-control">'
-    ).val(token.id);
-    $form.append($hiddenInput);
-    $form.submit();
-  }
-
-  paypal
-    .Buttons({
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [
-            {
-              amount: {
-                value: "{{ total_cost|floatformat:2 }}",
-              },
-            },
-          ],
-        });
-      },
-      onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
-          alert("Transaction completed by " + details.payer.name.given_name);
-          // Optionnel: soumettre le formulaire avec les détails de la commande
-        });
-      },
-    })
-    .render("#paypal-button-container");
-});
-
 function addToCart(event) {
   const artworkId = $(event.target).data("artwork-id");
   const quantity = $("#quantity").val();
@@ -97,9 +36,7 @@ function removeFromCart(order_uuid) {
       "X-CSRFToken": getCookie("csrftoken"),
     },
     contentType: "application/json",
-    data: JSON.stringify({
-      order_uuid: order_uuid,
-    }),
+    data: JSON.stringify({ order_uuid: order_uuid }),
     success: (data) => {
       if (data.success) {
         showToast(
@@ -137,12 +74,12 @@ function deleteArtwork(artwork_id) {
     },
     contentType: "application/json",
     data: JSON.stringify({ artwork_id: artwork_id }),
-    success: function (data) {
+    success: (data) => {
       if (data.success) {
         showToast("Succès", "Oeuvre supprimée", "bg-success text-white");
         reloadTable("#artwork-table-body");
       } else {
-        alert(data.message);
+        showToast("Erreur", data.message, "bg-danger text-white");
       }
     },
     error: (xhr, textStatus, error) => {
@@ -165,12 +102,12 @@ function deletePost(post_id) {
     },
     contentType: "application/json",
     data: JSON.stringify({ post_id: post_id }),
-    success: function (data) {
+    success: (data) => {
       if (data.success) {
         showToast("Succès", "Evènement supprimé", "bg-success text-white");
         reloadTable("#post-table-body");
       } else {
-        alert(data.message);
+        showToast("Erreur", data.message, "bg-danger text-white");
       }
     },
     error: (xhr, textStatus, error) => {
@@ -191,12 +128,12 @@ function reloadTable(content_ref) {
     headers: {
       "X-Requested-With": "XMLHttpRequest",
     },
-    success: function (data) {
-      var parsedHTML = $.parseHTML(data);
-      var newTableBody = $(parsedHTML).find(content_ref).html();
+    success: (data) => {
+      const parsedHTML = $.parseHTML(data);
+      const newTableBody = $(parsedHTML).find(content_ref).html();
       $(content_ref).html(newTableBody);
     },
-    error: function (xhr, status, error) {
+    error: (xhr, status, error) => {
       console.error("Error:", error);
     },
   });
@@ -211,7 +148,7 @@ function deleteItem(url, itemId, itemType) {
     },
     contentType: "application/json",
     data: JSON.stringify({ [`${itemType}_id`]: itemId }),
-    success: function (data) {
+    success: (data) => {
       if (data.success) {
         $(`li[data-id="${itemId}"]`).remove();
         showToast(
@@ -223,18 +160,14 @@ function deleteItem(url, itemId, itemType) {
         );
         reloadTable(`#${itemType}-list`);
       } else {
-        showToast(
-          "Erreur",
-          "Erreur lors de la suppression de l'évènement",
-          "bg-danger text-white"
-        );
+        showToast("Erreur", data.message, "bg-danger text-white");
         console.log(data.message);
       }
     },
-    error: function (xhr, status, error) {
+    error: (xhr, status, error) => {
       showToast(
         "Erreur",
-        "Erreur lors de la suppression de l'évènement",
+        `Erreur lors de la suppression de l'${itemType}`,
         "bg-danger text-white"
       );
       console.log("Une erreur est survenue lors de la suppression", error);
@@ -276,41 +209,6 @@ function getCookie(name) {
   return cookieValue;
 }
 
-function stripePayment() {
-  return {
-    stripe: null,
-    initStripe() {
-      this.stripe = Stripe("{{ stripe_public_key }}");
-    },
-    checkout() {
-      $.ajax({
-        url: "/stripe/create-checkout-session/",
-        method: "POST",
-        contentType: "application/json",
-        data: JSON.stringify({
-          // any additional data you want to send to the server
-        }),
-        success: (response) => {
-          if (response.id) {
-            this.stripe
-              .redirectToCheckout({ sessionId: response.id })
-              .then((result) => {
-                if (result.error) {
-                  alert(result.error.message);
-                }
-              });
-          } else {
-            console.error("Error:", response);
-          }
-        },
-        error: (xhr, status, error) => {
-          console.error("Error:", error);
-        },
-      });
-    },
-  };
-}
-
 // Initialisation d'Alpine.js
 document.addEventListener("alpine:init", () => {
   Alpine.data("cartHandler", () => ({
@@ -329,8 +227,8 @@ document.addEventListener("alpine:init", () => {
   Alpine.data("settingsHandler", () => ({
     deleteItem,
   }));
+});
 
-  Alpine.data("stripePayment", () => ({
-    stripePayment,
-  }));
+$(document).ready(function () {
+  new WOW().init();
 });
