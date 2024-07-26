@@ -22,74 +22,66 @@
           <div class="subtitle-line"></div>
         </div>
         <!-- Onglets -->
-        <div x-data="{ currentTab: 'details' }" class="mb-4 d-flex gap-3">
-          <button
-            type="button"
-            class="onglet btn text-secondary"
-            :class="{ 'active text-red' : currentTab === 'details' }"
-            x-on:click="currentTab = 'details'"
-          >
-            Détails de l'oeuvre
-          </button>
-          <button
-            type="button"
-            class="onglet btn text-secondary ml-4"
-            :class="{ 'active text-red': currentTab === 'supplement' }"
-            x-on:click="currentTab = 'supplement'"
-          >
-            Détails supplémentaires
-          </button>
-        </div>
+        <ul class="nav nav-tabs mb-4" id="artworkTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active text-muted" id="details-tab" data-bs-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="true">Détails de l'oeuvre</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link text-muted" id="supplement-tab" data-bs-toggle="tab" href="#supplement" role="tab" aria-controls="supplement" aria-selected="false">Détails supplémentaires</a>
+          </li>
+        </ul>
 
         <!-- Contenu des onglets -->
-        <div x-cloak x-show="currentTab === 'details'">
-          <div class="mb-3">
-            <p class="h5">
-              <strong>Description :</strong>
-              <span class="text-muted d-block mt-1">{{ artwork.description }}</span>
-            </p>
+        <div class="tab-content" id="artworkTabContent">
+          <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+            <div class="mb-3">
+              <p class="h5">
+                <strong>Description :</strong>
+                <span class="text-muted mt-1">{{ artwork.description }}</span>
+              </p>
+            </div>
+            <div class="mb-3">
+              <p class="h5">
+                <strong>Catégorie :</strong>
+                <span class="text-muted mt-1">{{ artwork.category.name }}</span>
+              </p>
+            </div>
+            <div class="mb-3">
+              <p class="h5">
+                <strong>Support utilisé :</strong>
+                <span class="text-muted mt-1">{{ artwork.medium.name }}</span>
+              </p>
+            </div>
           </div>
-          <div class="mb-3">
-            <p class="h5">
-              <strong>Catégorie :</strong>
-              <span class="text-muted d-block mt-1">{{ artwork.category.name }}</span>
-            </p>
-          </div>
-          <div class="mb-3">
-            <p class="h5">
-              <strong>Support utilisé :</strong>
-              <span class="text-muted d-block mt-1">{{ artwork.medium.name }}</span>
-            </p>
-          </div>
-        </div>
 
-        <div x-cloak x-show="currentTab === 'supplement'">
-          <div class="mb-3">
-            <p class="h5">
-              <strong>Dimension :</strong>
-              <span class="text-muted d-block mt-1">{{ artwork.width }} x {{ artwork.height }} cm</span>
-            </p>
-          </div>
-          <div class="mb-3">
-            <p class="h5">
-              <strong>Support utilisé :</strong>
-              <span class="text-muted d-block mt-1">{{ artwork.medium.name }}</span>
-            </p>
-          </div>
-          {% if artwork.expo %}
-          <div class="mb-3">
-            <p class="h5">
-              <strong>Fait partie de l'exposition :</strong>
-              <span class="text-muted d-block mt-1">{{ artwork.expo.name }}</span>
-            </p>
-          </div>
-          {% endif %}
+          <div class="tab-pane fade" id="supplement" role="tabpanel" aria-labelledby="supplement-tab">
+            <div class="mb-3">
+              <p class="h5">
+                <strong>Dimension :</strong>
+                <span class="text-muted mt-1">{{ artwork.width }} x {{ artwork.height }} cm</span>
+              </p>
+            </div>
+            <div class="mb-3">
+              <p class="h5">
+                <strong>Support utilisé :</strong>
+                <span class="text-muted mt-1">{{ artwork.medium.name }}</span>
+              </p>
+            </div>
+            {% if artwork.expo %}
+            <div class="mb-3">
+              <p class="h5">
+                <strong>Fait partie de l'exposition :</strong>
+                <span class="text-muted d-block mt-1">{{ artwork.expo.name }}</span>
+              </p>
+            </div>
+            {% endif %}
 
-          <div class="mb-3">
-            <p class="h5">
-              <strong>Stock :</strong>
-              <span class="text-muted d-block mt-1">{{ artwork.stock }}</span>
-            </p>
+            <div class="mb-3">
+              <p class="h5">
+                <strong>Stock :</strong>
+                <span class="text-muted d-block mt-1">{{ artwork.stock }}</span>
+              </p>
+            </div>
           </div>
         </div>
 
@@ -140,7 +132,7 @@
     <div class="subtitle-line mx-auto mb-4"></div>
   </div>
 
-  <div class="row">
+  <div class="row w-full">
     {% for r_artwork in related_artworks %}
     <div class="col-12 col-md-4 mb-4">
       {% artworkCard r_artwork user %}
