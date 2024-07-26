@@ -484,6 +484,14 @@
         "documentation": {}
     },
     {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "HttpResponse",
         "importPath": "django.http",
         "description": "django.http",
@@ -1430,12 +1438,29 @@
         "documentation": {}
     },
     {
+        "label": "paypalrestsdk",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "paypalrestsdk",
+        "description": "paypalrestsdk",
+        "detail": "paypalrestsdk",
+        "documentation": {}
+    },
+    {
         "label": "stripe",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "stripe",
         "description": "stripe",
         "detail": "stripe",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "importPath": "store.admin",
+        "description": "store.admin",
+        "isExtraImport": true,
+        "detail": "store.admin",
         "documentation": {}
     },
     {
@@ -1623,7 +1648,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-@9js1jr2do8^_c4em)#x(s-q#fih16hk010m4ze2gldb*tim6+'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\nSECURE_CROSS_ORIGIN_OPONER_POLICY = 'same-origin-allow-popups'\n# Application definition",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-@9js1jr2do8^_c4em)#x(s-q#fih16hk010m4ze2gldb*tim6+'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\nSECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'\n# Application definition",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1632,7 +1657,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-@9js1jr2do8^_c4em)#x(s-q#fih16hk010m4ze2gldb*tim6+'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\nSECURE_CROSS_ORIGIN_OPONER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-@9js1jr2do8^_c4em)#x(s-q#fih16hk010m4ze2gldb*tim6+'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\nSECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1641,7 +1666,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\nSECURE_CROSS_ORIGIN_OPONER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\nSECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1650,16 +1675,16 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\nSECURE_CROSS_ORIGIN_OPONER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "peekOfCode": "ALLOWED_HOSTS = []\nSECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
     {
-        "label": "SECURE_CROSS_ORIGIN_OPONER_POLICY",
+        "label": "SECURE_CROSS_ORIGIN_OPENER_POLICY",
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "SECURE_CROSS_ORIGIN_OPONER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'accounts',",
+        "peekOfCode": "SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'accounts',",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1785,7 +1810,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Stripe settings\nSTRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization",
+        "peekOfCode": "DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')\nCONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Stripe settings\nSTRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\nDOMAIN_URL = 'localhost:8000/'",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1794,7 +1819,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "CONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Stripe settings\nSTRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/",
+        "peekOfCode": "CONTACT_EMAIL = os.getenv('CONTACT_EMAIL')\n# Stripe settings\nSTRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\nDOMAIN_URL = 'localhost:8000/'\n# Internationalization",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1803,7 +1828,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'",
+        "peekOfCode": "STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')\nSTRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\nDOMAIN_URL = 'localhost:8000/'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1812,7 +1837,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True",
+        "peekOfCode": "STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')\n# PayPal settings\nPAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\nDOMAIN_URL = 'localhost:8000/'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1821,7 +1846,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "PAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)",
+        "peekOfCode": "PAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')\nPAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\nDOMAIN_URL = 'localhost:8000/'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1830,7 +1855,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "PAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/",
+        "peekOfCode": "PAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')\nPAYPAL_MODE = 'sandbox'  # or 'live'\nDOMAIN_URL = 'localhost:8000/'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1839,7 +1864,16 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "PAYPAL_MODE = 'sandbox'  # or 'live'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'",
+        "peekOfCode": "PAYPAL_MODE = 'sandbox'  # or 'live'\nDOMAIN_URL = 'localhost:8000/'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/",
+        "detail": "art_by_mtr.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DOMAIN_URL",
+        "kind": 5,
+        "importPath": "art_by_mtr.settings",
+        "description": "art_by_mtr.settings",
+        "peekOfCode": "DOMAIN_URL = 'localhost:8000/'\n# Internationalization\n# https://docs.djangoproject.com/en/5.0/topics/i18n/\nLANGUAGE_CODE = 'fr-FR'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -2690,11 +2724,38 @@
         "documentation": {}
     },
     {
+        "label": "create_checkout_session",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def create_checkout_session(request):\n    if request.method == 'POST':\n        try:\n            data = json.loads(request.body)\n            cart, _ = get_cart_items(user=request.user)\n            user_email = data['email']\n            line_items = []\n            for order in cart.select_related('artwork'):\n                line_items.append({\n                    'price_data': {",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "create_paypal_payment",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def create_paypal_payment(request):\n    if request.method == 'POST':\n        try:\n            cart, total_cost = get_cart_items(user=request.user)\n            payment = paypalrestsdk.Payment({\n                \"intent\": \"sale\",\n                \"payer\": {\n                    \"payment_method\": \"paypal\"\n                },\n                \"transactions\": [{",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
+        "label": "execute_paypal_payment",
+        "kind": 2,
+        "importPath": "store.views",
+        "description": "store.views",
+        "peekOfCode": "def execute_paypal_payment(request):\n    if request.method == 'GET':\n        try:\n            payment_id = request.GET.get('paymentId')\n            payer_id = request.GET.get('PayerID')\n            payment = paypalrestsdk.Payment.find(payment_id)\n            if payment.execute({\"payer_id\": payer_id}):\n                cart = Cart.objects.get(customer=request.user)\n                cart.orders.update(paid=True)\n                cart.delete()",
+        "detail": "store.views",
+        "documentation": {}
+    },
+    {
         "label": "payment_success",
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def payment_success(request):\n    return render(request, \"pages/payments/success.html\", {})\ndef payment_cancel(request):\n    return render(request, \"pages/payments/cancel.html\", {})",
+        "peekOfCode": "def payment_success(request):\n    return render(request, \"store/pages/payments/success.html\", {})\ndef payment_cancel(request):\n    return render(request, \"store/pages/payments/cancel.html\", {})",
         "detail": "store.views",
         "documentation": {}
     },
@@ -2703,7 +2764,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def payment_cancel(request):\n    return render(request, \"pages/payments/cancel.html\", {})",
+        "peekOfCode": "def payment_cancel(request):\n    return render(request, \"store/pages/payments/cancel.html\", {})",
         "detail": "store.views",
         "documentation": {}
     },

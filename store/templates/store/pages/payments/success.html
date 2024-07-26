@@ -1,13 +1,17 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Paiement Réussi</title>
-  </head>
-  <body>
-    <h1>Paiement Réussi</h1>
-    <p>Votre paiement a été traité avec succès. Merci pour votre achat !</p>
-    <a href="{% url 'store:home' %}">Retour à l'accueil</a>
-  </body>
-</html>
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load store_custom_tags %}
+
+{% block title %}Paiement Réussi{% endblock title %}
+
+{% block content %}
+
+{% breadcrumb "Paiement Réussi" "Votre article arrive bientôt!" user preview_cart_items %}
+    <div class="container">
+      <h1>Paiement Réussi</h1>
+      <p>Votre paiement a été traité avec succès. Merci pour votre achat !</p>
+      <a href="{% url 'store:home' %}">Retour à l'accueil</a>
+    </div>
+{% include "components/footer.html" %} {% endblock content %}

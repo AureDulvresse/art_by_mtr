@@ -1,13 +1,24 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Paiement Annulé</title>
-</head>
-<body>
-    <h1>Paiement Annulé</h1>
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load store_custom_tags %}
+
+{% block title %}Paiement Annulé{% endblock title %}
+
+{% block content %}
+
+{% breadcrumb "Paiement Annulé" "Vous pouvez réessayer" user preview_cart_items %}
+<section class="cart-section mt-8 mb-5">
+<div class="container d-flex align-items-center justify-content-center">
+      <div class="card text-center">
+ <h1 class="text-2xl">Paiement Annulé</h1>
     <p>Votre paiement a été annulé. Vous pouvez réessayer.</p>
     <a href="{% url 'store:home' %}">Retour à l'accueil</a>
-</body>
-</html>
+      </div>
+      
+    </div>
+</section>
+    
+{% include "components/footer.html" %} {% endblock content %}
+   
