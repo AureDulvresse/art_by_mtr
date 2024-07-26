@@ -9,9 +9,13 @@
 {% block content %}
 
 {% breadcrumb "Paiement Réussi" "Votre article arrive bientôt!" user preview_cart_items %}
-    <div class="container">
-      <h1>Paiement Réussi</h1>
+<section class="cart-section mt-8 mb-5">
+<div class="container d-flex align-items-center justify-content-center">
+      <div class="card text-center">
+      <h1  class="text-2xl">Paiement Réussi</h1>
       <p>Votre paiement a été traité avec succès. Merci pour votre achat !</p>
       <a href="{% url 'store:home' %}">Retour à l'accueil</a>
     </div>
+        </div>
+</section>
 {% include "components/footer.html" %} {% endblock content %}
