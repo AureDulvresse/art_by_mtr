@@ -47,7 +47,10 @@ def home_page(request):
 
 def about_page(request):
     cart_items = get_cart_items_preview(request)
+    artworks = Artwork.objects.all().order_by('-updated_at')[:3]
+
     context = {
+        'artworks': artworks,
         'preview_cart_items': cart_items[:3] if cart_items else None,
     }
     return render(request, "store/pages/about.html", context)

@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
-{% load static %}
-
-{% load store_custom_tags %} 
+{% load static %} {% load store_custom_tags %}
 
 {% load blog_custom_tags %} {% block title %}Accueil{% endblock title %}
 
@@ -14,14 +12,14 @@
   <div class="caption-black"></div>
   {% include "components/header.html" %}
   <div class="container d-flex align-items-start flex-column z-10">
-    <div class="text-center">
+    <div>
       <h2
-        class="display-4 text-white mb-4 wow animate__animated animate__slideInUp"
+        class="display-4 text-white font-bold mb-2 wow animate__animated animate__slideInUp"
       >
-        Bienvenue chez <span class="text-danger">MRT</span>
+        Bienvenue à l'atelier <span class="text-red">Torres</span>
       </h2>
       <p
-        class="lead text-light mb-4 wow animate__animated animate__fadeInUp"
+        class="text-2xl text-white mb-4 wow animate__animated animate__fadeInUp"
         data-wow-delay="0.4s"
       >
         Explorez notre collection d'art et trouvez l'inspiration
@@ -31,10 +29,10 @@
       class="hero-btn d-flex justify-content-center flex-column gap-1 flex-md-row gap-md-4 wow animate__animated animate__fadeInUp"
       data-wow-delay="0.7s"
     >
-      <a href="{% url 'store:gallery' %}" class="btn btn-danger mr-2"
+      <a href="{% url 'store:gallery' %}" class="btn btn-red mr-2"
         >Visiter la Galerie</a
       >
-      <a href="{% url 'store:contact' %}" class="btn btn-dark ml-2"
+      <a href="{% url 'store:contact' %}" class="btn btn-black ml-2"
         >Me Contacter</a
       >
     </div>
@@ -47,7 +45,9 @@
 >
   <div class="d-flex align-items-center justify-content-center flex-column">
     <div class="d-flex align-items-center flex-column subtitle mb-8">
-      <h2 class="text-center mb-4">Notre <span>Collection d'Art</span></h2>
+      <h2 class="display-4 text-center mb-4">
+        Ma <span>Collection d'Art</span>
+      </h2>
       <div class="subtitle-line"></div>
     </div>
     <div class="container">
@@ -62,47 +62,79 @@
 
     <a
       href="{% url 'store:gallery' %}"
-      class="btn btn-danger mt-8 wow animate__animated animate__zoomIn"
+      class="btn btn-red mt-8 wow animate__animated animate__zoomIn"
       >Découvrir la galerie</a
     >
   </div>
 </section>
-<section class="mt-8 pt-4 pb-5 about wow animate__animated animate__fadeIn bg-light" data-wow-delay="0.3s">
+<section
+  class="mt-8 pt-4 pb-5 about wow animate__animated animate__fadeIn bg-light"
+  data-wow-delay="0.3s"
+>
   <div class="container pb-2">
     <div class="row justify-content-center align-items-center">
-      <div class="col-lg-5 col-12 wow animate__animated animate__fadeInUp mb-4 mb-lg-0">
+      <div
+        class="col-lg-5 col-12 wow animate__animated animate__fadeInUp mb-4 mb-lg-0"
+      >
         <div class="about-img">
-          <img src="{% static 'img/logo.png' %}" alt="" class="img-fluid rounded shadow" />
+          <img
+            src="{% static 'img/logo.png' %}"
+            alt=""
+            class="img-fluid rounded shadow"
+          />
         </div>
       </div>
-      <div class="col-lg-7 col-12 wow animate__animated animate__fadeInUp mt-8" data-wow-delay="0.5s">
+      <div
+        class="col-lg-7 col-12 wow animate__animated animate__fadeInUp mt-8"
+        data-wow-delay="0.5s"
+      >
         <div class="subtitle mb-4">
-          <h2 class="mt-3 mb-4 text-start">Qui <span>suis-je</span></h2>
+          <h2 class="display-4 text-start">Qui <span>suis-je</span></h2>
           <div class="subtitle-line"></div>
         </div>
         <p class="text-muted lead mb-4 text-center text-lg-start">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ipsam quod nesciunt eius accusantium enim quo laborum, ex possimus officia libero molestiae doloribus nostrum consequatur nobis modi nemo hic. Delectus? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe esse eaque odit! Porro rem aliquam maiores consequatur eveniet, quos autem error totam natus distinctio optio modi impedit voluptatibus nobis ducimus!
+          Artiste peintre d'origine espagnole, j'ai grandi dans un environnement
+          créatif grâce à une famille d'artistes. Mon travail est une synthèse
+          dynamique des mouvements artistiques comme le Cubisme, le Street-art
+          et le Pop-art. Chaque œuvre est une explosion de couleurs et de
+          formes, traduisant une vision artistique unique qui transcende les
+          conventions traditionnelles. Mon objectif est de provoquer des
+          émotions et d'inspirer à travers un langage visuel distinctif et
+          moderne.
         </p>
         <div class="d-flex justify-content-center justify-content-lg-start">
-          <a href="{% url 'store:about' %}" class="btn btn-dark">En savoir plus</a>
+          <a href="{% url 'store:about' %}" class="btn btn-black"
+            >En savoir plus</a
+          >
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
-<section class="mt-8 pt-4 pb-5 contact animate__animated animate__fadeIn" data-wow-delay="0.3s">
+<section
+  class="mt-8 pt-4 pb-5 contact animate__animated animate__fadeIn"
+  data-wow-delay="0.3s"
+>
   <div class="container">
     <div class="row">
-      <div class="col-lg-5 col-12 animate__animated animate__slideInLeft mb-4 mb-lg-0">
+      <div
+        class="col-lg-5 col-12 animate__animated animate__slideInLeft mb-4 mb-lg-0"
+      >
         <div class="contact-text">
           <div class="subtitle mb-4">
-            <h2 class="text-start mb-4">Entrons en <span>Contact</span></h2>
+            <h2 class="text-start display-4 mb-2">
+              Entrons en <span>Contact</span>
+            </h2>
             <div class="subtitle-line"></div>
           </div>
-          <p class="text-dark mb-4 text-center text-lg-start">
-            Vous avez une question, une idée ou un projet ? N'hésitez pas à me contacter ! Ensemble, nous pouvons créer quelque chose d'incroyable. Chaque message compte, et je suis impatient de découvrir le vôtre.
+          <p class="text-dark mb-4 text-center text-lg-start py-2">
+            Vous avez une question, une idée ou un projet ?
+            <br />
+            N'hésitez pas à me contacter ! Ensemble, nous pouvons créer quelque
+            chose d'incroyable.
+            <br />
+            Chaque message compte, et je suis impatient de découvrir le vôtre.
           </p>
         </div>
       </div>
@@ -110,11 +142,12 @@
       <div class="col-lg-7 col-12 animate__animated animate__slideInRight">
         <div class="contact-form shadow-lg p-4 rounded">
           <form method="POST">
-            {% csrf_token %}
-            {% if messages %}
+            {% csrf_token %} {% if messages %}
             <div class="mb-3">
               {% for message in messages %}
-              <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+              <div
+                class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}"
+              >
                 {{ message }}
               </div>
               {% endfor %}
@@ -122,29 +155,54 @@
             {% endif %}
             <div class="mb-3">
               <label for="name" class="form-label text-dark">Votre nom</label>
-              <input type="text" name="name" id="name" class="form-control" placeholder="Entrer votre nom" />
+              <input
+                type="text"
+                name="name"
+                id="name"
+                class="form-control"
+                placeholder="Entrer votre nom"
+              />
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label text-dark">Votre email</label>
-              <input type="email" name="email" id="email" class="form-control" placeholder="Entrer votre adresse mail" />
+              <label for="email" class="form-label text-dark"
+                >Votre email</label
+              >
+              <input
+                type="email"
+                name="email"
+                id="email"
+                class="form-control"
+                placeholder="Entrer votre adresse mail"
+              />
             </div>
             <div class="mb-3">
               <label for="subject" class="form-label text-dark">Sujet</label>
-              <input type="text" name="subject" id="subject" class="form-control" placeholder="Entrer un objet" />
+              <input
+                type="text"
+                name="subject"
+                id="subject"
+                class="form-control"
+                placeholder="Entrer un objet"
+              />
             </div>
             <div class="mb-3">
-              <label for="message" class="form-label text-dark">Votre message</label>
-              <textarea name="message" id="message" class="form-control" placeholder="Taper votre message"></textarea>
+              <label for="message" class="form-label text-dark"
+                >Votre message</label
+              >
+              <textarea
+                name="message"
+                id="message"
+                class="form-control"
+                placeholder="Taper votre message"
+              ></textarea>
             </div>
-            <button type="submit" class="btn btn-dark">Envoyer</button>
+            <button type="submit" class="btn btn-black">Envoyer</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-
 
 <section
   class="mt-8 pt-4 pb-5 animate__animated animate__fadeIn bg-light"
@@ -153,13 +211,17 @@
   <div class="container">
     <div class="d-flex align-items-center justify-content-center flex-column">
       <div class="d-flex align-items-center flex-column subtitle mb-8">
-        <h2 class="text-center mb-4">Evenement <span>& Expo</span></h2>
+        <h2 class="text-center display-4 mb-4">
+          Evenement <span>& Expo</span>
+        </h2>
         <div class="subtitle-line"></div>
       </div>
 
       <div class="row">
         {% for post in posts %}
-        <div class="col-12 col-sm-6 col-md-4 mt-2 mt-md-0">{% postCard post %}</div>
+        <div class="col-12 col-sm-6 col-md-4 mt-2 mt-md-0">
+          {% postCard post %}
+        </div>
         {% endfor %}
       </div>
       <a

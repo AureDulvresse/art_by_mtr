@@ -233,10 +233,7 @@ a {
 }
 
 .subtitle h2 {
-    font-size: 2rem;
     font-weight: 600;
-    line-height: 8px;
-    padding-bottom: 2px;
     color: var(--color-black);
     font-family: var(--font-family-title);
 }

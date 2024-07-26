@@ -2622,7 +2622,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def about_page(request):\n    cart_items = get_cart_items_preview(request)\n    context = {\n        'preview_cart_items': cart_items[:3] if cart_items else None,\n    }\n    return render(request, \"store/pages/about.html\", context)\ndef gallery_page(request):\n    artworks = Artwork.objects.all().order_by(\"-updated_at\")\n    cart_items = get_cart_items_preview(request)\n    paginator = Paginator(artworks, settings.ELEMENTS_PER_PAGE)",
+        "peekOfCode": "def about_page(request):\n    cart_items = get_cart_items_preview(request)\n    artworks = Artwork.objects.all().order_by('-updated_at')[:3]\n    context = {\n        'artworks': artworks,\n        'preview_cart_items': cart_items[:3] if cart_items else None,\n    }\n    return render(request, \"store/pages/about.html\", context)\ndef gallery_page(request):\n    artworks = Artwork.objects.all().order_by(\"-updated_at\")",
         "detail": "store.views",
         "documentation": {}
     },
