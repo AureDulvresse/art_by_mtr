@@ -1,51 +1,63 @@
-{% extends "base.html" %} {% load static %} {% load store_custom_tags %} 
+{% extends "base.html" %} 
+{% load static %} 
+{% load store_custom_tags %} 
 
 {% block title %} Galerie {% endblock title %} 
 
 {% block content %}
 
-{% breadcrumb "Galerie" "Des tableaux unique et exceptionnel" user preview_cart_items %}
+{% breadcrumb "Galerie" "Des tableaux uniques et exceptionnels" user preview_cart_items %}
 
-<section
-  class="mt-8 pt-4 pb-5 container mx-auto wow animate__animated animate__fadeIn"
-  data-wow-delay="0.3s"
->
-  <div class="flex items-center justify-center flex-col">
-    <div class="flex items-center flex-col subtitle mb-8">
-      <h2 class="text-center mb-4">Notre <span>Galerie d'Art</span></h2>
+<!-- Search and Filters Section -->
+<section class="mt-8 pt-4 pb-5 container mx-auto flex flex-column wow animate__animated animate__fadeIn" data-wow-delay="0.3s">
+  <div class="text-center mb-8">
+    <div class="subtitle mb-4">
+      <h2 class="display-4">Notre <span>Galerie d'Art</span></h2>
       <div class="subtitle-line"></div>
     </div>
 
-    <div class="grid-container">
-      {% for artwork in artworks %} {% artworkCard artwork user %} {% endfor %}
+    <!-- Search and Filter Form -->
+    <div class="mb-4 flex align-items-center justify-content-between">
+      <form method="GET" class="d-flex flex-wrap justify-content-center gap-3">
+        <input type="text" name="search" class="form-control w-100 w-md-50" placeholder="Rechercher une œuvre d'art" value="{{ request.GET.search }}">
+        <select name="category" class="form-select w-100 w-md-25">
+          <option value="">Tous les catégories</option>
+          {% for category in categories %}
+            <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}>{{ category.name }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-dark">Rechercher</button>
+      </form>
     </div>
+  </div>
 
-    <div
-      class="mt-8 wow animate__animated animate__zoomIn flex justify-between items-center gap-3"
-    >
-      {% if artworks.has_previous %}
-      <a href="?page={{ artworks.previous_page_number }}" class="text-black text-2xl bx bx-chevron-left"
-        ></a
-      >
-      {% else %}
+  <!-- Artworks Grid -->
+  <div class="row w-full">
+    {% for artwork in artworks %}
+      <div class="col-12 col-sm-6 col-md-4 mb-4">
+        {% artworkCard artwork user %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="mt-4 d-flex justify-content-between align-items-center">
+    {% if artworks.has_previous %}
+      <a href="?page={{ artworks.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}" class="text-black text-2xl bx bx-chevron-left"></a>
+    {% else %}
       <span class="text-gray-600 text-2xl bx bx-chevron-left"></span>
-      {% endif %}
+    {% endif %}
 
-      <span class="text-gray-600"
-        >Page {{ artworks.number }} sur {{ artworks.paginator.num_pages }}</span
-      >
+    <span class="text-gray-600">Page {{ artworks.number }} sur {{ artworks.paginator.num_pages }}</span>
 
-      {% if artworks.has_next %}
-      <a href="?page={{ artworks.next_page_number }}" class="text-black text-2xl bx bx-chevron-right"
-        ></a
-      >
-      {% else %}
+    {% if artworks.has_next %}
+      <a href="?page={{ artworks.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}" class="text-black text-2xl bx bx-chevron-right"></a>
+    {% else %}
       <span class="text-gray-600 text-2xl bx bx-chevron-right"></span>
-      {% endif %}
-    </div>
+    {% endif %}
   </div>
 </section>
 
- {% include "components/footer.html" %}
+{% include "components/footer.html" %}
 
 {% endblock content %}

@@ -341,11 +341,9 @@ a {
 
 /* Pour les écrans de taille moyenne (768px et moins) */
 @media (max-width: 768px) {
-    html{
-        font-size: 76%;
-    }
+    
     .text-6xl {
-        font-size: 2rem !important;
+        font-size: 2.5rem !important;
     }
 
     .about-img {
