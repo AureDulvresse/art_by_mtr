@@ -19,11 +19,15 @@ import stripe
 from store.models import Artwork, Cart, CheckOut, Order
 from store.utils import get_cart_items
 from blog.models import Post
-from store.admin import Customer
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+paypalrestsdk.configure({
+    'mode': 'sandbox',  # Change to 'live' for production
+    'client_id': settings.PAYPAL_CLIENT_ID,
+    'client_secret': settings.PAYPAL_CLIENT_SECRET
+})
 
-# Fonction utilitaire pour obtenir les items du panier
 def get_cart_items_preview(request):
     cart_items = None
     if request.user.is_authenticated:
@@ -98,7 +102,6 @@ def contact_page(request) -> HttpResponse:
         subject = request.POST.get('subject')
         message = request.POST.get('message')
 
-        # Validation des données du formulaire
         if not name or not email or not subject or not message:
             messages.error(request, "Tous les champs sont requis.")
             return redirect('store:contact')
@@ -107,7 +110,6 @@ def contact_page(request) -> HttpResponse:
             messages.error(request, "Veuillez entrer une adresse email valide.")
             return redirect('store:contact')
 
-        # Construire le message complet avec un formatage amélioré
         logo_url = request.build_absolute_uri('/static/img/logo_bg_white.png')
         html_message = render_to_string('store/components/contact_email.html', {
             'name': name,
@@ -123,7 +125,7 @@ def contact_page(request) -> HttpResponse:
                 subject,
                 plain_message,
                 settings.DEFAULT_FROM_EMAIL,
-                [settings.CONTACT_EMAIL],  # Assurez-vous de définir cette variable dans vos settings
+                [settings.CONTACT_EMAIL],
                 fail_silently=False,
                 html_message=html_message
             )
@@ -198,10 +200,9 @@ def add_to_cart(request):
         
         cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
 
-        # Récupérer les données mises à jour du panier
         cart_items_html = render_to_string('store/partials/cart_items.html', {'preview_cart_items': cart_items[:3]})
 
-        return JsonResponse({"message": "L'oeuvre a été ajouter au panier avec succès", 
+        return JsonResponse({"message": "L'oeuvre a été ajoutée au panier avec succès", 
                              "cart_items_html": cart_items_html}, 
                              status=200)
     return JsonResponse({"error": "Invalid request"}, status=400)
@@ -223,7 +224,6 @@ def remove_from_cart(request):
 
                 cart_items = cart.orders.select_related('artwork').order_by('-updated_at')
 
-                # Récupérer les données mises à jour du panier
                 cart_items_html = render_to_string('store/partials/cart_items.html', {'preview_cart_items': cart_items[:3]})
                 cart_items_table_html = render_to_string('store/partials/cart_items_table.html', {'cart': cart_items})
 
@@ -240,19 +240,18 @@ def remove_from_cart(request):
     return JsonResponse({'success': False, 'error': 'User not authenticated'}, status=401)
 
 @csrf_exempt
-@login_required
 def create_checkout_session(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
             cart, _ = get_cart_items(user=request.user)
-            user_email = data['email']
+            user_email = data.get('email')
             line_items = []
 
             for order in cart.select_related('artwork'):
                 line_items.append({
                     'price_data': {
-                        'currency': 'eur',
+                        'currency': 'EUR',
                         'product_data': {
                             'name': order.artwork.title,
                         },
@@ -264,59 +263,49 @@ def create_checkout_session(request):
             if not line_items:
                 return JsonResponse({'error': 'No items in cart'}, status=400)
 
-            session = stripe.checkout.Session.create(
-                customer_email= user_email,
+            checkout_session = stripe.checkout.Session.create(
                 payment_method_types=['card'],
                 line_items=line_items,
                 mode='payment',
                 success_url=request.build_absolute_uri(reverse("store:payment-success")),
                 cancel_url=request.build_absolute_uri(reverse('store:payment-fail')),
             )
-            return JsonResponse({'id': session.id})
+            print(checkout_session)
+            return JsonResponse({'sessionId': checkout_session.id})
         except stripe.error.StripeError as e:
             return JsonResponse({'error': f'Stripe error: {str(e)}'}, status=400)
         except Exception as e:
             return JsonResponse({'error': f'An error occurred: {str(e)}'}, status=500)
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
-
-
+@csrf_exempt
 def create_paypal_payment(request):
     if request.method == 'POST':
         try:
-            cart, total_cost = get_cart_items(user=request.user)
+            data = json.loads(request.body)
+            total_cost = data.get('total_cost', 0)
 
             payment = paypalrestsdk.Payment({
                 "intent": "sale",
-                "payer": {
-                    "payment_method": "paypal"
-                },
+                "payer": {"payment_method": "paypal"},
                 "transactions": [{
-                    "amount": {
-                        "total": f"{total_cost:.2f}",
-                        "currency": "USD"
-                    },
-                    "description": "Achat d'oeuvres d'art"
+                    "amount": {"total": f"{total_cost:.2f}", "currency": "EUR"},
+                    "description": "Achat d'articles"
                 }],
                 "redirect_urls": {
-                    "return_url": request.build_absolute_uri('/store/paypal/execute/'),
-                    "cancel_url": request.build_absolute_uri('/store/paypal/cancel/')
+                    "return_url": request.build_absolute_uri('/paypal/execute/'),
+                    "cancel_url": request.build_absolute_uri('/paypal/cancel/')
                 }
             })
 
             if payment.create():
-                for link in payment.links:
-                    if link.rel == "approval_url":
-                        approval_url = str(link.href)
-                        return JsonResponse({"approval_url": approval_url})
+                approval_url = next(link.href for link in payment.links if link.rel == 'approval_url')
+                return JsonResponse({"approval_url": approval_url})
             else:
-                return JsonResponse({"error": payment.error})
-
+                return JsonResponse({"error": payment.error}, status=400)
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
-
     return JsonResponse({"error": "Invalid request method"}, status=400)
-
 
 def execute_paypal_payment(request):
     if request.method == 'GET':
@@ -325,20 +314,13 @@ def execute_paypal_payment(request):
             payer_id = request.GET.get('PayerID')
 
             payment = paypalrestsdk.Payment.find(payment_id)
-
             if payment.execute({"payer_id": payer_id}):
-                cart = Cart.objects.get(customer=request.user)
-                cart.orders.update(paid=True)
-                cart.delete()
-                return redirect('store:payment_success')
+                return redirect('/success/')
             else:
-                return redirect('store:payment_cancel')
-
+                return redirect('/cancel/')
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
-
     return JsonResponse({"error": "Invalid request method"}, status=400)
-
 
 def payment_success(request):
     return render(request, "store/pages/payments/success.html", {})

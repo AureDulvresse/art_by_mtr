@@ -1456,14 +1456,6 @@
         "documentation": {}
     },
     {
-        "label": "Customer",
-        "importPath": "store.admin",
-        "description": "store.admin",
-        "isExtraImport": true,
-        "detail": "store.admin",
-        "documentation": {}
-    },
-    {
         "label": "Migration",
         "kind": 6,
         "importPath": "accounts.migrations.0001_initial",
@@ -2683,7 +2675,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def contact_page(request) -> HttpResponse:\n    cart_items = get_cart_items_preview(request)\n    if request.method == 'POST':\n        name = request.POST.get('name')\n        email = request.POST.get('email')\n        subject = request.POST.get('subject')\n        message = request.POST.get('message')\n        # Validation des données du formulaire\n        if not name or not email or not subject or not message:\n            messages.error(request, \"Tous les champs sont requis.\")",
+        "peekOfCode": "def contact_page(request) -> HttpResponse:\n    cart_items = get_cart_items_preview(request)\n    if request.method == 'POST':\n        name = request.POST.get('name')\n        email = request.POST.get('email')\n        subject = request.POST.get('subject')\n        message = request.POST.get('message')\n        if not name or not email or not subject or not message:\n            messages.error(request, \"Tous les champs sont requis.\")\n            return redirect('store:contact')",
         "detail": "store.views",
         "documentation": {}
     },
@@ -2728,7 +2720,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def create_checkout_session(request):\n    if request.method == 'POST':\n        try:\n            data = json.loads(request.body)\n            cart, _ = get_cart_items(user=request.user)\n            user_email = data['email']\n            line_items = []\n            for order in cart.select_related('artwork'):\n                line_items.append({\n                    'price_data': {",
+        "peekOfCode": "def create_checkout_session(request):\n    if request.method == 'POST':\n        try:\n            data = json.loads(request.body)\n            cart, _ = get_cart_items(user=request.user)\n            user_email = data.get('email')\n            line_items = []\n            for order in cart.select_related('artwork'):\n                line_items.append({\n                    'price_data': {",
         "detail": "store.views",
         "documentation": {}
     },
@@ -2737,7 +2729,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def create_paypal_payment(request):\n    if request.method == 'POST':\n        try:\n            cart, total_cost = get_cart_items(user=request.user)\n            payment = paypalrestsdk.Payment({\n                \"intent\": \"sale\",\n                \"payer\": {\n                    \"payment_method\": \"paypal\"\n                },\n                \"transactions\": [{",
+        "peekOfCode": "def create_paypal_payment(request):\n    if request.method == 'POST':\n        try:\n            data = json.loads(request.body)\n            total_cost = data.get('total_cost', 0)\n            payment = paypalrestsdk.Payment({\n                \"intent\": \"sale\",\n                \"payer\": {\"payment_method\": \"paypal\"},\n                \"transactions\": [{\n                    \"amount\": {\"total\": f\"{total_cost:.2f}\", \"currency\": \"EUR\"},",
         "detail": "store.views",
         "documentation": {}
     },
@@ -2746,7 +2738,7 @@
         "kind": 2,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "def execute_paypal_payment(request):\n    if request.method == 'GET':\n        try:\n            payment_id = request.GET.get('paymentId')\n            payer_id = request.GET.get('PayerID')\n            payment = paypalrestsdk.Payment.find(payment_id)\n            if payment.execute({\"payer_id\": payer_id}):\n                cart = Cart.objects.get(customer=request.user)\n                cart.orders.update(paid=True)\n                cart.delete()",
+        "peekOfCode": "def execute_paypal_payment(request):\n    if request.method == 'GET':\n        try:\n            payment_id = request.GET.get('paymentId')\n            payer_id = request.GET.get('PayerID')\n            payment = paypalrestsdk.Payment.find(payment_id)\n            if payment.execute({\"payer_id\": payer_id}):\n                return redirect('/success/')\n            else:\n                return redirect('/cancel/')",
         "detail": "store.views",
         "documentation": {}
     },
@@ -2773,7 +2765,7 @@
         "kind": 5,
         "importPath": "store.views",
         "description": "store.views",
-        "peekOfCode": "stripe.api_key = settings.STRIPE_SECRET_KEY\n# Fonction utilitaire pour obtenir les items du panier\ndef get_cart_items_preview(request):\n    cart_items = None\n    if request.user.is_authenticated:\n        try:\n            cart = Cart.objects.get(customer=request.user)\n            cart_items = cart.orders.select_related('artwork').order_by('-updated_at')\n        except Cart.DoesNotExist:\n            cart = None",
+        "peekOfCode": "stripe.api_key = settings.STRIPE_SECRET_KEY\npaypalrestsdk.configure({\n    'mode': 'sandbox',  # Change to 'live' for production\n    'client_id': settings.PAYPAL_CLIENT_ID,\n    'client_secret': settings.PAYPAL_CLIENT_SECRET\n})\ndef get_cart_items_preview(request):\n    cart_items = None\n    if request.user.is_authenticated:\n        try:",
         "detail": "store.views",
         "documentation": {}
     },
