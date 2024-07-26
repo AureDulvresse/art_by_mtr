@@ -238,6 +238,7 @@ a {
     line-height: 8px;
     padding-bottom: 2px;
     color: var(--color-black);
+    font-family: var(--font-family-title);
 }
 
 .subtitle h2 span {
