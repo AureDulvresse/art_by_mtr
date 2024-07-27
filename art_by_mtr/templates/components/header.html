@@ -1,12 +1,12 @@
 {% load static %}
 <header
-  x-data="{ isSticky: false, showCart: false }"
+  x-data="{ isSticky: false, showCart: false, showMobileMenu: false }"
   x-init="window.addEventListener('scroll', () => isSticky = window.scrollY > 50)"
-  x-bind:class="{ 'bg-gray-900 shadow-lg': isSticky, 'bg-transparent': !isSticky }"
+  x-bind:class="{ 'bg-dark shadow-lg': isSticky, 'bg-transparent': !isSticky }"
   class="wow animate__animated animate__fadeIn"
   id="sticker"
 >
-  <div class="container mx-auto flex justify-between items-center">
+  <div class="container d-flex justify-content-between align-items-center">
     <!-- logo -->
     <a href="{% url 'store:home' %}">
       <img src="{% static 'img/logo.png' %}" width="60" alt="logo" />
@@ -14,76 +14,117 @@
     <!-- logo -->
 
     <!-- menu start -->
-    <nav class="navbar pt-3">
-      <ul class="flex items-center">
-        <li>
-          <a
-            href="{% url 'store:home' %}"
-            class="{% if request.PATH_INFO == '/' %} active text-red-600 {% else %} text-white {% endif %}"
-            >Accueil</a>
+    <nav class="d-none d-md-flex pt-3">
+      <ul class="nav">
+        <li class="nav-item">
+          <a href="{% url 'store:home' %}" class="nav-link {% if request.path == '/' %} active text-danger {% else %} text-white {% endif %}">
+            Accueil
+          </a>
         </li>
-        <li>
-          <a
-            href="{% url 'store:about' %}"
-            class="{% if request.PATH_INFO == '/about/' %} active text-red-600 {% else %} text-white {% endif %}"
-            >A Propos</a>
+        <li class="nav-item">
+          <a href="{% url 'store:about' %}" class="nav-link {% if request.path == '/about/' %} active text-danger {% else %} text-white {% endif %}">
+            A Propos
+          </a>
         </li>
-        <li>
-          <a
-            href="{% url 'store:gallery' %}"
-            class="{% if request.PATH_INFO == '/store/' %}active text-red-600{% else %}text-white{% endif %}"
-            >Boutique</a>
+        <li class="nav-item">
+          <a href="{% url 'store:gallery' %}" class="nav-link {% if request.path == '/gallery/' %} active text-danger {% else %} text-white {% endif %}">
+            Boutique
+          </a>
         </li>
-        <li>
-          <a
-            href="{% url 'blog:home' %}"
-            class="{% if request.PATH_INFO == '/blog/' %}active text-red-600{% else %}text-white{% endif %}"
-            >Blog</a
-          >
+        <li class="nav-item">
+          <a href="{% url 'blog:home' %}" class="nav-link {% if request.path == '/blog/' %} active text-danger {% else %} text-white {% endif %}">
+            Blog
+          </a>
         </li>
-        <li>
-          <a
-            href="{% url 'store:contact' %}"
-            class="{% if request.PATH_INFO == '/contact/' %} active text-red-600{% else %} text-white{% endif %}"
-            >Contact</a
-          >
+        <li class="nav-item">
+          <a href="{% url 'store:contact' %}" class="nav-link {% if request.path == '/contact/' %} active text-danger {% else %} text-white {% endif %}">
+            Contact
+          </a>
         </li>
 
-        <li>
+        <li class="nav-item">
           {% if user.is_authenticated %}
-          <div class="flex items-center justify-center gap-3 relative">
+          <div class="d-flex align-items-center gap-3 relative">
             <!-- Panier Button -->
-            <button
-              type="button"
-              @click="showCart = !showCart"
-              class="text-white bg-transparent border-none"
-              title="voir le panier"
-            >
-              <i class="bx bx-cart text-2xl"></i>
+            <button type="button" @click="showCart = !showCart" class="btn btn-link text-white" title="voir le panier">
+              <i class="bx bx-cart fs-4"></i>
             </button>
 
             <!-- Utilisateur Button -->
-           <a
-              href="{% url 'accounts:profile' %}"
-              class="text-white bg-transparent border-none"
-              title="Mon compte"
-            >
-              <i class="bx bx-user text-2xl"></i>
-          </a>
-
+            <a href="{% url 'accounts:profile' %}" class="btn btn-link text-white" title="Mon compte">
+              <i class="bx bx-user fs-4"></i>
+            </a>
+          </div>
           {% else %}
-          <a href="{% url 'accounts:login' %}" class="btn btn-red"
-            >Se connecter</a
-          >
+          <a href="{% url 'accounts:login' %}" class="btn btn-danger">Se connecter</a>
           {% endif %}
         </li>
       </ul>
     </nav>
-    <div class="mobile-menu" id="mobile-menu">
-      <i class="bx bx-menu text-white z-20"></i>
-    </div>
+    <!-- Mobile Menu Button -->
+    <button @click="showMobileMenu = !showMobileMenu" class="btn btn-link d-md-none" title="Navigation">
+      <i class="bx bx-menu text-white text-4xl"></i>
+    </button>
     <!-- menu end -->
   </div>
+
+  <!-- Mobile Menu -->
+  <nav x-show="showMobileMenu"  x-transition.opacity
+    x-transition:enter.duration.500ms
+    x-transition:leave.duration.400ms
+       class="mobile-nav d-md-none fixed-top bg-dark text-white"
+  >
+    <div class="container d-flex flex-column align-items-center py-5 ">
+      <button @click="showMobileMenu = false" class="btn btn-link text-white mb-3 position-absolute" style="top: 2px; right: 10px;" title="Fermer le menu">
+        <i class="bx bx-x text-white text-4xl"></i>
+      </button>
+      <ul class="nav flex-column text-center">
+        <li class="nav-item my-2">
+          <a href="{% url 'store:home' %}" class="nav-link {% if request.path == '/' %} active text-danger {% else %} text-white {% endif %}">
+            Accueil
+          </a>
+        </li>
+        <li class="nav-item my-2">
+          <a href="{% url 'store:about' %}" class="nav-link {% if request.path == '/about/' %} active text-danger {% else %} text-white {% endif %}">
+            A Propos
+          </a>
+        </li>
+        <li class="nav-item my-2">
+          <a href="{% url 'store:gallery' %}" class="nav-link {% if request.path == '/gallery/' %} active text-danger {% else %} text-white {% endif %}">
+            Boutique
+          </a>
+        </li>
+        <li class="nav-item my-2">
+          <a href="{% url 'blog:home' %}" class="nav-link {% if request.path == '/blog/' %} active text-danger {% else %} text-white {% endif %}">
+            Blog
+          </a>
+        </li>
+        <li class="nav-item my-2">
+          <a href="{% url 'store:contact' %}" class="nav-link {% if request.path == '/contact/' %} active text-danger {% else %} text-white {% endif %}">
+            Contact
+          </a>
+        </li>
+
+        <li class="nav-item my-2">
+          {% if user.is_authenticated %}
+          <div class="d-flex align-items-center gap-3 relative">
+            <!-- Panier Button -->
+            <button type="button" @click="showCart = !showCart" class="btn btn-link text-white" title="voir le panier">
+              <i class="bx bx-cart fs-4"></i>
+            </button>
+
+            <!-- Utilisateur Button -->
+            <a href="{% url 'accounts:profile' %}" class="btn btn-link text-white" title="Mon compte">
+              <i class="bx bx-user fs-4"></i>
+            </a>
+          </div>
+          {% else %}
+          <a href="{% url 'accounts:login' %}" class="btn btn-danger">Se connecter</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- Modal for Cart -->
   <div
@@ -92,14 +133,16 @@
     x-transition.opacity
     x-transition:enter.duration.500ms
     x-transition:leave.duration.400ms
-    class="cart-preview-overlay"
+    class="cart-preview-overlay fixed inset-0 bg-opacity-50 z-40 flex items-center justify-center"
   >
-    <div class="cart-preview shadow-md rounded px-2 py-3">
+    <div
+      class="cart-preview bg-white shadow-md rounded p-4 w-full max-w-md mx-auto"
+    >
       <div class="relative">
         <button
           type="button"
           @click="showCart = !showCart"
-          class="close-btn"
+          class="close-btn absolute top-2 right-2 text-gray-600 hover:text-gray-800"
           title="Fermer le panier"
         >
           <i class="bx bx-x text-2xl"></i>
@@ -142,7 +185,9 @@
           {% endfor %}
         </ul>
         {% if preview_cart_items %}
-        <a href="{% url 'store:cart' %}" class="mt-4 btn btn-red">Voir le reste du panier</a>
+        <a href="{% url 'store:cart' %}" class="mt-4 btn btn-red"
+          >Voir le reste du panier</a
+        >
         {% endif %}
       </div>
     </div>
