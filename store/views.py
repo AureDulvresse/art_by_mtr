@@ -20,14 +20,6 @@ from store.models import Artwork, Cart, CheckOut, Order
 from store.utils import get_cart_items
 from blog.models import Post
 
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
-paypalrestsdk.configure({
-    'mode': 'sandbox',  # Change to 'live' for production
-    'client_id': settings.PAYPAL_CLIENT_ID,
-    'client_secret': settings.PAYPAL_CLIENT_SECRET
-})
-
 def get_cart_items_preview(request):
     cart_items = None
     if request.user.is_authenticated:
@@ -262,8 +254,10 @@ def create_checkout_session(request):
 
             if not line_items:
                 return JsonResponse({'error': 'No items in cart'}, status=400)
-
+            
+            stripe.api_key = settings.STRIPE_SECRET_KEY
             checkout_session = stripe.checkout.Session.create(
+                customer_email=user_email,
                 payment_method_types=['card'],
                 line_items=line_items,
                 mode='payment',
@@ -282,6 +276,11 @@ def create_checkout_session(request):
 def create_paypal_payment(request):
     if request.method == 'POST':
         try:
+            paypalrestsdk.configure({
+                'mode': 'sandbox',  # Change to 'live' for production
+                'client_id': settings.PAYPAL_CLIENT_ID,
+                'client_secret': settings.PAYPAL_CLIENT_SECRET
+            })
             data = json.loads(request.body)
             total_cost = data.get('total_cost', 0)
 

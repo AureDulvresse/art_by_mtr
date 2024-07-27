@@ -127,7 +127,7 @@
 
   stripe_checkout_button.addEventListener("click", function () {
 
-    stripe_checkout_button.innerHTML = "Chargement..."
+    stripe_checkout_button.innerHTML = "Veuillez patienter..."
 
     fetch('{% url "store:create_checkout_session" %}', {
       method: "POST",

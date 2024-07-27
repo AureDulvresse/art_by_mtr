@@ -1,6 +1,7 @@
-{% extends "base.html" %} {% load static %}
-
-{% load blog_custom_tags %} {% load store_custom_tags %} 
+{% extends "base.html" %}
+{% load static %}
+{% load blog_custom_tags %}
+{% load store_custom_tags %}
 
 {% block title %} Actualité - Détail {% endblock title %}
 
@@ -8,74 +9,57 @@
 
 {% breadcrumb post.title "Détail du poste" user preview_cart_items %}
 
-<section
-  class="single-artwork mt-8 pt-4 pb-5 about wow animate__animated animate__fadeIn"
-  data-wow-delay="0.3s"
->
-  <div class="container mx-auto">
+<section class="single-artwork mt-5 pt-4 pb-5 about wow animate__animated animate__fadeIn" data-wow-delay="0.3s">
+  <div class="container">
     <div class="post-details">
       {% if post.thumbnail %}
-      <div class="w-full relative rounded post-img">
-        <img
-          src="{{ post.thumbnail.url }}"
-          alt="{{ post.title }}"
-          class="img-fluid rounded"
-        />
+      <div class="w-100 mb-4">
+        <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}" class="img-fluid rounded wow animate__animated animate__zoomIn" data-wow-delay="0.5s">
       </div>
       {% endif %}
 
-      <h1 class="text-4xl text-red">{{post.title}}</h1>
-      <div class="meta">
+      <h1 class="h2 text-primary wow animate__animated animate__fadeInUp" data-wow-delay="0.6s">{{ post.title }}</h1>
+      <div class="meta mb-4 wow animate__animated animate__fadeInUp" data-wow-delay="0.7s">
         <p><strong>Date: </strong>{{ post.event_date|date:" d F Y" }}</p>
-        <p><strong>Location: </strong> {{ post.event_place }}</p>
+        <p><strong>Lieu: </strong>{{ post.event_place }}</p>
       </div>
-      <div class="description mt-4 mb-5 text-lg text-gray-600">
+      <div class="description mb-4 text-secondary wow animate__animated animate__fadeInUp" data-wow-delay="0.8s">
         <p>{{ post.description }}</p>
       </div>
-      <div class="content text-black">
+      <div class="content text-dark wow animate__animated animate__fadeInUp" data-wow-delay="0.9s">
         <p>{{ post.content }}</p>
       </div>
-      <div class="flex items-center justify-center gap-3 mt-2 mb-5">
-        <h5>Partager</h5>
-        <a href="#" target="_blank"><i class="bx bxl-facebook"></i></a>
-        <a href="#" target="_blank"><i class="bx bxl-twitter"></i></a>
-        <a href="#" target="_blank"><i class="bx bxl-instagram"></i></a>
-        <a href="#" target="_blank"><i class="bx bxl-pinterest"></i></a>
+      <div class="d-flex align-items-center justify-content-center gap-3 mt-4 wow animate__animated animate__fadeInUp" data-wow-delay="1s">
+        <h5>Partager :</h5>
+        <a href="#" target="_blank" class="text-primary"><i class="bx bxl-facebook"></i></a>
+        <a href="#" target="_blank" class="text-primary"><i class="bx bxl-twitter"></i></a>
+        <a href="#" target="_blank" class="text-primary"><i class="bx bxl-instagram"></i></a>
+        <a href="#" target="_blank" class="text-primary"><i class="bx bxl-pinterest"></i></a>
+      </div>
     </div>
-    </div>
-    
   </div>
 </section>
 
 <!-- more artworks -->
 {% if related_artworks %}
-
-<section
-  class="mt-8 pt-4 pb-5 container mx-auto wow animate__animated animate__fadeIn"
-  data-wow-delay="0.3s"
->
-  <div class="flex items-center justify-center flex-col">
-    <div class="flex items-center flex-col subtitle mb-8">
-      <h2 class="text-center mb-5">
-        Decouvrir les oeuvres de<span> cette évènement !</span>
-      </h2>
-      <div class="subtitle-line"></div>
+<section class="mt-5 pt-4 pb-5 container wow animate__animated animate__fadeIn" data-wow-delay="0.3s">
+  <div class="text-center mb-5">
+    <h2 class="mb-4 wow animate__animated animate__fadeInUp" data-wow-delay="0.4s">Découvrir les œuvres de<span> cet événement !</span></h2>
+    <div class="subtitle-line mx-auto mb-4 wow animate__animated animate__fadeInUp" data-wow-delay="0.5s"></div>
+  </div>
+  <div class="row">
+    {% for r_artwork in related_artworks %}
+    <div class="col-12 col-md-4 mb-4 wow animate__animated animate__zoomIn" data-wow-delay="0.6s">
+      {% artworkCard r_artwork user %}
     </div>
-
-    <div class="grid-container">
-      {% for r_artwork in related_artworks %} {% artworkCard r_artwork user %}
-      {% endfor %}
-    </div>
-    <a
-      href="{% url 'store:gallery' %}"
-      class="btn btn-red mt-8 wow animate__animated animate__zoomIn"
-      >Découvrir d'autres oeuvres</a
-    >
+    {% endfor %}
+  </div>
+  <div class="text-center">
+    <a href="{% url 'store:gallery' %}" class="btn btn-danger mt-4 wow animate__animated animate__zoomIn" data-wow-delay="0.7s">Découvrir d'autres œuvres</a>
   </div>
 </section>
+{% endif %}
 
-{% endif %} 
-
-{% include "components/footer.html" %} 
+{% include "components/footer.html" %}
 
 {% endblock content %}

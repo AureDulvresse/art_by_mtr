@@ -136,7 +136,7 @@ CONTACT_EMAIL = os.getenv('CONTACT_EMAIL')
 
 # Stripe settings
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY ')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 
 # PayPal settings
 PAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')
