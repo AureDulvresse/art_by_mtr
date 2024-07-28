@@ -4,6 +4,12 @@ FROM python:3.12-slim
 # Définir le répertoire de travail
 WORKDIR /app
 
+# Installer les dépendances nécessaires
+RUN apt update && \
+    apt install -y --no-install-recommends gcc pkg-config libmariadb-dev && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Configurer l'environnement virtuel
 RUN python -m venv /venv
 ENV PATH="/venv/bin:$PATH"
