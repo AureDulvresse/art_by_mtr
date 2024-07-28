@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@9js1jr2do8^_c4em)#x(s-q#fih16hk010m4ze2gldb*tim6+'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DJANGO_DEBUG")
 
 ALLOWED_HOSTS = []
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
@@ -87,22 +87,26 @@ WSGI_APPLICATION = 'art_by_mtr.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-    #  "default": {
-    #     "ENGINE" : "django.db.backends.mysql",
-    #     "NAME": os.getenv("NAME"),
-    #     "USER": os.getenv("USER"),
-    #     "PASSWORD": os.getenv("PASS"),
-    #     "HOST": os.getenv("HOST"),
-    #     "PORT": os.getenv("PORT"),
-    #     "OPTIONS": {
-    #         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-    #     },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
+     "default": {
+        "ENGINE" : "django.db.backends.mysql",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASS"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
+        "OPTIONS": {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+    }
 }
+
+# DATABASES = {
+#     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+# }
 
 
 # Password validation

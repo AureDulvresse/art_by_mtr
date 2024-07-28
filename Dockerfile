@@ -4,6 +4,13 @@ FROM python:3.12-slim
 # Définir le répertoire de travail
 WORKDIR /app
 
+# Configurer l'environnement virtuel
+RUN python -m venv /venv
+ENV PATH="/venv/bin:$PATH"
+
+# Mettre à jour pip
+RUN pip install --upgrade pip
+
 # Copier les fichiers requirements.txt et installer les dépendances
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
