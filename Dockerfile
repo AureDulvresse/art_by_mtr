@@ -8,10 +8,9 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # Installer les dépendances nécessaires
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends gcc pkg-config libmariadb-dev && \
-    apt-get clean && \
-    apt install mysql-client && \
+RUN apt update && \
+    apt install -y --no-install-recommends gcc pkg-config mysql-client libmariadb-dev && \
+    apt clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Configurer l'environnement virtuel
