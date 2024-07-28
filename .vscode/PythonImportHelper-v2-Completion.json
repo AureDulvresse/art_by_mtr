@@ -99,6 +99,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1640,7 +1656,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = os.getenv(\"DJANGO_SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = os.getenv(\"DJANGO_DEBUG\")\nALLOWED_HOSTS = [\n    'www.ateliermrt.com',\n    'ateliermrt.com'",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = os.getenv(\"DJANGO_SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = os.getenv(\"DJANGO_DEBUG\")\nALLOWED_HOSTS = []\n# ALLOWED_HOSTS = [\n#     # 'www.ateliermrt.com',",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1649,7 +1665,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "SECRET_KEY = os.getenv(\"DJANGO_SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = os.getenv(\"DJANGO_DEBUG\")\nALLOWED_HOSTS = [\n    'www.ateliermrt.com',\n    'ateliermrt.com'\n]\nSECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [",
+        "peekOfCode": "SECRET_KEY = os.getenv(\"DJANGO_SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = os.getenv(\"DJANGO_DEBUG\")\nALLOWED_HOSTS = []\n# ALLOWED_HOSTS = [\n#     # 'www.ateliermrt.com',\n#     # 'ateliermrt.com',\n# ]\nSECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'\n# Application definition",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1658,7 +1674,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "DEBUG = os.getenv(\"DJANGO_DEBUG\")\nALLOWED_HOSTS = [\n    'www.ateliermrt.com',\n    'ateliermrt.com'\n]\nSECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',",
+        "peekOfCode": "DEBUG = os.getenv(\"DJANGO_DEBUG\")\nALLOWED_HOSTS = []\n# ALLOWED_HOSTS = [\n#     # 'www.ateliermrt.com',\n#     # 'ateliermrt.com',\n# ]\nSECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1667,7 +1683,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "ALLOWED_HOSTS = [\n    'www.ateliermrt.com',\n    'ateliermrt.com'\n]\nSECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
+        "peekOfCode": "ALLOWED_HOSTS = []\n# ALLOWED_HOSTS = [\n#     # 'www.ateliermrt.com',\n#     # 'ateliermrt.com',\n# ]\nSECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1883,7 +1899,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / 'art_by_mtr/static',\n]\nSTATIC_ROOT = 'static_root'",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / 'art_by_mtr/static',\n]\nSTATIC_ROOT = 'static/'",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1892,7 +1908,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / 'art_by_mtr/static',\n]\nSTATIC_ROOT = 'static_root'\n# Default primary key field type",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / 'art_by_mtr/static',\n]\nSTATIC_ROOT = 'static/'\n# Default primary key field type",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1901,7 +1917,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / 'art_by_mtr/static',\n]\nSTATIC_ROOT = 'static_root'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / 'art_by_mtr/static',\n]\nSTATIC_ROOT = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1910,7 +1926,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "STATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / 'art_by_mtr/static',\n]\nSTATIC_ROOT = 'static_root'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'",
+        "peekOfCode": "STATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / 'art_by_mtr/static',\n]\nSTATIC_ROOT = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1919,7 +1935,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR / 'art_by_mtr/static',\n]\nSTATIC_ROOT = 'static_root'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'",
+        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR / 'art_by_mtr/static',\n]\nSTATIC_ROOT = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1928,7 +1944,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "STATIC_ROOT = 'static_root'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {",
+        "peekOfCode": "STATIC_ROOT = 'static/'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\nAUTH_USER_MODEL = \"accounts.Customer\"\nROOT_URLCONF = 'art_by_mtr.urls'\nLOGIN_URL = 'accounts:login'\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\nCOMPONENTS_DIRS : dict = {",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -2407,6 +2423,15 @@
         "description": "store.migrations.0001_initial",
         "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Category',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
         "detail": "store.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "store.migrations.0002_alter_payment_currency",
+        "description": "store.migrations.0002_alter_payment_currency",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('store', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='payment',\n            name='currency',\n            field=models.CharField(choices=[('EUR', 'EUR'), ('USD', 'USD')], default='EUR', max_length=3),\n        ),",
+        "detail": "store.migrations.0002_alter_payment_currency",
         "documentation": {}
     },
     {

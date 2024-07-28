@@ -29,10 +29,12 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DJANGO_DEBUG")
 
-ALLOWED_HOSTS = [
-    'www.ateliermrt.com',
-    'ateliermrt.com'
-]
+
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = [
+#     # 'www.ateliermrt.com',
+#     # 'ateliermrt.com',
+# ]
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 
 
@@ -170,7 +172,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'art_by_mtr/static',
 ]
-STATIC_ROOT = 'static_root'
+STATIC_ROOT = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
