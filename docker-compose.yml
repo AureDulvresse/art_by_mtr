@@ -22,6 +22,8 @@ services:
       MYSQL_USER: "${DB_USER}"
       MYSQL_PASSWORD: "${DB_PASS}"
       MYSQL_ROOT_PASSWORD: "${DB_PASS}"
+    ports:
+      - "3306:3306"
 
 volumes:
   mysql_data:
