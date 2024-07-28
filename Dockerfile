@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Installer les dépendances nécessaires
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends gcc pkg-config mysqlclient libmariadb-dev && \
+    apt-get install -y --no-install-recommends gcc pkg-config mysql-client libmariadb-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
