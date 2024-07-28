@@ -27,16 +27,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copier le code de l'application
 COPY . .
 
-<<<<<<< Updated upstream
 # Copier le script d'entrypoint
 COPY entrypoint.sh /entrypoint.sh
 
 # Rendre le script exécutable
 RUN chmod +x /entrypoint.sh
-=======
-COPY ./entrypoint.sh /
-ENTRYPOINT [ "sh", "/entrypoint.sh" ]
->>>>>>> Stashed changes
 
 # Exposer le port que l'application utilisera
 EXPOSE 8000
