@@ -14,15 +14,15 @@ ENV PATH="/venv/bin:$PATH"
 # Mettre à jour pip
 RUN pip install --upgrade pip
 
+# Définir le répertoire de travail
+WORKDIR /app
+
 # Copier les fichiers requirements.txt et installer les dépendances
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copier le code de l'application
 COPY ./art_by_mtr /app
-
-# Définir le répertoire de travail
-WORKDIR /app
 
 COPY ./entrypoint.sh /
 ENTRYPOINT [ "sh", "/entrypoint.sh" ]
