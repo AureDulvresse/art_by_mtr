@@ -1746,7 +1746,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "WSGI_APPLICATION = 'art_by_mtr.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\n# DATABASES = {\n#     # 'default': {\n#     #     'ENGINE': 'django.db.backends.sqlite3',\n#     #     'NAME': BASE_DIR / 'db.sqlite3',\n#     # }\n#      \"default\": {\n#         \"ENGINE\" : \"django.db.backends.mysql\",",
+        "peekOfCode": "WSGI_APPLICATION = 'art_by_mtr.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    # 'default': {\n    #     'ENGINE': 'django.db.backends.sqlite3',\n    #     'NAME': BASE_DIR / 'db.sqlite3',\n    # }\n     \"default\": {\n        \"ENGINE\" : \"django.db.backends.mysql\",",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
@@ -1755,7 +1755,7 @@
         "kind": 5,
         "importPath": "art_by_mtr.settings",
         "description": "art_by_mtr.settings",
-        "peekOfCode": "DATABASES = {\n    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))\n}\n# Password validation\n# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {",
+        "peekOfCode": "DATABASES = {\n    # 'default': {\n    #     'ENGINE': 'django.db.backends.sqlite3',\n    #     'NAME': BASE_DIR / 'db.sqlite3',\n    # }\n     \"default\": {\n        \"ENGINE\" : \"django.db.backends.mysql\",\n        \"NAME\": os.getenv(\"DB_NAME\"),\n        \"USER\": os.getenv(\"DB_USER\"),\n        \"PASSWORD\": os.getenv(\"DB_PASS\"),",
         "detail": "art_by_mtr.settings",
         "documentation": {}
     },
