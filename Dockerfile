@@ -11,6 +11,7 @@ WORKDIR /app
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc pkg-config libmariadb-dev && \
     apt-get clean && \
+    apt install mysql-client libmysqlclient-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # Configurer l'environnement virtuel
