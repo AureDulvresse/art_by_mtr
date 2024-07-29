@@ -25,13 +25,11 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copier le code de l'application
-COPY . .
+COPY . /app/
 
-# Copier le script d'entrypoint
-COPY ./entrypoint.sh .
+RUN python manage.py migrate
 
-# Exposer le port que l'application utilisera
-EXPOSE 8000
+RUN python manage.py collectstatic --noinput
 
-# Définir le script d'entrypoint
-ENTRYPOINT ["sh", "/entrypoint.sh/"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "art_by_mtr.wsgi:application"]
+
