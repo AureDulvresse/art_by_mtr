@@ -11,7 +11,6 @@ WORKDIR /app
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc pkg-config libmariadb-dev && \
     apt-get clean && \
-    apt install mysql-client libmysqlclient-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # Configurer l'environnement virtuel
@@ -28,7 +27,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copier le code de l'application
 COPY . /app/
 
-RUN python manage.py migrate
+# RUN python manage.py migrate
 
 RUN python manage.py collectstatic --noinput
 
